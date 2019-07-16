@@ -1,13 +1,47 @@
+import './global.scss';
 import Typography from "typography"
 import Wordpress2016 from "typography-theme-wordpress-2016"
 
-Wordpress2016.overrideThemeStyles = () => {
-  return {
-    "a.gatsby-resp-image-link": {
-      boxShadow: `none`,
-    },
-  }
-}
+Wordpress2016.googleFonts = [
+  {
+    name: "Roboto",
+    styles: ["400", "400i", "500", "700", "700i", "900", "900i"],
+  },
+];
+
+Wordpress2016.headerFontFamily = ["Roboto", "sans-serif"];
+Wordpress2016.bodyFontFamily = ["Roboto", "sans-serif"];
+Wordpress2016.headerWeight = 500;
+Wordpress2016.bodyColor = 'white';
+Wordpress2016.bgColor = 'black';
+
+Wordpress2016.overrideThemeStyles = () => ({
+  'body': {
+    background: '#282C35',
+  },
+  'h1': {
+    color: '#B4DC96'
+  },
+  'h3 a': {
+    color: '#B4DC96',
+  },
+  'h4': {
+    textTransform: "none",
+    letterSpacing: "default",
+    'font-weight': 'bold',
+  },
+  'a': {
+    color: '#5DAEE6',
+  },
+  'blockquote': {
+    color: '#F2F2F2',
+    'border-left-color': '#B4DC96',
+    'margin-left': 0,
+  },
+  'ul,ol': {
+    marginLeft: 'rhythm(1)',
+  },
+})
 
 delete Wordpress2016.googleFonts
 

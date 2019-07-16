@@ -27,6 +27,32 @@ view back on the skyline of her hometown _Bookmarksgrove_, the headline of
 Lane. Pityful a rethoric question ran over her cheek, then she continued her
 way. On her way she met a copy.
 
+```javascript{4-6}
+// Import eKeys library
+const eKeys = footage('eKeys.jsx').sourceData;
+
+// Create an array of keyframes
+const inKeys = [
+  {
+    keyTime: 1,
+    keyValue: 0,
+    easeIn: 0,
+    easeOut: 66,
+  },{
+    keyTime: 2,
+    keyValue: 250,
+    easeIn: 90,
+    easeOut: 0,
+  }
+];
+
+// Create new animation group
+const animIn = eKeys.AnimGroup(inKeys);
+
+// Animate animation group
+animIn(time);
+```
+
 ### Overlaid the jeepers uselessly much excluding
 
 But nothing the copy said could convince her and so it didn’t take long until a

@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, withAssetPrefix } from "gatsby"
 
 import { rhythm, scale } from "../utils/typography"
 
@@ -13,9 +13,10 @@ class Layout extends React.Component {
       header = (
         <h1
           style={{
-            ...scale(1.5),
+            ...scale(1.2),
             marginBottom: rhythm(1.5),
             marginTop: 0,
+            color: 'white',
           }}
         >
           <Link
@@ -34,7 +35,6 @@ class Layout extends React.Component {
       header = (
         <h3
           style={{
-            fontFamily: `Montserrat, sans-serif`,
             marginTop: 0,
           }}
         >
@@ -62,10 +62,18 @@ class Layout extends React.Component {
       >
         <header>{header}</header>
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
+        <footer
+          style={{
+            'margin-top': `${rhythm(2)}`,
+          }}
+        >
+          <a href={`https://twitter.com/modeveloper`}>
+            Twitter
+          </a>
+          {` `}•{` `}
+          <a href={`https://github.com/motiondeveloper`}>
+            Github
+          </a>
         </footer>
       </div>
     )
