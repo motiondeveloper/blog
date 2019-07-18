@@ -50,7 +50,7 @@ Then we can create our keyframe objects.
 
 eKeys represents each keyframe as an object in an array, with properties that define how to animate.
 
-![diagram showing keyframe icons in an array, and the object properties of the first keyframe](/img/keyframe-array.svg "eKeys Keyframe Array")
+![diagram showing keyframe icons in an array, and the object properties of the first keyframe](keyframe-array.svg "eKeys Keyframe Array")
 
 Below is two example keyframes that will animate a position property over two seconds.
 
