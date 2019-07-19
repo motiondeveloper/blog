@@ -145,13 +145,13 @@ pre[data-line] {
 }
 
 .gatsby-highlight-code-line {
-  background-color: rgba($navy, .8);
+  background-color: rgba($blue, .1);
   display: block;
   margin-right: -1em;
   margin-left: -1em;
   padding-right: 1em;
   padding-left: 0.75em;
-  border-left: 0.25em solid $green;
+  border-left: 0.25em solid $blue;
 }
 
 .gatsby-highlight {

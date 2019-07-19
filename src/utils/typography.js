@@ -34,8 +34,10 @@ Wordpress2016.overrideThemeStyles = () => ({
     color: '#5DAEE6',
   },
   'blockquote': {
+    'font-size': '16px',
     color: '#F2F2F2',
-    'border-left-color': '#B4DC96',
+    'border-left-color': '#FFDA6E',
+    'border-left-width': '4px',
     'margin-left': 0,
   },
   'ul,ol': {
