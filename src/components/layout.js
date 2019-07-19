@@ -62,19 +62,6 @@ class Layout extends React.Component {
       >
         <header>{header}</header>
         <main>{children}</main>
-        <footer
-          style={{
-            'margin-top': `${rhythm(2)}`,
-          }}
-        >
-          <a href={`https://twitter.com/modeveloper`}>
-            Twitter
-          </a>
-          {` `}•{` `}
-          <a href={`https://github.com/motiondeveloper`}>
-            Github
-          </a>
-        </footer>
       </div>
     )
   }
