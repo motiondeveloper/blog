@@ -1,5 +1,5 @@
 ---
-title: How to animate with expressions (Intro to eKeys)
+title: How to animate with expressions (intro to eKeys)
 date: 2019-07-16T07:11:06.032Z
 description: >-
   How to animate using expressions, with full control over the easing, using the
@@ -8,11 +8,17 @@ description: >-
 
 [GithubPage]: https://github.com/motiondeveloper/eKeys
 
-When making [Motion Graphics Templates](https://helpx.adobe.com/au/after-effects/using/creating-motion-graphics-templates.html) in After Effects, or any other type of automated work, there comes a time when you wish you were able to add and modify keyframes with expressions. 
+When making [Motion Graphics Templates](https://helpx.adobe.com/au/after-effects/using/creating-motion-graphics-templates.html) in After Effects, or any other type of automated work, there comes a time when you wish you were able to add and modify keyframes with expressions.
 
 While you're able to get some functionality using the `linear` or `ease` expressions, this quickly gets messy, and you're still not able to modify the easing like you are with keyframes.
 
 **eKeys** solves this problem by giving you an easy way to create keyframes in expressions. In this blog post, you'll learn how to get starting using eKeys in your projects.
+
+- [What is eKeys?](#What-is-eKeys)
+- [Installation](#Installation)
+- [Writing the expression](#Writing-the-expression)
+- [Why use eKeys](#Why-use-eKeys)
+- [What's next](#Whats-next)
 
 ## What is eKeys?
 
@@ -71,7 +77,7 @@ const keys = [
 
 > eKeys expects each keyframe to have a `keyTime` and `keyValue` property, while all the other properties are optional.
 
-#### The format of each of these properties is:
+#### The format of each of these properties is
 
 - **`keyTime`**
 
@@ -84,7 +90,7 @@ const keys = [
 - **`easeIn`** and **`easeOut`**
 
     The amount of easing to be applied as a number between 0 and 100 (both defaulting to 33).
-    
+
     This works the same way as the influence percentage you might be used to seeing on traditional keyframes.
 
 - **`velocityIn`** and **`velocityOut`**
@@ -137,3 +143,52 @@ const keys = [
 const animateRight = eKeys.AnimGroup(keys);
 animateRight(time);
 ```
+
+You can call your animation group with with any number to return the animated value at that time. Passing the composition time, as `time`, will give you the animation as normal.
+
+You do things like easily reverse the animation
+
+```js
+animateRight(thisComp.duration - time);
+```
+
+Or animate at varying speeds.
+
+## Why use eKeys
+
+While the example in this post would have been much easier to create with traditional keyframes, the real benefit of eKeys comes when using JavaScript to set the keyframe properties dynamically.
+
+eKeys simplifies tasks such as:
+
+- Creating dynamic templates that respond to user input
+- Animating between wiggles or parents with easing
+- Creating After Effects tools and presets
+
+Being able to create keyframes with JavaScript also has the benefits of being able to create and modify the keyframe array programitcally.
+
+One example of this is setting default parameters with the spread syntax.
+
+```js{11}
+const keyDefaults = {
+    easeOut: 80,
+    easeIn: 100,
+    velocityOut: 40,
+}
+
+const keys = [
+    {
+        keyTime: 1,
+        keyValue: someValue,
+        ...keyDefaults,
+    },
+];
+```
+
+## What's next
+
+There are a couple of major updates that will be coming to eKeys sometime in the future:
+
+- Extra animation methods such as spring and hold keyframes
+- Input easing as a `cubicBezier` list, similar to CSS
+
+If you have any ideas on how to improve eKeys or any other feedback, feel free to reach out to us on Twitter, [@modeveloper](https://twitter.com/modeveloper).
