@@ -26,6 +26,8 @@ eKeys is an importable animation engine for After Effects that allows you to ani
 
 It comes in the form of a `.jsx` file that's imported into your project, with the properties for each keyframe added/modified within the expression.
 
+![eKeys code on the left and the generated keyframes on the right](how-it-works.svg "How eKeys works")
+
 ## Installation
 
 You can download the latest version of eKeys from the [GitHub Releases page](https://github.com/motiondeveloper/eKeys/releases). You can also find some more detailed information [more detailed information][GithubPage] there on using eKeys.
@@ -56,7 +58,7 @@ Then we can create our keyframe objects.
 
 eKeys represents each keyframe as an object in an array, with properties that define how to animate.
 
-![diagram showing keyframe icons in an array, and the object properties of the first keyframe](keyframe-array.svg "eKeys Keyframe Array")
+![keyframe icons in an array, and the object properties of the first keyframe](keyframe-array.svg "eKeys Keyframe Array")
 
 Below is two example keyframes that will animate a position property over two seconds.
 
