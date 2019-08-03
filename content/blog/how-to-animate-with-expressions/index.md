@@ -103,31 +103,9 @@ You can find more information on these properties on the [Github Page][GithubPag
 
 > eKeys sorts the keyframes by their time before animating, so you don't have to put them in the right order - but your expressions will be a lot clearer if you do!
 
-### Animation Groups
-
-Now that we have an array of keyframe objects, we need to create what's called an **animation group**, which is how we pass these keyframes into eKeys.
-
-```js{13}
-const eKeys = footage('eKeys.jsx').sourceData;
-const keys = [
-    {
-        keyTime: 1,
-        keyValue: [100, 540],
-        easeOut: 90,
-    },{
-        keyTime: 2,
-        keyValue: [800, 540],
-        easeIn: 100,
-    }
-];
-const animateRight = eKeys.AnimGroup(keys);
-```
-
-> You can create as many animation groups with different keyframes as you need to
-
 ### Returning the final animation
 
-You can now return your final animation with the line:
+You can now get the final animated value by calling the `animate()` function, and passing it your keyframe array and a time value.
 
 ```js{14}
 const eKeys = footage('eKeys.jsx').sourceData;
@@ -142,19 +120,13 @@ const keys = [
         easeIn: 100,
     }
 ];
-const animateRight = eKeys.AnimGroup(keys);
-animateRight(time);
+
+eKeys.animate(keys, time);
 ```
 
-You can call your animation group with with any number to return the animated value at that time. Passing the composition time, as `time`, will give you the animation as normal.
+You can call `eKeys.animate()` with with any number to return the animated value at that time. This allows you to get the value at a specific time, reverse the animation, or play the animation at different speeds.
 
-You do things like easily reverse the animation
-
-```js
-animateRight(thisComp.duration - time);
-```
-
-Or animate at varying speeds.
+Passing the composition time, as `time`, will give you the animation as normal.
 
 ## Why use eKeys
 
