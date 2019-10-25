@@ -5,7 +5,9 @@
   Motion Developer Blog
 </h1>
 
-This repo hosts the source code for [blog.motiondeveloper.com](blog.motiondeveloper.com). Built with Gatsby and deployed to Netlify.
+This repo hosts the source code for [blog.motiondeveloper.com](blog.motiondeveloper.com).
+
+Built with [Gatsby](https://www.gatsbyjs.org/) and deployed to [Netlify](https://www.netlify.com/).
 
 ## 🚀 Quick start
 
@@ -25,9 +27,13 @@ npm install -g gatsby-cli
     gatsby develop
     ```
 
-3.  **Open the source code and start editing!**
+3.  **Open the source code and start editing**
 
     The site is now running at `http://localhost:8000`
+  
+4. **Commit and push changes**
+
+    Any changes to this repo trigger a new deployment of the site on Netlify.
 
 ## Gatsby Overview
 
