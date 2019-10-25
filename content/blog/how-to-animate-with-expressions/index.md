@@ -14,11 +14,15 @@ While you're able to get some functionality using the `linear` or `ease` express
 
 **eKeys** solves this problem by giving you an easy way to create keyframes in expressions. In this blog post, you'll learn how to get starting using eKeys in your projects.
 
-- [What is eKeys?](#What-is-eKeys)
-- [Installation](#Installation)
-- [Writing the expression](#Writing-the-expression)
-- [Why use eKeys](#Why-use-eKeys)
-- [What's next](#Whats-next)
+- [What is eKeys?](#what-is-ekeys)
+- [Installation](#installation)
+  - [Compatibility](#compatibility)
+- [Writing the expression](#writing-the-expression)
+  - [The Keyframe Array](#the-keyframe-array)
+    - [The format of each of these properties is](#the-format-of-each-of-these-properties-is)
+  - [Returning the final animation](#returning-the-final-animation)
+- [Why use eKeys](#why-use-ekeys)
+- [What's next](#whats-next)
 
 ## What is eKeys?
 
@@ -41,6 +45,10 @@ Once downloaded, all you need to do is import the file into your After Effects p
 ### Compatibility
 
 eKeys is only compatible with the new [JavaScript](https://helpx.adobe.com/after-effects/using/expression-language-reference.html) engine available in CC2019.
+
+You can make sure that your project is using the JavaScript engine by going to `File > Project Settings > Expressions` and setting the Expressions Engine to JavaScript.
+
+![Expressions Panel of After Effects Project Settings](project-expression-engine.png "Expression Engine Setting")
 
 If you're using an older version of After Effects, you can use an [old version of eKeys](https://github.com/motiondeveloper/ekeys/tree/extendscript) that's compatible.
 
