@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Emoji from "../components/emoji"
 import { rhythm } from "../utils/typography"
 
 class BlogIndex extends React.Component {
@@ -26,7 +27,7 @@ class BlogIndex extends React.Component {
                 }}
               >
                 <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  📌 {title}
+                  <Emoji name="Pin" emoji="📌"/> {title}
                 </Link>
               </h3>
               <small>{node.frontmatter.date}</small>
