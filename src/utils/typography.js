@@ -20,6 +20,7 @@ Wordpress2016.overrideThemeStyles = () => ({
     background: '#282C35',
   },
   'h1': {
+    fontFamily: 'inherit',
     color: '#B4DC96'
   },
   'h3 a': {
