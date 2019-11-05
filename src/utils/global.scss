@@ -28,7 +28,7 @@ small {
 
 code[class*='language-'],
 pre[class*='language-'] {
-  color: $light-grey;
+  color: $grey;
   background: none;
   font-family: 'Roboto Mono', monospace;
   font-feature-settings: normal;
@@ -121,8 +121,10 @@ pre[class*='language-'] ::selection {
   color: $yellow;
 }
 
+.token.operator {
+  color: $blue;
+}
 .token.tag,
-.token.operator,
 .token.keyword {
   color: $purple;
 }
