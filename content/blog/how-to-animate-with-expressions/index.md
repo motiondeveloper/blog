@@ -1,6 +1,7 @@
 ---
 title: How to animate with expressions (intro to eKeys)
 date: 2019-07-16T07:11:06.032Z
+difficulty: Beginner
 pinned: true
 description: >-
   How to animate using expressions, with full control over the easing, using the

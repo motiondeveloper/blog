@@ -23,7 +23,7 @@ const PostItem = ({ post, isPinned }) => {
           {isPinned ? prefixWithPin(title) : title}
         </Link>
       </h3>
-      <small>{post.frontmatter.date}</small>
+      <small>{post.frontmatter.date} • {post.frontmatter.difficulty}</small>
       <p
         style={{
           marginTop: rhythm(1 / 4),
