@@ -21,7 +21,7 @@ class BlogPostTemplate extends React.Component {
         <h1
           style={{
             marginTop: rhythm(1),
-            marginBottom: rhythm(.5),
+            marginBottom: rhythm(0.5),
           }}
         >
           {post.frontmatter.title}
@@ -48,7 +48,7 @@ class BlogPostTemplate extends React.Component {
             justifyContent: `space-between`,
             listStyle: `none`,
             padding: 0,
-            marginBottom: rhythm(.5),
+            marginBottom: rhythm(0.5),
           }}
         >
           <li>
@@ -68,7 +68,7 @@ class BlogPostTemplate extends React.Component {
         </ul>
         <hr
           style={{
-            marginTop: rhythm(.5),
+            marginTop: rhythm(0.5),
             marginBottom: rhythm(1),
           }}
         />

@@ -55,15 +55,11 @@ const Bio = () => {
         }}
       />
       <p>
-        Articles on Adobe After Effects, JavaScript, templates, and everything in between.
-        {' '}Connect with us on{' '}
-        <a href={`https://twitter.com/${social.twitter}`}>
-          Twitter
-        </a>
+        Articles on Adobe After Effects, JavaScript, templates, and everything
+        in between. Connect with us on{" "}
+        <a href={`https://twitter.com/${social.twitter}`}>Twitter</a>
         {` `}and{` `}
-        <a href={`https://github.com/${social.github}`}>
-          Github.
-        </a>
+        <a href={`https://github.com/${social.github}`}>Github.</a>
       </p>
     </div>
   )
