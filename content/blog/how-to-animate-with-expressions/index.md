@@ -16,17 +16,16 @@ While you're able to get some functionality using the `linear` or `ease` express
 
 **eKeys** solves this problem by giving you an easy way to create keyframes in expressions. In this blog post, you'll learn how to get starting using eKeys in your projects.
 
-- [What is eKeys?](#what-is-ekeys)
+- [What is eKeys](#what-is-ekeys)
 - [Installation](#installation)
   - [Compatibility](#compatibility)
 - [Writing the expression](#writing-the-expression)
   - [The Keyframe Array](#the-keyframe-array)
-    - [The format of each of these properties is](#the-format-of-each-of-these-properties-is)
   - [Returning the final animation](#returning-the-final-animation)
 - [Why use eKeys](#why-use-ekeys)
 - [What's next](#whats-next)
 
-## What is eKeys?
+## What is eKeys
 
 eKeys is an importable animation engine for After Effects that allows you to animate within expressions, with the same level of control as traditional keyframes.
 
@@ -148,7 +147,7 @@ eKeys simplifies tasks such as:
 - Animating between wiggles or parents with easing
 - Creating After Effects tools and presets
 
-Being able to create keyframes with JavaScript also has the benefits of being able to create and modify the keyframe array programitcally.
+Being able to create keyframes with JavaScript also has the benefits of being able to create and modify the keyframe array programmatically.
 
 One example of this is setting default parameters with the spread syntax.
 
