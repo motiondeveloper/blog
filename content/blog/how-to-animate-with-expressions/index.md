@@ -1,6 +1,5 @@
 ---
 title: How to animate with expressions (intro to eKeys)
-slug: intro-to-ekeys
 date: 2019-07-16T07:11:06.032Z
 difficulty: Beginner
 pinned: true
