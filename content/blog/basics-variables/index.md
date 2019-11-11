@@ -1,6 +1,6 @@
 ---
 title: "Expression Basics: Variables"
-date: 2019-12-11
+date: 2019-10-11
 difficulty: Beginner
 tags: ["basics", "javascript"]
 pinned: false
