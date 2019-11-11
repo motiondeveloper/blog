@@ -14,7 +14,7 @@ Wordpress2016.googleFonts = [
 Wordpress2016.headerFontFamily = ["DM Sans", "sans-serif"]
 Wordpress2016.bodyFontFamily = ["DM Sans", "sans-serif"]
 Wordpress2016.headerWeight = 700
-Wordpress2016.bodyColor = colors.white;
+Wordpress2016.bodyColor = colors.white
 Wordpress2016.bgColor = "black"
 
 Wordpress2016.overrideThemeStyles = () => ({

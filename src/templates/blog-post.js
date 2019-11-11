@@ -19,12 +19,12 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <hr/>
+        <hr />
         <h1
           style={{
             marginTop: rhythm(1),
             marginBottom: rhythm(0.5),
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
           {post.frontmatter.title}
@@ -33,13 +33,13 @@ class BlogPostTemplate extends React.Component {
           style={{
             display: `block`,
             marginBottom: rhythm(1),
-            textAlign: 'center',
+            textAlign: "center",
             color: colors.grey,
           }}
         >
           {post.frontmatter.date} • {post.frontmatter.difficulty}
         </p>
-        <hr/>
+        <hr />
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
