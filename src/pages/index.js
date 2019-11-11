@@ -18,11 +18,11 @@ class BlogIndex extends React.Component {
         <SEO title="All posts" />
         <Bio />
         {pinnedPosts.map(({ node }) => {
-          return <PostItem post={node} isPinned={true} />;
+          return <PostItem post={node} isPinned={true} key={node.fields.slug} />;
         })}
         <hr />
         {posts.map(({ node }) => {
-          return <PostItem post={node} isPinned={false} />;
+          return <PostItem post={node} isPinned={false} key={node.fields.slug} />;
         })}
       </Layout>
     );
