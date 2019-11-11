@@ -5,14 +5,14 @@ import Wordpress2016 from "typography-theme-wordpress-2016"
 delete Wordpress2016.googleFonts
 Wordpress2016.googleFonts = [
   {
-    name: "Roboto",
+    name: "DM Sans",
     styles: ["400", "400i", "500", "700", "700i", "900", "900i"],
   },
 ]
 
-Wordpress2016.headerFontFamily = ["Roboto", "sans-serif"]
-Wordpress2016.bodyFontFamily = ["Roboto", "sans-serif"]
-Wordpress2016.headerWeight = 500
+Wordpress2016.headerFontFamily = ["DM Sans", "sans-serif"]
+Wordpress2016.bodyFontFamily = ["DM Sans", "sans-serif"]
+Wordpress2016.headerWeight = 700
 Wordpress2016.bodyColor = "white"
 Wordpress2016.bgColor = "black"
 

@@ -1,3 +1,3 @@
 // custom typefaces
-import "typeface-roboto"
+import "typeface-dm-sans"
 import "typeface-roboto-mono"
