@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import { rhythm } from '../utils/typography';
 import { colors } from '../theme';
 import { Calendar, Thermometer } from 'react-feather';
+import TagsList from '../components/tagsList'
 
 const PostItem = ({ post, isPinned }) => {
   const title = post.frontmatter.title || post.fields.slug;
@@ -43,6 +44,9 @@ const PostItem = ({ post, isPinned }) => {
         <li style={{ marginLeft: rhythm(0.5) }}>
           <Thermometer size="14" color={colors.grey} />{' '}
           {post.frontmatter.difficulty}
+        </li>
+        <li style={{ marginLeft: rhythm(0.5) }}>
+          <TagsList tags={post.frontmatter.tags}/>
         </li>
       </ul>
       <p
