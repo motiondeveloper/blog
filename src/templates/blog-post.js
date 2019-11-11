@@ -1,18 +1,18 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react';
+import { Link, graphql } from 'gatsby';
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
-import { colors } from "../theme"
-import { Calendar, Thermometer } from "react-feather"
+import Bio from '../components/bio';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
+import { rhythm } from '../utils/typography';
+import { colors } from '../theme';
+import { Calendar, Thermometer } from 'react-feather';
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+    const post = this.props.data.markdownRemark;
+    const siteTitle = this.props.data.site.siteMetadata.title;
+    const { previous, next } = this.props.pageContext;
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -24,7 +24,7 @@ class BlogPostTemplate extends React.Component {
           style={{
             marginTop: rhythm(2),
             marginBottom: rhythm(1),
-            textAlign: "center",
+            textAlign: 'center',
           }}
         >
           {post.frontmatter.title}
@@ -40,8 +40,13 @@ class BlogPostTemplate extends React.Component {
             color: colors.grey,
           }}
         >
-          <li><Calendar size="14" color={colors.grey} /> {post.frontmatter.date}</li>
-          <li style={{marginLeft: rhythm(0.5)}}><Thermometer size="14" color={colors.grey} /> {post.frontmatter.difficulty}</li>
+          <li>
+            <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
+          </li>
+          <li style={{ marginLeft: rhythm(0.5) }}>
+            <Thermometer size="14" color={colors.grey} />{' '}
+            {post.frontmatter.difficulty}
+          </li>
         </ul>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
@@ -82,11 +87,11 @@ class BlogPostTemplate extends React.Component {
         />
         <Bio />
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -108,4 +113,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

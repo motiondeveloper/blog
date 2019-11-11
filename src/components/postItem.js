@@ -1,17 +1,17 @@
-import React from "react"
-import Emoji from "../components/emoji"
-import { Link } from "gatsby"
-import { rhythm } from "../utils/typography"
+import React from 'react';
+import Emoji from '../components/emoji';
+import { Link } from 'gatsby';
+import { rhythm } from '../utils/typography';
 
 const PostItem = ({ post, isPinned }) => {
-  const title = post.frontmatter.title || post.fields.slug
+  const title = post.frontmatter.title || post.fields.slug;
   const prefixWithPin = content => {
     return (
       <>
         <Emoji name="Pin" emoji="📌" /> {content}
       </>
-    )
-  }
+    );
+  };
   return (
     <div key={post.fields.slug}>
       <h3
@@ -35,7 +35,7 @@ const PostItem = ({ post, isPinned }) => {
         }}
       />
     </div>
-  )
-}
+  );
+};
 
-export default PostItem
+export default PostItem;
