@@ -26,24 +26,24 @@ const PostItem = ({ post, isPinned }) => {
         </Link>
       </h3>
       <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `start`,
-            listStyle: `none`,
-            padding: 0,
-            margin: 0,
-            marginTop: rhythm(.5),
-            color: colors.grey,
-          }}
-        >
-          <li>
-            <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
-          </li>
-          <li style={{ marginLeft: rhythm(0.5) }}>
-            <Thermometer size="14" color={colors.grey} />{' '}
-            {post.frontmatter.difficulty}
-          </li>
+        style={{
+          display: `flex`,
+          flexWrap: `wrap`,
+          justifyContent: `start`,
+          listStyle: `none`,
+          padding: 0,
+          margin: 0,
+          marginTop: rhythm(0.5),
+          color: colors.grey,
+        }}
+      >
+        <li>
+          <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
+        </li>
+        <li style={{ marginLeft: rhythm(0.5) }}>
+          <Thermometer size="14" color={colors.grey} />{' '}
+          {post.frontmatter.difficulty}
+        </li>
       </ul>
       <p
         style={{
