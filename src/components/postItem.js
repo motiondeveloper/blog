@@ -38,14 +38,14 @@ const PostItem = ({ post, isPinned }) => {
           color: colors.grey,
         }}
       >
-        <li>
+        <li style={{ marginRight: rhythm(0.5), marginBottom: 0 }}>
           <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
         </li>
-        <li style={{ marginLeft: rhythm(0.5) }}>
+        <li style={{ marginRight: rhythm(0.5), marginBottom: 0 }}>
           <Thermometer size="14" color={colors.grey} />{' '}
           {post.frontmatter.difficulty}
         </li>
-        <li style={{ marginLeft: rhythm(0.5) }}>
+        <li style={{ marginTop: 0 }}>
           <TagsList tags={post.frontmatter.tags} />
         </li>
       </ul>

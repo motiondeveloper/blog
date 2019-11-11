@@ -6,7 +6,7 @@ const TagsList = ({ tags }) => {
   return tags.map(tag => (
     <Link
       style={{
-        marginLeft: rhythm(1 / 4),
+        marginRight: rhythm(1 / 4),
       }}
       to={`/tags/${tag}`}
     >
