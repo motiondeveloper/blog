@@ -2,6 +2,8 @@ import React from 'react';
 import Emoji from '../components/emoji';
 import { Link } from 'gatsby';
 import { rhythm } from '../utils/typography';
+import { colors } from '../theme';
+import { Calendar, Thermometer } from 'react-feather';
 
 const PostItem = ({ post, isPinned }) => {
   const title = post.frontmatter.title || post.fields.slug;
@@ -23,9 +25,26 @@ const PostItem = ({ post, isPinned }) => {
           {isPinned ? prefixWithPin(title) : title}
         </Link>
       </h3>
-      <small>
-        {post.frontmatter.date} • {post.frontmatter.difficulty}
-      </small>
+      <ul
+          style={{
+            display: `flex`,
+            flexWrap: `wrap`,
+            justifyContent: `start`,
+            listStyle: `none`,
+            padding: 0,
+            margin: 0,
+            marginTop: rhythm(.5),
+            color: colors.grey,
+          }}
+        >
+          <li>
+            <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
+          </li>
+          <li style={{ marginLeft: rhythm(0.5) }}>
+            <Thermometer size="14" color={colors.grey} />{' '}
+            {post.frontmatter.difficulty}
+          </li>
+      </ul>
       <p
         style={{
           marginTop: rhythm(1 / 4),
