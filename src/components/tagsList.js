@@ -5,6 +5,7 @@ import { rhythm } from '../utils/typography';
 const TagsList = ({ tags }) => {
   return tags.map(tag => (
     <Link
+      key={tag}
       style={{
         marginRight: rhythm(1 / 4),
       }}
