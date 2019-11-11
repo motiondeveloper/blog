@@ -6,6 +6,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
 import { colors } from "../theme"
+import { Calendar, Thermometer } from "react-feather"
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -19,27 +20,29 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <hr />
         <h1
           style={{
-            marginTop: rhythm(1),
-            marginBottom: rhythm(0.5),
+            marginTop: rhythm(2),
+            marginBottom: rhythm(1),
             textAlign: "center",
           }}
         >
           {post.frontmatter.title}
         </h1>
-        <p
+        <ul
           style={{
-            display: `block`,
+            display: `flex`,
+            flexWrap: `wrap`,
+            justifyContent: `center`,
+            listStyle: `none`,
+            padding: 0,
             marginBottom: rhythm(1),
-            textAlign: "center",
             color: colors.grey,
           }}
         >
-          {post.frontmatter.date} • {post.frontmatter.difficulty}
-        </p>
-        <hr />
+          <li><Calendar size="14" color={colors.grey} /> {post.frontmatter.date}</li>
+          <li style={{marginLeft: rhythm(0.5)}}><Thermometer size="14" color={colors.grey} /> {post.frontmatter.difficulty}</li>
+        </ul>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
