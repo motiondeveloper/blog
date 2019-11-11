@@ -31,6 +31,9 @@ Wordpress2016.overrideThemeStyles = () => ({
   h2: {
     color: colors.yellow,
   },
+  'h2 a': {
+    color: colors.yellow,
+  },
   h4: {
     textTransform: 'none',
     letterSpacing: 'default',

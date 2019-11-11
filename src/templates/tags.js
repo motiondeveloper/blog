@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import PostItem from '../components/postItem';
+import { colors } from '../theme'
 
 class TagPosts extends React.Component {
     render() {
@@ -18,7 +19,8 @@ class TagPosts extends React.Component {
       return (
         <Layout location={this.props.location} title={siteTitle}>
           <SEO title={`Posts tagged with ${tag}`} />
-          <h1>{tagHeader}</h1>
+          <h1 style={{ color: colors.yellow }}>{tagHeader}</h1>
+          <hr />
           {edges.map(({ node }) => {
             const { slug } = node.fields
             return <PostItem post={node} isPinned={false} key={slug} />;
