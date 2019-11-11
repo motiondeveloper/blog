@@ -3,7 +3,7 @@ module.exports = {
     title: `Motion Developer Blog`,
     author: `Motion Developer`,
     description: `After Effects expressions, templates, and all things JavaScript animation.`,
-    siteUrl: `https://blog.motiondeveloper.com`,
+    siteUrl: `https://motiondeveloper.com`,
     social: {
       twitter: `modeveloper`,
       github: `motiondeveloper`,
@@ -78,5 +78,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
+    `gatsby-plugin-sitemap`
   ],
 }
