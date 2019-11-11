@@ -1,6 +1,7 @@
 import "./global.scss"
 import Typography from "typography"
 import Wordpress2016 from "typography-theme-wordpress-2016"
+import { colors } from "../theme"
 
 delete Wordpress2016.googleFonts
 Wordpress2016.googleFonts = [
@@ -13,19 +14,22 @@ Wordpress2016.googleFonts = [
 Wordpress2016.headerFontFamily = ["DM Sans", "sans-serif"]
 Wordpress2016.bodyFontFamily = ["DM Sans", "sans-serif"]
 Wordpress2016.headerWeight = 700
-Wordpress2016.bodyColor = "white"
+Wordpress2016.bodyColor = colors.white;
 Wordpress2016.bgColor = "black"
 
 Wordpress2016.overrideThemeStyles = () => ({
   body: {
-    background: "#282C35",
+    background: colors.navy,
   },
   h1: {
     fontFamily: "inherit",
-    color: "#B4DC96",
+    color: colors.green,
   },
   "h3 a": {
-    color: "#B4DC96",
+    color: colors.green,
+  },
+  h2: {
+    color: colors.yellow,
   },
   h4: {
     textTransform: "none",
@@ -33,12 +37,12 @@ Wordpress2016.overrideThemeStyles = () => ({
     "font-weight": "bold",
   },
   a: {
-    color: "#5DAEE6",
+    color: colors.blue,
   },
   blockquote: {
     "font-size": "16px",
-    color: "#F2F2F2",
-    "border-left-color": "#FFDA6E",
+    color: colors.lightGrey,
+    "border-left-color": colors.yellow,
     "border-left-width": "4px",
     "margin-left": 0,
   },
