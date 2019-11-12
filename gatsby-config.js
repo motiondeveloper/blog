@@ -3,7 +3,7 @@ module.exports = {
     title: `Motion Developer Blog`,
     author: `Motion Developer`,
     description: `After Effects expressions, templates, and all things JavaScript animation.`,
-    siteUrl: `https://blog.motiondeveloper.com`,
+    siteUrl: `https://motiondeveloper.com`,
     social: {
       twitter: `modeveloper`,
       github: `motiondeveloper`,
@@ -15,6 +15,7 @@ module.exports = {
       options: {
         path: `${__dirname}/content/blog`,
         name: `blog`,
+        ignore: process.env.NODE_ENV === `production` && [`**/draft-*`]
       },
     },
     {
@@ -58,13 +59,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
-      },
-    },
-    `gatsby-plugin-feed`,
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Motion Developer Blog`,
@@ -85,6 +79,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
-    `gatsby-plugin-netlify-cms`,
+    `gatsby-plugin-sitemap`
   ],
 }

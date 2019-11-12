@@ -1,59 +1,60 @@
 import './global.scss';
-import Typography from "typography"
-import Wordpress2016 from "typography-theme-wordpress-2016"
+import Typography from 'typography';
+import Wordpress2016 from 'typography-theme-wordpress-2016';
+import { colors } from '../theme';
 
-Wordpress2016.googleFonts = [
-  {
-    name: "Roboto",
-    styles: ["400", "400i", "500", "700", "700i", "900", "900i"],
-  },
-];
+delete Wordpress2016.googleFonts;
 
-Wordpress2016.headerFontFamily = ["Roboto", "sans-serif"];
-Wordpress2016.bodyFontFamily = ["Roboto", "sans-serif"];
-Wordpress2016.headerWeight = 500;
-Wordpress2016.bodyColor = 'white';
+Wordpress2016.headerFontFamily = ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'];
+Wordpress2016.bodyFontFamily =  ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'];
+Wordpress2016.headerWeight = 700;
+Wordpress2016.bodyColor = colors.white;
 Wordpress2016.bgColor = 'black';
 
 Wordpress2016.overrideThemeStyles = () => ({
-  'body': {
-    background: '#282C35',
+  body: {
+    background: colors.navy,
   },
-  'h1': {
-    color: '#B4DC96'
+  h1: {
+    fontFamily: 'inherit',
+    color: colors.green,
   },
   'h3 a': {
-    color: '#B4DC96',
+    color: colors.green,
   },
-  'h4': {
-    textTransform: "none",
-    letterSpacing: "default",
+  h2: {
+    color: colors.yellow,
+  },
+  'h2 a': {
+    color: colors.yellow,
+  },
+  h4: {
+    textTransform: 'none',
+    letterSpacing: 'default',
     'font-weight': 'bold',
   },
-  'a': {
-    color: '#5DAEE6',
+  a: {
+    color: colors.blue,
   },
-  'blockquote': {
+  blockquote: {
     'font-size': '16px',
-    color: '#F2F2F2',
-    'border-left-color': '#FFDA6E',
+    color: colors.lightGrey,
+    'border-left-color': colors.yellow,
     'border-left-width': '4px',
     'margin-left': 0,
   },
   'ul,ol': {
     marginLeft: 'rhythm(1)',
   },
-})
+});
 
-delete Wordpress2016.googleFonts
-
-const typography = new Typography(Wordpress2016)
+const typography = new Typography(Wordpress2016);
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== `production`) {
-  typography.injectStyles()
+  typography.injectStyles();
 }
 
-export default typography
-export const rhythm = typography.rhythm
-export const scale = typography.scale
+export default typography;
+export const rhythm = typography.rhythm;
+export const scale = typography.scale;
