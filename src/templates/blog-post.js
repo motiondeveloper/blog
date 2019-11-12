@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby';
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import TagsList from '../components/tagsList';
 import { rhythm } from '../utils/typography';
 import { colors } from '../theme';
 import { Calendar, Thermometer } from 'react-feather';
@@ -36,19 +37,22 @@ class BlogPostTemplate extends React.Component {
             justifyContent: `center`,
             listStyle: `none`,
             padding: 0,
-            marginBottom: rhythm(1),
+            marginBottom: 0,
+            marginLeft: 0,
             color: colors.grey,
           }}
         >
-          <li>
+          <li style={{marginBottom: 0, marginLeft: 0}}>
             <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
           </li>
-          <li style={{ marginLeft: rhythm(0.5) }}>
+          <li style={{ marginLeft: rhythm(0.5), marginBottom: 0}}>
             <Thermometer size="14" color={colors.grey} />{' '}
             {post.frontmatter.difficulty}
           </li>
         </ul>
+        <TagsList style={{marginBottom: rhythm(2), textAlign: 'center', color: colors.grey}} tags={post.frontmatter.tags} />
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <TagsList style={{marginBottom: rhythm(1)}} tags={post.frontmatter.tags} />
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -110,6 +114,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         difficulty
+        tags
       }
     }
   }
