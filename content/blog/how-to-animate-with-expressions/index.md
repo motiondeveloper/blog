@@ -1,6 +1,7 @@
 ---
 title: "How to animate with expressions (intro to eKeys)"
 date: 2019-07-16T07:11:06.032Z
+isDraft: false
 difficulty: Intermediate
 tags: ["ekeys", "product", "keyframes"]
 pinned: true

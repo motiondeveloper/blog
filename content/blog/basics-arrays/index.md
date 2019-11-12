@@ -1,6 +1,7 @@
 ---
 title: "Expression Basics: Arrays"
 date: 2019-11-15
+isDraft: true
 difficulty: Beginner
 tags: ["basics", "javascript"]
 pinned: false
