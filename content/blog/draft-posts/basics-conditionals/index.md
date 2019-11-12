@@ -1,7 +1,6 @@
 ---
 title: "Expression Basics: Conditions"
 date: 2019-11-11
-isDraft: true
 difficulty: Beginner
 tags: ["basics", "javascript"]
 pinned: false
