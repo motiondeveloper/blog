@@ -4,15 +4,9 @@ import Wordpress2016 from 'typography-theme-wordpress-2016';
 import { colors } from '../theme';
 
 delete Wordpress2016.googleFonts;
-Wordpress2016.googleFonts = [
-  {
-    name: 'DM Sans',
-    styles: ['400', '400i', '500', '700', '700i', '900', '900i'],
-  },
-];
 
-Wordpress2016.headerFontFamily = ['DM Sans', 'sans-serif'];
-Wordpress2016.bodyFontFamily = ['DM Sans', 'sans-serif'];
+Wordpress2016.headerFontFamily = ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'];
+Wordpress2016.bodyFontFamily =  ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'];
 Wordpress2016.headerWeight = 700;
 Wordpress2016.bodyColor = colors.white;
 Wordpress2016.bgColor = 'black';
