@@ -9,3 +9,19 @@ description: >-
 ---
 
 [MDN Referance]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/conditionals
+
+## If/else statements
+
+### Else if
+
+## Comparison operators
+
+### Type coercion
+
+[MDN Comparison](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Math#Comparison_operators)
+
+## Logical operators
+
+## Turnery statements
+
+## Switch statements
