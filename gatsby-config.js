@@ -49,6 +49,7 @@ module.exports = {
                 sh: 'bash',
               },
               showLineNumbers: false,
+              inlineCodeMarker: '›',
             }
           },
           `gatsby-remark-copy-linked-files`,
