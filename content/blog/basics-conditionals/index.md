@@ -10,7 +10,7 @@ description: >-
 
 [MDN Referance]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/conditionals
 
-Now that you have learned how to [create and use variables](../../basics-variables/index.md), the next step is to make decisions based on their value.
+Now that you have learned how to [create and use variables](../../basics-variables), the next step is to make decisions based on their value.
 
 You make decisions in code with whats called a **conditional statement**. This is a statement that executes different code based on a condition, such as whether one number is larger than another or if a checkbox is ticked.
 
