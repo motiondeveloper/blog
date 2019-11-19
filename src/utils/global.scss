@@ -28,7 +28,7 @@ small {
 
 code[class*='language-'],
 pre[class*='language-'] {
-  color: $grey;
+  color: $white;
   background: none;
   font-family: 'SFMono-Medium', 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo, Consolas, Courier, monospace;
   font-feature-settings: normal;
@@ -72,7 +72,7 @@ pre[class*='language-'] ::selection {
 /* Inline code */
 :not(pre) > code[class*='language-'] {
   border-radius: 0.3em;
-  background: var(--inlineCode-bg);
+  background: $black;
   color: var(--inlineCode-text);
   padding: 0.15em 0.2em 0.05em;
   white-space: normal;

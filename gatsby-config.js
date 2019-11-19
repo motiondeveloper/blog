@@ -49,6 +49,7 @@ module.exports = {
                 sh: 'bash',
               },
               showLineNumbers: false,
+              inlineCodeMarker: '›',
             }
           },
           `gatsby-remark-copy-linked-files`,
@@ -79,6 +80,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
-    `gatsby-plugin-sitemap`
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-catch-links`
   ],
 }

@@ -24,13 +24,13 @@ In this Expression Basics article, you will learn how to create and use variable
 
 ## Variables as pointers
 
-When writing any expression you will need to manipulate and store pieces of data such as numbers, text, or booleans (`true`/`false`). For example, setting the following expression on the `Source Text` property of a text layer.
+When writing any expression you will need to manipulate and store pieces of data such as numbers, text, or booleans (`js›true`/`js›false`). For example, setting the following expression on the `Source Text` property of a text layer.
 
 ```js
 'Hello world'
 ```
 
-This will cause the text layer to show 'Hello World'. If you want to use this data throughout your expression, writing `'Hello World'` each time means would become time consuming.
+This will cause the text layer to show 'Hello World'. If you want to use this data throughout your expression, writing `js›'Hello World'` each time means would become time consuming.
 
 ```js
 if (time < 5) {
@@ -52,7 +52,7 @@ While this might not seem like an important distinction now, it will be as you m
 
 ## Declaring variables
 
-Before you can use a variable you need to create (or declare) it by using the JavaScript keyword `let`, followed by the variable name.
+Before you can use a variable you need to create (or declare) it by using the JavaScript keyword `js›let`, followed by the variable name.
 
 > A keyword (or reserved word) is any word that has a special meaning in the language
 
@@ -76,41 +76,41 @@ There's some limitations apply when naming variables, as well as some best pract
 Some names that aren't allowed are:
 
 - Names starting with a number
-- Reserved words such as `if`, `function`, or `for` (you can find a full list of reserved words [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords))
+- Reserved words such as `js›if`, `js›function`, or `js›for` (you can find a full list of reserved words [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords))
 
 > It's best to give variables a descriptive name and not single letters or numbers. This will make your code much easier for other people, or your future self, to read.
 
-The convention is to write variable names in lower camel case, where you capitalize the first letter of every word except for the first one, such as `myText`, `animationDuration`, or `currentLayerWidth`.
+The convention is to write variable names in lower camel case, where you capitalize the first letter of every word except for the first one, such as `js›myText`, `js›animationDuration`, or `js›currentLayerWidth`.
 
 ### Undefined vs is not defined
 
-JavaScript gives variables that don't point to anything a special value called `undefined`.
+JavaScript gives variables that don't point to anything a special value called `js›undefined`.
 
-It's important to note that this is different to when you try to access a variable that isn't declared, in which case you will get the error `variable is not defined`. You can test this by modifying your expression to:
+It's important to note that this is different to when you try to access a variable that isn't declared, in which case you will get the error `js›variable is not defined`. You can test this by modifying your expression to:
 
 ```js{2}
 let myText;
 (myText === undefined); // true
 ```
 
-Will show the value `true`, while the expression:
+Will show the value `js›true`, while the expression:
 
 ```js
 (myText === undefined); // Throws an error
 ```
 
-Will give the error `myText is not defined`, since you've tried to access a variable that isn't declared.
+Will give the error `js›myText is not defined`, since you've tried to access a variable that isn't declared.
 
 ## Assigning their value
 
-Once you've declared a variable, you can give it a value by writing it's name followed by the equals sign (`=`) and then the value you want to give it. Assigning a variable's value the first time is called 'initializing' that variable.
+Once you've declared a variable, you can give it a value by writing it's name followed by the equals sign (`js›=`) and then the value you want to give it. Assigning a variable's value the first time is called 'initializing' that variable.
 
 ```js{2}
 let myText;
 myText = 'Hello world'; // Variable initialization
 ```
 
-If you now use the variable `myText`, it's value is returned and set as the `Source Text` of the text layer.
+If you now use the variable `js›myText`, it's value is returned and set as the `Source Text` of the text layer.
 
 ```js{3}
 let myText;
@@ -127,7 +127,7 @@ myText;
 
 ## Updating variables
 
-As suggested by their name, you can change the value that a variable points to at any place in the expression by using the equals (`=`) sign:
+As suggested by their name, you can change the value that a variable points to at any place in the expression by using the equals (`js›=`) sign:
 
 ```js{2}
 let myText = 'Hello world';
@@ -141,9 +141,9 @@ Which will display 'Hello JavaScript!' on the text layer.
 
 There are specific **types** of data that you can store in variables, which we will explore in depth in future articles. In short, there is:
 
-- **Number**, such as `8` or `12.653`, which you can perform mathematical calculations on
-- **String**, which are pieces of text such as our 'Hello world' example. Strings must be wrapped in single (`''`) or double (`""`) quotes so JavaScript knows you're not trying to access a variable
-- **Boolean**, which you can think of like switches, as they can either have the value `true` of `false` (notice these are not wrapped in quotes)
+- **Number**, such as `js›8` or `js›12.653`, which you can perform mathematical calculations on
+- **String**, which are pieces of text such as our 'Hello world' example. Strings must be wrapped in single (`js›''`) or double (`js›""`) quotes so JavaScript knows you're not trying to access a variable
+- **Boolean**, which you can think of like switches, as they can either have the value `js›true` of `js›false` (notice these are not wrapped in quotes)
 - More complex data types such as Object, Null, Undefined, and Symbols
 
 ```js
@@ -156,26 +156,26 @@ false // Boolean
 
 ## Var vs let
 
-You might be wondering why we've been using `let` so far, and what happened to `var`.
+You might be wondering why we've been using `js›let` so far, and what happened to `js›var`.
 
-`let` is a new way to declare variables available in modern versions of JavaScript (such as what is used in CC2019). It's introduced to be a more strict alternative to `var`, which will allow you create and use variables in ways which could cause confusion or hard to diagnose bugs.
+`js›let` is a new way to declare variables available in modern versions of JavaScript (such as what is used in CC2019). It's introduced to be a more strict alternative to `js›var`, which will allow you create and use variables in ways which could cause confusion or hard to diagnose bugs.
 
-We won't cover the differences between the two in this post, but for now all you need to know is it's best to use `let` in your expressions.
+We won't cover the differences between the two in this post, but for now all you need to know is it's best to use `js›let` in your expressions.
 
 ## Constants
 
-We've been using `let` to declare variables, which as the name suggests, allow you to change the value at any point in the expression.
+We've been using `js›let` to declare variables, which as the name suggests, allow you to change the value at any point in the expression.
 
 You can also create what's called a **constant**, which behaves much like a variable except that you cannot reassign it's value once it has been initialized. It's a *read only variable*.
 
-We do this by using the keyword `const` instead of `let`.
+We do this by using the keyword `js›const` instead of `js›let`.
 
 ```js{2}
 const myText = 'Hello world';
 myText;
 ```
 
-If we tried to reassign the value of `myText`, we would get the error 'Assignment to constant variable'.
+If we tried to reassign the value of `js›myText`, we would get the error 'Assignment to constant variable'.
 
 ```js{2}
 const myText = 'Hello world';
@@ -186,7 +186,7 @@ myText = 'Hello globe'; // Returns error
 
 ### Why use a constant
 
-It may be tempting to use `let` instead of `const` throughout your expressions since it's more flexible. However it's much easer to understand what's happening in an expression when you know the value of a variable isn't going to, or hasn't been, changed.
+It may be tempting to use `js›let` instead of `js›const` throughout your expressions since it's more flexible. However it's much easer to understand what's happening in an expression when you know the value of a variable isn't going to, or hasn't been, changed.
 
 For example, if you had this expression on a `Source Text` property:
 
@@ -200,7 +200,7 @@ if (time > 10) {
 dialog;
 ```
 
-When reading this expression, you would need to go back and check where the last place the value of `dialog` had been changed was to know what your text would be. In larger expressions with more complex flows, this can be difficult.
+When reading this expression, you would need to go back and check where the last place the value of `js›dialog` had been changed was to know what your text would be. In larger expressions with more complex flows, this can be difficult.
 
 If a constant is used instead you can be confidant in the value of each variable without having to look through the entire expression.
 
@@ -215,8 +215,8 @@ if (time > 10) {
 }
 ```
 
-This might seem trivial in this example, but it's a good habit to always use `const` where possible.
+This might seem trivial in this example, but it's a good habit to always use `js›const` where possible.
 
 ## Wrapping up
 
-Now you know how to use `let` and `const` to create and use variables, as well as best practices that will help you as you go on to write more complex expressions.
+Now you know how to use `js›let` and `js›const` to create and use variables, as well as best practices that will help you as you go on to write more complex expressions.
