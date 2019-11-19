@@ -13,7 +13,7 @@ description: >-
 
 When making [Motion Graphics Templates](https://helpx.adobe.com/au/after-effects/using/creating-motion-graphics-templates.html) in After Effects, or any other type of automated work, there comes a time when you wish you were able to add and modify keyframes with expressions.
 
-While you're able to get some functionality using the `linear` or `ease` expressions, this quickly gets messy, and you're still not able to modify the easing like you are with keyframes.
+While you're able to get some functionality using the `js›linear` or `js›ease` expressions, this quickly gets messy, and you're still not able to modify the easing like you are with keyframes.
 
 **eKeys** solves this problem by giving you an easy way to create keyframes in expressions. In this blog post, you'll learn how to get starting using eKeys in your projects.
 
@@ -87,25 +87,25 @@ const keys = [
 ];
 ```
 
-> eKeys expects each keyframe to have a `keyTime` and `keyValue` property, while all the other properties are optional.
+> eKeys expects each keyframe to have a `js›keyTime` and `js›keyValue` property, while all the other properties are optional.
 
 #### The format of each of these properties is
 
-- **`keyTime`**
+- **`js›keyTime`**
 
     The location of the keyframe on the timeline, in seconds
 
-- **`keyValue`**
+- **`js›keyValue`**
 
     The value of the keyframe, which can be a number or array
 
-- **`easeIn`** and **`easeOut`**
+- **`js›easeIn`** and **`js›easeOut`**
 
     The amount of easing to be applied as a number between 0 and 100 (both defaulting to 33).
 
     This works the same way as the influence percentage you might be used to seeing on traditional keyframes.
 
-- **`velocityIn`** and **`velocityOut`**
+- **`js›velocityIn`** and **`js›velocityOut`**
 
     The incoming and outgoing velocity of the keyframe (both defaulting to 0).
 
@@ -115,7 +115,7 @@ You can find more information on these properties on the [Github Page][GithubPag
 
 ### Returning the final animation
 
-You can now get the final animated value by calling the `animate()` function, and passing it your keyframe array and a time value.
+You can now get the final animated value by calling the `js›animate()` function, and passing it your keyframe array and a time value.
 
 ```js{14}
 const eKeys = footage('eKeys.jsx').sourceData;
@@ -134,9 +134,9 @@ const keys = [
 eKeys.animate(keys, time);
 ```
 
-You can call `eKeys.animate()` with with any number to return the animated value at that time. This allows you to get the value at a specific time, reverse the animation, or play the animation at different speeds.
+You can call `js›eKeys.animate()` with with any number to return the animated value at that time. This allows you to get the value at a specific time, reverse the animation, or play the animation at different speeds.
 
-Passing the composition time, as `time`, will give you the animation as normal.
+Passing the composition time, as `js›time`, will give you the animation as normal.
 
 ## Why use eKeys
 
@@ -173,6 +173,6 @@ const keys = [
 There are a couple of major updates that will be coming to eKeys sometime in the future:
 
 - Extra animation methods such as spring and hold keyframes
-- Input easing as a `cubicBezier` list, similar to CSS
+- Input easing as a `js›cubicBezier` list, similar to CSS
 
 If you have any ideas on how to improve eKeys or any other feedback, feel free to reach out to us on Twitter, [@modeveloper](https://twitter.com/modeveloper).
