@@ -36,7 +36,7 @@ What if rather than setting a property manually, you need it to always be the sa
 
 This is where expressions come in, as an alternate way of setting the value of properties, that enable you to combine values together and make automatic decisions about what that property should be.
 
-![Example Expression](example-expression.jpg)
+![Example Expression](example-expression.png)
 
 This alternate way is by writing lines of code, in a language called **JavaScript**, that After Effects will run. It then sets the value of the property to the result of that code.
 
@@ -52,7 +52,7 @@ When After Effects runs the code, it will see the reference to the value and use
 
 > Add a new expression to any property of a layer by alt-clicking on the stopwatch, such as position, and change the property. You'll see the property change as it's referenced by the expression
 
-![Changing a value with the default expression applied](default-expression.mp4)
+![Changing a value with the default expression applied](default-expression.png)
 
 ## Setting the value
 
