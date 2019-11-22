@@ -22,7 +22,7 @@ const PostItem = ({ post, isPinned }) => {
           marginBottom: 0,
         }}
       >
-        <Link style={{ boxShadow: `none` }} to={post.fields.slug}>
+        <Link style={{ boxShadow: `none` }} to={`/blog/${post.fields.slug}`}>
           {isPinned ? prefixWithPin(title) : title}
         </Link>
       </h3>

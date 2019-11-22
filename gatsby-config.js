@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Motion Developer Blog`,
+    title: `Motion Developer`,
     author: `Motion Developer`,
     description: `After Effects expressions, templates, and all things JavaScript animation.`,
     siteUrl: `https://motiondeveloper.com`,
