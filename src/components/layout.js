@@ -40,10 +40,7 @@ const PageHeader = ({title}) => {
   )
 }
  
-const Layout = ({ location, title, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`;
-  const pageIsRoot = (location.pathname === rootPath);
-  
+const Layout = ({title, children }) => {
   return (
     <div
       style={{
