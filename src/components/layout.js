@@ -1,70 +1,49 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import styled from "styled-components"
 
-import { rhythm, scale } from '../utils/typography';
+import { rhythm } from '../utils/typography';
 
-const Layout = ({ location, title, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`;
-  let header;
+const HeaderLink = styled(Link)`
+  box-shadow: none;
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0;
+`
 
-  if (location.pathname === rootPath) {
-    header = (
-      <h1
-        style={{
-          ...scale(1.2),
-          marginBottom: rhythm(1.5),
-          marginTop: 0,
-          color: 'white',
-        }}
-      >
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          }}
-          to={`/blog`}
-        >
-          {title}
-        </Link>
-      </h1>
-    );
-  } else {
-    header = (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          marginBottom: 0,
-        }}
-      >
-        <h3>
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0;
+`
+
+const PageHeader = ({title}) => {
+  return (
+    <Header>
+        <p>
+          <HeaderLink
             to={`/`}
           >
             {title}
-          </Link>
-        </h3>
-        <h3>
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
+          </HeaderLink>
+        </p>
+        <p>
+          <HeaderLink
             to={`/blog`}
           >
             Blog
-          </Link>
-        </h3>
-      </div>
-    );
-  }
+          </HeaderLink>
+        </p>
+      </Header>
+  )
+}
+ 
+const Layout = ({ location, title, children }) => {
+  const rootPath = `${__PATH_PREFIX__}/`;
+  const pageIsRoot = (location.pathname === rootPath);
+  
   return (
     <div
       style={{
@@ -74,7 +53,9 @@ const Layout = ({ location, title, children }) => {
         padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
       }}
     >
-      <header>{header}</header>
+      <header>
+        <PageHeader title={title} />
+      </header>
       <main>{children}</main>
     </div>
   );
