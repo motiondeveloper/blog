@@ -77,7 +77,10 @@ class BlogPostTemplate extends React.Component {
             }}
           />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div
+          dangerouslySetInnerHTML={{ __html: post.html }}
+          className="post-content"
+        />
         <TagsList
           style={{ marginBottom: rhythm(1) }}
           tags={post.frontmatter.tags}
