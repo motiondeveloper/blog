@@ -5,8 +5,30 @@ import { colors } from '../theme';
 
 delete Wordpress2016.googleFonts;
 
-Wordpress2016.headerFontFamily = ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'];
-Wordpress2016.bodyFontFamily =  ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'];
+Wordpress2016.headerFontFamily = [
+  '-apple-system',
+  'BlinkMacSystemFont',
+  'Segoe UI',
+  'Roboto',
+  'Oxygen',
+  'Ubuntu',
+  'Fira Sans',
+  'Droid Sans',
+  'Helvetica Neue',
+  'sans-serif',
+];
+Wordpress2016.bodyFontFamily = [
+  '-apple-system',
+  'BlinkMacSystemFont',
+  'Segoe UI',
+  'Roboto',
+  'Oxygen',
+  'Ubuntu',
+  'Fira Sans',
+  'Droid Sans',
+  'Helvetica Neue',
+  'sans-serif',
+];
 Wordpress2016.headerWeight = 700;
 Wordpress2016.bodyColor = colors.white;
 Wordpress2016.bgColor = 'black';
@@ -19,6 +41,11 @@ Wordpress2016.overrideThemeStyles = () => ({
     fontFamily: 'inherit',
     color: colors.green,
   },
+
+  'h1, h2, h3, h4, h5, h6': {
+    marginTop: 0,
+  },
+
   'h3 a': {
     color: colors.green,
   },
