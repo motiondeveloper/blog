@@ -31,22 +31,38 @@ const Layout = ({ location, title, children }) => {
     );
   } else {
     header = (
-      <h3
+      <div
         style={{
-          marginTop: 0,
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginBottom: 0,
         }}
       >
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          }}
-          to={`/blog`}
-        >
-          {title}
-        </Link>
-      </h3>
+        <h3>
+          <Link
+            style={{
+              boxShadow: `none`,
+              textDecoration: `none`,
+              color: `inherit`,
+            }}
+            to={`/`}
+          >
+            {title}
+          </Link>
+        </h3>
+        <h3>
+          <Link
+            style={{
+              boxShadow: `none`,
+              textDecoration: `none`,
+              color: `inherit`,
+            }}
+            to={`/blog`}
+          >
+            Blog
+          </Link>
+        </h3>
+      </div>
     );
   }
   return (
