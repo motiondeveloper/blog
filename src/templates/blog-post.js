@@ -21,38 +21,67 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <h1
-          style={{
-            marginTop: rhythm(2),
-            marginBottom: rhythm(1),
-            textAlign: 'center',
-          }}
-        >
-          {post.frontmatter.title}
-        </h1>
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `center`,
-            listStyle: `none`,
-            padding: 0,
-            marginBottom: 0,
-            marginLeft: 0,
-            color: colors.grey,
-          }}
-        >
-          <li style={{marginBottom: 0, marginLeft: 0}}>
-            <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
-          </li>
-          <li style={{ marginLeft: rhythm(0.5), marginBottom: 0}}>
-            <Thermometer size="14" color={colors.grey} />{' '}
-            {post.frontmatter.difficulty}
-          </li>
-        </ul>
-        <TagsList style={{marginBottom: rhythm(2), textAlign: 'center', color: colors.grey}} tags={post.frontmatter.tags} />
+        <div>
+          <hr
+            style={{
+              marginTop: '1rem',
+              marginBottom: rhythm(1),
+              borderTop: `2px solid ${colors.black}`,
+            }}
+          />
+          <h1
+            style={{
+              marginBottom: rhythm(1),
+            }}
+          >
+            {post.frontmatter.title}
+          </h1>
+          <ul
+            style={{
+              display: `flex`,
+              flexWrap: `wrap`,
+              listStyle: `none`,
+              padding: 0,
+              marginBottom: 0,
+              marginLeft: 0,
+              color: colors.grey,
+            }}
+          >
+            <li
+              style={{
+                marginBottom: 0,
+                marginLeft: 0,
+                marginRight: rhythm(0.5),
+              }}
+            >
+              <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
+            </li>
+            <li style={{ marginRight: rhythm(0.5), marginBottom: 0 }}>
+              <Thermometer size="14" color={colors.grey} />{' '}
+              {post.frontmatter.difficulty}
+            </li>
+            <li>
+              <TagsList
+                style={{
+                  color: colors.grey,
+                }}
+                tags={post.frontmatter.tags}
+              />
+            </li>
+          </ul>
+          <hr
+            style={{
+              marginTop: rhythm(1),
+              marginBottom: rhythm(1.5),
+              borderTop: `2px solid ${colors.black}`,
+            }}
+          />
+        </div>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <TagsList style={{marginBottom: rhythm(1)}} tags={post.frontmatter.tags} />
+        <TagsList
+          style={{ marginBottom: rhythm(1) }}
+          tags={post.frontmatter.tags}
+        />
         <hr
           style={{
             marginBottom: rhythm(1),
