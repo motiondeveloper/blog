@@ -9,6 +9,7 @@ const PostContent = styled.div`
 
   img {
     margin-bottom: ${padding.large};
+    max-width: 100%;
   }
 
   h2 {
