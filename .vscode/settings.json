@@ -9,6 +9,9 @@
         "motiondeveloper",
         "prismjs",
         "roboto",
-        "wordpress"
+        "wordpress",
+        "xlarge",
+        "xsmall",
+        "xxsmall"
     ]
 }
