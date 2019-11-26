@@ -14,20 +14,24 @@ import styled from 'styled-components';
 import { colors, padding } from '../theme';
 
 const PostInfo = styled(HorizontalList)`
-  
+  margin-top: ${padding.small};
+  margin-bottom: ${padding.small};
   li {
-    color: ${colors.grey}
-    margin-bottom: 0;
+    color: ${colors.grey};
+    margin-bottom: ${padding.xxsmall};
     margin-top: 0;
   }
 
   li:not(:last-child) {
-    margin-right: ${padding.large};
+    margin-right: ${padding.small};
   }
 `;
 
 const PageLinks = styled(HorizontalList)`
-  justify-content: space-between;
+  justify-content: space-around;
+  li {
+    margin-bottom: ${padding.small};
+  }
 `;
 
 class BlogPostTemplate extends React.Component {
