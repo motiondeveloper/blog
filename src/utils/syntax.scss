@@ -1,0 +1,170 @@
+/**
+    Colors
+*/
+
+$navy: #282C35;
+$black: #21242B;
+$grey: #BDBDBD;
+$light-grey: #F2F2F2;
+$white: #FFFFFF;
+$green: #B4DC96;
+$tan: #D39763;
+$yellow: #FFDA6E;
+$blue: #5DAEE6;
+$red: #E36A79;
+$purple: #C774E8;
+
+/**
+    Main CSS
+*/
+
+small {
+  color: $grey;
+}
+
+/**
+    Syntax Highlighting Styles
+*/
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: $white;
+  background: none;
+  font-family: 'SFMono-Medium', 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo, Consolas, Courier, monospace;
+  font-feature-settings: normal;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  margin-bottom: 0;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  overflow: auto;
+  padding: 1em;
+}
+
+/* Text Selection colour */
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection {
+  text-shadow: none;
+  background: rgba($blue, .1);
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection {
+  text-shadow: none;
+  background: rgba($blue, .1);
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  border-radius: 0.3em;
+  background: $black;
+  color: var(--inlineCode-text);
+  padding: 0.15em 0.2em 0.05em;
+  white-space: normal;
+}
+
+.token.attr-name {
+  color: $green;
+  font-style: italic;
+}
+
+.token.comment {
+  color: rgba($grey, .5);
+}
+
+.token.string,
+.token.url {
+  color: $green;
+}
+
+.token.variable {
+  color: $yellow;
+}
+
+.token.number {
+  color: $tan;
+}
+
+.token.builtin,
+.token.char,
+.token.constant,
+.token.function {
+  color: $blue;
+}
+
+.token.punctuation {
+  color: $grey;
+}
+
+.token.selector,
+.token.doctype {
+  color: $purple;
+  font-style: 'italic';
+}
+
+.token.class-name {
+  color: $yellow;
+}
+
+.token.operator {
+  color: $blue;
+}
+.token.tag,
+.token.keyword {
+  color: $purple;
+}
+
+.token.boolean {
+  color: $tan;
+}
+
+.token.property {
+  color: $blue;
+}
+
+.token.namespace {
+  color: $grey;
+}
+
+pre[data-line] {
+  padding: 1em 0 1em 3em;
+  position: relative;
+}
+
+.gatsby-highlight-code-line {
+  background-color: rgba($blue, .1);
+  display: block;
+  margin-right: -1em;
+  margin-left: -1em;
+  padding-right: 1em;
+  padding-left: 0.75em;
+  border-left: 0.25em solid $blue;
+}
+
+.gatsby-highlight {
+  margin-bottom: 1.75rem;
+  border-radius: 10px;
+  background: $black;
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+}
+
+.gatsby-highlight pre[class*='language-'] {
+  float: left;
+  min-width: 100%;
+}
