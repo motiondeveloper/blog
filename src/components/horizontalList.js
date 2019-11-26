@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { padding } from '../theme';
 
 const HorizontalList = styled.ul`
   display: flex;

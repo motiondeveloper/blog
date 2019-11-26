@@ -11,7 +11,7 @@ import PageHeading from '../components/pageHeading';
 import HorizontalList from '../components/horizontalList';
 import { Calendar, Thermometer } from 'react-feather';
 import styled from 'styled-components';
-import { colors, padding, text } from '../theme';
+import { colors, padding } from '../theme';
 
 const PostInfo = styled(HorizontalList)`
   
