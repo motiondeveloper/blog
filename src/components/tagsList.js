@@ -5,13 +5,10 @@ import styled from 'styled-components';
 import { padding } from '../theme';
 
 const Tag = styled.li`
-  margin-top: 0;
-  text-decoration: underline;
-  :hover {
-    text-decoration: none;
-  }
-  li:not(:last-child) {
-    margin-right: ${padding.small};
+  &&& {
+    :not(:last-child) {
+      margin-right: ${padding.xsmall};
+    }
   }
 `;
 
