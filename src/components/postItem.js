@@ -15,14 +15,20 @@ const PostCard = styled.div`
 `;
 
 const PostTitle = styled.h3`
-  font-size: ${text.sizes.headingSmall};
-  text-decoration: none;
   margin-top: 0;
   margin-bottom: 0;
-  color: ${colors.yellow};
+  font-size: ${text.sizes.headingSmall};
+  a {
+    text-decoration: none;
+    color: ${colors.yellow};
+    :hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 const PostDesc = styled.p`
+  display: inline;
   margin-top: 0;
   margin-bottom: 0;
   color: ${colors.white};
@@ -30,9 +36,10 @@ const PostDesc = styled.p`
 
 const PostInfo = styled(HorizontalList)`
   margin-top: ${padding.small};
+  margin-bottom: ${padding.small};
   li {
     color: ${colors.grey};
-    margin-bottom: 0;
+    margin-bottom: ${padding.xxsmall};
     margin-top: 0;
   }
 
@@ -42,10 +49,12 @@ const PostInfo = styled(HorizontalList)`
 `;
 
 const ReadLink = styled(Link)`
-  display: block;
-  text-decoration: none;
-  :hover {
-    text-decoration: underline;
+  margin-left: ${padding.xsmall};
+  &&& {
+    text-decoration: none;
+    :hover {
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -53,9 +62,11 @@ const PostItem = ({ post }) => {
   const title = post.frontmatter.title || post.fields.slug;
   return (
     <PostCard key={post.fields.slug}>
+      <PostTitle>
       <Link to={`/blog/${post.fields.slug}`}>
-        <PostTitle>{title}</PostTitle>
+        {title}
       </Link>
+      </PostTitle>
 
       <PostInfo>
         <li>
