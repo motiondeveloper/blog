@@ -3,8 +3,12 @@ import { colors, padding, text } from '../theme';
 
 const PostContent = styled.div`
   p {
-    color: colors. ${colors.white};
+    color: ${colors.white};
     font-size: ${text.sizes.base};
+  }
+
+  img {
+    margin-bottom: ${padding.large};
   }
 
   h2 {
