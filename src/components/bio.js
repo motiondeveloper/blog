@@ -15,13 +15,16 @@ import { padding } from '../theme';
 const StyledBio = styled.div`
   display: flex;
   margin-bottom: ${padding.xlarge};
+
+  p {
+    margin-top: 0;
+  }
 `;
 
 const BioImage = styled(Image)`
-  margin-right: ${padding.xlarge};
+  margin-right: ${padding.large};
   margin-bottom: 0;
-  min-width: 25%;
-  border-radius: 100%;
+  min-width: 50px;
 `;
 
 const Bio = () => {
@@ -52,6 +55,7 @@ const Bio = () => {
       <BioImage
         fixed={data.avatar.childImageSharp.fixed}
         alt={author}
+        imgStyle={{ borderRadius: `50%`}}
       />
       <p>
         Articles on Adobe After Effects, JavaScript, templates, and everything
