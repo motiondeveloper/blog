@@ -24,15 +24,15 @@ module.exports = {
   },
 
   text: {
-      sizes: {
-        base: '16px',
-        headingSmall: '24px',
-        headingLarge: '40px',
-      },
-      weights: {
-        regular: 500,
-        bold: 700,
-      },
-      bodyFont: `'-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';`,
-  }
+    sizes: {
+      base: '16px',
+      headingSmall: '24px',
+      headingLarge: '40px',
+    },
+    weights: {
+      regular: 500,
+      bold: 700,
+    },
+    bodyFont: `'-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';`,
+  },
 };

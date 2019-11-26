@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import styled from "styled-components";
+import styled from 'styled-components';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import PostItem from '../components/postItem';
@@ -14,7 +14,7 @@ const SectionHeading = styled.h2`
   font-size: ${text.sizes.base};
   font-weight: ${text.weights.bold};
   margin-left: ${padding.large};
-`
+`;
 
 class BlogIndex extends React.Component {
   render() {
@@ -38,15 +38,11 @@ class BlogIndex extends React.Component {
           <a href={`https://github.com/${social.github}`}>Github.</a>
         </p>
         <Divider />
-        <SectionHeading>
-          Featured posts
-        </SectionHeading>
+        <SectionHeading>Featured posts</SectionHeading>
         {pinnedPosts.map(({ node }) => {
           return <PostItem post={node} key={node.fields.slug} />;
         })}
-        <SectionHeading>
-          All posts
-        </SectionHeading>
+        <SectionHeading>All posts</SectionHeading>
         {posts.map(({ node }) => {
           return <PostItem post={node} key={node.fields.slug} />;
         })}

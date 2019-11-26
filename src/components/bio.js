@@ -9,20 +9,20 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Image from 'gatsby-image';
 
-import styled from "styled-components"
+import styled from 'styled-components';
 import { padding } from '../theme';
 
 const StyledBio = styled.div`
   display: flex;
   margin-bottom: ${padding.xlarge};
-`
+`;
 
 const BioImage = styled(Image)`
   margin-right: ${padding.xlarge};
   margin-bottom: 0;
   min-width: 50;
   border-radius: 100%;
-`
+`;
 
 const Bio = () => {
   const data = useStaticQuery(graphql`

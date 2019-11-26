@@ -1,9 +1,9 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 import { colors, padding, text } from '../theme';
 
 const PostContent = styled.div`
   p {
-    color: colors.${colors.white};
+    color: colors. ${colors.white};
     font-size: ${text.sizes.base};
   }
 
@@ -19,15 +19,11 @@ const PostContent = styled.div`
     color: ${colors.white};
     border-left-color: ${colors.yellow};
     border-left-width: 4px;
-    margin-left: 0,
-  }
-
-  ul {
-    margin-left: ${padding.large};
+    margin-left: 0;
   }
 
   li {
     margin-bottom: ${padding.xsmall};
   }
-`
+`;
 export default PostContent;

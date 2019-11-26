@@ -10,13 +10,11 @@ import Divider from '../components/divider';
 import PageHeading from '../components/pageHeading';
 import HorizontalList from '../components/horizontalList';
 import { Calendar, Thermometer } from 'react-feather';
-import styled from "styled-components"
+import styled from 'styled-components';
 import { colors, padding, text } from '../theme';
 
 const PostInfo = styled(HorizontalList)`
-  color: ${colors.grey}
-
-  li {
+  color: ${colors.grey} li {
     margin-bottom: 0;
     margin-top: 0;
   }
@@ -24,11 +22,11 @@ const PostInfo = styled(HorizontalList)`
   li:not(:last-child) {
     margin-right: ${padding.large};
   }
-`
+`;
 
 const PageLinks = styled(HorizontalList)`
   justify-content: space-between;
-`
+`;
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -44,9 +42,7 @@ class BlogPostTemplate extends React.Component {
         />
         <div>
           <Divider />
-          <PageHeading>
-            {post.frontmatter.title}
-          </PageHeading>
+          <PageHeading>{post.frontmatter.title}</PageHeading>
           <PostInfo>
             <li>
               <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
@@ -56,20 +52,14 @@ class BlogPostTemplate extends React.Component {
               {post.frontmatter.difficulty}
             </li>
             <li>
-              <TagsList
-                tags={post.frontmatter.tags}
-              />
+              <TagsList tags={post.frontmatter.tags} />
             </li>
           </PostInfo>
           <Divider />
         </div>
-        <PostContent
-          dangerouslySetInnerHTML={{ __html: post.html }}
-        />
-        <TagsList
-          tags={post.frontmatter.tags}
-        />
-<Divider/>
+        <PostContent dangerouslySetInnerHTML={{ __html: post.html }} />
+        <TagsList tags={post.frontmatter.tags} />
+        <Divider />
         <PageLinks>
           <li>
             {previous && (
@@ -86,7 +76,7 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </PageLinks>
-        <Divider/>
+        <Divider />
         <Bio />
       </Layout>
     );
