@@ -12,4 +12,26 @@ module.exports = {
     red: '#E36A79',
     purple: '#C774E8',
   },
+
+  padding: {
+    xxsmall: '4px',
+    xsmall: '8px',
+    small: '12px',
+    medium: '16px',
+    large: '32px',
+    xlarge: '40px',
+    xxlarge: '56px',
+  },
+
+  text: {
+      sizes: {
+        base: '16px',
+        headingSmall: '24px',
+        headingLarge: '40px',
+      },
+      weights: {
+        regular: 500,
+        bold: 700,
+      }
+  }
 };
