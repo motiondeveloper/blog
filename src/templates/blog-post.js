@@ -14,7 +14,9 @@ import styled from 'styled-components';
 import { colors, padding, text } from '../theme';
 
 const PostInfo = styled(HorizontalList)`
-  color: ${colors.grey} li {
+  
+  li {
+    color: ${colors.grey}
     margin-bottom: 0;
     margin-top: 0;
   }

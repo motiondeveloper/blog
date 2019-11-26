@@ -8,7 +8,7 @@ const HorizontalList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-top: ${padding.large};
+  margin-top: 0;
   color: colors.grey;
 `;
 

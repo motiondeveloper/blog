@@ -5,6 +5,11 @@ import styled from 'styled-components';
 import { padding } from '../theme';
 
 const Tag = styled.li`
+  margin-top: 0;
+  text-decoration: underline;
+  :hover {
+    text-decoration: none;
+  }
   li:not(:last-child) {
     margin-right: ${padding.small};
   }
@@ -12,7 +17,7 @@ const Tag = styled.li`
 
 const TagsList = ({ tags }) => {
   const tagLinks = tags.map(tag => (
-    <Tag>
+    <Tag key={tag}>
       <Link key={tag} to={`/tags/${tag}`}>
         #{tag}
       </Link>

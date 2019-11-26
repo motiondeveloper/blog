@@ -13,7 +13,9 @@ const SectionHeading = styled.h2`
   color: ${colors.white};
   font-size: ${text.sizes.base};
   font-weight: ${text.weights.bold};
+  margin-top: ${padding.xlarge};
   margin-left: ${padding.large};
+  margin-bottom: ${padding.large};
 `;
 
 class BlogIndex extends React.Component {
