@@ -1,27 +1,37 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import styled from "styled-components"
+import styled, { createGlobalStyle } from 'styled-components';
 
 import { colors, padding, text } from '../theme';
 
+const GlobalStyles = createGlobalStyle`
+  body {
+    background-color: ${colors.navy};
+    font-family: ${text.bodyFont};
+    color: ${colors.white};
+  }
+`;
+
 const Page = styled.div`
-  background-color: ${colors.navy};
   margin-left: auto;
   margin-right: auto;
   max-width: 640px;
-  padding-top: ${padding.large};
-  font-family: ${text.bodyFont};
+  padding: ${padding.large};
 
-  p:a {
+  a {
     color: ${colors.blue};
   }
-  
+
+  p {
+    line-height: 150%;
+  }
+
   h1, h2, h3, h4, h5, h6: {
+    line-height: 1.2;
     margin-top: 0;
-    margin-bottom: 0; 
-    font-family: ${text.bodyFont};
-  },
-`
+    margin-bottom: 0;
+  }
+`;
 
 const HeaderLink = styled(Link)`
   box-shadow: none;
@@ -30,44 +40,38 @@ const HeaderLink = styled(Link)`
   font-size: ${text.sizes.headingSmall};
   font-weight: ${text.weights.bold};
   margin-bottom: 0;
-`
+`;
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 0;
-`
+`;
 
-
-const PageHeader = ({title}) => {
+const PageHeader = ({ title }) => {
   return (
     <Header>
-        <p>
-          <HeaderLink
-            to={`/`}
-          >
-            {title}
-          </HeaderLink>
-        </p>
-        <p>
-          <HeaderLink
-            to={`/blog`}
-          >
-            Blog
-          </HeaderLink>
-        </p>
-      </Header>
-  )
-}
- 
-const Layout = ({title, children }) => {
+      <p>
+        <HeaderLink to={`/`}>{title}</HeaderLink>
+      </p>
+      <p>
+        <HeaderLink to={`/blog`}>Blog</HeaderLink>
+      </p>
+    </Header>
+  );
+};
+
+const Layout = ({ title, children }) => {
   return (
-    <Page>
-      <header>
-        <PageHeader title={title} />
-      </header>
-      <main>{children}</main>
-    </Page>
+    <>
+      <GlobalStyles />
+      <Page>
+        <header>
+          <PageHeader title={title} />
+        </header>
+        <main>{children}</main>
+      </Page>
+    </>
   );
 };
 
