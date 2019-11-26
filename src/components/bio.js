@@ -55,7 +55,7 @@ const Bio = () => {
       <BioImage
         fixed={data.avatar.childImageSharp.fixed}
         alt={author}
-        imgStyle={{ borderRadius: `50%`}}
+        imgStyle={{ borderRadius: `50%` }}
       />
       <p>
         Articles on Adobe After Effects, JavaScript, templates, and everything
