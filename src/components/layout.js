@@ -22,6 +22,10 @@ const Page = styled.div`
     color: ${colors.blue};
   }
 
+  a:hover {
+    text-decoration: none;
+  }
+
   p {
     line-height: 150%;
   }
@@ -34,9 +38,15 @@ const Page = styled.div`
 `;
 
 const HeaderLink = styled(Link)`
+  &&& {
+    color: ${colors.white};
+    :hover {
+      text-decoration: underline;
+    }
+  }
+
   box-shadow: none;
   text-decoration: none;
-  color: ${colors.white};
   font-size: ${text.sizes.headingSmall};
   font-weight: ${text.weights.bold};
   margin-bottom: 0;
