@@ -20,7 +20,7 @@ const StyledBio = styled.div`
 const BioImage = styled(Image)`
   margin-right: ${padding.xlarge};
   margin-bottom: 0;
-  min-width: 50;
+  min-width: 25%;
   border-radius: 100%;
 `;
 
@@ -52,9 +52,6 @@ const Bio = () => {
       <BioImage
         fixed={data.avatar.childImageSharp.fixed}
         alt={author}
-        imgStyle={{
-          borderRadius: `50%`,
-        }}
       />
       <p>
         Articles on Adobe After Effects, JavaScript, templates, and everything
