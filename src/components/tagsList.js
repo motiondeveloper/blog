@@ -1,24 +1,27 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { rhythm } from '../utils/typography';
+import HorizontalList from './horizontalList';
+import styled from "styled-components";
+import {padding} from '../theme';
+ 
+const Tag = styled.li`
+  li:not(:last-child) {
+    margin-right: ${padding.large};
+  }
+`
 
 const TagsList = ({ tags, style }) => {
   const tagLinks = tags.map((tag, index) => (
+    <Tag>
     <Link
       key={tag}
-      style={
-        index !== tags.length - 1
-          ? {
-              marginRight: rhythm(1 / 4),
-            }
-          : {}
-      }
       to={`/tags/${tag}`}
     >
       #{tag}
     </Link>
+    </Tag>
   ));
-  return <div style={{ ...style }}>{tagLinks}</div>;
+  return <HorizontalList>{tagLinks}</HorizontalList>;
 };
 
 export default TagsList;

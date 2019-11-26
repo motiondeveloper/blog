@@ -1,65 +1,71 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { rhythm } from '../utils/typography';
-import { colors } from '../theme';
+import { colors, padding } from '../theme';
 import { Calendar, Thermometer } from 'react-feather';
 import TagsList from '../components/tagsList';
+import HorizontalList from '../components/horizontalList';
+import styled from "styled-components"
+
+const PostCard = styled.div`
+  background-color: ${colors.black},
+  border-radius: ${padding.xsmall},
+  padding: ${padding.large},
+  marginBottom: ${padding.large},
+`
+
+const PostTitle = styled.h3`
+  margin-bottom: 0;
+  color: ${colors.yellow},
+`
+
+const PostDesc = styled.p`
+  margin-top: 0;
+  margin-bottom: 0;
+  color: ${colors.white};
+`
+
+const PostInfo = styled(HorizontalList)`
+  color: ${colors.grey}
+
+  li {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  li:not(:last-child) {
+    margin-right: ${padding.large};
+  }
+`
 
 const PostItem = ({ post }) => {
   const title = post.frontmatter.title || post.fields.slug;
   return (
     <Link to={`/blog/${post.fields.slug}`}>
-      <div
+      <PostCard
         key={post.fields.slug}
-        style={{
-          backgroundColor: colors.black,
-          borderRadius: '8px',
-          padding: rhythm(1),
-          marginBottom: rhythm(1),
-        }}
       >
-        <h3
-          style={{
-            marginBottom: 0,
-            color: colors.yellow,
-          }}
-        >
+        <PostTitle>
           {title}
-        </h3>
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `start`,
-            listStyle: `none`,
-            padding: 0,
-            margin: 0,
-            marginTop: rhythm(1 / 4),
-            color: colors.grey,
-          }}
-        >
-          <li style={{ marginRight: rhythm(0.5), marginBottom: 0 }}>
-            <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
+        </PostTitle>
+        <PostInfo>
+          <li>
+            <Calendar size="14" color={colors.grey} />{' '}
+            {post.frontmatter.date}
           </li>
-          <li style={{ marginRight: rhythm(0.5), marginBottom: 0 }}>
+          <li>
             <Thermometer size="14" color={colors.grey} />{' '}
             {post.frontmatter.difficulty}
           </li>
-          <li style={{ marginTop: 0 }}>
+          <li>
             <TagsList tags={post.frontmatter.tags} />
           </li>
-        </ul>
-        <p
-          style={{
-            marginTop: 0,
-            marginBottom: 0,
-            color: colors.white,
-          }}
+        </PostInfo>
+        <PostDesc
           dangerouslySetInnerHTML={{
             __html: post.frontmatter.description || post.excerpt,
           }}
         />
-      </div>
+      </PostCard>
     </Link>
   );
 };

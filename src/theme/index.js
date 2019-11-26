@@ -19,8 +19,8 @@ module.exports = {
     small: '12px',
     medium: '16px',
     large: '32px',
-    xlarge: '40px',
-    xxlarge: '56px',
+    xlarge: '56px',
+    xxlarge: '80px',
   },
 
   text: {
@@ -32,6 +32,7 @@ module.exports = {
       weights: {
         regular: 500,
         bold: 700,
-      }
+      },
+      bodyFont: `'-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';`,
   }
 };

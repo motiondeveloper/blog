@@ -1,12 +1,20 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { rhythm } from '../utils/typography';
-
+import styled from "styled-components";
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import PostItem from '../components/postItem';
+import Divider from '../components/divider';
+import PageHeading from '../components/pageHeading';
 
-import { colors } from '../theme';
+import { colors, padding, text } from '../theme';
+
+const SectionHeading = styled.h2`
+  color: ${colors.white};
+  font-size: ${text.sizes.base};
+  font-weight: ${text.weights.bold};
+  margin-left: ${padding.large};
+`
 
 class BlogIndex extends React.Component {
   render() {
@@ -19,53 +27,26 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="Blog" />
-        <hr
-          style={{
-            marginTop: '1rem',
-            borderTop: `2px solid ${colors.black}`,
-          }}
-        />
-        <h1
-          style={{
-            color: colors.green,
-          }}
-        >
+        <Divider />
+        <PageHeading>
           Articles on After Effects, JavaScript, and everything in between.
-        </h1>
+        </PageHeading>
         <p>
           Connect with us on{' '}
           <a href={`https://twitter.com/${social.twitter}`}>Twitter</a>
           {` `}and{` `}
           <a href={`https://github.com/${social.github}`}>Github.</a>
         </p>
-        <hr
-          style={{
-            marginBottom: '3rem',
-            borderTop: `2px solid ${colors.black}`,
-          }}
-        />
-        <h2
-          style={{
-            color: colors.white,
-            fontSize: '1rem',
-            marginBottom: rhythm(1.5),
-          }}
-        >
+        <Divider />
+        <SectionHeading>
           Featured posts
-        </h2>
+        </SectionHeading>
         {pinnedPosts.map(({ node }) => {
           return <PostItem post={node} key={node.fields.slug} />;
         })}
-        <h2
-          style={{
-            color: colors.white,
-            fontSize: '1rem',
-            marginTop: rhythm(2),
-            marginBottom: rhythm(1.5),
-          }}
-        >
+        <SectionHeading>
           All posts
-        </h2>
+        </SectionHeading>
         {posts.map(({ node }) => {
           return <PostItem post={node} key={node.fields.slug} />;
         })}

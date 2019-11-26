@@ -3,7 +3,25 @@ import { Link } from 'gatsby';
 import styled from "styled-components"
 
 import { colors, padding, text } from '../theme';
-import { rhythm } from '../utils/typography';
+
+const Page = styled.div`
+  background-color: ${colors.navy};
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 640px;
+  padding-top: ${padding.large};
+  font-family: ${text.bodyFont};
+
+  p:a {
+    color: ${colors.blue};
+  }
+  
+  h1, h2, h3, h4, h5, h6: {
+    margin-top: 0;
+    margin-bottom: 0; 
+    font-family: ${text.bodyFont};
+  },
+`
 
 const HeaderLink = styled(Link)`
   box-shadow: none;
@@ -20,12 +38,6 @@ const Header = styled.div`
   margin-bottom: 0;
 `
 
-const Page = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 640px;
-  padding-top: ${padding.large};
-`
 
 const PageHeader = ({title}) => {
   return (

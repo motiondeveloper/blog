@@ -5,9 +5,30 @@ import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import TagsList from '../components/tagsList';
-import { rhythm } from '../utils/typography';
-import { colors } from '../theme';
+import PostContent from '../components/postContent';
+import Divider from '../components/divider';
+import PageHeading from '../components/pageHeading';
+import HorizontalList from '../components/horizontalList';
 import { Calendar, Thermometer } from 'react-feather';
+import styled from "styled-components"
+import { colors, padding, text } from '../theme';
+
+const PostInfo = styled(HorizontalList)`
+  color: ${colors.grey}
+
+  li {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  li:not(:last-child) {
+    margin-right: ${padding.large};
+  }
+`
+
+const PageLinks = styled(HorizontalList)`
+  justify-content: space-between;
+`
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -22,84 +43,34 @@ class BlogPostTemplate extends React.Component {
           description={post.frontmatter.description || post.excerpt}
         />
         <div>
-          <hr
-            style={{
-              marginTop: '1rem',
-              marginBottom: rhythm(1),
-              borderTop: `2px solid ${colors.black}`,
-            }}
-          />
-          <h1
-            style={{
-              marginBottom: rhythm(1),
-            }}
-          >
+          <Divider />
+          <PageHeading>
             {post.frontmatter.title}
-          </h1>
-          <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              listStyle: `none`,
-              padding: 0,
-              marginBottom: 0,
-              marginLeft: 0,
-              color: colors.grey,
-            }}
-          >
-            <li
-              style={{
-                marginBottom: 0,
-                marginLeft: 0,
-                marginRight: rhythm(0.5),
-              }}
-            >
+          </PageHeading>
+          <PostInfo>
+            <li>
               <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
             </li>
-            <li style={{ marginRight: rhythm(0.5), marginBottom: 0 }}>
+            <li>
               <Thermometer size="14" color={colors.grey} />{' '}
               {post.frontmatter.difficulty}
             </li>
             <li>
               <TagsList
-                style={{
-                  color: colors.grey,
-                }}
                 tags={post.frontmatter.tags}
               />
             </li>
-          </ul>
-          <hr
-            style={{
-              marginTop: rhythm(1),
-              marginBottom: rhythm(1.5),
-              borderTop: `2px solid ${colors.black}`,
-            }}
-          />
+          </PostInfo>
+          <Divider />
         </div>
-        <div
+        <PostContent
           dangerouslySetInnerHTML={{ __html: post.html }}
-          className="post-content"
         />
         <TagsList
-          style={{ marginBottom: rhythm(1) }}
           tags={post.frontmatter.tags}
         />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-            marginBottom: rhythm(0.5),
-          }}
-        >
+<Divider/>
+        <PageLinks>
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
@@ -114,13 +85,8 @@ class BlogPostTemplate extends React.Component {
               </Link>
             )}
           </li>
-        </ul>
-        <hr
-          style={{
-            marginTop: rhythm(0.5),
-            marginBottom: rhythm(1),
-          }}
-        />
+        </PageLinks>
+        <Divider/>
         <Bio />
       </Layout>
     );
