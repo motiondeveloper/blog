@@ -47,38 +47,35 @@ const ReadLink = styled(Link)`
   :hover {
     text-decoration: underline;
   }
-`
+`;
 
 const PostItem = ({ post }) => {
   const title = post.frontmatter.title || post.fields.slug;
   return (
-      <PostCard key={post.fields.slug}>
+    <PostCard key={post.fields.slug}>
       <Link to={`/blog/${post.fields.slug}`}>
-      <PostTitle>{title}</PostTitle>
+        <PostTitle>{title}</PostTitle>
       </Link>
-        
-        <PostInfo>
-          <li>
-            <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
-          </li>
-          <li>
-            <Thermometer size="14" color={colors.grey} />{' '}
-            {post.frontmatter.difficulty}
-          </li>
-          <li>
-            <TagsList tags={post.frontmatter.tags} />
-          </li>
-        </PostInfo>
-        <PostDesc
-          dangerouslySetInnerHTML={{
-            __html: post.frontmatter.description || post.excerpt,
-          }}
 
-        />
-        <ReadLink to={`/blog/${post.fields.slug}`}>
-          Read More →
-        </ReadLink>
-      </PostCard>
+      <PostInfo>
+        <li>
+          <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
+        </li>
+        <li>
+          <Thermometer size="14" color={colors.grey} />{' '}
+          {post.frontmatter.difficulty}
+        </li>
+        <li>
+          <TagsList tags={post.frontmatter.tags} />
+        </li>
+      </PostInfo>
+      <PostDesc
+        dangerouslySetInnerHTML={{
+          __html: post.frontmatter.description || post.excerpt,
+        }}
+      />
+      <ReadLink to={`/blog/${post.fields.slug}`}>Read More →</ReadLink>
+    </PostCard>
   );
 };
 
