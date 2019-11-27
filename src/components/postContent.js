@@ -20,11 +20,23 @@ const PostContent = styled.div`
     margin-bottom: ${padding.large};
   }
 
+  h3 {
+    margin-top: ${padding.large};
+  }
+
   blockquote {
-    color: ${colors.white};
-    border-left-color: ${colors.yellow};
-    border-left-width: 4px;
+    p {
+      color: ${colors.white};
+    }
     margin-left: 0;
+    margin-right: 0;
+    width: ${`calc(100% - ${padding.large * 2})`};
+    border: 2px solid ${colors.yellow};
+    border-radius: ${padding.small};
+    padding-top: ${padding.small};
+    padding-bottom: ${padding.small};
+    padding-left: ${padding.large};
+    padding-right: ${padding.large};
   }
 
   li {
