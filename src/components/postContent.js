@@ -28,10 +28,12 @@ const PostContent = styled.div`
     p {
       color: ${colors.white};
     }
+    margin-top: ${padding.large};
+    margin-bottom: ${padding.large};
     margin-left: 0;
     margin-right: 0;
     width: ${`calc(100% - ${padding.large * 2})`};
-    border: 2px solid ${colors.yellow};
+    border: 2px solid ${colors.green};
     border-radius: ${padding.small};
     padding-top: ${padding.small};
     padding-bottom: ${padding.small};
