@@ -69,7 +69,7 @@ class BlogPostTemplate extends React.Component {
         <PageLinks>
           <li>
             {previous && (
-              <Link to={`/blog/${next.fields.slug}`} rel="prev">
+              <Link to={`/blog/${previous.fields.slug}`} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             )}
