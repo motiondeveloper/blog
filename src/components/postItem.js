@@ -12,6 +12,10 @@ const PostCard = styled.div`
   padding: ${padding.large};
   margin-bottom: ${padding.large};
   text-decoration: none;
+  transition: 0.2s ease;
+  :hover {
+    background-color: ${colors.black + '90'};
+  }
 `;
 
 const PostTitle = styled.h3`
@@ -51,6 +55,7 @@ const PostInfo = styled(HorizontalList)`
 const ReadLink = styled(Link)`
   margin-left: ${padding.xsmall};
   &&& {
+    white-space: nowrap;
     text-decoration: none;
     :hover {
       text-decoration: underline;
