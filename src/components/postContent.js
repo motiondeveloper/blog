@@ -41,6 +41,10 @@ const PostContent = styled.div`
     padding-right: ${padding.large};
   }
 
+  ol, ul {
+    margin-bottom: ${padding.large};
+  }
+
   li {
     margin-bottom: ${padding.xsmall};
   }
