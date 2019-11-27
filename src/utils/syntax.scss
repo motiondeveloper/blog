@@ -40,7 +40,6 @@ pre[class*='language-'] {
   line-height: 1.5;
   margin-bottom: 0;
   margin-top: 0;
-  min-width: calc(100% - 2em);
 
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -168,5 +167,5 @@ pre[data-line] {
 
 .gatsby-highlight pre[class*='language-'] {
   float: left;
-  min-width: 100%;
+  min-width: calc(100% - 2em);
 }
