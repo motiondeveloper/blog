@@ -34,6 +34,7 @@ const PageLinks = styled(HorizontalList)`
   }
 `;
 
+
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark;
@@ -61,7 +62,6 @@ class BlogPostTemplate extends React.Component {
               <TagsList tags={post.frontmatter.tags} />
             </li>
           </PostInfo>
-          <Divider />
         </div>
         <PostContent dangerouslySetInnerHTML={{ __html: post.html }} />
         <TagsList tags={post.frontmatter.tags} />
