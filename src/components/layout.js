@@ -16,6 +16,8 @@ const Page = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 640px;
+  padding-left: ${padding.large};
+  padding-right: ${padding.large};
 
   a {
     color: ${colors.blue};
