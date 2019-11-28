@@ -3,9 +3,6 @@ import { colors, padding, text } from '../theme';
 
 const PostContent = styled.div`
 
-  max-width: 640px;
-  margin: auto;
-
   p {
     color: ${colors.white};
     font-size: ${text.sizes.base};
