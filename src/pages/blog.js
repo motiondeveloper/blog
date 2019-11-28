@@ -13,9 +13,10 @@ const SectionHeading = styled.h2`
   color: ${colors.white};
   font-size: ${text.sizes.base};
   font-weight: ${text.weights.bold};
-  margin-top: ${padding.xlarge};
-  margin-left: ${padding.large};
-  margin-bottom: ${padding.large};
+  &&& {
+    margin-top: ${padding.xxlarge};
+    margin-bottom: ${padding.large};
+  }
 `;
 
 class BlogIndex extends React.Component {
@@ -29,7 +30,6 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="Blog" />
-        <Divider />
         <PageHeading>
           Articles on After Effects, JavaScript, and everything in between.
         </PageHeading>
@@ -39,7 +39,6 @@ class BlogIndex extends React.Component {
           {` `}and{` `}
           <a href={`https://github.com/${social.github}`}>Github.</a>
         </p>
-        <Divider />
         <SectionHeading>Featured posts</SectionHeading>
         {pinnedPosts.map(({ node }) => {
           return <PostItem post={node} key={node.fields.slug} />;
