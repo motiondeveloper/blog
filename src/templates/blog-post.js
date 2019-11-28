@@ -48,7 +48,6 @@ class BlogPostTemplate extends React.Component {
           description={post.frontmatter.description || post.excerpt}
         />
         <div>
-          <Divider />
           <PageHeading>{post.frontmatter.title}</PageHeading>
           <PostInfo>
             <li>
