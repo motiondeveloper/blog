@@ -16,7 +16,6 @@ const Page = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 640px;
-  padding: ${padding.large};
 
   a {
     color: ${colors.blue};
@@ -30,7 +29,7 @@ const Page = styled.div`
     line-height: 150%;
   }
 
-  h1, h2, h3, h4, h5, h6: {
+  h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
     margin-top: 0;
     margin-bottom: 0;
@@ -48,25 +47,28 @@ const HeaderLink = styled(Link)`
   box-shadow: none;
   text-decoration: none;
   font-size: ${text.sizes.headingSmall};
-  font-weight: ${text.weights.bold};
+  font-weight: ${text.weights.regular};
   margin-bottom: 0;
 `;
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0;
+  max-width: 960px;
+  margin: auto;
+  margin-top: ${padding.large};
+  background-color: ${colors.black};
+  border-radius: ${padding.small};
+  padding: ${padding.small};
+  padding-left: ${padding.large};
+  padding-right: ${padding.large};
 `;
 
 const PageHeader = ({ title }) => {
   return (
     <Header>
-      <p>
         <HeaderLink to={`/`}>{title}</HeaderLink>
-      </p>
-      <p>
         <HeaderLink to={`/blog`}>Blog</HeaderLink>
-      </p>
     </Header>
   );
 };
@@ -75,10 +77,10 @@ const Layout = ({ title, children }) => {
   return (
     <>
       <GlobalStyles />
-      <Page>
-        <header>
+        <nav>
           <PageHeader title={title} />
-        </header>
+        </nav>
+      <Page>
         <main>{children}</main>
       </Page>
     </>
