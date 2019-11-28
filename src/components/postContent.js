@@ -46,7 +46,7 @@ const PostContent = styled.div`
   }
 
   li {
-    margin-bottom: ${padding.xsmall};
+    margin-bottom: ${padding.small};
   }
 `;
 export default PostContent;
