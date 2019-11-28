@@ -1,9 +1,12 @@
 import styled from 'styled-components';
-import { colors, text } from '../theme';
+import { colors, text, padding } from '../theme';
 
 const PageHeading = styled.h1`
   color: ${colors.green};
-  size: ${text.sizes.headingLarge};
+  font-size: ${text.sizes.headingLarge};
+  &&& {
+    margin-top: ${padding.xlarge};
+  }
 `;
 
 export default PageHeading;
