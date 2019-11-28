@@ -9,7 +9,10 @@ import styled from 'styled-components';
 const PostCard = styled.div`
   background-color: ${colors.black};
   border-radius: ${padding.xsmall};
+  width: ${`calc(100% + ${padding.large * 2})`};
   padding: ${padding.large};
+  margin-left: -${padding.large};
+  margin-right: -${padding.large};
   margin-bottom: ${padding.large};
   text-decoration: none;
   transition: 0.2s ease;
@@ -22,7 +25,7 @@ const PostTitle = styled.h3`
   margin-top: 0;
   margin-bottom: 0;
   font-size: ${text.sizes.headingSmall};
-  a {
+  &&& a {
     text-decoration: none;
     color: ${colors.yellow};
     :hover {
