@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
+import Image from 'gatsby-image';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { colors, padding, text } from '../theme';
@@ -45,32 +46,82 @@ const HeaderLink = styled(Link)`
       text-decoration: underline;
     }
   }
-
   box-shadow: none;
   text-decoration: none;
   font-size: ${text.sizes.headingSmall};
   font-weight: ${text.weights.regular};
-  margin-bottom: 0;
+  margin: 0;
 `;
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   max-width: 960px;
   margin: auto;
   margin-top: ${padding.large};
   background-color: ${colors.black};
   border-radius: ${padding.small};
   padding: ${padding.small};
-  padding-left: ${padding.large};
-  padding-right: ${padding.large};
 `;
+
+const HeaderLeft= styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const HeaderRight= styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: ${padding.xsmall};
+`;
+
+const LogoImage = styled(Image)`
+  margin-right: ${padding.small};
+  margin-bottom: 0;
+  min-width: 36px;
+`;
+
+const Logo = () => {
+  const data = useStaticQuery(graphql`
+    query LogoQuery {
+      avatar: file(absolutePath: { regex: "/md-logo.png/" }) {
+        childImageSharp {
+          fixed(width: 36, height: 36) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+      site {
+        siteMetadata {
+          author
+        }
+      }
+    }
+  `);
+
+  const { author } = data.site.siteMetadata;
+  return (
+      <LogoImage
+        fixed={data.avatar.childImageSharp.fixed}
+        alt={author}
+        imgStyle={{ borderRadius: `50%` }}
+      />
+  );
+}
 
 const PageHeader = ({ title }) => {
   return (
     <Header>
-        <HeaderLink to={`/`}>{title}</HeaderLink>
-        <HeaderLink to={`/blog`}>Blog</HeaderLink>
+        <HeaderLeft>
+            <Logo />
+            <HeaderLink to={`/`}>{title}</HeaderLink>
+        </HeaderLeft>
+        <HeaderRight>
+          <HeaderLink to={`/blog`}>Blog</HeaderLink>
+        </HeaderRight>
     </Header>
   );
 };
