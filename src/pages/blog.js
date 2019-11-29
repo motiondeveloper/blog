@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import PostItem from '../components/postItem';
-import Divider from '../components/divider';
 import PageHeading from '../components/pageHeading';
 
 import { colors, padding, text } from '../theme';
