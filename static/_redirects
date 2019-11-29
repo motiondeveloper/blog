@@ -1,2 +1,2 @@
 # Netlify redirects
-/       /blog
+/*       /blog
