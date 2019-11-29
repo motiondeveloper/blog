@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import Image from 'gatsby-image';
 import styled, { createGlobalStyle } from 'styled-components';
+import { GitHub, Twitter } from 'react-feather';
 
 import { colors, padding, text } from '../theme';
 
@@ -49,6 +50,7 @@ const HeaderLink = styled(Link)`
     color: ${colors.white};
     :hover {
       text-decoration: underline;
+      text-decoration-color: ${colors.yellow};
     }
   }
   box-shadow: none;
@@ -56,6 +58,8 @@ const HeaderLink = styled(Link)`
   font-size: ${text.sizes.headingSmall};
   font-weight: ${text.weights.regular};
   margin: 0;
+  margin-left: ${props => props.marginLeft ? padding.large : 0};
+  margin-right: ${props => props.marginRight ? padding.large : 0};
 `;
 
 const Header = styled.div`
@@ -84,15 +88,26 @@ const HeaderRight = styled.div`
   margin-right: ${padding.xsmall};
 `;
 
+const HeaderIcon = styled.a`
+  height: 24px;
+  color: ${colors.blue};
+  :hover {
+    color: ${colors.yellow};
+  }
+  :not(:last-child) {
+    margin-right: ${padding.small};
+  }
+`
+
 const LogoImage = styled(Image)`
   margin-right: ${padding.small};
   margin-bottom: 0;
   min-width: 36px;
 `;
 
-const Logo = () => {
+const PageHeader = ({ title }) => {
   const data = useStaticQuery(graphql`
-    query LogoQuery {
+    query {
       avatar: file(absolutePath: { regex: "/md-logo.png/" }) {
         childImageSharp {
           fixed(width: 36, height: 36) {
@@ -103,30 +118,35 @@ const Logo = () => {
       site {
         siteMetadata {
           author
+          social {
+            github
+            twitter
+          }
         }
       }
     }
   `);
 
-  const { author } = data.site.siteMetadata;
-  return (
-    <LogoImage
-      fixed={data.avatar.childImageSharp.fixed}
-      alt={author}
-      imgStyle={{ borderRadius: `50%` }}
-    />
-  );
-};
+  const { author, social } = data.site.siteMetadata;
 
-const PageHeader = ({ title }) => {
   return (
     <Header>
       <HeaderLeft>
-        <Logo />
+        <LogoImage
+          fixed={data.avatar.childImageSharp.fixed}
+          alt={author}
+          imgStyle={{ borderRadius: `50%` }}
+        />
         <HeaderLink to={`/`}>{title}</HeaderLink>
       </HeaderLeft>
       <HeaderRight>
-        <HeaderLink to={`/blog`}>Blog</HeaderLink>
+        <HeaderLink to={`/blog`} marginRight>Blog</HeaderLink>
+        <HeaderIcon href={`https://twitter.com/${social.twitter}`}>
+            <Twitter size="24" />
+        </HeaderIcon>
+        <HeaderIcon href={`https://github.com/${social.github}`}>
+          <GitHub size="24" />
+        </HeaderIcon>
       </HeaderRight>
     </Header>
   );
