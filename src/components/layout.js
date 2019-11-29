@@ -58,8 +58,8 @@ const HeaderLink = styled(Link)`
   font-size: ${text.sizes.headingSmall};
   font-weight: ${text.weights.regular};
   margin: 0;
-  margin-left: ${props => props.marginLeft ? padding.large : 0};
-  margin-right: ${props => props.marginRight ? padding.large : 0};
+  margin-left: ${props => (props.marginLeft ? padding.large : 0)};
+  margin-right: ${props => (props.marginRight ? padding.large : 0)};
 `;
 
 const Header = styled.div`
@@ -97,7 +97,7 @@ const HeaderIcon = styled.a`
   :not(:last-child) {
     margin-right: ${padding.small};
   }
-`
+`;
 
 const LogoImage = styled(Image)`
   margin-right: ${padding.small};
@@ -140,11 +140,19 @@ const PageHeader = ({ title }) => {
         <HeaderLink to={`/`}>{title}</HeaderLink>
       </HeaderLeft>
       <HeaderRight>
-        <HeaderLink to={`/blog`} marginRight>Blog</HeaderLink>
-        <HeaderIcon href={`https://twitter.com/${social.twitter}`} aria-label="Twitter profile">
-            <Twitter size="24" />
+        <HeaderLink to={`/blog`} marginRight>
+          Blog
+        </HeaderLink>
+        <HeaderIcon
+          href={`https://twitter.com/${social.twitter}`}
+          aria-label="Twitter profile"
+        >
+          <Twitter size="24" />
         </HeaderIcon>
-        <HeaderIcon href={`https://github.com/${social.github}`} aria-label="Github profile">
+        <HeaderIcon
+          href={`https://github.com/${social.github}`}
+          aria-label="Github profile"
+        >
           <GitHub size="24" />
         </HeaderIcon>
       </HeaderRight>

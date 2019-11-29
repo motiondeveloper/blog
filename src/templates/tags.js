@@ -27,9 +27,7 @@ class TagPosts extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={`Posts tagged with ${tag}`} />
-        <TagHeading>
-          {tagHeader}
-        </TagHeading>
+        <TagHeading>{tagHeader}</TagHeading>
         {edges.map(({ node }) => {
           const { slug } = node.fields;
           return <PostItem post={node} isPinned={false} key={slug} />;
