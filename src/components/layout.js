@@ -141,10 +141,10 @@ const PageHeader = ({ title }) => {
       </HeaderLeft>
       <HeaderRight>
         <HeaderLink to={`/blog`} marginRight>Blog</HeaderLink>
-        <HeaderIcon href={`https://twitter.com/${social.twitter}`}>
+        <HeaderIcon href={`https://twitter.com/${social.twitter}`} aria-label="Twitter profile">
             <Twitter size="24" />
         </HeaderIcon>
-        <HeaderIcon href={`https://github.com/${social.github}`}>
+        <HeaderIcon href={`https://github.com/${social.github}`} aria-label="Github profile">
           <GitHub size="24" />
         </HeaderIcon>
       </HeaderRight>
