@@ -8,9 +8,10 @@ const PostContent = styled.div`
     font-size: ${text.sizes.base};
   }
 
-  img {
+  .gatsby-resp-image-wrapper {
     margin-bottom: ${padding.large};
-    max-width: 100%;
+    margin-top: ${padding.large};
+    max-width: 100% !important;
   }
 
   h2 {
