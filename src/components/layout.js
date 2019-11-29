@@ -68,6 +68,7 @@ const Header = styled.div`
   background-color: ${colors.black};
   border-radius: ${padding.small};
   padding: ${padding.small};
+  box-shadow: 0px 4px 16px 0px ${colors.black};
 `;
 
 const HeaderLeft = styled.div`
