@@ -137,7 +137,7 @@ const PageHeader = ({ title }) => {
           alt={author}
           imgStyle={{ borderRadius: `50%` }}
         />
-        <HeaderLink to={`/`}>{title}</HeaderLink>
+        <HeaderLink to={`/blog`}>{title}</HeaderLink>
       </HeaderLeft>
       <HeaderRight>
         <HeaderLink to={`/blog`} marginRight>
