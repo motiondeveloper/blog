@@ -15,7 +15,7 @@ import { colors, padding } from '../theme';
 
 const PostInfo = styled(HorizontalList)`
   margin-top: ${padding.small};
-  margin-bottom: ${padding.small};
+  margin-bottom: ${padding.xlarge};
   li {
     color: ${colors.grey};
     margin-bottom: ${padding.xxsmall};
