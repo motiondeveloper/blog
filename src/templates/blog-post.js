@@ -34,7 +34,6 @@ const PageLinks = styled(HorizontalList)`
   }
 `;
 
-
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark;

@@ -32,7 +32,12 @@ const Page = styled.div`
     line-height: 150%;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     line-height: 1.2;
     margin-top: 0;
     margin-bottom: 0;
@@ -65,13 +70,13 @@ const Header = styled.div`
   padding: ${padding.small};
 `;
 
-const HeaderLeft= styled.div`
+const HeaderLeft = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
 `;
 
-const HeaderRight= styled.div`
+const HeaderRight = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -104,24 +109,24 @@ const Logo = () => {
 
   const { author } = data.site.siteMetadata;
   return (
-      <LogoImage
-        fixed={data.avatar.childImageSharp.fixed}
-        alt={author}
-        imgStyle={{ borderRadius: `50%` }}
-      />
+    <LogoImage
+      fixed={data.avatar.childImageSharp.fixed}
+      alt={author}
+      imgStyle={{ borderRadius: `50%` }}
+    />
   );
-}
+};
 
 const PageHeader = ({ title }) => {
   return (
     <Header>
-        <HeaderLeft>
-            <Logo />
-            <HeaderLink to={`/`}>{title}</HeaderLink>
-        </HeaderLeft>
-        <HeaderRight>
-          <HeaderLink to={`/blog`}>Blog</HeaderLink>
-        </HeaderRight>
+      <HeaderLeft>
+        <Logo />
+        <HeaderLink to={`/`}>{title}</HeaderLink>
+      </HeaderLeft>
+      <HeaderRight>
+        <HeaderLink to={`/blog`}>Blog</HeaderLink>
+      </HeaderRight>
     </Header>
   );
 };
@@ -130,9 +135,9 @@ const Layout = ({ title, children }) => {
   return (
     <>
       <GlobalStyles />
-        <nav>
-          <PageHeader title={title} />
-        </nav>
+      <nav>
+        <PageHeader title={title} />
+      </nav>
       <Page>
         <main>{children}</main>
       </Page>

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { colors, padding, text } from '../theme';
 
 const PostContent = styled.div`
-
   p {
     color: ${colors.white};
     font-size: ${text.sizes.base};
@@ -43,7 +42,8 @@ const PostContent = styled.div`
     padding-right: ${padding.large};
   }
 
-  ol, ul {
+  ol,
+  ul {
     margin-bottom: ${padding.large};
   }
 
