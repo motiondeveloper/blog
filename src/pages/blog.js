@@ -32,12 +32,6 @@ class BlogIndex extends React.Component {
         <PageHeading>
           Articles on After Effects, JavaScript, and everything in between.
         </PageHeading>
-        <p>
-          Connect with us on{' '}
-          <a href={`https://twitter.com/${social.twitter}`}>Twitter</a>
-          {` `}and{` `}
-          <a href={`https://github.com/${social.github}`}>Github.</a>
-        </p>
         <SectionHeading>Featured posts</SectionHeading>
         {pinnedPosts.map(({ node }) => {
           return <PostItem post={node} key={node.fields.slug} />;
