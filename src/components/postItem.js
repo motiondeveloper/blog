@@ -1,63 +1,98 @@
 import React from 'react';
-import Emoji from '../components/emoji';
 import { Link } from 'gatsby';
-import { rhythm } from '../utils/typography';
-import { colors } from '../theme';
+import { colors, padding, text } from '../theme';
 import { Calendar, Thermometer } from 'react-feather';
 import TagsList from '../components/tagsList';
+import HorizontalList from '../components/horizontalList';
+import styled from 'styled-components';
 
-const PostItem = ({ post, isPinned }) => {
+const PostCard = styled.div`
+  background-color: ${colors.black};
+  border-radius: ${padding.xsmall};
+  width: ${`calc(100% + ${padding.large * 2})`};
+  padding: ${padding.large};
+  margin-left: -${padding.large};
+  margin-right: -${padding.large};
+  margin-bottom: ${padding.large};
+  text-decoration: none;
+  transition: 0.2s ease;
+  :hover {
+    background-color: ${colors.black + '90'};
+  }
+`;
+
+const PostTitle = styled.h3`
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: ${text.sizes.headingSmall};
+  &&& a {
+    text-decoration: none;
+    color: ${colors.yellow};
+    :hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+const PostDesc = styled.p`
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: ${colors.white};
+`;
+
+const PostInfo = styled(HorizontalList)`
+  margin-top: ${padding.small};
+  margin-bottom: ${padding.small};
+  li {
+    color: ${colors.grey};
+    margin-bottom: ${padding.xxsmall};
+    margin-top: 0;
+  }
+
+  li:not(:last-child) {
+    margin-right: ${padding.small};
+  }
+`;
+
+const ReadLink = styled(Link)`
+  margin-left: ${padding.xsmall};
+  &&& {
+    white-space: nowrap;
+    text-decoration: none;
+    :hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+const PostItem = ({ post }) => {
   const title = post.frontmatter.title || post.fields.slug;
-  const prefixWithPin = content => {
-    return (
-      <>
-        <Emoji name="Pin" emoji="📌" /> {content}
-      </>
-    );
-  };
   return (
-    <div key={post.fields.slug}>
-      <h3
-        style={{
-          marginBottom: 0,
-        }}
-      >
-        <Link style={{ boxShadow: `none` }} to={post.fields.slug}>
-          {isPinned ? prefixWithPin(title) : title}
-        </Link>
-      </h3>
-      <ul
-        style={{
-          display: `flex`,
-          flexWrap: `wrap`,
-          justifyContent: `start`,
-          listStyle: `none`,
-          padding: 0,
-          margin: 0,
-          marginTop: rhythm(0.5),
-          color: colors.grey,
-        }}
-      >
-        <li style={{ marginRight: rhythm(0.5), marginBottom: 0 }}>
+    <PostCard key={post.fields.slug}>
+      <PostTitle>
+        <Link to={`/blog/${post.fields.slug}`}>{title}</Link>
+      </PostTitle>
+
+      <PostInfo>
+        <li>
           <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
         </li>
-        <li style={{ marginRight: rhythm(0.5), marginBottom: 0 }}>
+        <li>
           <Thermometer size="14" color={colors.grey} />{' '}
           {post.frontmatter.difficulty}
         </li>
-        <li style={{ marginTop: 0 }}>
+        <li>
           <TagsList tags={post.frontmatter.tags} />
         </li>
-      </ul>
-      <p
-        style={{
-          marginTop: rhythm(1 / 4),
-        }}
+      </PostInfo>
+      <PostDesc
         dangerouslySetInnerHTML={{
           __html: post.frontmatter.description || post.excerpt,
         }}
       />
-    </div>
+      <ReadLink to={`/blog/${post.fields.slug}`}>Read More →</ReadLink>
+    </PostCard>
   );
 };
 

@@ -12,4 +12,28 @@ module.exports = {
     red: '#E36A79',
     purple: '#C774E8',
   },
+
+  padding: {
+    xxsmall: '4px',
+    xsmall: '8px',
+    small: '12px',
+    medium: '16px',
+    large: '32px',
+    xlarge: '56px',
+    xxlarge: '80px',
+  },
+
+  text: {
+    sizes: {
+      base: '16px',
+      headingSmall: '24px',
+      headingLarge: '40px',
+    },
+    weights: {
+      regular: 500,
+      bold: 700,
+    },
+    bodyFont: `'-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';`,
+    monoFont: `'SFMono-Medium', 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo, Consolas, Courier, monospace;`,
+  },
 };

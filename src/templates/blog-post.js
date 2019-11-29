@@ -5,9 +5,34 @@ import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import TagsList from '../components/tagsList';
-import { rhythm } from '../utils/typography';
-import { colors } from '../theme';
+import PostContent from '../components/postContent';
+import Divider from '../components/divider';
+import PageHeading from '../components/pageHeading';
+import HorizontalList from '../components/horizontalList';
 import { Calendar, Thermometer } from 'react-feather';
+import styled from 'styled-components';
+import { colors, padding } from '../theme';
+
+const PostInfo = styled(HorizontalList)`
+  margin-top: ${padding.small};
+  margin-bottom: ${padding.xlarge};
+  li {
+    color: ${colors.grey};
+    margin-bottom: ${padding.xxsmall};
+    margin-top: 0;
+  }
+
+  li:not(:last-child) {
+    margin-right: ${padding.small};
+  }
+`;
+
+const PageLinks = styled(HorizontalList)`
+  justify-content: space-around;
+  li {
+    margin-bottom: ${padding.small};
+  }
+`;
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -21,74 +46,41 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <h1
-          style={{
-            marginTop: rhythm(2),
-            marginBottom: rhythm(1),
-            textAlign: 'center',
-          }}
-        >
-          {post.frontmatter.title}
-        </h1>
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `center`,
-            listStyle: `none`,
-            padding: 0,
-            marginBottom: 0,
-            marginLeft: 0,
-            color: colors.grey,
-          }}
-        >
-          <li style={{marginBottom: 0, marginLeft: 0}}>
-            <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
-          </li>
-          <li style={{ marginLeft: rhythm(0.5), marginBottom: 0}}>
-            <Thermometer size="14" color={colors.grey} />{' '}
-            {post.frontmatter.difficulty}
-          </li>
-        </ul>
-        <TagsList style={{marginBottom: rhythm(2), textAlign: 'center', color: colors.grey}} tags={post.frontmatter.tags} />
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <TagsList style={{marginBottom: rhythm(1)}} tags={post.frontmatter.tags} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-            marginBottom: rhythm(0.5),
-          }}
-        >
+        <div>
+          <PageHeading>{post.frontmatter.title}</PageHeading>
+          <PostInfo>
+            <li>
+              <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
+            </li>
+            <li>
+              <Thermometer size="14" color={colors.grey} />{' '}
+              {post.frontmatter.difficulty}
+            </li>
+            <li>
+              <TagsList tags={post.frontmatter.tags} />
+            </li>
+          </PostInfo>
+        </div>
+        <PostContent dangerouslySetInnerHTML={{ __html: post.html }} />
+        <TagsList tags={post.frontmatter.tags} />
+        <Divider />
+        <PageLinks>
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
+              <Link to={`/blog/${previous.fields.slug}`} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
+              <Link to={`/blog/${next.fields.slug}`} rel="next">
                 {next.frontmatter.title} →
               </Link>
             )}
           </li>
-        </ul>
-        <hr
-          style={{
-            marginTop: rhythm(0.5),
-            marginBottom: rhythm(1),
-          }}
-        />
+        </PageLinks>
+        <Divider />
         <Bio />
       </Layout>
     );

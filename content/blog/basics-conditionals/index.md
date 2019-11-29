@@ -10,7 +10,7 @@ description: >-
 
 [MDN Referance]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/conditionals
 
-Now that you have learned how to [create and use variables](../../basics-variables), the next step is to make decisions based on their value.
+Now that you have learned how to [create and use variables](../basics-variables), the next step is to make decisions based on their value.
 
 You make decisions in code with whats called a **conditional statement**. This is a statement that executes different code based on a condition, such as whether one number is larger than another or if a checkbox is ticked.
 
@@ -77,19 +77,21 @@ if (true) {
 
 ## Condition statements
 
-In the same way we've used the `js›true` or `js›false` keywords in the condition of our `js›if` statement, you can use any code that will resolve to be either true or false. Most of the time this will be a comparison between values, or a check if one variable is equal to another.
+In the same way we've used the `js›true` or `js›false` keywords in the condition of our `js›if` statement, you can use any code that will resolve to be either true or false. Most of the time this will be a comparison between values, or a check if one value is equal to another.
 
 ### Comparison operators
 
 There's a variety of methods available in JavaScript to compare values called **comparison operators**. These operators form the basis of making choices in the condition statement.
 
 The comparison operators test if two values are:
+
 - `js›===` equal and the same type
 - `js›!==` not equal and of the same type, or are of different types
 
 > For more info on JavaScript types, see the [Expression Basics: Variables](../basics-variables/index.md) post
 
 Or test if one value is:
+
 - `js›<` less than another
 - `js›>` greater than another
 - `js›<=` less than *or* equal to another
@@ -114,7 +116,7 @@ if ('534' === 534) { // Evaluates to false
 
 > In some cases you may need to check if two values are equal, regardless of their type. You can do this with the non strict equal and not equal operators: `js›==` and `js›!=`.
 
-Some values are also considered *falsy*, as they resolve to false. These are:
+Certain values are considered *falsy* as they will always resolve to false, meaning you can test for them without a comparison operator. These are:
 
 - The number zero `js›0`
 - Empty strings: `js›""`, `js›''`
@@ -148,7 +150,7 @@ if (jobTitle === 'Animator') {
 
 ## Logical operators (AND, OR and NOT)
 
-You can test for multiple conditions using what's called **logical operators**. They are:
+You can test for a combination of conditions using what's called **logical operators**. They are:
 
 - AND `js›&&`, to test if all expressions are true
 - OR `js›||`, to test if any expressions are true
@@ -184,7 +186,7 @@ Will show `js›'Ready to code!'` as `js›software === 'After Effects'` evaluat
 
 > Each side of a logical operator is a separate condition statement, so the expression `js›software === 'VS Code' || 'After Effects'` will always be true as, `js›'After Effects'` resolves to true
 
-A third operator, the NOT `js›!` operator, is used to **negate** an expression, such that:
+You can use a third operator, the NOT `js›!` operator, to **negate** an expression, such that:
 
 ```js
 !true === false;
