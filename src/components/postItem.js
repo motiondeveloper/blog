@@ -16,10 +16,8 @@ const PostCard = styled.div`
   margin-bottom: ${padding.large};
   text-decoration: none;
   transition: 0.2s ease;
-  border: 2px solid transparent;
   :hover {
     background-color: ${colors.black + '90'};
-    border: 2px solid ${colors.yellow};
   }
 `;
 
