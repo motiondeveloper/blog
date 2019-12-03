@@ -44,7 +44,7 @@ This alternate way is by writing lines of code, in a language called **JavaScrip
 
 ## How to add an expression
 
-You can add an expression to a property in a couple of ways, with the most simple being to `alt-click` on that properties stop watch (the icon next to it's name) or to use the 'Add Expression' shortcut `alt + shift + =`.
+You can add an expression to a property in a couple of ways, with the most simple being to <kbd>alt</kbd> + <kbd>click</kbd> on that properties stop watch (the icon next to it's name) or to use the 'Add Expression' shortcut <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>=</kbd>.
 
 This will add a new expression with some placeholder code in there for you. This placeholder references the **before expression value**, that is the value of the property without any expression applied.
 
