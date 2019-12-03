@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { colors, padding, text } from '../theme';
 
 const PostContent = styled.div`
+  margin-bottom: ${padding.xxlarge};
   p {
     color: ${colors.white};
     font-size: ${text.sizes.base};
