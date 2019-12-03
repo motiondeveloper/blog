@@ -65,7 +65,6 @@ const PostContent = styled.div`
 
   kbd {
     color: ${colors.lightGrey} !important;
-    text-transform: uppercase;
     border-radius: 0.3em;
     background: ${colors.black};
     padding: 0.1em 0.3em 0.1em;
