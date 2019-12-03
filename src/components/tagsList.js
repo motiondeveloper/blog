@@ -17,7 +17,7 @@ const Tag = styled.li`
     background-color: ${tagColor + `30`};
   }
   a {
-    color: ${tagColor};
+    color: ${tagColor} !important;
     text-decoration: none;
   }
   a :hover {
