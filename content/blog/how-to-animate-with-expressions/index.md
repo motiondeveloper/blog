@@ -48,7 +48,7 @@ Once downloaded, all you need to do is import the file into your After Effects p
 
 eKeys is only compatible with the new [JavaScript](https://helpx.adobe.com/after-effects/using/expression-language-reference.html) engine available in CC2019.
 
-You can make sure that your project is using the JavaScript engine by going to `File > Project Settings > Expressions` and setting the Expressions Engine to JavaScript.
+You can make sure that your project is using the JavaScript engine by going to <kbd>File</kbd> > <kbd>Project Settings</kbd> > <kbd>Expressions</kbd> and setting the Expressions Engine to JavaScript.
 
 ![Expressions Panel of After Effects Project Settings](project-expression-engine.png "Expression Engine Setting")
 
