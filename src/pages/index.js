@@ -30,6 +30,33 @@ const HorizontalStack = styled(HorizontalList)`
     }
 `
 
+const Copy = styled.p`
+  margin-bottom: ${padding.large};
+`
+
+const LinkButton = styled(Link)`
+  margin-right: ${padding.small};
+  text-decoration: none;
+  padding: ${padding.xsmall} ${padding.small};
+  border-radius: ${padding.xsmall};
+  border: 2px solid ${colors.blue};
+`
+
+const SecondaryButton = styled(LinkButton)`
+  :hover {
+    color: ${colors.navy} !important;
+    background: ${colors.blue};
+  }
+`
+
+const PrimaryButton = styled(LinkButton)`
+  color: ${colors.navy} !important;
+  background: ${colors.blue};
+  :hover {
+    filter: brightness(110%);
+  }
+`
+
 const StackItem = styled.li`
   width: 48%;
   min-width: 300px;
@@ -54,18 +81,20 @@ class BlogIndex extends React.Component {
         <SEO title="Motion Developer" />
         <PageHeading>Bridging the gap between animator and developer</PageHeading>
         <HorizontalStack>
-        <StackItem>
-          <HeadingLarge>For Artists</HeadingLarge>
-          <p>Master expressions, build templates, and improve your workflow by applying a developer mindset to motion design.</p>
-          <Link to="/blog">Read the blog</Link>
-        </StackItem>
-        <StackItem>
-          <HeadingLarge>For Brands</HeadingLarge>
-          <p>We’ll free up your team by turning your most used graphics into templates your editors will love.</p>
-          <Link to="/contact">Learn more</Link><br/>
-          <Link to="/contact">Contact us</Link>
-        </StackItem>
+          <StackItem>
+            <HeadingLarge>For Artists</HeadingLarge>
+            <Copy>Master expressions, build templates, and improve your workflow by applying a developer mindset to motion design.</Copy>
+            <SecondaryButton to="/blog">Read the blog</SecondaryButton>
+          </StackItem>
+          <StackItem>
+            <HeadingLarge>For Brands</HeadingLarge>
+            <Copy>We’ll free up your team by turning your most used graphics into templates your editors will love.</Copy>
+            <SecondaryButton to="/contact">Learn more</SecondaryButton>
+            <PrimaryButton to="/contact" primary>Contact us</PrimaryButton>
+          </StackItem>
         </HorizontalStack>
+        <HeadingSmall>After Effects Tools</HeadingSmall>
+        <div style={{width:'100%', height: '300px', backgroundColor: colors.black, borderRadius: padding.small}}></div>
       </Layout>
     );
   }
