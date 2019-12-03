@@ -50,5 +50,16 @@ const PostContent = styled.div`
   li {
     margin-bottom: ${padding.small};
   }
+
+  kbd {
+    color: ${colors.lightGrey} !important;
+    text-transform: uppercase;
+    border-radius: 0.3em;
+    background: ${colors.black};
+    padding: 0.1em 0.3em 0.1em;
+    white-space: normal;
+    border: 1px solid black;
+    box-shadow: 0px 2px 0px 0px black;
+  }
 `;
 export default PostContent;
