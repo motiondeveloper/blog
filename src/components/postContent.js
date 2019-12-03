@@ -7,10 +7,21 @@ const PostContent = styled.div`
     font-size: ${text.sizes.base};
   }
 
+  img {
+    margin-bottom: ${padding.large};
+    margin-top: ${padding.large};
+    max-width: 100% !important;
+  }
+  
   .gatsby-resp-image-wrapper {
     margin-bottom: ${padding.large};
     margin-top: ${padding.large};
     max-width: 100% !important;
+
+    img {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
   }
 
   h2 {
