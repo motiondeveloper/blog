@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Motion Developer Blog`,
+    title: `Motion Developer`,
     author: `Motion Developer`,
     description: `After Effects expressions, templates, and all things JavaScript animation.`,
     siteUrl: `https://motiondeveloper.com`,
@@ -73,13 +73,8 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
-    },
     `gatsby-plugin-sass`,
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-catch-links`,
   ],

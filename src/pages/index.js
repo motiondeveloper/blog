@@ -4,26 +4,17 @@ import { graphql } from 'gatsby';
 import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import PostItem from '../components/postItem';
 
 class BlogIndex extends React.Component {
   render() {
     const { data } = this.props;
     const siteTitle = data.site.siteMetadata.title;
-    const posts = data.allMarkdownRemark.edges;
-    const pinnedPosts = posts.filter(({ node }) => node.frontmatter.pinned);
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="All posts" />
+        <SEO title="Motion Developer" />
         <Bio />
-        {pinnedPosts.map(({ node }) => {
-          return <PostItem post={node} isPinned={true} key={node.fields.slug} />;
-        })}
-        <hr />
-        {posts.map(({ node }) => {
-          return <PostItem post={node} isPinned={false} key={node.fields.slug} />;
-        })}
+        Home page content.
       </Layout>
     );
   }
@@ -36,24 +27,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            pinned
-            difficulty
-            description
-            tags
-          }
-        }
       }
     }
   }
