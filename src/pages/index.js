@@ -60,6 +60,7 @@ const PrimaryButton = styled(LinkButton)`
 const StackItem = styled.li`
   width: 48%;
   min-width: 300px;
+  flex-grow: 1;
 `
 
 const HeadingLarge = styled.h2`
