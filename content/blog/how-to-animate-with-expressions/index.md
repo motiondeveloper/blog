@@ -17,6 +17,8 @@ While you're able to get some functionality using the `js›linear` or `js›eas
 
 **eKeys** solves this problem by giving you an easy way to create keyframes in expressions. In this blog post, you'll learn how to get starting using eKeys in your projects.
 
+## Contents <!-- omit in toc -->
+
 - [What is eKeys](#what-is-ekeys)
 - [Installation](#installation)
   - [Compatibility](#compatibility)
