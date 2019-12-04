@@ -3,6 +3,7 @@ import Prism from 'prismjs';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 import Layout from '../components/layout';
+import PostItem from '../components/postItem';
 import SEO from '../components/seo';
 import PageHeading from '../components/pageHeading';
 import Card from '../components/card';
@@ -124,6 +125,7 @@ const CodeJS = ({ children }) => {
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title;
+  const posts = data.allMarkdownRemark.edges;
 
   useEffect(() => {
     // call the highlightAll() function to style our code blocks
@@ -132,19 +134,18 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="Motion Developer" />
+      <SEO title="Homepage" />
       <PageHeading>We're bridging the gap between animator and developer.</PageHeading>
       <HorizontalStack mt={padding.xlarge}>
         <StackItem>
           <h2><HeadingLarge>For Artists</HeadingLarge></h2>
           <Copy>Master expressions, build templates, and improve your workflow by applying a developer mindset to motion design.</Copy>
-          <SecondaryButton to="/blog">Read the blog</SecondaryButton>
+          <PrimaryButton to="/blog">Read the blog</PrimaryButton>
         </StackItem>
         <StackItem>
           <h2><HeadingLarge>For Brands</HeadingLarge></h2>
           <Copy>We’ll free up your team by turning your most used graphics into templates your editors will love.</Copy>
-          <SecondaryButton to="/contact">Learn more</SecondaryButton>
-          <PrimaryButton to="/contact" primary>Contact us</PrimaryButton>
+          <PrimaryButton to="/contact">Contact us</PrimaryButton>
         </StackItem>
       </HorizontalStack>
       <h2><HeadingSmall>After Effects Tools</HeadingSmall></h2>
@@ -181,8 +182,15 @@ const BlogIndex = ({ data, location }) => {
           </StackItem>
         </HorizontalStack>
       </Card>
-      <Copy style={{textAlign: 'center'}}>
+      <Copy>
         Find all of our tools on the Motion Developer <a href="https://github.com/motiondeveloper">Github</a>.
+      </Copy>
+      <h2><HeadingSmall>Featured Blog Posts</HeadingSmall></h2>
+      {posts.map(({ node }) => {
+          return <PostItem post={node} key={node.fields.slug} />;
+      })}
+      <Copy>
+        <Link to="/blog">View all posts</Link>
       </Copy>
     </Layout>
   );
@@ -197,5 +205,24 @@ export const pageQuery = graphql`
         title
       }
     }
+    allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}, filter: {frontmatter: {pinned: {eq: true}}}) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+            pinned
+            difficulty
+            description
+            tags
+          }
+        }
+      }
+    }
+    
   }
 `;
