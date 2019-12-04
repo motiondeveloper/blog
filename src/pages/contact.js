@@ -15,7 +15,8 @@ const Hidden = styled.p`
 `
 
 const Form = styled.form`
-    width: 50%;
+    width: 100%;
+    max-width: 480px;
     margin: 0 auto;
 `
 
