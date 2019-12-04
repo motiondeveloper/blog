@@ -31,16 +31,24 @@ const HeadingLarge = styled.p`
 `;
 
 const HorizontalStack = styled(HorizontalList)`
-  margin-top: ${padding.xlarge};
+  margin-top: ${props => props.mt};
   justify-content: space-between;
-  li :not(:last-child) {
-      margin-right: ${padding.medium};
-      margin-bottom: ${padding.xlarge};
-    }
+`
+
+const StackItem = styled.li`
+  width: 40%;
+  min-width: 300px;
+  flex-grow: 1;
+  :not(:last-child) {
+    margin-right: ${padding.large};
+    margin-bottom: ${padding.xlarge};
+  }
 `
 
 const Copy = styled.p`
-  margin-bottom: ${padding.large};
+  :last-of-type {
+    margin-bottom: ${padding.large};
+  }
 `
 
 const LinkButton = styled(Link)`
@@ -59,18 +67,12 @@ const SecondaryButton = styled(LinkButton)`
 `
 
 const PrimaryButton = styled(LinkButton)`
-  color: ${colors.navy} !important;
-  background: ${colors.blue};
+  border-color: ${colors.green};
+  color: ${colors.green} !important;
   :hover {
-    filter: brightness(110%);
+    color: ${colors.navy} !important;
+    background: ${colors.green};
   }
-`
-
-const StackItem = styled.li`
-  width: 48%;
-  min-width: 300px;
-  max-width: 380px;
-  flex-grow: 1;
 `
 
 const eKeysCode = `const inKeys = [
@@ -88,15 +90,35 @@ const eKeysCode = `const inKeys = [
 eKeys.animate(inKeys, time);
 `
 
+const eBoxCode = `const myBox =
+  eBox.createBox({
+    size: [200, 200],
+    position: [0, 0],
+    anchor: 'center',
+  });
+
+myBox.setScale(
+  [scaleIn, 100], 
+  'topLeft’
+);
+
+myBox.getPath();
+`
+
+const CodeBlock = styled.div`
+  margin-bottom: 0;
+  box-shadow: 0 0 0 2pt ${colors.navy};
+`
+
 const CodeJS = ({ children }) => {
   return (
-    <div className="gatsby-highlight" data-language="javascript">
+    <CodeBlock className="gatsby-highlight" data-language="javascript">
       <pre className="language-javascript">
         <code className="language-javascript">
           {children}
         </code>
       </pre>
-    </div>
+    </CodeBlock>
   );
 }
 
@@ -112,7 +134,7 @@ const BlogIndex = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <SEO title="Motion Developer" />
       <PageHeading>Bridging the gap between animator and developer</PageHeading>
-      <HorizontalStack>
+      <HorizontalStack mt={padding.xlarge}>
         <StackItem>
           <h2><HeadingLarge>For Artists</HeadingLarge></h2>
           <Copy>Master expressions, build templates, and improve your workflow by applying a developer mindset to motion design.</Copy>
@@ -127,13 +149,13 @@ const BlogIndex = ({ data, location }) => {
       </HorizontalStack>
       <h2><HeadingSmall>After Effects Tools</HeadingSmall></h2>
       <Card>
-        <HorizontalList>
+        <HorizontalStack mt="0">
           <StackItem>
             <h3><HeadingLarge>eKeys</HeadingLarge></h3>
             <Copy>
               Create keyframes within expressions - with full control over easing.
-              eKeys gives you the control to create dynamic templates, with the smooth animation your used to with keyframes.
-              </Copy>
+            </Copy>
+            <Copy> 	eKeys gives you the control you need to create dynamic templates, with the smooth animation your used to with keyframes. </Copy>
             <SecondaryButton to="/blog/how-to-animate-with-expressions">Learn more</SecondaryButton>
           </StackItem>
           <StackItem>
@@ -141,7 +163,23 @@ const BlogIndex = ({ data, location }) => {
               {eKeysCode}
             </CodeJS>
           </StackItem>
-        </HorizontalList>
+        </HorizontalStack>
+      </Card>
+      <Card>
+        <HorizontalStack mt="0">
+          <StackItem>
+            <h3><HeadingLarge>eBox</HeadingLarge></h3>
+            <Copy>
+              Easily create, position and scale rectangles from any anchor point.
+            </Copy>
+            <SecondaryButton to="/blog/making-better-boxes">Learn more</SecondaryButton>
+          </StackItem>
+          <StackItem>
+            <CodeJS>
+              {eBoxCode}
+            </CodeJS>
+          </StackItem>
+        </HorizontalStack>
       </Card>
     </Layout>
   );
