@@ -132,7 +132,7 @@ const BlogIndex = ({ data, location }) => {
               Create keyframes within expressions - with full control over easing.
             </Copy>
             <Copy> 	eKeys gives you the control you need to create dynamic templates, with the smooth animation your used to with keyframes. </Copy>
-            <SecondaryButton to="/blog/how-to-animate-with-expressions">Learn more</SecondaryButton>
+            <SecondaryButton to="/blog/how-to-animate-with-expressions">Read intro to eKeys</SecondaryButton>
           </StackItem>
           <StackItem>
             <CodeJS>
@@ -148,7 +148,7 @@ const BlogIndex = ({ data, location }) => {
             <Copy>
               Easily create, position and scale rectangles from any anchor point.
             </Copy>
-            <SecondaryButton to="/blog/making-better-boxes">Learn more</SecondaryButton>
+            <SecondaryButton to="/blog/making-better-boxes">Get eBox</SecondaryButton>
           </StackItem>
           <StackItem>
             <CodeJS>
@@ -158,7 +158,7 @@ const BlogIndex = ({ data, location }) => {
         </HorizontalStack>
       </Card>
       <Copy>
-        Find all of our tools on the Motion Developer <a href="https://github.com/motiondeveloper">Github</a>.
+        <a href="https://github.com/motiondeveloper">View all tools on Github</a>
       </Copy>
       <h2><HeadingSmall>Featured Blog Posts</HeadingSmall></h2>
       {posts.map(({ node }) => {
