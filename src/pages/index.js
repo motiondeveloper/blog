@@ -7,29 +7,10 @@ import PostItem from '../components/postItem';
 import SEO from '../components/seo';
 import PageHeading from '../components/pageHeading';
 import Card from '../components/card';
+import { Copy, HeadingSmall, HeadingLarge } from '../components/type';
 
-import { colors, padding, text } from '../theme';
+import { colors, padding } from '../theme';
 import HorizontalList from '../components/horizontalList';
-
-const HeadingSmall = styled.p`
-  color: ${colors.white};
-  font-size: ${text.sizes.base};
-  font-weight: ${text.weights.bold};
-  &&& {
-    margin-top: ${padding.xxlarge};
-    margin-bottom: ${padding.large};
-  }
-`;
-
-const HeadingLarge = styled.p`
-  font-size: ${text.sizes.headingSmall};
-  font-weight: ${text.weights.bold};
-  color: ${colors.yellow};
-  &&& {
-    margin-top: 0;
-    margin-bottom: ${padding.small};
-  }
-`;
 
 const HorizontalStack = styled(HorizontalList)`
   margin-top: ${props => props.mt};
@@ -43,12 +24,6 @@ const StackItem = styled.li`
   :not(:last-child) {
     margin-right: ${padding.large};
     margin-bottom: ${padding.xlarge};
-  }
-`
-
-const Copy = styled.p`
-  :last-of-type {
-    margin-bottom: ${padding.large};
   }
 `
 
