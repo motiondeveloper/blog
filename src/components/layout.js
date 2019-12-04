@@ -58,8 +58,9 @@ const HeaderLink = styled(Link)`
   font-size: ${text.sizes.headingSmall};
   font-weight: ${text.weights.regular};
   margin: 0;
-  margin-left: ${props => (props.marginLeft ? padding.large : 0)};
-  margin-right: ${props => (props.marginRight ? padding.large : 0)};
+  :not(last-child) {
+    margin-right: ${padding.large};
+  }
 `;
 
 const Header = styled.div`
@@ -139,7 +140,7 @@ const PageHeader = ({ title }) => {
         <HeaderLink to={`/`}>{title}</HeaderLink>
       </HeaderLeft>
       <HeaderRight>
-        <HeaderLink to={`/blog`} marginRight>
+        <HeaderLink to={`/blog`}>
           Blog
         </HeaderLink>
         <HeaderIcon
