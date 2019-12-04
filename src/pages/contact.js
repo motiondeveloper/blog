@@ -94,19 +94,19 @@ const ContactForm = () => {
     return (
         <Form name="contact" method="POST" data-netlify="true">
             <Hidden>
-                <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+                <label>Don’t fill this out if you're human: <input name="bot-field" type="hidden"/></label>
             </Hidden>
             <Copy>
-                <Label>Your Name:</Label>
-                <Input type="text" name="name" />
+                <Label for="name">Your Name:</Label>
+                <Input type="text" name="name" id="name"/>
             </Copy>
             <Copy>
-                <Label>Your Email:</Label>
-                <Input type="email" name="name" required/>
+                <Label for="email">Your Email:</Label>
+                <Input type="email" name="name" id="email" required/>
             </Copy>
             <Copy>
-                <Label>Message:</Label>
-                <Area name="message" required></Area>
+                <Label for="message">Message:</Label>
+                <Area name="message" id="message" required></Area>
             </Copy>
         
             <Button type="submit">Send</Button>

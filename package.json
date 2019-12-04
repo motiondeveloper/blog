@@ -1,7 +1,7 @@
 {
-  "name": "motiondeveloper-blog",
+  "name": "motiondeveloper-site",
   "private": true,
-  "description": "The Motion Developer Blog Site",
+  "description": "",
   "version": "0.1.0",
   "author": "Motion Developer",
   "bugs": {
@@ -50,9 +50,7 @@
     "typescript": "^3.7.2"
   },
   "homepage": "https://github.com/motiondeveloper/blog#readme",
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": [],
   "license": "MIT",
   "main": "n/a",
   "repository": {
