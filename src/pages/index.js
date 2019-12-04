@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Prism from 'prismjs';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 import Layout from '../components/layout';
@@ -72,63 +73,78 @@ const StackItem = styled.li`
   flex-grow: 1;
 `
 
-const ProductSVG = styled.img`
+const eKeysCode = `const inKeys = [
+  {
+    keyTime: 1,
+    keyValue: 0,
+    easeOut: 66,
+  },{
+    keyTime: 2,
+    keyValue: 250,
+    easeIn: 90,
+  }
+];
 
+eKeys.animate(inKeys, time);
 `
 
-class BlogIndex extends React.Component {
-  render() {
-    const { data } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
+const CodeJS = ({ children }) => {
+  return (
+    <div className="gatsby-highlight" data-language="javascript">
+      <pre className="language-javascript">
+        <code className="language-javascript">
+          {children}
+        </code>
+      </pre>
+    </div>
+  );
+}
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="Motion Developer" />
-        <PageHeading>Bridging the gap between animator and developer</PageHeading>
-        <HorizontalStack>
+const BlogIndex = ({ data, location }) => {
+  const siteTitle = data.site.siteMetadata.title;
+
+  useEffect(() => {
+    // call the highlightAll() function to style our code blocks
+    Prism.highlightAll()
+  })
+
+  return (
+    <Layout location={location} title={siteTitle}>
+      <SEO title="Motion Developer" />
+      <PageHeading>Bridging the gap between animator and developer</PageHeading>
+      <HorizontalStack>
+        <StackItem>
+          <h2><HeadingLarge>For Artists</HeadingLarge></h2>
+          <Copy>Master expressions, build templates, and improve your workflow by applying a developer mindset to motion design.</Copy>
+          <SecondaryButton to="/blog">Read the blog</SecondaryButton>
+        </StackItem>
+        <StackItem>
+          <h2><HeadingLarge>For Brands</HeadingLarge></h2>
+          <Copy>We’ll free up your team by turning your most used graphics into templates your editors will love.</Copy>
+          <SecondaryButton to="/contact">Learn more</SecondaryButton>
+          <PrimaryButton to="/contact" primary>Contact us</PrimaryButton>
+        </StackItem>
+      </HorizontalStack>
+      <h2><HeadingSmall>After Effects Tools</HeadingSmall></h2>
+      <Card>
+        <HorizontalList>
           <StackItem>
-            <h2><HeadingLarge>For Artists</HeadingLarge></h2>
-            <Copy>Master expressions, build templates, and improve your workflow by applying a developer mindset to motion design.</Copy>
-            <SecondaryButton to="/blog">Read the blog</SecondaryButton>
-          </StackItem>
-          <StackItem>
-            <h2><HeadingLarge>For Brands</HeadingLarge></h2>
-            <Copy>We’ll free up your team by turning your most used graphics into templates your editors will love.</Copy>
-            <SecondaryButton to="/contact">Learn more</SecondaryButton>
-            <PrimaryButton to="/contact" primary>Contact us</PrimaryButton>
-          </StackItem>
-        </HorizontalStack>
-        <h2><HeadingSmall>After Effects Tools</HeadingSmall></h2>
-        <Card>
-          <HorizontalList>
-            <StackItem>
-              <h3><HeadingLarge>eKeys</HeadingLarge></h3>
-              <Copy>
-                Create keyframes within expressions - with full control over easing.
-                eKeys gives you the control to create dynamic templates, with the smooth animation your used to with keyframes.
+            <h3><HeadingLarge>eKeys</HeadingLarge></h3>
+            <Copy>
+              Create keyframes within expressions - with full control over easing.
+              eKeys gives you the control to create dynamic templates, with the smooth animation your used to with keyframes.
               </Copy>
-              <SecondaryButton to="/blog/how-to-animate-with-expressions">Learn more</SecondaryButton>
-            </StackItem>
-            <StackItem>
-              <code>
-                {`const inKeys = [
-                  {
-                    keyTime: 1,
-                    keyValue: 0,
-                    easeOut: 66,
-                  },{
-                    keyTime: 2,
-                    keyValue: 250,
-                    easeIn: 90,
-                  }
-                ];`}
-              </code>
-            </StackItem>
-          </HorizontalList>
-        </Card>
-      </Layout>
-    );
-  }
+            <SecondaryButton to="/blog/how-to-animate-with-expressions">Learn more</SecondaryButton>
+          </StackItem>
+          <StackItem>
+            <CodeJS>
+              {eKeysCode}
+            </CodeJS>
+          </StackItem>
+        </HorizontalList>
+      </Card>
+    </Layout>
+  );
 }
 
 export default BlogIndex;
