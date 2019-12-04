@@ -181,6 +181,9 @@ const BlogIndex = ({ data, location }) => {
           </StackItem>
         </HorizontalStack>
       </Card>
+      <Copy style={{textAlign: 'center'}}>
+        Find all of our tools on the Motion Developer <a href="https://github.com/motiondeveloper">Github</a>.
+      </Copy>
     </Layout>
   );
 }
