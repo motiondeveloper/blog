@@ -58,6 +58,7 @@ const Input = styled.input`
 `
 
 const Area = styled.textarea`
+    font-family: ${text.bodyFont};
     resize: vertical;
     display: block;
     font-size: ${text.sizes.base};
