@@ -10,6 +10,10 @@ import PageHeading from '../components/pageHeading';
 import Card from '../components/card';
 import { Copy } from '../components/type';
 
+const Hidden = styled.p`
+    display: none;
+`
+
 const Form = styled.form`
     width: 50%;
     margin: 0 auto;
@@ -43,10 +47,13 @@ const Input = styled.input`
     font-size: ${text.sizes.base};
     width: ${`calc(100% - ${padding.large})`};
     padding: ${padding.small};
-    border: 2px solid ${colors.yellow};
+    border: 2px solid ${colors.green};
     border-radius: ${padding.xsmall};
     background: ${colors.black};
     color: ${colors.white};
+    :invalid {
+        border-color: ${colors.yellow};
+    }
 `
 
 const Area = styled.textarea`
@@ -55,10 +62,13 @@ const Area = styled.textarea`
     width: ${`calc(100% - ${padding.large})`};
     height: ${padding.xlarge};
     padding: ${padding.small};
-    border: 2px solid ${colors.yellow};
+    border: 2px solid ${colors.green};
     border-radius: ${padding.xsmall};
     background: ${colors.black};
     color: ${colors.white};
+    :invalid {
+        border-color: ${colors.yellow};
+    }
 `
 
 const ContactPage = ({ data, location }) => {
@@ -68,7 +78,7 @@ const ContactPage = ({ data, location }) => {
         <Layout location={location} title={siteTitle}>
             <SEO title="Contact" />
             <PageHeading>Get in touch</PageHeading>
-            <Copy>Business enquiry, question about on of our products, or want to say hey?</Copy>
+            <Copy>Business enquiry, question about one of our products, or want to say hey?</Copy>
             <Copy>Fill out the form below and we'll get back to you.</Copy>
             <Card>
                 <ContactForm />
@@ -80,17 +90,20 @@ const ContactPage = ({ data, location }) => {
 const ContactForm = () => {
     return (
         <Form name="contact" method="POST" data-netlify="true">
+            <Hidden>
+                <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+            </Hidden>
             <Copy>
                 <Label>Your Name:</Label>
                 <Input type="text" name="name" />
             </Copy>
             <Copy>
                 <Label>Your Email:</Label>
-                <Input type="text" name="name" />
+                <Input type="email" name="name" required/>
             </Copy>
             <Copy>
                 <Label>Message:</Label>
-                <Area name="message"></Area>
+                <Area name="message" required></Area>
             </Copy>
         
             <Button type="submit">Send</Button>
