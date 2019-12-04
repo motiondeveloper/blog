@@ -1,4 +1,4 @@
-import { colors, padding, text } from '../theme';
+import { colors, padding } from '../theme';
 import styled from 'styled-components';
 
 const PostCard = styled.div`
