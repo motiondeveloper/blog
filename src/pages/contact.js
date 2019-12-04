@@ -58,6 +58,7 @@ const Input = styled.input`
 `
 
 const Area = styled.textarea`
+    resize: vertical;
     display: block;
     font-size: ${text.sizes.base};
     width: ${`calc(100% - ${padding.large})`};
