@@ -94,6 +94,7 @@ const ContactForm = () => {
     return (
         <Form name="contact" method="POST" data-netlify="true">
             <Hidden>
+                <input type="hidden" name="form-name" value="contact" />
                 <label>Don’t fill this out if you're human: <input name="bot-field" type="hidden"/></label>
             </Hidden>
             <Copy>
