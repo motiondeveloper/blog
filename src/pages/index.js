@@ -133,7 +133,7 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="Motion Developer" />
-      <PageHeading>Bridging the gap between animator and developer</PageHeading>
+      <PageHeading>We're bridging the gap between animator and developer.</PageHeading>
       <HorizontalStack mt={padding.xlarge}>
         <StackItem>
           <h2><HeadingLarge>For Artists</HeadingLarge></h2>
