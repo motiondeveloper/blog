@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import { colors, padding, text } from '../theme';
 
 const Copy = styled.p`
-    font-size: ${text.sizes.base};
+  font-size: ${text.sizes.base};
   :last-of-type {
     margin-bottom: ${padding.large};
   }
-`
+`;
 
 const HeadingSmall = styled.p`
   color: ${colors.white};
@@ -28,8 +28,4 @@ const HeadingLarge = styled.p`
   }
 `;
 
-export {
-    Copy,
-    HeadingSmall,
-    HeadingLarge
-};
+export { Copy, HeadingSmall, HeadingLarge };

@@ -13,7 +13,7 @@ const PostContent = styled.div`
     margin-top: ${padding.large};
     max-width: 100% !important;
   }
-  
+
   .gatsby-resp-image-wrapper {
     margin-bottom: ${padding.large};
     margin-top: ${padding.large};

@@ -140,9 +140,7 @@ const PageHeader = ({ title }) => {
         <HeaderLink to={`/`}>{title}</HeaderLink>
       </HeaderLeft>
       <HeaderRight>
-        <HeaderLink to={`/blog`}>
-          Blog
-        </HeaderLink>
+        <HeaderLink to={`/blog`}>Blog</HeaderLink>
         <HeaderIcon
           href={`https://twitter.com/${social.twitter}`}
           aria-label="Twitter profile"
