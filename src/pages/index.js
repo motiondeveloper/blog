@@ -24,7 +24,7 @@ const StackItem = styled.li`
   flex-grow: 1;
   :not(:last-child) {
     margin-right: ${padding.large};
-    margin-bottom: ${padding.large};
+    margin-bottom: ${padding.xlarge};
   }
 `;
 
@@ -112,7 +112,8 @@ const BlogIndex = ({ data, location }) => {
       <PageHeading>
         We're bridging the gap between animator and developer.
       </PageHeading>
-      <HorizontalStack mt={padding.xlarge}>
+      <Newsletter />
+      <HorizontalStack mt={padding.xxlarge}>
         <StackItem>
           <h2>
             <HeadingLarge>For Artists</HeadingLarge>
@@ -134,7 +135,6 @@ const BlogIndex = ({ data, location }) => {
           <PrimaryButton to="/contact">Contact us</PrimaryButton>
         </StackItem>
       </HorizontalStack>
-      <Newsletter />
       <h2>
         <HeadingSmall>After Effects Tools</HeadingSmall>
       </h2>
