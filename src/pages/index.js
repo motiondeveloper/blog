@@ -8,6 +8,7 @@ import SEO from '../components/seo';
 import PageHeading from '../components/pageHeading';
 import Card from '../components/card';
 import { Copy, HeadingSmall, HeadingLarge } from '../components/type';
+import Newsletter from '../components/newsletterSignup';
 
 import { colors, padding } from '../theme';
 import HorizontalList from '../components/horizontalList';
@@ -15,7 +16,7 @@ import HorizontalList from '../components/horizontalList';
 const HorizontalStack = styled(HorizontalList)`
   margin-top: ${props => props.mt};
   justify-content: space-between;
-`
+`;
 
 const StackItem = styled.li`
   width: 40%;
@@ -23,9 +24,9 @@ const StackItem = styled.li`
   flex-grow: 1;
   :not(:last-child) {
     margin-right: ${padding.large};
-    margin-bottom: ${padding.xlarge};
+    margin-bottom: ${padding.large};
   }
-`
+`;
 
 const LinkButton = styled(Link)`
   margin-right: ${padding.small};
@@ -33,14 +34,14 @@ const LinkButton = styled(Link)`
   padding: ${padding.xsmall} ${padding.small};
   border-radius: ${padding.xsmall};
   border: 2px solid ${colors.blue};
-`
+`;
 
 const SecondaryButton = styled(LinkButton)`
   :hover {
     color: ${colors.navy} !important;
     background: ${colors.blue};
   }
-`
+`;
 
 const PrimaryButton = styled(LinkButton)`
   border-color: ${colors.green};
@@ -49,7 +50,7 @@ const PrimaryButton = styled(LinkButton)`
     color: ${colors.navy} !important;
     background: ${colors.green};
   }
-`
+`;
 
 const eKeysCode = `const inKeys = [
   {
@@ -64,7 +65,7 @@ const eKeysCode = `const inKeys = [
 ];
 
 eKeys.animate(inKeys, time);
-`
+`;
 
 const eBoxCode = `const myBox =
   eBox.createBox({
@@ -79,24 +80,22 @@ myBox.setScale(
 );
 
 myBox.getPath();
-`
+`;
 
 const CodeBlock = styled.div`
   margin-bottom: 0;
   box-shadow: 0 0 0 2pt ${colors.navy};
-`
+`;
 
 const CodeJS = ({ children }) => {
   return (
     <CodeBlock className="gatsby-highlight" data-language="javascript">
       <pre className="language-javascript">
-        <code className="language-javascript">
-          {children}
-        </code>
+        <code className="language-javascript">{children}</code>
       </pre>
     </CodeBlock>
   );
-}
+};
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title;
@@ -104,72 +103,102 @@ const BlogIndex = ({ data, location }) => {
 
   useEffect(() => {
     // call the highlightAll() function to style our code blocks
-    Prism.highlightAll()
-  })
+    Prism.highlightAll();
+  });
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="Homepage" />
-      <PageHeading>We're bridging the gap between animator and developer.</PageHeading>
+      <PageHeading>
+        We're bridging the gap between animator and developer.
+      </PageHeading>
       <HorizontalStack mt={padding.xlarge}>
         <StackItem>
-          <h2><HeadingLarge>For Artists</HeadingLarge></h2>
-          <Copy>Master expressions, build templates, and improve your workflow by applying a developer mindset to motion design.</Copy>
+          <h2>
+            <HeadingLarge>For Artists</HeadingLarge>
+          </h2>
+          <Copy>
+            Master expressions, build templates, and improve your workflow by
+            applying a developer mindset to motion design.
+          </Copy>
           <PrimaryButton to="/blog">Read the blog</PrimaryButton>
         </StackItem>
         <StackItem>
-          <h2><HeadingLarge>For Brands</HeadingLarge></h2>
-          <Copy>We’ll free up your team by turning your most used graphics into templates your editors will love.</Copy>
+          <h2>
+            <HeadingLarge>For Brands</HeadingLarge>
+          </h2>
+          <Copy>
+            We’ll free up your team by turning your most used graphics into
+            templates your editors will love.
+          </Copy>
           <PrimaryButton to="/contact">Contact us</PrimaryButton>
         </StackItem>
       </HorizontalStack>
-      <h2><HeadingSmall>After Effects Tools</HeadingSmall></h2>
+      <Newsletter />
+      <h2>
+        <HeadingSmall>After Effects Tools</HeadingSmall>
+      </h2>
       <Card>
         <HorizontalStack mt="0">
           <StackItem>
-            <h3><HeadingLarge>eKeys</HeadingLarge></h3>
+            <h3>
+              <HeadingLarge>eKeys</HeadingLarge>
+            </h3>
             <Copy>
-              Create keyframes within expressions - with full control over easing.
+              Create keyframes within expressions - with full control over
+              easing.
             </Copy>
-            <Copy> 	eKeys gives you the control you need to create dynamic templates, with the smooth animation your used to with keyframes. </Copy>
-            <SecondaryButton to="/blog/how-to-animate-with-expressions">Read intro to eKeys</SecondaryButton>
+            <Copy>
+              {' '}
+              eKeys gives you the control you need to create dynamic templates,
+              with the smooth animation your used to with keyframes.{' '}
+            </Copy>
+            <SecondaryButton to="/blog/how-to-animate-with-expressions">
+              Read intro to eKeys
+            </SecondaryButton>
           </StackItem>
           <StackItem>
-            <CodeJS>
-              {eKeysCode}
-            </CodeJS>
+            <CodeJS>{eKeysCode}</CodeJS>
           </StackItem>
         </HorizontalStack>
       </Card>
       <Card>
         <HorizontalStack mt="0">
           <StackItem>
-            <h3><HeadingLarge>eBox</HeadingLarge></h3>
+            <h3>
+              <HeadingLarge>eBox</HeadingLarge>
+            </h3>
             <Copy>
-              Easily create, position and scale rectangles from any anchor point.
+              Easily create, position and scale rectangles from any anchor
+              point.
             </Copy>
-            <SecondaryButton to="/blog/making-better-boxes">Get eBox</SecondaryButton>
+            <SecondaryButton to="/blog/making-better-boxes">
+              Get eBox
+            </SecondaryButton>
           </StackItem>
           <StackItem>
-            <CodeJS>
-              {eBoxCode}
-            </CodeJS>
+            <CodeJS>{eBoxCode}</CodeJS>
           </StackItem>
         </HorizontalStack>
       </Card>
       <Copy>
-        <a href="https://github.com/motiondeveloper">View all tools on Github</a>
+        <a href="https://github.com/motiondeveloper">
+          View all tools on Github
+        </a>
       </Copy>
-      <h2><HeadingSmall>Featured Blog Posts</HeadingSmall></h2>
+
+      <h2>
+        <HeadingSmall>Featured Blog Posts</HeadingSmall>
+      </h2>
       {posts.map(({ node }) => {
-          return <PostItem post={node} key={node.fields.slug} />;
+        return <PostItem post={node} key={node.fields.slug} />;
       })}
       <Copy>
         <Link to="/blog">View all posts</Link>
       </Copy>
     </Layout>
   );
-}
+};
 
 export default BlogIndex;
 
@@ -180,7 +209,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}, filter: {frontmatter: {pinned: {eq: true}}}) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { pinned: { eq: true } } }
+    ) {
       edges {
         node {
           excerpt
@@ -198,6 +230,5 @@ export const pageQuery = graphql`
         }
       }
     }
-    
   }
 `;
