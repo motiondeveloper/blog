@@ -43,6 +43,18 @@ const SecondaryButton = styled(LinkButton)`
   }
 `;
 
+const SecondaryLink = styled.a`
+  margin-right: ${padding.small};
+  text-decoration: none;
+  padding: ${padding.xsmall} ${padding.small};
+  border-radius: ${padding.xsmall};
+  border: 2px solid ${colors.blue};
+  :hover {
+    color: ${colors.navy} !important;
+    background: ${colors.blue};
+  }
+`;
+
 const PrimaryButton = styled(LinkButton)`
   border-color: ${colors.green};
   color: ${colors.green} !important;
@@ -172,9 +184,9 @@ const BlogIndex = ({ data, location }) => {
               Easily create, position and scale rectangles from any anchor
               point.
             </Copy>
-            <SecondaryButton to="/blog/making-better-boxes">
+            <SecondaryLink href="https://github.com/motiondeveloper/ebox">
               Get eBox
-            </SecondaryButton>
+            </SecondaryLink>
           </StackItem>
           <StackItem>
             <CodeJS>{eBoxCode}</CodeJS>
