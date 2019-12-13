@@ -66,16 +66,20 @@ class BlogPostTemplate extends React.Component {
         <TagsList tags={post.frontmatter.tags} />
         <Divider />
         <PageLinks>
-          {previous && (<li>
+          {previous && (
+            <li>
               <Link to={`/blog/${previous.fields.slug}`} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
-          </li>)}
-          {next && (<li>
+            </li>
+          )}
+          {next && (
+            <li>
               <Link to={`/blog/${next.fields.slug}`} rel="next">
                 {next.frontmatter.title} →
               </Link>
-          </li>)}
+            </li>
+          )}
         </PageLinks>
         <Divider />
         <Newsletter mb={padding.large} mt={padding.large} />
