@@ -9,6 +9,7 @@ import PostContent from '../components/postContent';
 import Divider from '../components/divider';
 import PageHeading from '../components/pageHeading';
 import HorizontalList from '../components/horizontalList';
+import Newsletter from '../components/newsletterSignup';
 import { Calendar, Thermometer } from 'react-feather';
 import styled from 'styled-components';
 import { colors, padding } from '../theme';
@@ -81,6 +82,7 @@ class BlogPostTemplate extends React.Component {
           </li>
         </PageLinks>
         <Divider />
+        <Newsletter mb={padding.large} mt={padding.large} />
         <Bio />
       </Layout>
     );

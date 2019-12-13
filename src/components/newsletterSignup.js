@@ -9,7 +9,8 @@ const Hidden = styled.p`
 `;
 
 const Form = styled.form`
-  margin: 0 auto;
+  margin-top: ${props => props.mt};
+  margin-bottom: ${props => props.mb};
   width: 100%;
 `;
 
@@ -32,9 +33,8 @@ const Button = styled.button`
   }
 `;
 
-const Label = styled.label`
+const StyledLabel = styled.label`
   display: block;
-  margin-top: ${padding.xlarge};
   margin-bottom: ${padding.small};
 `;
 
@@ -49,9 +49,15 @@ const Input = styled.input`
   border: none;
 `;
 
-const Newsletter = () => {
+const Newsletter = ({ mb, mt }) => {
   return (
-    <Form name="newsletter" method="POST" data-netlify="true">
+    <Form
+      name="newsletter"
+      method="POST"
+      data-netlify="true"
+      mt={mt || '0px'}
+      mb={mb || '0px'}
+    >
       <Hidden>
         <input type="hidden" name="form-name" value="newsletter" />
         <label>
@@ -59,7 +65,7 @@ const Newsletter = () => {
           <input name="bot-field" type="hidden" />
         </label>
       </Hidden>
-      <Label for="email">Join the newsletter:</Label>
+      <StyledLabel htmlFor="email">Join the newsletter:</StyledLabel>
       <FlexInput>
         <Input
           type="email"

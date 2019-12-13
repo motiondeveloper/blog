@@ -112,7 +112,7 @@ const BlogIndex = ({ data, location }) => {
       <PageHeading>
         We're bridging the gap between animator and developer.
       </PageHeading>
-      <Newsletter />
+      <Newsletter mt={padding.large}/>
       <HorizontalStack mt={padding.xxlarge}>
         <StackItem>
           <h2>
