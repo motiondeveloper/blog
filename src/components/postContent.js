@@ -2,15 +2,27 @@ import styled from 'styled-components';
 import { colors, padding, text } from '../theme';
 
 const PostContent = styled.div`
+  margin-bottom: ${padding.xxlarge};
   p {
     color: ${colors.white};
     font-size: ${text.sizes.base};
+  }
+
+  img {
+    margin-bottom: ${padding.large};
+    margin-top: ${padding.large};
+    max-width: 100% !important;
   }
 
   .gatsby-resp-image-wrapper {
     margin-bottom: ${padding.large};
     margin-top: ${padding.large};
     max-width: 100% !important;
+
+    img {
+      margin-bottom: 0;
+      margin-top: 0;
+    }
   }
 
   h2 {
@@ -49,6 +61,16 @@ const PostContent = styled.div`
 
   li {
     margin-bottom: ${padding.small};
+  }
+
+  kbd {
+    color: ${colors.lightGrey} !important;
+    border-radius: 0.3em;
+    background: ${colors.black};
+    padding: 0.1em 0.3em 0.1em;
+    white-space: normal;
+    border: 1px solid black;
+    box-shadow: 0px 2px 0px 0px black;
   }
 `;
 export default PostContent;

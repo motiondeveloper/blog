@@ -2,7 +2,7 @@
 title: "How to animate with expressions (intro to eKeys)"
 date: 2019-07-16T07:11:06.032Z
 difficulty: Intermediate
-tags: ["ekeys", "product", "keyframes"]
+tags: ["ekeys", "tools", "keyframes"]
 pinned: true
 description: >-
   How to animate using expressions, with full control over the easing, using the
@@ -16,6 +16,8 @@ When making [Motion Graphics Templates](https://helpx.adobe.com/au/after-effects
 While you're able to get some functionality using the `js›linear` or `js›ease` expressions, this quickly gets messy, and you're still not able to modify the easing like you are with keyframes.
 
 **eKeys** solves this problem by giving you an easy way to create keyframes in expressions. In this blog post, you'll learn how to get starting using eKeys in your projects.
+
+## Contents <!-- omit in toc -->
 
 - [What is eKeys](#what-is-ekeys)
 - [Installation](#installation)
@@ -48,7 +50,7 @@ Once downloaded, all you need to do is import the file into your After Effects p
 
 eKeys is only compatible with the new [JavaScript](https://helpx.adobe.com/after-effects/using/expression-language-reference.html) engine available in CC2019.
 
-You can make sure that your project is using the JavaScript engine by going to `File > Project Settings > Expressions` and setting the Expressions Engine to JavaScript.
+You can make sure that your project is using the JavaScript engine by going to <kbd>File</kbd> > <kbd>Project Settings</kbd> > <kbd>Expressions</kbd> and setting the Expressions Engine to JavaScript.
 
 ![Expressions Panel of After Effects Project Settings](project-expression-engine.png "Expression Engine Setting")
 

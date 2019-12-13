@@ -58,8 +58,9 @@ const HeaderLink = styled(Link)`
   font-size: ${text.sizes.headingSmall};
   font-weight: ${text.weights.regular};
   margin: 0;
-  margin-left: ${props => (props.marginLeft ? padding.large : 0)};
-  margin-right: ${props => (props.marginRight ? padding.large : 0)};
+  :not(last-child) {
+    margin-right: ${padding.large};
+  }
 `;
 
 const Header = styled.div`
@@ -72,7 +73,6 @@ const Header = styled.div`
   background-color: ${colors.black};
   border-radius: ${padding.small};
   padding: ${padding.small};
-  box-shadow: 0px 4px 16px 0px ${colors.black};
 `;
 
 const HeaderLeft = styled.div`
@@ -137,12 +137,10 @@ const PageHeader = ({ title }) => {
           alt={author}
           imgStyle={{ borderRadius: `50%` }}
         />
-        <HeaderLink to={`/blog`}>{title}</HeaderLink>
+        <HeaderLink to={`/`}>{title}</HeaderLink>
       </HeaderLeft>
       <HeaderRight>
-        <HeaderLink to={`/blog`} marginRight>
-          Blog
-        </HeaderLink>
+        <HeaderLink to={`/blog`}>Blog</HeaderLink>
         <HeaderIcon
           href={`https://twitter.com/${social.twitter}`}
           aria-label="Twitter profile"

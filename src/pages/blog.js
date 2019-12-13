@@ -24,7 +24,6 @@ class BlogIndex extends React.Component {
     const siteTitle = data.site.siteMetadata.title;
     const posts = data.allMarkdownRemark.edges;
     const pinnedPosts = posts.filter(({ node }) => node.frontmatter.pinned);
-    const { social } = data.site.siteMetadata;
 
     return (
       <Layout location={this.props.location} title={siteTitle}>

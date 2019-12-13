@@ -9,12 +9,13 @@ import PostContent from '../components/postContent';
 import Divider from '../components/divider';
 import PageHeading from '../components/pageHeading';
 import HorizontalList from '../components/horizontalList';
+import Newsletter from '../components/newsletterSignup';
 import { Calendar, Thermometer } from 'react-feather';
 import styled from 'styled-components';
 import { colors, padding } from '../theme';
 
 const PostInfo = styled(HorizontalList)`
-  margin-top: ${padding.small};
+  margin-top: ${padding.large};
   margin-bottom: ${padding.xlarge};
   li {
     color: ${colors.grey};
@@ -29,7 +30,7 @@ const PostInfo = styled(HorizontalList)`
 
 const PageLinks = styled(HorizontalList)`
   justify-content: space-around;
-  li {
+  li:not(:last-child) {
     margin-bottom: ${padding.small};
   }
 `;
@@ -65,22 +66,23 @@ class BlogPostTemplate extends React.Component {
         <TagsList tags={post.frontmatter.tags} />
         <Divider />
         <PageLinks>
-          <li>
-            {previous && (
+          {previous && (
+            <li>
               <Link to={`/blog/${previous.fields.slug}`} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
-            )}
-          </li>
-          <li>
-            {next && (
+            </li>
+          )}
+          {next && (
+            <li>
               <Link to={`/blog/${next.fields.slug}`} rel="next">
                 {next.frontmatter.title} →
               </Link>
-            )}
-          </li>
+            </li>
+          )}
         </PageLinks>
         <Divider />
+        <Newsletter mb={padding.large} mt={padding.large} />
         <Bio />
       </Layout>
     );
