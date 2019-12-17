@@ -56,3 +56,14 @@ When After Effects runs the code, it will see the reference to the value and use
 
 ## Setting the value
 
+The statement completion value of the entire expression.
+
+The last line that has a completion value of (`!empty`).
+
+[https://github.com/getify/You-Dont-Know-JS/blob/9959fc904d584bbf0b02cf41c192f74ff4238581/types-grammar/ch5.md#statements--expressions]
+
+[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval]
+
+[https://www.mattzeunert.com/2017/01/10/whats-a-statement-completion-value-in-javascript.html]
+
+[https://www.ecma-international.org/ecma-262/6.0/#sec-block-runtime-semantics-evaluation]
