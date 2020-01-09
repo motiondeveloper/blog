@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 import { colors, padding, text } from '../theme';
 
+// p img is for images gatsby doesn't support such as svg
+// we share styles with gatsby images by separating them
+// into an external variable
+const imageStyles = `
+  margin-bottom: ${padding.large};
+  margin-top: ${padding.large};
+  max-width: 100% !important;
+`
+
 const PostContent = styled.section`
   margin-bottom: ${padding.xxlarge};
   p {
@@ -8,18 +17,15 @@ const PostContent = styled.section`
     font-size: ${text.sizes.base};
   }
 
-  img {
-    margin-bottom: ${padding.large};
-    margin-top: ${padding.large};
-    max-width: 100% !important;
+  p img {
+    ${imageStyles};
   }
 
   .gatsby-resp-image-wrapper {
-    margin-bottom: ${padding.large};
-    margin-top: ${padding.large};
-    max-width: 100% !important;
-
+    ${imageStyles};
     img {
+      width: 100%;
+      height: 100%;
       margin-bottom: 0;
       margin-top: 0;
     }
