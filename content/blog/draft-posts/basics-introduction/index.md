@@ -8,9 +8,11 @@ description: >-
   Learn the basics of After Effects expressions in this free course by Motion Developer. You'll learn everything from the basics of variables and conditions to more advanced topics like functions and objects.
 ---
 
-Like learning a new language, expressions can seem daunting when you first start learning. There's lots of new words, confusing grammar, and seemingly endless possibilities.
+Expressions are hard to learn. You find that perfect bit of code on Creative Cow only to realize it doesn't work in your project. You google your problem to find a confusing answer on Stack Overflow.
 
-This course breaks down expressions into their fundamental components, teaching you all you need to know to be able to write them with ease.
+This course breaks down expressions into their fundamental components, building a solid foundation that will help you *understand* the code that you write.
+
+By the end of the course you'll have everything you need to be confident solving problems with expressions, no copy pasting needed!
 
 ## Course Content
 
