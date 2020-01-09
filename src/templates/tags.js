@@ -18,7 +18,7 @@ class TagPosts extends React.Component {
   render() {
     const { pageContext, data } = this.props;
     const { tag } = pageContext;
-    const { edges, totalCount } = data.allMarkdownRemark;
+    const { edges, totalCount } = data.allMdx;
     const siteTitle = data.site.siteMetadata.title;
     const tagHeader = `${totalCount} post${
       totalCount === 1 ? '' : 's'
@@ -47,7 +47,7 @@ export const pageQuery = graphql`
         author
       }
     }
-    allMarkdownRemark(
+    allMdx(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }

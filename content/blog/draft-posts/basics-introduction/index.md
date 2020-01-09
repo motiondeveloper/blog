@@ -36,7 +36,9 @@ What if rather than setting a property manually, you need it to always be the sa
 
 Or you need it to *decide* what value to have based on some else?
 
-This is where expressions come in, as an alternate way of setting the value of properties. They enable you to combine values together and make automatic decisions about what that property should be.
+This is where expressions come in, as an alternate way of setting the value of properties.
+
+They enable you to combine values together and make automatic decisions about what that property should be.
 
 ![Example Expression](example-expression.png)
 
@@ -59,6 +61,8 @@ This placeholder references the **before expression value**, that is the value o
 ![Changing a value with the default expression applied](default-expression.png)
 
 ## Setting the value
+
+
 
 The statement completion value of the entire expression.
 

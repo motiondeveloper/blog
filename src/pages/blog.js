@@ -22,7 +22,7 @@ class BlogIndex extends React.Component {
   render() {
     const { data } = this.props;
     const siteTitle = data.site.siteMetadata.title;
-    const posts = data.allMarkdownRemark.edges;
+    const posts = data.allMdx.edges;
     const pinnedPosts = posts.filter(({ node }) => node.frontmatter.pinned);
 
     return (
@@ -57,7 +57,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt

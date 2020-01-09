@@ -111,7 +111,7 @@ const CodeJS = ({ children }) => {
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title;
-  const posts = data.allMarkdownRemark.edges;
+  const posts = data.allMdx.edges;
 
   useEffect(() => {
     // call the highlightAll() function to style our code blocks
@@ -221,7 +221,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(
+    allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { pinned: { eq: true } } }
     ) {
