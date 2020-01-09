@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { colors, padding, text } from '../theme';
 
-const PostContent = styled.div`
+const PostContent = styled.section`
   margin-bottom: ${padding.xxlarge};
   p {
     color: ${colors.white};
