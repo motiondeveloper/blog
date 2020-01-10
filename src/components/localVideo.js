@@ -7,7 +7,7 @@ const StyledVideo = styled.video`
   height: auto;
 `;
 
-const LocalVideo = ({ videoName }) => {
+const LocalVideo = ({ videoName, title }) => {
   // Query for all Mp4 and WebM files with graphQL
   const data = useStaticQuery(graphql`
     query VideoFiles {
@@ -37,7 +37,7 @@ const LocalVideo = ({ videoName }) => {
 
   // If they exist, return the video element
   return mp4 && webm ? (
-    <StyledVideo controls>
+    <StyledVideo controls title={title}>
       <source src={webm.node.publicURL} type="video/webm" />
       <source src={mp4.node.publicURL} type="video/mp4" />
       Sorry, your browser doesn't support embedded videos.
