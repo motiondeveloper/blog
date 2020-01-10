@@ -11,7 +11,7 @@ const LocalVideo = ({ videoName, title }) => {
   // Query for all Mp4 and WebM files with graphQL
   const data = useStaticQuery(graphql`
     query VideoFiles {
-      mp4: allFile(filter: { extension: { eq: "mp4" } }) {
+      mp4: allFile(filter: {extension: {eq: "mp4"}}) {
         edges {
           node {
             publicURL
@@ -19,7 +19,7 @@ const LocalVideo = ({ videoName, title }) => {
           }
         }
       }
-      webm: allFile(filter: { extension: { eq: "webm" } }) {
+      webm: allFile(filter: {extension: {eq: "webm"}}) {
         edges {
           node {
             publicURL
@@ -32,8 +32,8 @@ const LocalVideo = ({ videoName, title }) => {
   // Filter all videos to find the mp4 and webm that match
   // the name prop
   const isCorrectVideo = edge => edge.node.name === videoName;
-  const mp4 = data.mp4.edges.filter(isCorrectVideo)[0];
-  const webm = data.webm.edges.filter(isCorrectVideo)[0];
+  const mp4 = data.mp4.edges.find(isCorrectVideo);
+  const webm = data.webm.edges.find(isCorrectVideo);
 
   // If they exist, return the video element
   return mp4 && webm ? (
