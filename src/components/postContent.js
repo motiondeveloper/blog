@@ -8,7 +8,7 @@ const imageStyles = `
   margin-bottom: ${padding.large};
   margin-top: ${padding.large};
   max-width: 100% !important;
-`
+`;
 
 const PostContent = styled.section`
   margin-bottom: ${padding.xxlarge};
