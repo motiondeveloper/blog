@@ -17,6 +17,10 @@ const PostContent = styled.section`
     font-size: ${text.sizes.base};
   }
 
+  video {
+    ${imageStyles};
+  }
+
   p img {
     ${imageStyles};
   }
