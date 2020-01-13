@@ -11,7 +11,7 @@ const LocalVideo = ({ videoName, title }) => {
   // Query for all Mp4 and WebM files with graphQL
   const data = useStaticQuery(graphql`
     query VideoFiles {
-      mp4: allFile(filter: {extension: {eq: "mp4"}}) {
+      mp4: allFile(filter: { extension: { eq: "mp4" } }) {
         edges {
           node {
             publicURL
@@ -19,7 +19,7 @@ const LocalVideo = ({ videoName, title }) => {
           }
         }
       }
-      webm: allFile(filter: {extension: {eq: "webm"}}) {
+      webm: allFile(filter: { extension: { eq: "webm" } }) {
         edges {
           node {
             publicURL
