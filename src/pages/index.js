@@ -1,20 +1,19 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from '../components/layout';
-import PostItem from '../components/postItem';
 import SEO from '../components/seo';
 import PageHeading from '../components/pageHeading';
-import { Copy, HeadingSmall, HeadingLarge } from '../components/type';
+import { Copy, HeadingLarge } from '../components/type';
 import Newsletter from '../components/newsletterSignup';
 import Tools from '../components/tools';
 
 import { padding } from '../theme';
 import { HorizontalStack, StackItem } from '../components/stack';
 import LinkButton from '../components/linkButton';
+import FeaturedPosts from '../components/featuredPosts';
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title;
-  const posts = data.allMdx.edges;
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -50,15 +49,7 @@ const BlogIndex = ({ data, location }) => {
         </StackItem>
       </HorizontalStack>
       <Tools />
-      <h2>
-        <HeadingSmall>Featured Blog Posts</HeadingSmall>
-      </h2>
-      {posts.map(({ node }) => {
-        return <PostItem post={node} key={node.fields.slug} />;
-      })}
-      <Copy>
-        <Link to="/blog">View all posts</Link>
-      </Copy>
+      <FeaturedPosts />
     </Layout>
   );
 };
@@ -70,27 +61,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-      }
-    }
-    allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { pinned: { eq: true } } }
-    ) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            pinned
-            difficulty
-            description
-            tags
-          }
-        }
       }
     }
   }
