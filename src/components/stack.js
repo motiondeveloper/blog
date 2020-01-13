@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import HorizontalList from './horizontalList';
-import padding from '../theme';
+import { padding } from '../theme';
 
 export const StackItem = styled.li`
   width: 40%;
