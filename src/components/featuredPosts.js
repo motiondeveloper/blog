@@ -6,30 +6,30 @@ import { Copy, HeadingSmall } from '../components/type';
 
 const FeaturedPosts = () => {
   const { allMdx } = useStaticQuery(graphql`
-        query PostQuery {
-            allMdx(
-                sort: { fields: [frontmatter___date], order: DESC }
-                filter: { frontmatter: { pinned: { eq: true } } }
-            ) {
-            edges {
-                node {
-                    excerpt
-                    fields {
-                        slug
-                    }
-                    frontmatter {
-                        date(formatString: "MMMM DD, YYYY")
-                        title
-                        pinned
-                        difficulty
-                        description
-                        tags
-                    }
-                }
+    query PostQuery {
+      allMdx(
+        sort: { fields: [frontmatter___date], order: DESC }
+        filter: { frontmatter: { pinned: { eq: true } } }
+      ) {
+        edges {
+          node {
+            excerpt
+            fields {
+              slug
             }
+            frontmatter {
+              date(formatString: "MMMM DD, YYYY")
+              title
+              pinned
+              difficulty
+              description
+              tags
+            }
+          }
         }
+      }
     }
-    `);
+  `);
   return (
     <section>
       <h2>

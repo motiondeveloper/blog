@@ -3,7 +3,6 @@ import { Link, graphql } from 'gatsby';
 
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import TagsList from '../components/tagsList';
@@ -11,7 +10,6 @@ import PostContent from '../components/postContent';
 import Divider from '../components/divider';
 import PageHeading from '../components/pageHeading';
 import HorizontalList from '../components/horizontalList';
-import Newsletter from '../components/newsletterSignup';
 import { Calendar, Thermometer } from 'react-feather';
 import styled from 'styled-components';
 import { colors, padding } from '../theme';
