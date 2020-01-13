@@ -1,5 +1,4 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import { padding, colors, text } from '../theme';
@@ -81,13 +80,3 @@ const Newsletter = ({ mb, mt }) => {
 };
 
 export default Newsletter;
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
