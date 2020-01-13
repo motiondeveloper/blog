@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react';
-import Prism from 'prismjs';
-import styled from 'styled-components';
+import React from 'react';
 
 import Card from '../components/card';
 import { Copy, HeadingSmall, HeadingLarge } from '../components/type';
 import { HorizontalStack, StackItem } from './stack';
 import LinkButton from '../components/linkButton';
-
-import { colors } from '../theme';
+import { CodeJS } from './CodeJS';
 
 const eKeysCode = `const inKeys = [
   {
@@ -39,26 +36,7 @@ myBox.setScale(
 myBox.getPath();
 `;
 
-const CodeBlock = styled.div`
-  margin-bottom: 0;
-  box-shadow: 0 0 0 2pt ${colors.navy};
-`;
-
-const CodeJS = ({ children }) => {
-  return (
-    <CodeBlock className="gatsby-highlight" data-language="javascript">
-      <pre className="language-javascript">
-        <code className="language-javascript">{children}</code>
-      </pre>
-    </CodeBlock>
-  );
-};
-
 const Tools = () => {
-  useEffect(() => {
-    // call the highlightAll() function to style our code blocks
-    Prism.highlightAll();
-  });
   return (
     <section>
       <h2>
