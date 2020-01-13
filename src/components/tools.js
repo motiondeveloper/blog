@@ -4,7 +4,7 @@ import Card from '../components/card';
 import { Copy, HeadingSmall, HeadingLarge } from '../components/type';
 import { HorizontalStack, StackItem } from './stack';
 import LinkButton from '../components/linkButton';
-import { CodeJS } from './CodeJS';
+import { CodeJS } from './codeJS';
 
 const eKeysCode = `const inKeys = [
   {
