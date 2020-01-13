@@ -85,9 +85,6 @@ class BlogPostTemplate extends React.Component {
             </li>
           )}
         </PageLinks>
-        <Divider />
-        <Newsletter mb={padding.large} mt={padding.large} />
-        <Bio />
       </Layout>
     );
   }

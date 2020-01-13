@@ -5,6 +5,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { GitHub, Twitter } from 'react-feather';
 
 import { colors, padding, text } from '../theme';
+import Footer from './footer';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -167,6 +168,7 @@ const Layout = ({ title, children }) => {
       </nav>
       <Page>
         <main>{children}</main>
+        <Footer />
       </Page>
     </>
   );
