@@ -7,8 +7,8 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import TagsList from '../components/tagsList';
 import PostContent from '../components/postContent';
-import Divider from '../components/divider';
 import PageHeading from '../components/pageHeading';
+import Card from '../components/card';
 import HorizontalList from '../components/horizontalList';
 import { Calendar, Thermometer } from 'react-feather';
 import styled from 'styled-components';
@@ -66,23 +66,24 @@ class BlogPostTemplate extends React.Component {
           <MDXRenderer>{post.body}</MDXRenderer>
         </PostContent>
         <TagsList tags={post.frontmatter.tags} />
-        <Divider />
-        <PageLinks>
-          {previous && (
-            <li>
-              <Link to={`/blog/${previous.fields.slug}`} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            </li>
-          )}
-          {next && (
-            <li>
-              <Link to={`/blog/${next.fields.slug}`} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            </li>
-          )}
-        </PageLinks>
+        <Card mt={padding.large}>
+          <PageLinks>
+            {previous && (
+              <li>
+                <Link to={`/blog/${previous.fields.slug}`} rel="prev">
+                  ← {previous.frontmatter.title}
+                </Link>
+              </li>
+            )}
+            {next && (
+              <li>
+                <Link to={`/blog/${next.fields.slug}`} rel="next">
+                  {next.frontmatter.title} →
+                </Link>
+              </li>
+            )}
+          </PageLinks>
+        </Card>
       </Layout>
     );
   }
