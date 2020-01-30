@@ -8,8 +8,6 @@ description: >-
   Learn what statement completion values are and how they control what value your expression evaluates to.
 ---
 
-### Statement completion values
-
 When there's multiple lines in your expression, it's important to know which value After Effects will use for the property once the code is evaluated.
 
 For example in the expression:
@@ -22,6 +20,8 @@ const otherPosition = [500, 500];
 ```
 
 The value `js›[0, 0]` will be used, but why?
+
+## Completion values
 
 In JavaScript, every statement (which can be thought of as lines for the moment) has whats called a **completion value**.
 
@@ -50,4 +50,4 @@ const otherPosition = [500, 500]; // empty
 
 You can see that `js›[0, 0]` will be used as it's the last statement with a non-empty completion value.
 
-This will be more important as you write more complex expressions.
+This will be important as you write more complex expressions.
