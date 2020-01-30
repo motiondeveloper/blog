@@ -18,7 +18,7 @@ By the end of the course you'll have everything you need to be confident solving
 
 ## Course Content
 
-The topics you'll cover are:
+The topics you'll in this course cover are:
 
 - [Variables](../basics-variables)
 - [Conditions](../basics-conditions)
@@ -36,7 +36,7 @@ In After Effects you can change a layers properties (such as position or opacity
 
 What if rather than setting a property manually, you need it to always be the same as another one?
 
-Or you need it to *decide* what value to have based on some else?
+Or you need it to *decide* what value to have based on something else?
 
 This is where expressions come in, as an alternate way of setting the value of properties.
 
@@ -53,27 +53,71 @@ This alternate way is by writing lines of code, in a language called **JavaScrip
 You can add an expression to a property in After Effects by:
 
 - Holding <kbd>alt</kbd> while clicking on the properties stop watch (the icon next to it's name)
+
 - Using the 'Add Expression' shortcut <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>=</kbd> with the property selected
+
 - Clicking <kbd>Add Expression</kbd> in the <kbd>Animation</kbd> menu
 
 These will add a new expression with some placeholder code to the property.
 
-This placeholder references the **before expression value**, that is the value of the property without any expression applied. This means you can continue to modify and animate the property as if no expression was applied.
+This placeholder references the **before expression value**, which is the value of the property without any expression applied. This means you can continue to modify and animate the property as if there was no expression.
 
 <LocalVideo videoName="TestExpression" title="Adding the default expression to a property"/>
 
 ## Setting the value
 
+You can overide the before expression value by typing in some JavaScript code that, when run, gives After Effects a value in the same structure (or [type](/basics-variables#data-types)) as the original.
 
+For example, let's replace our position property expression with a new value.
 
-The statement completion value of the entire expression.
+```js
+[960, 540];
+```
 
-The last line that has a completion value of (`!empty`).
+> You'll learn more about the `js›[]` syntax in future topics
 
-[https://github.com/getify/You-Dont-Know-JS/blob/9959fc904d584bbf0b02cf41c192f74ff4238581/types-grammar/ch5.md#statements--expressions]
+Now the postion of the layer will always be at `js›960, 540` even if we change or animate the property, as it is overidden by the expression.
 
-[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval]
+### Statement completion values
 
-[https://www.mattzeunert.com/2017/01/10/whats-a-statement-completion-value-in-javascript.html]
+When there's multiple lines in your expression, it's important to know which value After Effects will use for the property once the code is evaluated.
 
-[https://www.ecma-international.org/ecma-262/6.0/#sec-block-runtime-semantics-evaluation]
+For example in the expression:
+
+```js
+const myPosition = [960, 540];
+myPosition * 2;
+[0, 0];
+const otherPosition = [500, 500];
+```
+
+The value `js›[0, 0]` will be used, but why?
+
+In JavaScript, every statement (which can be thought of as lines for the moment) has whats called a **completion value**.
+
+Statements such as variable declarations (`js›const myVariable = 2;`) and function declarations have a completion value of `empty`. 
+
+Expression statements, such as:
+
+```js
+[960, 540];
+Math.random();
+"Hello";
+```
+
+Have a completion value that is the result of the expression.
+
+> The value for the property will be the **last completion value that isn't `empty`**
+
+So if we consider the completion values of each statement in our earlier expression:
+
+```js
+const myPosition = [960, 540]; // empty
+myPosition * 2; // [1920, 1080]
+[0, 0]; // [0, 0]
+const otherPosition = [500, 500]; // empty
+```
+
+You can see that `js›[0, 0]` will be used as it's the last statement with a non-empty completion value.
+
+This will be more important as you write more complex expressions.
