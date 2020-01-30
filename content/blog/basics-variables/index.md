@@ -12,14 +12,11 @@ In this Expression Basics article, you will learn how to create and use variable
 
 - [Variables as pointers](#variables-as-pointers)
 - [Declaring variables](#declaring-variables)
-  - [Naming variables](#naming-variables)
-  - [Undefined vs is not defined](#undefined-vs-is-not-defined)
 - [Assigning their value](#assigning-their-value)
 - [Updating variables](#updating-variables)
 - [Data types](#data-types)
 - [Var vs let](#var-vs-let)
 - [Constants](#constants)
-  - [Why use a constant](#why-use-a-constant)
 - [Wrapping up](#wrapping-up)
 
 ## Variables as pointers

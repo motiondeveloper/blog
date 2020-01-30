@@ -14,5 +14,6 @@
         "xlarge",
         "xsmall",
         "xxsmall"
-    ]
+    ],
+    "markdown.extension.toc.levels": "2..2"
 }
