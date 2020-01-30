@@ -8,7 +8,6 @@ import SEO from '../components/seo';
 import TagsList from '../components/tagsList';
 import PostContent from '../components/postContent';
 import PageHeading from '../components/pageHeading';
-import Card from '../components/card';
 import HorizontalList from '../components/horizontalList';
 import { Calendar, Thermometer } from 'react-feather';
 import styled from 'styled-components';
@@ -28,8 +27,10 @@ const PostInfo = styled(HorizontalList)`
   }
 `;
 
-const PageLinks = styled(HorizontalList)`
-  justify-content: space-around;
+const PageLinks = styled.ul`
+  list-style: none;
+  margin-top: ${padding.large};
+  padding-left: 0;
   li:not(:last-child) {
     margin-bottom: ${padding.small};
   }
@@ -66,24 +67,24 @@ class BlogPostTemplate extends React.Component {
           <MDXRenderer>{post.body}</MDXRenderer>
         </PostContent>
         <TagsList tags={post.frontmatter.tags} />
-        <Card mt={padding.large}>
-          <PageLinks>
-            {previous && (
-              <li>
-                <Link to={`/blog/${previous.fields.slug}`} rel="prev">
-                  ← {previous.frontmatter.title}
-                </Link>
-              </li>
-            )}
-            {next && (
-              <li>
-                <Link to={`/blog/${next.fields.slug}`} rel="next">
-                  {next.frontmatter.title} →
-                </Link>
-              </li>
-            )}
-          </PageLinks>
-        </Card>
+        <PageLinks>
+          {next && (
+            <li>
+              Next article: {` `}
+              <Link to={`/blog/${next.fields.slug}`} rel="next">
+                {next.frontmatter.title}
+              </Link>
+            </li>
+          )}
+          {previous && (
+            <li>
+              Previous article: {` `}
+              <Link to={`/blog/${previous.fields.slug}`} rel="prev">
+                {previous.frontmatter.title}
+              </Link>
+            </li>
+          )}
+        </PageLinks>
       </Layout>
     );
   }
