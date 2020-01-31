@@ -29,7 +29,7 @@ const PostInfo = styled(HorizontalList)`
 
 const PageLinks = styled.ul`
   list-style: none;
-  margin-top: ${padding.large};
+  margin-bottom: ${padding.large};
   padding-left: 0;
   li:not(:last-child) {
     margin-bottom: ${padding.small};
@@ -66,7 +66,6 @@ class BlogPostTemplate extends React.Component {
         <PostContent>
           <MDXRenderer>{post.body}</MDXRenderer>
         </PostContent>
-        <TagsList tags={post.frontmatter.tags} />
         <PageLinks>
           {next && (
             <li>
@@ -85,6 +84,7 @@ class BlogPostTemplate extends React.Component {
             </li>
           )}
         </PageLinks>
+        <TagsList tags={post.frontmatter.tags} />
       </Layout>
     );
   }
