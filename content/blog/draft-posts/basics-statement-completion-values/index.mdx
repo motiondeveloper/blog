@@ -8,6 +8,8 @@ description: >-
   Learn what statement completion values are and how they control what value your expression evaluates to.
 ---
 
+import { Note, Inform, Warn } from 'components/callout';
+
 When there's multiple lines in your expression, it's important to know which value After Effects will use for the property once the code is evaluated.
 
 For example in the expression:
@@ -37,7 +39,11 @@ Math.random();
 
 Have a completion value that is the result of the expression.
 
-> The value for the property will be the **last completion value that isn't `empty`**
+<Inform>
+
+The value for the property will be the last completion value that isn't `empty`.
+
+</Inform>
 
 So if we consider the completion values of each statement in our earlier expression:
 

@@ -8,7 +8,8 @@ description: >-
   Learn the basics of After Effects expressions in this free course by Motion Developer. You'll learn everything from the basics of variables and conditions to more advanced topics like functions and objects.
 ---
 
-import LocalVideo from '../../../../src/components/localVideo';
+import LocalVideo from 'components/localVideo';
+import { Note, Inform, Warn } from 'components/callout';
 
 Expressions are hard to learn. You find that perfect bit of code on Creative Cow only to realize it doesn't work in your project. You google your problem to find a confusing answer on Stack Overflow.
 
@@ -47,7 +48,11 @@ They enable you to combine values together and make automatic decisions about wh
 
 This alternate way is by writing lines of code, in a language called **JavaScript**, that After Effects will run. The result of this code is then set as the value of the property.
 
-> Expressions are lines of computer code that After Effects runs every frame to generate the value of a property.
+<Inform>
+
+Expressions are lines of computer code that After Effects runs every frame to generate the value of a property.
+
+</Inform>
 
 ## How to add an expression
 
@@ -75,7 +80,11 @@ For example, let's replace our position property expression with a new value.
 [960, 540];
 ```
 
-> You'll learn more about the `js›[]` syntax in future topics
+<Note>
+
+  You'll learn more about the `js›[]` syntax in future topics.
+
+</Note>
 
 Now the postion of the layer will always be at `js›960, 540` even if we change or animate the property, as it is overidden by the expression.
 

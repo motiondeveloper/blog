@@ -9,6 +9,8 @@ description: >-
   importable After Effects animation engine eKeys.
 ---
 
+import { Note, Inform, Warn } from 'components/callout';
+
 [GithubPage]: https://github.com/motiondeveloper/eKeys
 
 When making [Motion Graphics Templates](https://helpx.adobe.com/au/after-effects/using/creating-motion-graphics-templates.html) in After Effects, or any other type of automated work, there comes a time when you wish you were able to add and modify keyframes with expressions.
@@ -17,14 +19,9 @@ While you're able to get some functionality using the `js›linear` or `js›eas
 
 **eKeys** solves this problem by giving you an easy way to create keyframes in expressions. In this blog post, you'll learn how to get starting using eKeys in your projects.
 
-## Contents <!-- omit in toc -->
-
 - [What is eKeys](#what-is-ekeys)
 - [Installation](#installation)
-  - [Compatibility](#compatibility)
 - [Writing the expression](#writing-the-expression)
-  - [The Keyframe Array](#the-keyframe-array)
-  - [Returning the final animation](#returning-the-final-animation)
 - [Why use eKeys](#why-use-ekeys)
 - [What's next](#whats-next)
 
@@ -42,9 +39,12 @@ You can download the latest version of eKeys from the [GitHub Releases page](htt
 
 Once downloaded, all you need to do is import the file into your After Effects project like you would any other footage item.
 
-> ⚠️ Since After Effects doesn't count footage items that are only referenced within expressions as used, it's recommended that you also place the eKeys.jsx file in any compositions where it is referenced.
->
-> This will ensure After Effects includes the file when collecting assets or packaging into a Motion Graphics Template
+<Warn>
+
+Since After Effects doesn't count footage items that are only referenced within expressions as used, it's recommended that you also place the eKeys.jsx file in any compositions where it is referenced.
+This will ensure After Effects includes the file when collecting assets or packaging into a Motion Graphics Template.
+
+</Warn>
 
 ### Compatibility
 
@@ -89,7 +89,11 @@ const keys = [
 ];
 ```
 
-> eKeys expects each keyframe to have a `js›keyTime` and `js›keyValue` property, while all the other properties are optional.
+<Note>
+
+eKeys expects each keyframe to have a `js›keyTime` and `js›keyValue` property, while all the other properties are optional.
+
+</Note>
 
 #### The format of each of these properties is
 
@@ -113,7 +117,11 @@ const keys = [
 
 You can find more information on these properties on the [Github Page][GithubPage].
 
-> eKeys sorts the keyframes by their time before animating, so you don't have to put them in the right order - but your expressions will be a lot clearer if you do!
+<Note>
+
+eKeys sorts the keyframes by their time before animating, so you don't have to put them in the right order - but your expressions will be a lot clearer if you do!
+
+</Note>
 
 ### Returning the final animation
 
