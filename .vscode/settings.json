@@ -16,5 +16,6 @@
         "xxsmall"
     ],
     "markdown.extension.toc.levels": "2..2",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
