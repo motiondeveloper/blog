@@ -15,5 +15,6 @@
         "xsmall",
         "xxsmall"
     ],
-    "markdown.extension.toc.levels": "2..2"
+    "markdown.extension.toc.levels": "2..2",
+    "editor.formatOnSave": true
 }
