@@ -1,11 +1,6 @@
-<h1 align="center">
-  <a href="https://blog.motiondeveloper.com">
-    <img alt="Motion Developer Logo" src="content/assets/md-logo.png" width="40" style="clip-path: circle(); display: inline-block; margin-right: 8px; transform: translate(0px, 7px);"/>
-  </a>
-  Motion Developer Blog
-</h1>
+# Motion Developer Site
 
-This repo hosts the source code for [blog.motiondeveloper.com](blog.motiondeveloper.com).
+This repo hosts the source code for [motiondeveloper.com](https://motiondeveloper.com).
 
 Built with [Gatsby](https://www.gatsbyjs.org/) and deployed to [Netlify](https://www.netlify.com/).
 
@@ -24,7 +19,7 @@ npm install -g gatsby-cli
     Navigate into the site’s directory and start the development server with:
 
     ```sh
-    gatsby develop
+    npm run develop
     ```
 
 3.  **Open the source code and start editing**
