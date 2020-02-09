@@ -19,6 +19,7 @@ const Page = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 640px;
+
   padding-left: ${padding.large};
   padding-right: ${padding.large};
 
@@ -133,12 +134,23 @@ const PageHeader = ({ title }) => {
   return (
     <Header>
       <HeaderLeft>
-        <LogoImage
-          fixed={data.avatar.childImageSharp.fixed}
-          alt={author}
-          imgStyle={{ borderRadius: `50%` }}
-        />
-        <HeaderLink to={`/`}>{title}</HeaderLink>
+        <Link to={`/`}>
+          <LogoImage
+            fixed={data.avatar.childImageSharp.fixed}
+            alt={author}
+            imgStyle={{ borderRadius: `50%` }}
+          />
+        </Link>
+        <HeaderLink
+          css={`
+            @media (max-width: 500px) {
+              display: none;
+            }
+          `}
+          to={`/`}
+        >
+          {title}
+        </HeaderLink>
       </HeaderLeft>
       <HeaderRight>
         <HeaderLink to={`/blog`}>Blog</HeaderLink>
