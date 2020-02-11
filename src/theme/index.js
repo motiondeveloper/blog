@@ -25,7 +25,9 @@ module.exports = {
 
   text: {
     sizes: {
-      base: '16px',
+      bodySmall: '14px',
+      body: '16px',
+      bodyLarge: '20px',
       headingSmall: '24px',
       headingLarge: '40px',
     },

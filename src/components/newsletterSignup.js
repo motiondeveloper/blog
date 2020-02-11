@@ -19,7 +19,7 @@ const FlexInput = styled.div`
 `;
 
 const Button = styled.button`
-  font-size: ${text.sizes.base};
+  font-size: ${text.sizes.body};
   padding: ${padding.xsmall} ${padding.small};
   border-radius: 0 ${padding.xsmall} ${padding.xsmall} 0;
   border: 2px solid ${colors.blue};
@@ -40,7 +40,7 @@ const StyledLabel = styled.label`
 const Input = styled.input`
   flex-grow: 1;
   width: 340px;
-  font-size: ${text.sizes.base};
+  font-size: ${text.sizes.body};
   padding: ${padding.small};
   border-radius: ${padding.xsmall} 0 0 ${padding.xsmall};
   background: ${colors.black};
