@@ -24,7 +24,7 @@ const Button = styled.button`
   border-radius: 0 ${padding.xsmall} ${padding.xsmall} 0;
   border: 2px solid ${colors.blue};
   color: ${colors.blue};
-  background: ${colors.black};
+  background: ${props => props.bgColor};
 
   :hover {
     color: ${colors.navy} !important;
@@ -40,15 +40,17 @@ const StyledLabel = styled.label`
 const Input = styled.input`
   flex-grow: 1;
   width: 340px;
+  max-width: 100%;
   font-size: ${text.sizes.body};
   padding: ${padding.small};
   border-radius: ${padding.xsmall} 0 0 ${padding.xsmall};
-  background: ${colors.black};
+  background: ${props => props.bgColor};
   color: ${colors.white};
   border: none;
 `;
 
-const Newsletter = ({ mb, mt }) => {
+const Newsletter = ({ mb, mt, bgColor }) => {
+  bgColor = bgColor || colors.black;
   return (
     <Form
       name="newsletter"
@@ -72,8 +74,11 @@ const Newsletter = ({ mb, mt }) => {
           placeholder="Email Address"
           id="email"
           required
+          bgColor={bgColor}
         />
-        <Button type="submit">Subscribe</Button>
+        <Button type="submit" bgColor={bgColor}>
+          Subscribe
+        </Button>
       </FlexInput>
     </Form>
   );
