@@ -53,8 +53,8 @@ const Layout = ({ title, children }) => {
       <PageHeader title={title} />
       <Page>
         <main>{children}</main>
-        <Footer />
       </Page>
+      <Footer />
     </>
   );
 };
