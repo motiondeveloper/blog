@@ -5,7 +5,7 @@ const PageHeading = styled.h1`
   color: ${colors.green};
   font-size: ${text.sizes.headingLarge};
   &&& {
-    margin-top: ${padding.xlarge};
+    margin-top: ${padding.xxlarge};
   }
 `;
 
