@@ -1,0 +1,71 @@
+---
+title: 'Expression Basics: Referancing Layers and Compositions'
+date: 2019-11-13
+difficulty: Beginner
+tags: ['basics', 'javascript']
+pinned: false
+description: >-
+  Learn how referances the properties of other layers and compositions in After Effects expressions.
+---
+
+import { Note, Inform, Warn } from 'components/callout';
+import ContentList from 'components/contentList';
+
+In previous article you've learnt how to create and use [variables](/blog/basics-variables) in your expressions. Often you also need to access a property that's on another layer, or in another composition.
+
+<ContentList>
+
+- [Using the Pick Whip](#using-the-pick-whip)
+- [Referancing Layers](#referancing-layers)
+- [Referancing Compositions](#referancing-compositions)
+- [Referancing Attributes](referancing-attributes)
+
+</ContentList>
+
+## Using the Pick Whip
+
+After Effects provides us with an easy way to referance these properties and their values (known as attributes). You might have seen it before, as After Effects will fill it in for you when "pick-whipping" to another property.
+
+> Pick whip example video.
+
+```js
+const layerOpacity = comp('Comp Name').layer('Layer Name').transform.opacity;
+```
+
+In any expression, you have access to every composition within our project, as well as all of it's layers. We can then referance all of the attributes of this layer and use them just as you would any other variable.
+
+## Referancing Compositions
+
+```js
+const otherComp = comp('Comp Name' || compIndex);
+```
+
+A variable that will always be the current comp.
+
+```js
+thisComp;
+```
+
+## Referancing Layers
+
+```js
+const otherLayer = otherComp.layer('layerName');
+```
+
+```js
+thisLayer;
+```
+
+## Layer Attributes
+
+```js
+thisLayer.transform.opacity;
+```
+
+```js
+thisProperty;
+```
+
+```js
+value;
+```
