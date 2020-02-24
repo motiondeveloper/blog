@@ -35,7 +35,7 @@ const MobileLink = styled(HeaderLink)`
 const HomeLink = styled(Link)`
   font-size: ${text.sizes.bodyLarge};
   text-decoration: none;
-  font-weight: ${text.weights.regular};
+  font-weight: ${text.weights.medium};
   &&& {
     color: ${colors.white};
     :hover {
