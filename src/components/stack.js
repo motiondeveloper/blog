@@ -3,7 +3,8 @@ import HorizontalList from './horizontalList';
 import { padding } from '../theme';
 
 export const StackItem = styled.li`
-  width: min(max(40%, 300px), 100%);
+  width: 40%;
+  min-width: 300px;
   flex-grow: 1;
   :not(:last-child) {
     margin-right: ${padding.large};
