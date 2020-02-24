@@ -7,6 +7,9 @@ const PageHeading = styled.h1`
   &&& {
     margin-top: ${padding.xxlarge};
   }
+  @media (max-width: 640px) {
+    font-size: calc(${text.sizes.headingLarge} / 1.2);
+  }
 `;
 
 export default PageHeading;
