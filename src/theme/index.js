@@ -33,6 +33,7 @@ module.exports = {
     },
     weights: {
       regular: 400,
+      medium: 500,
       bold: 700,
     },
     bodyFont: `'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';`,

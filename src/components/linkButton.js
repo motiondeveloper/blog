@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
-import { colors, padding } from '../theme';
+import { colors, padding, text } from '../theme';
 
 const buttonStyles = `
-    font-weight: 500;
+    font-weight: ${text.weights.medium};
     margin-right: ${padding.small};
     text-decoration: none;
     padding: ${padding.xsmall} ${padding.small};
