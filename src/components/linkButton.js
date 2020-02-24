@@ -42,8 +42,8 @@ const LinkButton = ({ isLocal, type, children, ...rest }) => {
   return isLocal ? (
     <LocalButton {...rest}>{children}</LocalButton>
   ) : (
-      <ExternalButton {...rest}>{children}</ExternalButton>
-    );
+    <ExternalButton {...rest}>{children}</ExternalButton>
+  );
 };
 
 export default LinkButton;
