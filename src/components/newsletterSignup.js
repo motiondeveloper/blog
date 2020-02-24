@@ -19,6 +19,7 @@ const FlexInput = styled.div`
 `;
 
 const Button = styled.button`
+  font-family: ${text.bodyFont};
   font-size: ${text.sizes.body};
   padding: ${padding.xsmall} ${padding.small};
   border-radius: 0 ${padding.xsmall} ${padding.xsmall} 0;
@@ -38,6 +39,7 @@ const StyledLabel = styled.label`
 `;
 
 const Input = styled.input`
+  font-family: ${text.bodyFont};
   flex-grow: 1;
   width: 340px;
   max-width: 100%;

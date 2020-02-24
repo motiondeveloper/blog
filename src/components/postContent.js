@@ -74,6 +74,7 @@ const PostContent = styled.section`
   }
 
   kbd {
+    font-family: ${text.monoFont};
     color: ${colors.lightGrey} !important;
     border-radius: 0.3em;
     background: ${colors.black};
