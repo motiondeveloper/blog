@@ -5,10 +5,7 @@ import styled from 'styled-components';
 import { colors, padding } from '../theme';
 
 const buttonStyles = `
-    margin-right: ${padding.small};
-    text-decoration: none;
-    padding: ${padding.xsmall} ${padding.small};
-    border-radius: ${padding.xsmall};
+    font-weight: 500;
     margin-right: ${padding.small};
     text-decoration: none;
     padding: ${padding.xsmall} ${padding.small};

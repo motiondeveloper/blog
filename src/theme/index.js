@@ -32,7 +32,7 @@ module.exports = {
       headingLarge: '40px',
     },
     weights: {
-      regular: 500,
+      regular: 400,
       bold: 700,
     },
     bodyFont: `'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';`,
