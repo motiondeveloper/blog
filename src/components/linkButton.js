@@ -4,11 +4,19 @@ import styled from 'styled-components';
 
 import { colors, padding } from '../theme';
 
-const primaryStyles = () => `
+const buttonStyles = `
     margin-right: ${padding.small};
     text-decoration: none;
     padding: ${padding.xsmall} ${padding.small};
     border-radius: ${padding.xsmall};
+    margin-right: ${padding.small};
+    text-decoration: none;
+    padding: ${padding.xsmall} ${padding.small};
+    border-radius: ${padding.xsmall};
+`;
+
+const primaryStyles = `
+    ${buttonStyles};
     border: 2px solid ${colors.green};
     color: ${colors.green} !important;
     :hover {
@@ -17,11 +25,8 @@ const primaryStyles = () => `
       }
 `;
 
-const secondaryStyles = () => `
-    margin-right: ${padding.small};
-    text-decoration: none;
-    padding: ${padding.xsmall} ${padding.small};
-    border-radius: ${padding.xsmall};
+const secondaryStyles = `
+    ${buttonStyles};
     border: 2px solid ${colors.blue};
     :hover {
         color: ${colors.navy} !important;
@@ -40,8 +45,8 @@ const LinkButton = ({ isLocal, type, children, ...rest }) => {
   return isLocal ? (
     <LocalButton {...rest}>{children}</LocalButton>
   ) : (
-    <ExternalButton {...rest}>{children}</ExternalButton>
-  );
+      <ExternalButton {...rest}>{children}</ExternalButton>
+    );
 };
 
 export default LinkButton;
