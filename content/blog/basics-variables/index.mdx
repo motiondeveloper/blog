@@ -9,6 +9,7 @@ description: >-
 ---
 
 import { Note, Inform } from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput'
 import ContentList from 'components/contentList';
 
 In this Expression Basics article, you will learn how to create and use variables in your expressions. This will provide a solid foundation when moving on to later articles in the series.
@@ -108,11 +109,27 @@ let myText;
 (myText === undefined); // true
 ```
 
+<Successful>
+
+```js
+true
+```
+
+</Successful>
+
 Will show the value `js›true`, while the expression:
 
 ```js
 (myText === undefined); // Throws an error
 ```
+
+<Errorful>
+
+```js
+Error: myText is not defined
+```
+
+</Errorful>
 
 Will give the error `js›myText is not defined`, since you've tried to access a variable that isn't declared.
 
