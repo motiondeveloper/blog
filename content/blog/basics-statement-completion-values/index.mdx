@@ -9,6 +9,7 @@ description: >-
 ---
 
 import { Note, Inform, Warn } from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput'
 
 When there's multiple lines in your expression, it's important to know which value After Effects will use for the property once the code is evaluated.
 
@@ -20,6 +21,14 @@ myPosition * 2;
 [0, 0];
 const otherPosition = [500, 500];
 ```
+
+<Successful>
+
+```js
+0, 0
+```
+
+</Successful>
 
 The value `js›[0, 0]` will be used, but why?
 
@@ -53,6 +62,14 @@ myPosition * 2; // [1920, 1080]
 [0, 0]; // [0, 0]
 const otherPosition = [500, 500]; // empty
 ```
+
+<Successful>
+
+```js
+0, 0
+```
+
+</Successful>
 
 You can see that `js›[0, 0]` will be used as it's the last statement with a non-empty completion value.
 

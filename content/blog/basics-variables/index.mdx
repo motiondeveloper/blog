@@ -147,8 +147,16 @@ If you now use the variable `js›myText`, it's value is returned and set as the
 ```js{3}
 let myText;
 myText = 'Hello world';
-myText; // 'Hello world'
+myText;
 ```
+
+<Successful>
+
+```js
+'Hello world'
+```
+
+</Successful>
 
 You can shorten the expression by declaring and initializing in the same line, which is what's done the majority of the time.
 
@@ -156,6 +164,14 @@ You can shorten the expression by declaring and initializing in the same line, w
 let myText = 'Hello world';
 myText;
 ```
+
+<Successful>
+
+```js
+'Hello world'
+```
+
+</Successful>
 
 ## Updating variables
 
@@ -166,6 +182,14 @@ let myText = 'Hello world';
 myText = 'Hello JavaScript!'; // Change myText variable
 myText;
 ```
+
+<Successful>
+
+```js
+'Hello JavaScript!'
+```
+
+</Successful>
 
 Which will display 'Hello JavaScript!' on the text layer.
 
@@ -220,6 +244,14 @@ If we tried to reassign the value of `js›myText`, we would get the error 'Assi
 const myText = 'Hello world';
 myText = 'Hello globe'; // Returns error
 ```
+
+<Errorful>
+
+```js
+Error: Assignment to constant variable
+```
+
+</Errorful>
 
 <Note>
 
