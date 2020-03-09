@@ -12,6 +12,7 @@ import HorizontalList from '../components/horizontalList';
 import { Calendar, Thermometer } from 'react-feather';
 import styled from 'styled-components';
 import { colors, padding } from '../theme';
+import RelatedContent from '../components/relatedContent';
 
 const PostInfo = styled(HorizontalList)`
   margin-top: ${padding.large};
@@ -29,8 +30,8 @@ const PostInfo = styled(HorizontalList)`
 
 const PageLinks = styled.ul`
   list-style: none;
-  margin-bottom: ${padding.large};
-  padding-left: 0;
+  margin: 0;
+  padding: 0;
   li:not(:last-child) {
     margin-bottom: ${padding.small};
   }
@@ -66,24 +67,26 @@ class BlogPostTemplate extends React.Component {
         <PostContent>
           <MDXRenderer>{post.body}</MDXRenderer>
         </PostContent>
-        <PageLinks>
-          {next && (
-            <li>
-              Next article: {` `}
-              <Link to={`/blog/${next.fields.slug}`} rel="next">
-                {next.frontmatter.title}
-              </Link>
-            </li>
-          )}
-          {previous && (
-            <li>
-              Previous article: {` `}
-              <Link to={`/blog/${previous.fields.slug}`} rel="prev">
-                {previous.frontmatter.title}
-              </Link>
-            </li>
-          )}
-        </PageLinks>
+        <RelatedContent>
+          <PageLinks>
+            {next && (
+              <li>
+                Next article: {` `}
+                <Link to={`/blog/${next.fields.slug}`} rel="next">
+                  {next.frontmatter.title}
+                </Link>
+              </li>
+            )}
+            {previous && (
+              <li>
+                Previous article: {` `}
+                <Link to={`/blog/${previous.fields.slug}`} rel="prev">
+                  {previous.frontmatter.title}
+                </Link>
+              </li>
+            )}
+          </PageLinks>
+        </RelatedContent>
         <TagsList tags={post.frontmatter.tags} />
       </Layout>
     );
