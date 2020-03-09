@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { CornerDownRight } from 'react-feather';
 import { colors, padding } from '../theme';
 
-const StyledCallout = styled.div`
+const CalloutWrapper = styled.div`
   position: relative;
   z-index: -1;
   p {
@@ -40,23 +40,23 @@ const CalloutIcon = styled.div`
 
 const Successful = ({ children }) => {
   return (
-    <StyledCallout color={colors.green}>
+    <CalloutWrapper color={colors.green}>
       <CalloutIcon>
         <CornerDownRight size={padding.large} color={colors.green} />
       </CalloutIcon>
       <CalloutContent>{children}</CalloutContent>
-    </StyledCallout>
+    </CalloutWrapper>
   );
 };
 
 const Errorful = ({ children }) => {
   return (
-    <StyledCallout color={colors.red}>
+    <CalloutWrapper color={colors.red}>
       <CalloutIcon>
         <CornerDownRight size={padding.large} color={colors.red} />
       </CalloutIcon>
       <CalloutContent>{children}</CalloutContent>
-    </StyledCallout>
+    </CalloutWrapper>
   );
 };
 
