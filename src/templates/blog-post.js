@@ -12,7 +12,7 @@ import HorizontalList from '../components/horizontalList';
 import { Calendar, Thermometer } from 'react-feather';
 import styled from 'styled-components';
 import { colors, padding } from '../theme';
-import RelatedContent from '../components/callout';
+import { RelatedContent } from '../components/callout';
 
 const PostInfo = styled(HorizontalList)`
   margin-top: ${padding.large};
