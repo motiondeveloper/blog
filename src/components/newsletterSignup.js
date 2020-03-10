@@ -16,6 +16,7 @@ const Form = styled.form`
 const FlexInput = styled.div`
   display: flex;
   align-items: stretch;
+  width: 100%;
 `;
 
 const Button = styled.button`
@@ -40,9 +41,8 @@ const StyledLabel = styled.label`
 
 const Input = styled.input`
   font-family: ${text.bodyFont};
+  width: 0;
   flex-grow: 1;
-  width: 340px;
-  max-width: 100%;
   font-size: ${text.sizes.body};
   padding: ${padding.small};
   border-radius: ${padding.xsmall} 0 0 ${padding.xsmall};
