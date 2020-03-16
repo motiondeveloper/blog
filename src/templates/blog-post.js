@@ -85,9 +85,23 @@ class BlogPostTemplate extends React.Component {
                 </Link>
               </li>
             )}
+            <li
+              css={`
+                display: flex;
+                margin-top: ${padding.large};
+              `}
+            >
+              <p
+                css={`
+                  padding-right: ${padding.xsmall};
+                `}
+              >
+                Tags: {` `}
+              </p>
+              <TagsList tags={post.frontmatter.tags} />
+            </li>
           </PageLinks>
         </RelatedContent>
-        <TagsList tags={post.frontmatter.tags} />
       </Layout>
     );
   }

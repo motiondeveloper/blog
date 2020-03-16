@@ -7,7 +7,6 @@ const HorizontalList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-top: 0;
 `;
 
 export default HorizontalList;

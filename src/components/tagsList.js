@@ -4,8 +4,6 @@ import HorizontalList from './horizontalList';
 import styled from 'styled-components';
 import { padding, colors } from '../theme';
 
-const tagColor = colors.green;
-
 const Tag = styled.li`
   a {
     color: ${colors.green};
