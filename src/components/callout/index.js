@@ -1,7 +1,9 @@
 import React from 'react';
 
-import { Info, AlertTriangle, BookOpen } from 'react-feather';
+import { Info, AlertTriangle, BookOpen, List } from 'react-feather';
+
 import { colors, padding } from '../../theme';
+import HorizontalList from '../horizontalList';
 import {
   CalloutWrapper,
   CalloutContent,
@@ -43,14 +45,40 @@ const RelatedContent = ({ children }) => {
   return (
     <CalloutWrapper color={colors.black}>
       <CalloutTitle color={colors.green}>
-        <h2>Continue reading</h2>
+        <HorizontalList>
+          <BookOpen size={padding.large} color={colors.green} />
+          <h2
+            css={`
+              margin-left: ${padding.small};
+            `}
+          >
+            Continue reading
+          </h2>
+        </HorizontalList>
       </CalloutTitle>
-      <CalloutIcon>
-        <BookOpen size={padding.large} color={colors.green} />
-      </CalloutIcon>
       <CalloutContent>{children}</CalloutContent>
     </CalloutWrapper>
   );
 };
 
-export { Note, Inform, Warn, RelatedContent };
+const ContentList = ({ children, title = 'Contents' }) => {
+  return (
+    <CalloutWrapper color={colors.black}>
+      <CalloutTitle color={colors.yellow}>
+        <HorizontalList>
+          <List size={padding.large} color={colors.yellow} />
+          <h2
+            css={`
+              margin-left: ${padding.small};
+            `}
+          >
+            {title}
+          </h2>
+        </HorizontalList>
+      </CalloutTitle>
+      <CalloutContent>{children}</CalloutContent>
+    </CalloutWrapper>
+  );
+};
+
+export { Note, Inform, Warn, ContentList, RelatedContent };
