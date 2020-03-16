@@ -7,26 +7,14 @@ import { padding, colors } from '../theme';
 const tagColor = colors.green;
 
 const Tag = styled.li`
-  background-color: ${tagColor + `10`};
-  border-radius: ${padding.xxsmall};
-  padding: ${padding.xxsmall};
-  padding-top: 0;
-  padding-bottom: 0;
-  margin: -${padding.xxsmall};
-  :hover {
-    background-color: ${tagColor + `30`};
-  }
   a {
-    color: ${tagColor} !important;
-    text-decoration: none;
+    color: ${colors.green};
   }
-  a :hover {
-    text-decoration: underline;
+  a:hover {
+    background-color: ${colors.green + 22};
   }
-  &&& {
-    :not(:last-child) {
-      margin-right: ${padding.xsmall};
-    }
+  :not(:last-child) {
+    margin-right: ${padding.xsmall};
   }
 `;
 

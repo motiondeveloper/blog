@@ -23,11 +23,12 @@ const Page = styled.div`
   padding-right: ${padding.large};
 
   a {
+    text-decoration: underline;
     color: ${colors.blue};
   }
 
   a:hover {
-    text-decoration: none;
+    background-color: ${colors.blue + 22};
   }
 
   p {
