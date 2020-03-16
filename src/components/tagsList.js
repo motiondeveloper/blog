@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import { padding, colors } from '../theme';
 
 const Tag = styled.li`
-  a {
+  &&& a {
     color: ${colors.green};
   }
-  a:hover {
+  &&& a:hover {
     background-color: ${colors.green + 22};
   }
   :not(:last-child) {
