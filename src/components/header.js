@@ -6,19 +6,19 @@ import { GitHub, Twitter } from 'react-feather';
 
 import { colors, padding, text } from '../theme';
 
-const breakpoint = '640px';
+const breakpoint = '740px';
 
 const HeaderLink = styled(Link)`
+  border-radius: ${padding.xsmall};
   &&& {
     color: ${colors.white};
     :hover {
-      text-decoration: underline;
-      text-decoration-color: ${colors.yellow};
+      color: ${colors.white};
+      background-color: ${colors.navy};
     }
   }
-  box-shadow: none;
   text-decoration: none;
-  margin: 0;
+  padding: ${padding.xsmall};
 `;
 
 const DesktopLink = styled(HeaderLink)`
@@ -38,10 +38,6 @@ const HomeLink = styled(Link)`
   font-weight: ${text.weights.medium};
   &&& {
     color: ${colors.white};
-    :hover {
-      text-decoration: underline;
-      text-decoration-color: ${colors.green};
-    }
   }
 `;
 
