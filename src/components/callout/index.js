@@ -3,7 +3,6 @@ import React from 'react';
 import { Info, AlertTriangle, BookOpen, List } from 'react-feather';
 
 import { colors, padding } from '../../theme';
-import HorizontalList from '../horizontalList';
 import {
   CalloutWrapper,
   CalloutContent,
@@ -41,20 +40,12 @@ const Warn = ({ children }) => {
   );
 };
 
-const RelatedContent = ({ children }) => {
+const RelatedContent = ({ children, title = 'Continue reading' }) => {
   return (
     <CalloutWrapper color={colors.black}>
       <CalloutTitle color={colors.green}>
-        <HorizontalList>
-          <BookOpen size={padding.large} color={colors.green} />
-          <h2
-            css={`
-              margin-left: ${padding.small};
-            `}
-          >
-            Continue reading
-          </h2>
-        </HorizontalList>
+        <BookOpen size={padding.large} color={colors.green} />
+        <h2>{title}</h2>
       </CalloutTitle>
       <CalloutContent>{children}</CalloutContent>
     </CalloutWrapper>
@@ -63,18 +54,15 @@ const RelatedContent = ({ children }) => {
 
 const ContentList = ({ children, title = 'Contents' }) => {
   return (
-    <CalloutWrapper color={colors.black}>
+    <CalloutWrapper
+      color={colors.black}
+      css={`
+        margin-top: ${padding.xlarge};
+      `}
+    >
       <CalloutTitle color={colors.yellow}>
-        <HorizontalList>
-          <List size={padding.large} color={colors.yellow} />
-          <h2
-            css={`
-              margin-left: ${padding.small};
-            `}
-          >
-            {title}
-          </h2>
-        </HorizontalList>
+        <List size={padding.large} color={colors.yellow} />
+        <h2>{title}</h2>
       </CalloutTitle>
       <CalloutContent>{children}</CalloutContent>
     </CalloutWrapper>
