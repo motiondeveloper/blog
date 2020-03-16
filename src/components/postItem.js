@@ -16,6 +16,7 @@ const PostTitle = styled.h3`
     color: ${colors.yellow};
     :hover {
       text-decoration: underline;
+      background: none;
     }
   }
 `;
