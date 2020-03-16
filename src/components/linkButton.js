@@ -1,34 +1,40 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { colors, padding, text } from '../theme';
 
-const buttonStyles = `
-    font-weight: ${text.weights.medium};
-    margin-right: ${padding.small};
+const buttonStyles = css`
+  font-weight: ${text.weights.medium};
+  margin-right: ${padding.small};
+  padding: ${padding.xsmall} ${padding.small};
+  border-radius: ${padding.xsmall};
+  &&& {
     text-decoration: none;
-    padding: ${padding.xsmall} ${padding.small};
-    border-radius: ${padding.xsmall};
+  }
 `;
 
-const primaryStyles = `
-    ${buttonStyles};
-    border: 2px solid ${colors.green};
+const primaryStyles = css`
+  ${buttonStyles};
+  border: 2px solid ${colors.green};
+  &&& {
     color: ${colors.green} !important;
     :hover {
-        color: ${colors.navy} !important;
-        background: ${colors.green};
-      }
+      color: ${colors.navy} !important;
+      background: ${colors.green};
+    }
+  }
 `;
 
-const secondaryStyles = `
-    ${buttonStyles};
-    border: 2px solid ${colors.blue};
+const secondaryStyles = css`
+  ${buttonStyles};
+  border: 2px solid ${colors.blue};
+  &&& {
     :hover {
-        color: ${colors.navy} !important;
-        background: ${colors.blue};
+      color: ${colors.navy} !important;
+      background: ${colors.blue};
     }
+  }
 `;
 
 const LinkButton = ({ isLocal, type, children, ...rest }) => {
