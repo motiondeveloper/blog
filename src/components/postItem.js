@@ -22,8 +22,6 @@ const PostTitle = styled.h3`
 
 const PostDesc = styled.p`
   display: inline;
-  margin-top: 0;
-  margin-bottom: 0;
   color: ${colors.white};
 `;
 
