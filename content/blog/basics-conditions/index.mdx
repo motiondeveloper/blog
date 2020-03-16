@@ -1,6 +1,6 @@
 ---
 title: "Expression Basics: Conditions"
-date: 2019-11-11
+date: 2019-11-13
 difficulty: Beginner
 tags: ["basics", "javascript"]
 pinned: false
@@ -8,18 +8,23 @@ description: >-
   Learn how to make decisions in your expressions by learning how to use JavaScript conditionals and logical operators.
 ---
 
+import { Note, Inform, Warn, ContentList } from 'components/callout';
+
 [MDN Referance]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/conditionals
 
 Now that you have learned how to [create and use variables](../basics-variables), the next step is to make decisions based on their value.
 
 You make decisions in code with whats called a **conditional statement**. This is a statement that executes different code based on a condition, such as whether one number is larger than another or if a checkbox is ticked.
 
+<ContentList>
+
 - [If/else statements](#ifelse-statements)
 - [Condition statements](#condition-statements)
-  - [Comparison operators](#comparison-operators)
 - [Else if](#else-if)
 - [Logical operators (AND, OR and NOT)](#logical-operators-and-or-and-not)
 - [Wrapping up](#wrapping-up)
+
+</ContentList>
 
 ## If/else statements
 
@@ -88,7 +93,11 @@ The comparison operators test if two values are:
 - `js›===` equal and the same type
 - `js›!==` not equal and of the same type, or are of different types
 
-> For more info on JavaScript types, see the [Expression Basics: Variables](../basics-variables/index.md) post
+<Note>
+
+For more info on JavaScript types, see the [Expression Basics: Variables](../basics-variables/index.md) post
+
+</Note>
 
 Or test if one value is:
 
@@ -114,7 +123,11 @@ if ('534' === 534) { // Evaluates to false
 
 ```
 
-> In some cases you may need to check if two values are equal, regardless of their type. You can do this with the non strict equal and not equal operators: `js›==` and `js›!=`.
+<Note>
+
+In some cases you may need to check if two values are equal, regardless of their type. You can do this with the non strict equal and not equal operators: `js›==` and `js›!=`.
+
+</Note>
 
 Certain values are considered *falsy* as they will always resolve to false, meaning you can test for them without a comparison operator. These are:
 
@@ -184,7 +197,11 @@ if (software === 'VS Code' || software === 'After Effects') {
 
 Will show `js›'Ready to code!'` as `js›software === 'After Effects'` evaluates to true.
 
-> Each side of a logical operator is a separate condition statement, so the expression `js›software === 'VS Code' || 'After Effects'` will always be true as, `js›'After Effects'` resolves to true
+<Inform>
+
+Each side of a logical operator is a separate condition statement, so the expression `js›software === 'VS Code' || 'After Effects'` will always be true as, `js›'After Effects'` resolves to true.
+
+</Inform>
 
 You can use a third operator, the NOT `js›!` operator, to **negate** an expression, such that:
 

@@ -10,14 +10,17 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Image from 'gatsby-image';
 
 import styled from 'styled-components';
-import { padding } from '../theme';
+import { padding, colors } from '../theme';
 
 const StyledBio = styled.div`
   display: flex;
-  margin-bottom: ${padding.xlarge};
 
   p {
     margin-top: 0;
+    line-height: 150%;
+  }
+  a {
+    color: ${colors.blue};
   }
 `;
 

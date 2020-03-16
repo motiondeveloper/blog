@@ -9,6 +9,7 @@ const PostCard = styled.div`
   margin-left: -${padding.large};
   margin-right: -${padding.large};
   margin-bottom: ${padding.large};
+  margin-top: ${props => props.mt};
   text-decoration: none;
 `;
 

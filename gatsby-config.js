@@ -8,6 +8,7 @@ module.exports = {
       twitter: `modeveloper`,
       github: `motiondeveloper`,
     },
+    repoUrl: `https://github.com/motiondeveloper/blog`,
   },
   plugins: [
     {
@@ -15,7 +16,7 @@ module.exports = {
       options: {
         path: `${__dirname}/content/blog`,
         name: `blog`,
-        ignore: process.env.NODE_ENV === `production` && [`**/draft-*`]
+        ignore: process.env.NODE_ENV === `production` && [`**/draft-*`],
       },
     },
     {
@@ -25,10 +26,12 @@ module.exports = {
         name: `assets`,
       },
     },
+    `gatsby-remark-images`,
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -50,7 +53,7 @@ module.exports = {
               },
               showLineNumbers: false,
               inlineCodeMarker: '›',
-            }
+            },
           },
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
@@ -79,4 +82,4 @@ module.exports = {
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-netlify`,
   ],
-}
+};

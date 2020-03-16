@@ -1,5 +1,4 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import { padding, colors, text } from '../theme';
@@ -17,15 +16,17 @@ const Form = styled.form`
 const FlexInput = styled.div`
   display: flex;
   align-items: stretch;
+  width: 100%;
 `;
 
 const Button = styled.button`
-  font-size: ${text.sizes.base};
+  font-family: ${text.bodyFont};
+  font-size: ${text.sizes.body};
   padding: ${padding.xsmall} ${padding.small};
   border-radius: 0 ${padding.xsmall} ${padding.xsmall} 0;
   border: 2px solid ${colors.blue};
   color: ${colors.blue};
-  background: ${colors.black};
+  background: ${props => props.bgColor};
 
   :hover {
     color: ${colors.navy} !important;
@@ -39,17 +40,19 @@ const StyledLabel = styled.label`
 `;
 
 const Input = styled.input`
+  font-family: ${text.bodyFont};
+  width: 0;
   flex-grow: 1;
-  width: 340px;
-  font-size: ${text.sizes.base};
+  font-size: ${text.sizes.body};
   padding: ${padding.small};
   border-radius: ${padding.xsmall} 0 0 ${padding.xsmall};
-  background: ${colors.black};
+  background: ${props => props.bgColor};
   color: ${colors.white};
   border: none;
 `;
 
-const Newsletter = ({ mb, mt }) => {
+const Newsletter = ({ mb, mt, bgColor }) => {
+  bgColor = bgColor || colors.black;
   return (
     <Form
       name="newsletter"
@@ -73,21 +76,14 @@ const Newsletter = ({ mb, mt }) => {
           placeholder="Email Address"
           id="email"
           required
+          bgColor={bgColor}
         />
-        <Button type="submit">Subscribe</Button>
+        <Button type="submit" bgColor={bgColor}>
+          Subscribe
+        </Button>
       </FlexInput>
     </Form>
   );
 };
 
 export default Newsletter;
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;

@@ -25,15 +25,18 @@ module.exports = {
 
   text: {
     sizes: {
-      base: '16px',
+      bodySmall: '14px',
+      body: '16px',
+      bodyLarge: '20px',
       headingSmall: '24px',
       headingLarge: '40px',
     },
     weights: {
-      regular: 500,
+      regular: 400,
+      medium: 500,
       bold: 700,
     },
-    bodyFont: `'-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';`,
-    monoFont: `'SFMono-Medium', 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo, Consolas, Courier, monospace;`,
+    bodyFont: `'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif';`,
+    monoFont: `'Roboto Mono', monospace;`,
   },
 };

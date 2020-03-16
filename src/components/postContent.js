@@ -1,25 +1,35 @@
 import styled from 'styled-components';
 import { colors, padding, text } from '../theme';
 
-const PostContent = styled.div`
+// p img is for images gatsby doesn't support such as svg
+// we share styles with gatsby images by separating them
+// into an external variable
+const imageStyles = `
+  margin-bottom: ${padding.large};
+  margin-top: ${padding.large};
+  max-width: 100% !important;
+`;
+
+const PostContent = styled.section`
   margin-bottom: ${padding.xxlarge};
   p {
     color: ${colors.white};
     font-size: ${text.sizes.base};
   }
 
-  img {
-    margin-bottom: ${padding.large};
-    margin-top: ${padding.large};
-    max-width: 100% !important;
+  video {
+    ${imageStyles};
+  }
+
+  p img {
+    ${imageStyles};
   }
 
   .gatsby-resp-image-wrapper {
-    margin-bottom: ${padding.large};
-    margin-top: ${padding.large};
-    max-width: 100% !important;
-
+    ${imageStyles};
     img {
+      width: 100%;
+      height: 100%;
       margin-bottom: 0;
       margin-top: 0;
     }
@@ -64,6 +74,7 @@ const PostContent = styled.div`
   }
 
   kbd {
+    font-family: ${text.monoFont};
     color: ${colors.lightGrey} !important;
     border-radius: 0.3em;
     background: ${colors.black};

@@ -4,29 +4,15 @@ import HorizontalList from './horizontalList';
 import styled from 'styled-components';
 import { padding, colors } from '../theme';
 
-const tagColor = colors.green;
-
 const Tag = styled.li`
-  background-color: ${tagColor + `10`};
-  border-radius: ${padding.xxsmall};
-  padding: ${padding.xxsmall};
-  padding-top: 0;
-  padding-bottom: 0;
-  margin: -${padding.xxsmall};
-  :hover {
-    background-color: ${tagColor + `30`};
+  &&& a {
+    color: ${colors.green};
   }
-  a {
-    color: ${tagColor} !important;
-    text-decoration: none;
+  &&& a:hover {
+    background-color: ${colors.green + 22};
   }
-  a :hover {
-    text-decoration: underline;
-  }
-  &&& {
-    :not(:last-child) {
-      margin-right: ${padding.xsmall};
-    }
+  :not(:last-child) {
+    margin-right: ${padding.xsmall};
   }
 `;
 

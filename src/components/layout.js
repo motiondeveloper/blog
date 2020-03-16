@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link, graphql, useStaticQuery } from 'gatsby';
-import Image from 'gatsby-image';
 import styled, { createGlobalStyle } from 'styled-components';
-import { GitHub, Twitter } from 'react-feather';
 
+import PageHeader from 'components/header';
 import { colors, padding, text } from '../theme';
+import Footer from './footer';
 
 const GlobalStyles = createGlobalStyle`
   body {
     background-color: ${colors.navy};
     font-family: ${text.bodyFont};
     color: ${colors.white};
+    margin: 0;
   }
 `;
 
@@ -18,15 +18,17 @@ const Page = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 640px;
+
   padding-left: ${padding.large};
   padding-right: ${padding.large};
 
   a {
+    text-decoration: underline;
     color: ${colors.blue};
   }
 
   a:hover {
-    text-decoration: none;
+    background-color: ${colors.blue + 22};
   }
 
   p {
@@ -45,129 +47,15 @@ const Page = styled.div`
   }
 `;
 
-const HeaderLink = styled(Link)`
-  &&& {
-    color: ${colors.white};
-    :hover {
-      text-decoration: underline;
-      text-decoration-color: ${colors.yellow};
-    }
-  }
-  box-shadow: none;
-  text-decoration: none;
-  font-size: ${text.sizes.headingSmall};
-  font-weight: ${text.weights.regular};
-  margin: 0;
-  :not(last-child) {
-    margin-right: ${padding.large};
-  }
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 960px;
-  margin: auto;
-  margin-top: ${padding.large};
-  background-color: ${colors.black};
-  border-radius: ${padding.small};
-  padding: ${padding.small};
-`;
-
-const HeaderLeft = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-const HeaderRight = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: ${padding.xsmall};
-`;
-
-const HeaderIcon = styled.a`
-  height: 24px;
-  color: ${colors.blue};
-  :hover {
-    color: ${colors.yellow};
-  }
-  :not(:last-child) {
-    margin-right: ${padding.small};
-  }
-`;
-
-const LogoImage = styled(Image)`
-  margin-right: ${padding.small};
-  margin-bottom: 0;
-  min-width: 36px;
-`;
-
-const PageHeader = ({ title }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      avatar: file(absolutePath: { regex: "/md-logo.png/" }) {
-        childImageSharp {
-          fixed(width: 36, height: 36) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-      site {
-        siteMetadata {
-          author
-          social {
-            github
-            twitter
-          }
-        }
-      }
-    }
-  `);
-
-  const { author, social } = data.site.siteMetadata;
-
-  return (
-    <Header>
-      <HeaderLeft>
-        <LogoImage
-          fixed={data.avatar.childImageSharp.fixed}
-          alt={author}
-          imgStyle={{ borderRadius: `50%` }}
-        />
-        <HeaderLink to={`/`}>{title}</HeaderLink>
-      </HeaderLeft>
-      <HeaderRight>
-        <HeaderLink to={`/blog`}>Blog</HeaderLink>
-        <HeaderIcon
-          href={`https://twitter.com/${social.twitter}`}
-          aria-label="Twitter profile"
-        >
-          <Twitter size="24" />
-        </HeaderIcon>
-        <HeaderIcon
-          href={`https://github.com/${social.github}`}
-          aria-label="Github profile"
-        >
-          <GitHub size="24" />
-        </HeaderIcon>
-      </HeaderRight>
-    </Header>
-  );
-};
-
 const Layout = ({ title, children }) => {
   return (
     <>
       <GlobalStyles />
-      <nav>
-        <PageHeader title={title} />
-      </nav>
+      <PageHeader title={title} />
       <Page>
         <main>{children}</main>
       </Page>
+      <Footer />
     </>
   );
 };

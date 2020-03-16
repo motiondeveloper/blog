@@ -1,3 +1,4 @@
 // custom typefaces
-// import "typeface-roboto-mono"
-import "./src/utils/syntax.scss";
+import 'typeface-inter';
+import 'typeface-roboto-mono';
+import './src/utils/syntax.scss';

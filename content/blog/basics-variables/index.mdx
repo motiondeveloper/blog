@@ -8,19 +8,23 @@ description: >-
   Learn how to store and use values in expressions using JavaScript variables.
 ---
 
+import { Note, Inform, ContentList } from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput'
+
 In this Expression Basics article, you will learn how to create and use variables in your expressions. This will provide a solid foundation when moving on to later articles in the series.
+
+<ContentList>
 
 - [Variables as pointers](#variables-as-pointers)
 - [Declaring variables](#declaring-variables)
-  - [Naming variables](#naming-variables)
-  - [Undefined vs is not defined](#undefined-vs-is-not-defined)
 - [Assigning their value](#assigning-their-value)
 - [Updating variables](#updating-variables)
 - [Data types](#data-types)
 - [Var vs let](#var-vs-let)
 - [Constants](#constants)
-  - [Why use a constant](#why-use-a-constant)
 - [Wrapping up](#wrapping-up)
+
+</ContentList>
 
 ## Variables as pointers
 
@@ -41,8 +45,11 @@ if (time < 5) {
   'Hello world' + ' welcome to' + ' expressions';
 }
 ```
+<Note>
 
-> If you don't understand the other parts of this expression, don't worry! We'll get to them in the following posts in the series.
+If you don't understand the other parts of this expression, don't worry! We'll get to them in the following posts in the series.
+
+</Note>
 
 Instead of using the data directly, variables allow you to create a *named reference* which you then use throughout the expression.
 
@@ -54,7 +61,11 @@ While this might not seem like an important distinction now, it will be as you m
 
 Before you can use a variable you need to create (or declare) it by using the JavaScript keyword `js›let`, followed by the variable name.
 
-> A keyword (or reserved word) is any word that has a special meaning in the language
+<Inform>
+
+A keyword (or reserved word) is any word that has a special meaning in the language.
+
+</Inform>
 
 ```js
 let myText; // Variable declaration
@@ -78,7 +89,11 @@ Some names that aren't allowed are:
 - Names starting with a number
 - Reserved words such as `js›if`, `js›function`, or `js›for` (you can find a full list of reserved words [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords))
 
-> It's best to give variables a descriptive name and not single letters or numbers. This will make your code much easier for other people, or your future self, to read.
+<Inform>
+
+It's best to give variables a descriptive name and not single letters or numbers. This will make your code much easier for other people, or your future self, to read.
+
+</Inform>
 
 The convention is to write variable names in lower camel case, where you capitalize the first letter of every word except for the first one, such as `js›myText`, `js›animationDuration`, or `js›currentLayerWidth`.
 
@@ -93,11 +108,27 @@ let myText;
 (myText === undefined); // true
 ```
 
+<Successful>
+
+```js
+true
+```
+
+</Successful>
+
 Will show the value `js›true`, while the expression:
 
 ```js
 (myText === undefined); // Throws an error
 ```
+
+<Errorful>
+
+```js
+Error: myText is not defined
+```
+
+</Errorful>
 
 Will give the error `js›myText is not defined`, since you've tried to access a variable that isn't declared.
 
@@ -115,8 +146,16 @@ If you now use the variable `js›myText`, it's value is returned and set as the
 ```js{3}
 let myText;
 myText = 'Hello world';
-myText; // 'Hello world'
+myText;
 ```
+
+<Successful>
+
+```js
+'Hello world'
+```
+
+</Successful>
 
 You can shorten the expression by declaring and initializing in the same line, which is what's done the majority of the time.
 
@@ -124,6 +163,14 @@ You can shorten the expression by declaring and initializing in the same line, w
 let myText = 'Hello world';
 myText;
 ```
+
+<Successful>
+
+```js
+'Hello world'
+```
+
+</Successful>
 
 ## Updating variables
 
@@ -135,6 +182,14 @@ myText = 'Hello JavaScript!'; // Change myText variable
 myText;
 ```
 
+<Successful>
+
+```js
+'Hello JavaScript!'
+```
+
+</Successful>
+
 Which will display 'Hello JavaScript!' on the text layer.
 
 ## Data types
@@ -142,8 +197,11 @@ Which will display 'Hello JavaScript!' on the text layer.
 There are specific **types** of data that you can store in variables, which we will explore in depth in future articles. In short, there is:
 
 - **Number**, such as `js›8` or `js›12.653`, which you can perform mathematical calculations on
+
 - **String**, which are pieces of text such as our 'Hello world' example. Strings must be wrapped in single (`js›''`) or double (`js›""`) quotes so JavaScript knows you're not trying to access a variable
+
 - **Boolean**, which you can think of like switches, as they can either have the value `js›true` of `js›false` (notice these are not wrapped in quotes)
+
 - More complex data types such as Object, Null, Undefined, and Symbols
 
 ```js
@@ -152,7 +210,11 @@ There are specific **types** of data that you can store in variables, which we w
 false // Boolean
 ```
 
-> In JavaScript variables themselves don't have a type, only they data they refer to
+<Inform>
+
+In JavaScript variables themselves don't have a type, only they data they refer to.
+
+</Inform>
 
 ## Var vs let
 
@@ -182,7 +244,21 @@ const myText = 'Hello world';
 myText = 'Hello globe'; // Returns error
 ```
 
-> It's important to note that while you can't change what value a constant references (points to), the underlying value can still be modifed. For example if you had a constant that pointed to a 'person', you couldn't change which person it referenced, but you could change that persons characteristics such as their height or weight.
+<Errorful>
+
+```js
+Error: Assignment to constant variable
+```
+
+</Errorful>
+
+<Note>
+
+It's important to note that while you can't change what value a constant references (points to), the underlying value can still be modifed.
+
+For example if you had a constant that pointed to a 'person', you couldn't change which person it referenced, but you could change that persons characteristics such as their height or weight.
+
+</Note>
 
 ### Why use a constant
 

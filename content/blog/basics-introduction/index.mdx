@@ -1,0 +1,110 @@
+---
+title: "After Effects Expression Basics: Introduction and Overview"
+date: 2019-10-06
+difficulty: Beginner
+tags: ["basics", "javascript"]
+pinned: true
+description: >-
+  Learn the basics of After Effects expressions in this free course by Motion Developer. You'll learn everything from the basics of variables and conditions to more advanced topics like functions and objects.
+---
+
+import LocalVideo from 'components/localVideo';
+import { Note, Inform, Warn , ContentList } from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput'
+
+Expressions are hard to learn. You find that perfect bit of code on Creative Cow only to realize it doesn't work in your project. You google your problem to find a confusing answer on Stack Overflow.
+
+This course breaks down expressions into their fundamental components, building a solid foundation that will help you *understand* the code that you write.
+
+By the end of the course you'll have everything you need to be confident solving problems with expressions, no copy pasting needed!
+
+<ContentList title="Course Content">
+
+The topics you'll in this course cover are:
+
+- [Variables](/blog/basics-variables)
+- [Statement Completion Values](/blog/basics-statement-completion-values)
+- [Conditions](/blog/basics-conditions)
+- [Referencing layers and compositions] (coming soon)
+- Native attributes (coming soon)
+- Loops (coming soon)
+- Functions (coming soon)
+- Native methods (coming soon)
+- Objects (coming soon)
+- Arrays (coming soon)
+
+</ContentList>
+
+## What are expressions?
+
+In After Effects you can change a layers properties (such as position or opacity) by typing in or dragging the values, adding keyframes to change them over time. This process of changing and animating properties forms the basis of working in After Effects.
+
+What if rather than setting a property manually, you need it to always be the same as another one?
+
+Or you need it to *decide* what value to have based on something else?
+
+This is where expressions come in, as an alternate way of setting the value of properties.
+
+They enable you to combine values together and make automatic decisions about what that property should be.
+
+![Example Expression](example-expression.png)
+
+This alternate way is by writing lines of code, in a language called **JavaScript**, that After Effects will run. The result of this code is then set as the value of the property.
+
+<Inform>
+
+Expressions are lines of computer code that After Effects runs every frame to generate the value of a property.
+
+</Inform>
+
+## How to add an expression
+
+You can add an expression to a property in After Effects by:
+
+- Holding <kbd>alt</kbd> while clicking on the properties stop watch (the icon next to it's name)
+
+- Using the 'Add Expression' shortcut <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>=</kbd> with the property selected
+
+- Clicking <kbd>Add Expression</kbd> in the <kbd>Animation</kbd> menu
+
+These will add a new expression with some placeholder code to the property.
+
+This placeholder references the **before expression value**, which is the value of the property without any expression applied. This means you can continue to modify and animate the property as if there was no expression.
+
+<LocalVideo videoName="TestExpression" title="Adding the default expression to a property"/>
+
+## Setting the value
+
+You can overide the before expression value by typing in some JavaScript code that, when run, gives After Effects a value in the same structure (or [type](/basics-variables#data-types)) as the original.
+
+For example, let's replace our position property expression with a new value.
+
+```js
+[960, 540];
+```
+
+<Note>
+
+  You'll learn more about the `js›[]` syntax in future topics.
+
+</Note>
+
+Now the postion of the layer will always be at `js›960, 540` even if we change or animate the property, as it is overidden by the expression.
+
+Since we've written this value in JavaScript code, we can change and modify this value with math, or connect it to other properties in our project.
+
+For example:
+
+```js
+[960 + 50, 540 + 100];
+```
+
+<Successful>
+
+```js
+1010, 640
+```
+
+</Successful>
+
+The rest of this course will cover the fundamentals of the JavaScript language and it's use within After Effects expressions.
