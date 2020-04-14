@@ -157,13 +157,76 @@ Will always return the name of the current composition.
 
 ## Referencing Layers
 
-```js
-const otherLayer = otherComp.layer('layerName');
+Now you know how to reference a composition in an expression, you can use that composition [object](/blog/basics-objects) to select a specific layer.
+
+Since layers are *contained* within compositions, you must begin by referencing the composition and then the layer. For example:
+
+```js{2}
+const lowerThirdComp = comp("Lower Third");
+const nameLayer = lowerThirdComp.layer("Name");
 ```
 
+<Successful>
+
 ```js
-thisLayer;
+"Name"
 ```
+
+</Successful>
+
+
+<Inform>
+
+In the same way that `js›comp()` is a built in [function](/blog/basics-functions) for referencing compositions, `js›layer()` is a function *built into composition objects* for referencing layers that takes.
+
+</Inform>
+
+Unlike the `js›comp()` function which returns `js›[object Comp]` by default, the `js›layer()` function returns the layers name by default.
+
+### Layer Name or Index
+
+In the above example, we've selected the layer by its name, `js›"Name"`. In some cases you may not know the name of a layer, or you may want to reference it by it's **position in the layer order** rather than it's name. For example, referencing the layer below the layer the expression is on.
+
+You can do this by using the **layer index** in the expression rather than the layer name. For example:
+
+```js
+const layerTwo= thisComp.layer(2);
+```
+
+Will select the second layer in the composition.
+
+<Inform>
+
+The `js›layer()` function can either take the layer name (e.g. `js›"Text Layer"`) or the layer index (e.g. `js›2`) as it's input.
+
+</Inform>
+
+Using this in conjunction with the built in `js›index` property (which is the index of the layer the expression is on) you can select layers relative to the current layer.
+
+```js
+const layerBelow = thisComp.layer(index + 1);
+```
+
+
+### Referencing the Current Layer
+
+In the same way that you can use the `js›thisComp` variable to get a reference to the current composition, there's also a `js›thisLayer` variable that will always reference the layer the expression is on.
+
+For example:
+
+```js
+thisLayer.name
+```
+
+<Successful>
+
+```js
+"Name"
+```
+
+</Successful>
+
+Will always return the name of the layer the expression is on.
 
 ## Layer Attributes
 
