@@ -9,6 +9,7 @@ description: >-
 ---
 
 import { Note, Inform, Warn, ContentList } from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput';
 
 In previous article you've learnt how to create and use [variables](/blog/basics-variables) in your expressions. This let you reference pieces of data in your expression using a variable name, for example:
 
@@ -64,17 +65,95 @@ If you then change the Opacity of `js›'Text Layer 1'` you can see the Opacity 
 
 In the rest of this article, you'll learn how this expression works as well as how to write it yourself.
 
+## The After Effects Project Tree
+
+Every After Effects project follows the same basic structure:
+
+1. A project file (`js›.aep`)
+2. Containing compositions
+3. With layers inside those compositions.
+
+You can think of this structure as a tree diagram, where the project is the 'root' of the tree, containing 'child' compositions, and each composition containing 'child' layers in the same way.
+
+![After Effects project tree](ae-project-object.svg)
+
+<Inform>
+
+An After Effects project can be thought of as a tree of compositions and their layers.
+
+</Inform>
+
+This parent-child relationship of compositions and layers is fundamental to how you use expressions to reference them.
+
 ## Referencing Compositions
 
-```js
-const otherComp = comp('Comp Name' || compIndex);
-```
+Before you can reference a layer in an expression, you must tell After Effects which composition to look for that layer in.
 
-A variable that will always be the current comp.
+Like any other piece of data (such as a number or string) you can store a reference to a comp in a [variable](/blog/basics-variables). For example, to store a reference to the `js›'Lower Third'` composition in the diagram above you would write:
 
 ```js
-thisComp;
+const lowerThirdComp = comp("Lower Third");
 ```
+<Successful>
+
+```js
+[object Comp]
+```
+
+</Successful>
+
+This line of code tells After Effects to find the composition named `js›'Lower Third'`, and gives you back a reference to this composition (displayed as `js›[Object Comp]` on a text layer).
+
+<Note>
+
+`js›comp()` is one of the functions built into After Effects. You'll learn more about functions, including others built into After Effects, in a future article.
+
+</Note>
+
+Each composition has built in properties, one of which is the `js›name` property is the name of the composition. We can use this to make sure we've selected the correct composition in our project.
+
+```js{2}
+const lowerThirdComp = comp("Lower Third");
+lowerThirdComp.name;
+```
+
+<Successful>
+
+```js
+"Lower Third"
+```
+
+</Successful>
+
+### Accessing the Current Composition
+
+After Effects also provides a variable that is always equal to the current composition (the composition the expression is in).
+
+```js
+const currentComp = thisComp;
+```
+
+<Inform>
+
+`js›thisComp` will always reference the composition the expression is in.
+
+</Inform>
+
+For example, the expression:
+
+```js
+thisComp.name;
+```
+
+<Successful>
+
+```js
+"Lower Third"
+```
+
+</Successful>
+
+Will always return the name of the current composition.
 
 ## Referencing Layers
 
