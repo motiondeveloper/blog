@@ -45,7 +45,7 @@ Or you need it to *decide* what value to have based on something else?
 
 This is where expressions come in, as an alternate way of setting the value of properties.
 
-They enable you to combine values together and make automatic decisions about what that property should be.
+They enable you to combine values together and have a property choose what it's value is.
 
 ![Example Expression](example-expression.png)
 
@@ -65,17 +65,21 @@ You can add an expression to a property in After Effects by:
 
 - Using the 'Add Expression' shortcut <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>=</kbd> with the property selected
 
-- Clicking <kbd>Add Expression</kbd> in the <kbd>Animation</kbd> menu
+- Clicking <kbd>Add Expression</kbd> in the <kbd>Animation</kbd> menu while the property is selected
 
 These will add a new expression with some placeholder code to the property.
 
-This placeholder references the **before expression value**, which is the value of the property without any expression applied. This means you can continue to modify and animate the property as if there was no expression.
+<Note>
+
+This placeholder code references the **before expression value**, which is the value of the property as if there was no expression applied. This means you can continue to modify and animate the property as if there was no expression.
+
+</Note>
 
 <LocalVideo videoName="TestExpression" title="Adding the default expression to a property"/>
 
 ## Setting the value
 
-You can overide the before expression value by typing in some JavaScript code that, when run, gives After Effects a value in the same structure (or [type](/basics-variables#data-types)) as the original.
+You can override this placeholder by typing in some JavaScript code that, when run, gives After Effects a value in the same structure (or [type](/basics-variables#data-types)) as the original.
 
 For example, let's replace our position property expression with a new value.
 
