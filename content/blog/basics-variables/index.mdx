@@ -28,13 +28,13 @@ In this Expression Basics article, you will learn how to create and use variable
 
 ## Variables as pointers
 
-When writing any expression you will need to manipulate and store pieces of data such as numbers, text, or booleans (`js›true`/`js›false`). For example, setting the following expression on the `Source Text` property of a text layer.
+When writing any expression you will need to manipulate and store pieces of data (or values) such as numbers, text, or booleans (`js›true`/`js›false`). For example, setting the following expression on the `Source Text` property of a text layer.
 
 ```js
 'Hello world'
 ```
 
-This will cause the text layer to show 'Hello World'. If you want to use this data throughout your expression, writing `js›'Hello World'` each time means would become time consuming.
+This will cause the text layer to show 'Hello World'. If you want to use this text throughout your expression, writing `js›'Hello World'` each time would become tedious.
 
 ```js
 if (time < 5) {
@@ -51,9 +51,13 @@ If you don't understand the other parts of this expression, don't worry! We'll g
 
 </Note>
 
-Instead of using the data directly, variables allow you to create a *named reference* which you then use throughout the expression.
+<Inform>
 
-It's important to note that a variable isn't the data itself, but rather a pointer to that piece of data. When the JavaScript engine (what runs the code) encounters one, it looks to see what the variable is pointing to then uses and that value accordingly.
+Instead of using a value directly, variables allow you to create a *named reference* which you then use throughout the expression.
+
+</Inform>
+
+It's important to note that a variable isn't the value itself, but rather a pointer to that piece of data. When the JavaScript engine (what runs the code) encounters one, it looks to see what the variable is pointing to then uses and that value accordingly.
 
 While this might not seem like an important distinction now, it will be as you move on to more advanced topics.
 
@@ -78,7 +82,7 @@ let myText;
 myText;
 ```
 
-If you apply this expression on `Source Text` you'll see that your text layer is still empty. That's because while you have created the variable, it doesn't have a value assigned to it yet.
+If you apply this expression on the `Source Text` property of a text layer, you'll see that your text layer is still empty. That's because while you have created the variable, it doesn't have a value assigned to it yet.
 
 ### Naming variables
 
@@ -212,7 +216,7 @@ false // Boolean
 
 <Inform>
 
-In JavaScript variables themselves don't have a type, only they data they refer to.
+In JavaScript variables themselves don't have a type, only the value they point to.
 
 </Inform>
 
@@ -254,7 +258,7 @@ Error: Assignment to constant variable
 
 <Note>
 
-It's important to note that while you can't change what value a constant references (points to), the underlying value can still be modifed.
+It's important to note that while you can't change which value a constant references (points to), that underlying value can still be modifed.
 
 For example if you had a constant that pointed to a 'person', you couldn't change which person it referenced, but you could change that persons characteristics such as their height or weight.
 
@@ -262,7 +266,7 @@ For example if you had a constant that pointed to a 'person', you couldn't chang
 
 ### Why use a constant
 
-It may be tempting to use `js›let` instead of `js›const` throughout your expressions since it's more flexible. However it's much easer to understand what's happening in an expression when you know the value of a variable isn't going to, or hasn't been, changed.
+It may be tempting to use `js›let` instead of `js›const` throughout your expressions since it's more flexible. However it might be easier to understand what's happening in an expression when you know a variable hasn't been reassigned.
 
 For example, if you had this expression on a `Source Text` property:
 
@@ -278,7 +282,7 @@ dialog;
 
 When reading this expression, you would need to go back and check where the last place the value of `js›dialog` had been changed was to know what your text would be. In larger expressions with more complex flows, this can be difficult.
 
-If a constant is used instead you can be confidant in the value of each variable without having to look through the entire expression.
+If you use a constant instead you can be more confidant in the value of each variable without having to look through the entire expression.
 
 ```js
 const helloDialog = 'Hello World';
