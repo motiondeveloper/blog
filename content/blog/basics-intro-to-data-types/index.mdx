@@ -1,0 +1,116 @@
+---
+title: 'Expression Basics: Intro to Data Types'
+date: 2019-10-07
+difficulty: Beginner
+tags: ['basics', 'javascript']
+pinned: true
+description: >-
+  An introduction to data types in After Effects Expressions.
+---
+
+import { Note, Inform, ContentList } from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput';
+
+In the [previous article](/blog/basics-introduction) you learnt that each property expects a value that is of a specific structure, or **type**. In this article you'll learn what those basics types are and what different properties expect.
+
+## Overview
+
+In JavaScript, each value is of a specific type. Which data type a value is defines how you interact with that value in your code.
+
+In the same way, in After Effects the value of each property has a specific type, and your expression needs to return that same type in order to run without errors.
+
+You can see what type a value is by writing `js›typeof value` in an expression (such as the 'Source Text' property of a text layer).
+
+## Number
+
+One of the most common types you will use is `js›Number`, such as `js›8` or `js›12.653`. 
+
+```js
+typeof 63;
+```
+<Successful>
+
+```js
+number
+```
+
+</Successful>
+
+Numbers allow you to do mathematical operations such as add, subtract, divide and multiply them together, in the same way you're used to on a calculator.
+
+```js
+60 + (20 / 2);
+```
+
+<Successful>
+
+```js
+70
+```
+
+</Successful>
+
+
+### Properties that expect numbers include:
+
+- Opacity
+- Slider Controls
+- Separated positions (e.g. X Position, Y Position)
+- Rotation
+
+
+## Strings
+
+Strings are pieces of text such as `js›"Jane Doe"` or `js›'After Effects'`.
+
+```js
+typeof "Hello!";
+```
+<Successful>
+
+```js
+string
+```
+
+</Successful>
+
+
+Strings must be wrapped in single (`js›''`) or double (`js›""`) quotes so JavaScript knows you're not trying to access a [variable](/blog/basics-variables).
+
+You can create a `js›String` with numbers in it, that isn't of a number type, by wrapping it in quotes, e.g. `js›"12.653"`
+
+```js
+typeof "12.653";
+```
+<Successful>
+
+```js
+string
+```
+
+</Successful>
+
+### Properties that expect strings:
+
+- Source Text
+
+## Booleans
+
+You can think of Booleans like switches, as they can either have the value `js›true` or `js›false` (notice these are not wrapped in quotes).
+
+```js
+typeof true;
+```
+<Successful>
+
+```js
+boolean
+```
+
+</Successful>
+
+## Arrays
+
+You'll notice that some properties expect more than one value, such as Position or Scale. You can think of these properties as expecting **a list of values that's a specific length**.
+
+## Type Coercion
