@@ -230,7 +230,7 @@ Will always return the name of the layer the expression is on.
 
 ## Layer Attributes
 
-Now you've learnt the first two parts of the expression created by the pick whip, referencing the composition and layer, you can move onto referencing the **layer attributes**, such as position, opacity and scale etc.
+Now that you've learnt the first two parts of the expression created by the pick whip (referencing the composition and layer) you can move onto referencing the **layer attributes**, such as position, opacity and scale.
 
 ```js
 thisComp.layer("Text Layer 2").transform.opacity;
@@ -238,14 +238,31 @@ thisComp.layer("Text Layer 2").transform.opacity;
 
 ### What Layer Attributes Are
 
-Each layer has properties that you can change 
+Each layer has properties that you can change, which you can see by 'twirling' the layer open in the timeline. Each one of these properties is an *attribute* of that layer.
+
+![All the attributes of a text layer in the timeline](layer-attributes.png)
+
+A layers properties follow a parent-child hierarchy in the same way as compositions and layers. In a text layer (as per the above example) you can see that properties such as scale, position and anchor point are all children of the transform property.
+
+### Referencing Layer Attributes
+
+When referencing the property in an expression, your mirror this parent child relationship by starting with the layer (`js›thisLayer`) followed by the parent of the property, and then the property itself.
 
 ```js
 thisLayer.transform.opacity;
 ```
 
+In the above example, transform is the property group (or parent) and opacity is the property.
+
+### thisProperty and value
+
+In the same way you can reference the current composition and layer by using `js›thisComp` and `js›thisLayer`, you can reference the current property by using `js›thisProperty`. This is useful when you want to modify a keyframed value, such as add another value onto it or multiply it by a slider.
+
 ```js
-thisProperty;
+const controlAmount =
+  thisLayer.effect("Animation Amount")("Slider").value;
+
+thisProperty * controlAmount;
 ```
 
 ```js
