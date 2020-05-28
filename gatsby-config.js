@@ -10,6 +10,9 @@ module.exports = {
     },
     repoUrl: `https://github.com/motiondeveloper/blog`,
   },
+  mapping: {
+    'Mdx.frontmatter.author': `AuthorYaml`,
+  },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
@@ -61,6 +64,7 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
+    `gatsby-transformer-yaml`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
