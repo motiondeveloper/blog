@@ -1,0 +1,11 @@
+- id: timhaywood
+  name: Tim Haywood
+  bio: Known for doing simple tasks with complex expressions, Tim spends most of his time trying to make After Effects more like React.
+  website: 'https://github.com/timhaywood'
+  photo: 'timhaywood.jpg'
+
+- id: dannyjenkins
+  name: Danny Jenkins
+  bio: A killer motion designer and team leader, Danny is well known for making complex graphics in just one layer and his love for the Circle effect.
+  website: 'http://danyjenkins.com.au'
+  photo: 'dannyjenkins.jpg'
