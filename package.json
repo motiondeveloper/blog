@@ -34,6 +34,7 @@
     "gatsby-remark-smartypants": "^2.1.21",
     "gatsby-source-filesystem": "^2.1.48",
     "gatsby-transformer-sharp": "^2.3.14",
+    "gatsby-transformer-yaml": "^2.4.2",
     "immutable": "^4.0.0-rc.12",
     "node-sass": "^4.13.1",
     "prismjs": "^1.19.0",

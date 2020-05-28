@@ -15,10 +15,11 @@ import PageHeading from '../components/pageHeading';
 import HorizontalList from '../components/horizontalList';
 import { RelatedContent } from '../components/callout';
 import EditLink from '../components/editLink';
+import Byline from '../components/byline';
 
 const PostInfo = styled(HorizontalList)`
   margin-top: ${padding.large};
-  margin-bottom: ${padding.xlarge};
+  margin-bottom: 0;
   li {
     color: ${colors.grey};
     margin-bottom: ${padding.xxsmall};
@@ -66,6 +67,7 @@ class BlogPostTemplate extends React.Component {
               <TagsList tags={post.frontmatter.tags} />
             </li>
           </PostInfo>
+          <Byline author={post.frontmatter.author} />
         </div>
         <PostContent>
           <MDXRenderer>{post.body}</MDXRenderer>
@@ -139,6 +141,12 @@ export const pageQuery = graphql`
         description
         difficulty
         tags
+        author {
+          id
+          name
+          website
+          photo
+        }
       }
       ...EditLinkMdx
     }

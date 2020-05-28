@@ -11,6 +11,7 @@ const imageStyles = `
 `;
 
 const PostContent = styled.section`
+  margin-top: ${padding.xlarge};
   margin-bottom: ${padding.xxlarge};
   p {
     color: ${colors.white};
