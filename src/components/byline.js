@@ -35,7 +35,8 @@ const StyledByline = styled.div`
 const BylineImage = styled(Image)`
   margin-right: ${padding.small};
   margin-bottom: 0;
-  min-width: 36px;
+  max-width: 36px;
+  max-height: 36px;
 `;
 
 const Byline = ({ author }) => {
@@ -45,7 +46,7 @@ const Byline = ({ author }) => {
         nodes {
           name
           childImageSharp {
-            fixed(width: 36, height: 36) {
+            fixed(width: 90, height: 90, quality: 80) {
               ...GatsbyImageSharpFixed
             }
           }
@@ -59,7 +60,7 @@ const Byline = ({ author }) => {
       <BylineImage
         fixed={authorPhoto.childImageSharp.fixed}
         alt={author.name}
-        imgStyle={{ borderRadius: `50%` }}
+        imgStyle={{ borderRadius: `50%`, width: `36px`, height: `36px` }}
       />
       <p>
         <a href={author.website}>{author.name}</a>
