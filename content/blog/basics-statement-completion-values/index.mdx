@@ -35,11 +35,13 @@ The value `js›[0, 0]` will be used, but why?
 
 ## Completion values
 
-In an expression you perform actions such as assigning values to variables, calling functions or performing math. These actions are called 'statements'. In JavaScript, every statement has whats called a **completion value**.
+In an expression you perform actions such as assigning values to variables, calling functions or performing math. These actions are called 'statements'.
+
+In JavaScript, every statement has whats called a **completion value**.
 
 Statements such as variable declarations (`js›const myVariable = 2;`) and function declarations have a completion value of `empty`. 
 
-Expression statements, such as:
+Expression statements (statements that produce a value), such as:
 
 ```js
 [960, 540];
@@ -51,7 +53,7 @@ Have a completion value that is the result of the expression.
 
 <Inform>
 
-The value for the property will be the last completion value that isn't `empty`.
+The result of an expression will be the last completion value that isn't `empty`.
 
 </Inform>
 
