@@ -10,12 +10,15 @@ description: >-
 ---
 
 import { Note, Inform, Warn, ContentList } from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput';
 
 [MDN Referance]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/conditionals
 
 Now that you have learned how to [create and use variables](/blog/basics-variables), the next step is to make decisions based on their value.
 
-You can make decisions in code with whats called a **conditional statement**. This is a statement that executes different code based on a condition, such as whether one number is larger than another or if a checkbox is ticked.
+You can make decisions in code with whats called a **conditional statement**.
+
+This is a statement that executes different code based on a condition, such as whether one number is larger than another, or if a checkbox is enabled.
 
 <ContentList>
 
@@ -42,7 +45,7 @@ if (condition) {
 And contains:
 
 - The `js›if` keyword
-- The condition statement in parenthesis, that will resolve to `js›true` or `js›false`
+- The condition expression in parenthesis, that will resolve to `js›true` or `js›false`
 - A set of curly braces containing code that runs if the condition is `js›true`
 - The `js›else` keyword
 - A set of curly braces containing the code that runs if the condition is `js›false`
@@ -58,9 +61,17 @@ if (true) {
 }
 ```
 
+<Successful>
+
+```js
+'Condition is true';
+```
+
+</Successful>
+
 The layer will show the text 'Condition is true', while if we change it to `js›false`:
 
-```js{1}
+```js
 if (false) {
   'Condition is true';
 } else {
@@ -68,6 +79,14 @@ if (false) {
   'Condition is false';
 }
 ```
+
+<Successful>
+
+```js
+'Condition is false';
+```
+
+</Successful>
 
 You will see the text 'Condition is false'.
 
@@ -96,7 +115,7 @@ The comparison operators test if two values are:
 
 <Note>
 
-For more info on JavaScript types, see the [Expression Basics: Variables](../basics-variables/index.md) post
+For more info on JavaScript types, see the [Intro to Data Types](/blog/basics-intro-to-data-types) post
 
 </Note>
 
@@ -110,15 +129,18 @@ Or test if one value is:
 For example:
 
 ```js
-if (5 > 3) { // Evaluates to true
+if (5 > 3) {
+  // Evaluates to true
   'Code will run';
 }
 
-if ('My String' === 'Their String') { // Evaluates to false
+if ('My String' === 'Their String') {
+  // Evaluates to false
   'Code will not run';
 }
 
-if ('534' === 534) { // Evaluates to false
+if ('534' === 534) {
+  // Evaluates to false
   'Code will not run';
 }
 
@@ -152,12 +174,13 @@ To select between more than two choices, you can write `js›if` statements back
 
 ```js
 const jobTitle = 'Animator';
+
 if (jobTitle === 'Animator') {
   'Busy keyframing!'; 
 } else if (jobTitle === 'Developer') {
   'Writing code!';
 } else {
-  // If jobTitle isn't Animator or Developer
+  // jobTitle isn't Animator or Developer
   'Working hard!';
 }
 ```
@@ -176,6 +199,7 @@ For example:
 ```js
 const software = 'After Effects';
 const version = 14;
+
 if (version >= 16 && software === 'After Effects') {
   // Doesn't run
   'You can use JavaScript!';
@@ -183,6 +207,14 @@ if (version >= 16 && software === 'After Effects') {
   'You can use ExtendScript';
 }
 ```
+
+<Successful>
+
+```js
+'You can use ExtendScript';
+```
+
+</Successful>
 
 Will show `js›'You can use ExtendScript'` as `js›version >= 16` evaluates to false, while:
 
@@ -196,11 +228,19 @@ if (software === 'VS Code' || software === 'After Effects') {
 }
 ```
 
+<Successful>
+
+```js
+'Ready to code!';
+```
+
+</Successful>
+
 Will show `js›'Ready to code!'` as `js›software === 'After Effects'` evaluates to true.
 
 <Inform>
 
-Each side of a logical operator is a separate condition statement, so the expression `js›software === 'VS Code' || 'After Effects'` will always be true as, `js›'After Effects'` resolves to true.
+Each side of a logical operator is a separate condition expression, so the expression `js›(software === 'VS Code' || 'After Effects')` will always be `js›true` as, `js›'After Effects'` resolves to `js›true`.
 
 </Inform>
 
@@ -220,6 +260,14 @@ if (!usingAfterEffects) {
   'Why not try AE?'
 }
 ```
+
+<Successful>
+
+```js
+'Why not try AE?'
+```
+
+</Successful>
 
 ## Wrapping up
 
