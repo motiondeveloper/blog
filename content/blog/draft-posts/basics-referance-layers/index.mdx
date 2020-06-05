@@ -18,7 +18,7 @@ In previous article you've learnt how to create and use [variables](/blog/basics
 const myVar = 'Hello';
 ```
 
-Often you need to that value to come from a property on a different layer, rather than typing it into the expression directly. This allows you to 'link' layers together, one of the main uses for expressions.
+Often you need that value to come from a property on a different layer, rather than typing it into the expression directly. This allows you to 'link' layers together, one of the main uses for expressions.
 
 ```js
 const myVar = 'some value on another layer?';
@@ -111,7 +111,7 @@ This line of code tells After Effects to find the composition named `js›'Lower
 
 </Note>
 
-Each composition has built in properties, one of which is the `js›name` property is the name of the composition. We can use this to make sure we've selected the correct composition in our project.
+Each composition has built in properties, such as `js›name`, which returns the name of the composition. We can use this to make sure we've selected the correct composition in our project.
 
 ```js{2}
 const lowerThirdComp = comp("Lower Third");
@@ -255,6 +255,12 @@ thisLayer.transform.opacity;
 
 In the above example, transform is the property group (or parent) and opacity is the property.
 
+<Note>
+
+You can learn more about the data types associated with each property in the [Intro to Data Types](/blog/basics-intro-to-data-types) article.
+
+</Note>
+
 ### thisProperty and value
 
 In the same way you can reference the current composition and layer by using `js›thisComp` and `js›thisLayer`, you can reference the current property by using `js›thisProperty`. This is useful when you want to modify a keyframed value, such as add another value onto it or multiply it by a slider.
@@ -274,6 +280,16 @@ value;
 
 <Note>
 
-You can learn more about the difference between properties and their values in the [Properties vs Values](/blog/properties-vs-values) post.
+You can learn more about the difference between properties and their values in the [Native Attributes](/blog/basics-native-attributes) post.
 
 </Note>
+
+## Wrapping up
+
+In this article you learnt how to link to other layers properties using the **pickwhip**, as well as what each part of the expression means.
+
+```js
+const anotherProperty =
+  thisComp.layer("Another Layer").transform.position;
+```
+
