@@ -16,7 +16,7 @@ const ContentListWrapper = styled.div`
   margin-right: 0;
   border: 2.5px solid ${props => props.color};
   border-radius: ${padding.small};
-  padding: ${padding.large};
+  padding: ${padding.large} ${padding.large} ${padding.medium} ${padding.large};
 `;
 
 const ListContent = styled.div`

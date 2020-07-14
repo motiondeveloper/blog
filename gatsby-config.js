@@ -48,6 +48,14 @@ module.exports = {
             },
           },
           {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              offsetY: `32`,
+              icon: false,
+              elements: [`h2`],
+            },
+          },
+          {
             resolve: `gatsby-remark-prismjs`,
             options: {
               aliases: {
