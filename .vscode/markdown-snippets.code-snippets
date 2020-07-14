@@ -1,38 +1,150 @@
 {
-	// Place your blog workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
-	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
-	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
-	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
-	// Placeholders with the same ids are connected.
-	// Example:
-	// "Print to console": {
-	// 	"scope": "javascript,typescript",
-	// 	"prefix": "log",
-	// 	"body": [
-	// 		"console.log('$1');",
-	// 		"$2"
-	// 	],
-	// 	"description": "Log output to console"
-	// }
-
-	"JavaScript Inline": {
-		"scope": "markdown",
-		"prefix": "jsi",
-		"body": [
-			"`js›${1:code}` $0"
-		],
-		"description": "Add inline JavaScript"
-	},
-	"JavaScript Block": {
-		"scope": "markdown",
-		"prefix": "jsb",
-		"body": [
-			"```js",
-			"${1:code}",
-			"```",
-			"$0"
-		],
-		"description": "Add JavaScript block"
-	}
+  // Place your blog workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  // Placeholders with the same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"scope": "javascript,typescript",
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+  "Bold": {
+    "scope": "markdown",
+    "prefix": "**",
+    "body": ["**${1:content}** $0"],
+    "description": "Add bold text"
+  },
+  "Italics": {
+    "scope": "markdown",
+    "prefix": "*",
+    "body": ["*${1:content}* $0"],
+    "description": "Add italized text"
+  },
+  "JavaScript Inline": {
+    "scope": "markdown",
+    "prefix": "jsi",
+    "body": ["`js›${1:code}` $0"],
+    "description": "Add inline JavaScript"
+  },
+  "JavaScript Inline Parenthesis": {
+    "scope": "markdown",
+    "prefix": "jsip",
+    "body": ["(`js›${1:code}`) $0"],
+    "description": "Add inline JavaScript in parenthesis"
+  },
+  "JavaScript Block": {
+    "scope": "markdown",
+    "prefix": "jsb",
+    "body": ["```js", "${1:code}", "```", "$0"],
+    "description": "Add JavaScript block"
+  },
+  "Blog Link": {
+    "scope": "markdown",
+    "prefix": "lb",
+    "body": ["[${1:name}](/blog/${2:link}) $0"],
+    "description": "Add markdown link to a blog post"
+  },
+  "Link": {
+    "scope": "markdown",
+    "prefix": "ls",
+    "body": ["[${1:name}](${2:link}) $0"],
+    "description": "Add markdown link"
+  },
+  "Inform Block": {
+    "scope": "markdown",
+    "prefix": "binform",
+    "body": ["<Inform>", "", "${1:body}", "", "</Inform>", "", "$0"],
+    "description": "Add inform component"
+  },
+  "Note Block": {
+    "scope": "markdown",
+    "prefix": "bnote",
+    "body": ["<Note>", "", "${1:body}", "", "</Note>", "", "$0"],
+    "description": "Add note component"
+  },
+  "Success JavaScript Block": {
+    "scope": "markdown",
+    "prefix": "jsbs",
+    "body": [
+      "```js",
+      "${1:code}",
+      "```",
+      "",
+      "<Successful>",
+      "",
+      "```js",
+      "${2:result}",
+      "```",
+      "",
+      "</Successful>",
+      "",
+      "$0"
+    ],
+    "description": "Add Successful JavaScript block"
+  },
+  "Error JavaScript Block": {
+    "scope": "markdown",
+    "prefix": "jsbe",
+    "body": [
+      "```js",
+      "${1:code}",
+      "```",
+      "",
+      "<Errorful>",
+      "",
+      "```js",
+      "${2:result}",
+      "```",
+      "",
+      "</Errorful>",
+      "",
+      "$0"
+    ],
+    "description": "Add Errorful JavaScript block"
+  },
+  "Link to variables post": {
+    "scope": "markdown",
+    "prefix": "variable",
+    "body": ["[${1:variable}](/blog/basics-variables) $0"],
+    "description": "Add markdown link to variables post"
+  },
+  "Link to data type post": {
+    "scope": "markdown",
+    "prefix": "data type",
+    "body": ["[${1:data type}](/blog/basics-intro-to-data-types) $0"],
+    "description": "Add markdown link to data types post"
+  },
+  "Link to function post": {
+    "scope": "markdown",
+    "prefix": "function",
+    "body": ["[${1:function}](/blog/basics-functions) $0"],
+    "description": "Add markdown link to functions post"
+  },
+  "Link to referencing layers post": {
+    "scope": "markdown",
+    "prefix": "referencing layers",
+    "body": [
+      "[${1:referencing layers and compositions}](/blog/basics-referance-layers) $0"
+    ],
+    "description": "Add markdown link to referencing layers post"
+  },
+  "Link to conditions post": {
+    "scope": "markdown",
+    "prefix": "condition",
+    "body": ["[${1:condition}](/blog/basics-conditions) $0"],
+    "description": "Add markdown link to conditions post"
+  },
+  "Link to objects post": {
+    "scope": "markdown",
+    "prefix": "object",
+    "body": ["[${1:object}](/blog/basics-objects) $0"],
+    "description": "Add markdown link to objects post"
+  }
 }
