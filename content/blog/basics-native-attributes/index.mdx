@@ -1,0 +1,154 @@
+---
+title: 'Expression Basics: Native Attributes'
+date: 2020-07-15
+difficulty: Beginner
+tags: ['basics', 'javascript']
+pinned: false
+author: timhaywood
+description: >-
+  Learn how to find and use the native attributes of After Effects compositions and layers.
+---
+
+import LocalVideo from 'components/localVideo';
+import { Note, Inform, Warn, ContentList } from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput';
+
+In the [Referencing Layers and Compositions](/blog/basics-referance-layers) article you learnt how to create references to After Effects compositions and layers in your expressions, as well as their attributes such as their `js›position`, `js›opacity`, and `js›scale`.
+
+You also learnt, from the previous article about [objects](/blog/basics-objects), that compositions and layers are JavaScript objects, with the layer attributes being properties of those objects.
+
+These [objects](/blog/basics-objects) also have other properties you can access in expressions, which you're unable able to pick whip to as they don't appear in the timeline.
+
+<Inform>
+
+**Native attributes** are the properties on After Effect's built in objects, such as compositions and layers.
+
+</Inform>
+
+In this article you'll learn how to find and use these **native attributes** built into After Effects.
+
+## Finding and using attributes
+
+### The expression language menu
+
+The easiest way to find what attributes are available is via the **expression language menu**, which is the small arrow next to the pick whip on an property with an expression.
+
+![The expression language menu](expression-language-menu.png)
+
+Clicking on the arrow reveals the [objects](/blog/basics-objects) available, with their attributes listed as the items in each sub menu. Selecting one of the attributes will insert it into the expression.
+
+<Inform>
+
+The **expression language menu** is a way of seeing the native attributes available, and inserting them into your expression.
+
+</Inform>
+
+Below is an example of using the expression language menu to insert a reference to the composition duration (`js›duration`) which you can find under the "Comp" sub menu.
+
+<LocalVideo videoName="inserting-a-native-attribute" title="Inserting a reference to the composition duration using the expression language menu"/>
+
+As you can see, inserting the duration property alone results in an error:
+
+```js
+duration
+```
+
+<Errorful>
+
+```js
+Reference Error: duration is not defined
+```
+
+</Errorful>
+
+This is because `js›duration` is a property of composition [objects](/blog/basics-objects), which you can tell as it's found under the "Comp" menu. As you learnt in the previous article, **property references must always begin with their parent object**.
+
+Changing the expression to reference the duration of the current composition object (`js›thisComp`) solves the error, and returns the correct duration.
+
+```js
+thisComp.duration;
+```
+
+<Successful>
+
+```js
+180
+```
+
+</Successful>
+
+<Inform>
+
+You must always reference the parent object when using native attributes.
+
+</Inform>
+
+You can known which object to reference by it's location in the expression language menu, whether it's an attribute of a composition, layer or property.
+
+<Note>
+
+To learn more about how to reference layers and compositions, see [Referencing Layers and Compositions](/blog/basics-referance-layers).
+
+</Note>
+
+### Listing an objects properties
+
+Another way to find what native attributes are available is by using JavaScript to list the properties on an object. Doing this on one of the built in objects, such as a layer, will show the native attributes available.
+
+```js
+let obj = thisLayer;
+let props = [];
+  
+do {
+    Object.getOwnPropertyNames(obj).forEach(prop => {
+        if (props.indexOf(prop) === -1) {
+            props.push(prop);
+        }
+    });
+} while (obj = Object.getPrototypeOf(obj));
+  
+props.join(", ");      
+```
+
+<Note>
+
+This expression comes from the Adobe article: [Syntax differences between the JavaScript and Legacy ExtendScript expression engines](https://helpx.adobe.com/au/after-effects/using/legacy-and-extend-script-engine.html)
+
+</Note>
+
+### The expression language reference
+
+You can also find a list of most of the native attributes available on Adobe's website, as well as explanations on each attribute.
+
+[Expression language reference (Adobe)](https://helpx.adobe.com/au/after-effects/using/expression-language-reference.html)
+
+This page is a vital resource for writing expressions, and is worth reading and keeping bookmarked.
+
+## Common ones
+
+### Composition
+
+- name
+- width, height
+- duration
+- numLayers
+
+### Layer
+
+- index
+- inPoint, outPoint
+- parent
+- width, height
+
+### Property
+
+- numKeys
+- value
+- velocity
+- speed
+- name
+
+## Wrapping up
+
+- Explore the menu, find things
+- Native methods (e.g. wiggle) coming after functions

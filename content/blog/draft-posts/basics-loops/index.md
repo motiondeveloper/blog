@@ -1,6 +1,6 @@
 ---
 title: 'Expression Basics: Loops'
-date: 2019-11-14
+date: 2021-07-15
 difficulty: Beginner
 tags: ['basics', 'javascript']
 pinned: false

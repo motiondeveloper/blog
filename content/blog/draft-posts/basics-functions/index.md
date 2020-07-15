@@ -1,6 +1,6 @@
 ---
 title: 'Expression Basics: Functions'
-date: 2019-11-14
+date: 2020-07-16
 difficulty: Beginner
 tags: ['basics', 'javascript']
 pinned: false
