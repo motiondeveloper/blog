@@ -263,6 +263,29 @@ You can learn more about the data types associated with each property in the [In
 
 </Note>
 
+
+### Properties vs Values
+
+It's important to note that a property reference, such as `js›thisLayer.transform.opacity`, is a reference to the *property itself*, not the **value** of that property.
+
+You can append `js›.value` to the property reference to get the value of the property.
+
+```js{5}
+// Reference to the opacity property
+thisLayer.transform.opacity;
+
+// Reference to the opacity value
+thisLayer.transform.opacity.value;
+```
+
+In most cases After Effects will automatically give you the value of the property when you reference it, but not always. Because of this it's always best to add `js›.value` when you want to the value of the property.
+
+<Inform>
+
+There is a difference between referencing a property, and the **value** of that property
+
+</Inform>
+
 ### thisProperty and value
 
 In the same way you can reference the current composition and layer by using `js›thisComp` and `js›thisLayer`, you can reference the current property by using `js›thisProperty`. This is useful when you want to modify a keyframed value, such as add another value onto it or multiply it by a slider.
@@ -271,18 +294,20 @@ In the same way you can reference the current composition and layer by using `js
 const controlAmount =
   thisLayer.effect("Animation Amount")("Slider").value;
 
-thisProperty * controlAmount;
+thisProperty.value * controlAmount;
 ```
 
-You can also use the commonly used shorthand `js›value`, which as it's name suggests is the *value* of the property rather than the property itself.
+You can also omit `js›thisProperty` and write `js›value` alone.
 
 ```js
 value;
 ```
 
+Which will reference the value of the property the expression is on.
+
 <Note>
 
-You can learn more about the difference between properties and their values in the [Native Attributes](/blog/basics-native-attributes) post.
+This is due to After Effects inserting the `js›thisProperty` object reference automatically, which you can learn more about in the article on [Native Attributes](/blog/basics-native-attributes)
 
 </Note>
 
