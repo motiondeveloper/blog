@@ -61,7 +61,9 @@ Reference Error: duration is not defined
 
 </Errorful>
 
-This is because `js›duration` is a property of composition [objects](/blog/basics-objects), which you can tell as it's found under the "Comp" menu. As you learnt in the previous article, **property references must always begin with their parent object**.
+This is because `js›duration` is a property of a composition [object](/blog/basics-objects), which you can tell as it's found under the "Comp" menu.
+
+As you learnt in the previous article, **property references must always begin with their parent object**.
 
 Changing the expression to reference the duration of the current composition object (`js›thisComp`) solves the error, and returns the correct duration.
 
@@ -83,7 +85,7 @@ You must always reference the parent object when using native attributes.
 
 </Inform>
 
-You can known which object to reference by it's location in the expression language menu, whether it's an attribute of a composition, layer or property.
+You can known which object to reference by it's location in the expression language menu, whether it's an attribute of a composition, layer or property. For example, `js›speed` is an attribute of Properties as it's found under the "Property" menu.
 
 <Note>
 
@@ -124,31 +126,51 @@ You can also find a list of most of the native attributes available on Adobe's w
 
 This page is a vital resource for writing expressions, and is worth reading and keeping bookmarked.
 
-## Common ones
+## Commonly used attributes
+
+Below is a list of native attributes most commonly used in expressions, grouped by their parent [object](/blog/basics-objects). Knowing when and how to use these attributes is a key part of writing expressions.
 
 ### Composition
 
-- name
-- width, height
-- duration
-- numLayers
+Attributes on composition [objects](/blog/basics-objects), such as `js›thisComp` or `js›comp("Lower Third`, include:
+
+- `js›name`: The name of the composition
+- `js›width`: The width of the composition in pixels
+- `js›height`: The height of the composition in pixels
+- `js›duration`: The duration of the composition in seconds
+- `js›numLayers`: The number of layers in the composition
 
 ### Layer
 
-- index
-- inPoint, outPoint
-- parent
-- width, height
+Attributes on layer [objects](/blog/basics-objects), such as `js›thisLayer` or `js›thisComp.layer("Name")`, include:
+
+- `js›index`: The position of the layer in the layer stack
+- `js›inPoint`: The start point of the layer in seconds
+- `js›outPoint`: The out point of the layer in seconds
+- `js›parent`: The layer object of the layers parent
+- `js›width`: The width of the layer in pixels
+- `js›height`: The height of the layer in pixels
 
 ### Property
 
-- numKeys
-- value
-- velocity
-- speed
-- name
+Attributes on property [objects](/blog/basics-objects), such as `js›thisProperty` or `js›thisLayer.transform.opacity`, include:
+
+- `js›numKeys`: The number of keyframes on the property
+- `js›value`: The current value of the property
+- `js›velocity`: The current velocity of the property
+- `js›speed`: The current speed of the property
+- `js›name`: The name of the property (e.g. "Opacity")
+
+<Inform>
+
+After Effects will insert the `js›thisProperty` object reference automatically when using native attributes of the current property. This means you can write `js›name` or `js›speed` without `js›thisProperty`.
+
+</Inform>
+
+
 
 ## Wrapping up
 
-- Explore the menu, find things
-- Native methods (e.g. wiggle) coming after functions
+Native attributes enable you to use properties of layers and compositions in your expression, such as their size and duration. Knowing how to find and use these attributes is a key part of writing expressions.
+
+There are also functions built into these objects, known as **native methods**, which you will learn more about in a future article.
