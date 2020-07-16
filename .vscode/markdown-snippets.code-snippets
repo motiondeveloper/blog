@@ -18,55 +18,55 @@
   "Bold": {
     "scope": "markdown",
     "prefix": "**",
-    "body": ["**${1:content}** $0"],
+    "body": ["**${1:content}**$0"],
     "description": "Add bold text"
   },
   "Italics": {
     "scope": "markdown",
     "prefix": "*",
-    "body": ["*${1:content}* $0"],
+    "body": ["*${1:content}*$0"],
     "description": "Add italized text"
   },
   "JavaScript Inline": {
     "scope": "markdown",
     "prefix": "jsi",
-    "body": ["`js›${1:code}` $0"],
+    "body": ["`js›${1:code}`$0"],
     "description": "Add inline JavaScript"
   },
   "JavaScript Inline Parenthesis": {
     "scope": "markdown",
     "prefix": "jsip",
-    "body": ["(`js›${1:code}`) $0"],
+    "body": ["(`js›${1:code}`)$0"],
     "description": "Add inline JavaScript in parenthesis"
   },
   "JavaScript Block": {
     "scope": "markdown",
     "prefix": "jsb",
-    "body": ["```js", "${1:code}", "```", "$0"],
+    "body": ["```js", "${1:code}", "```$0"],
     "description": "Add JavaScript block"
   },
   "Blog Link": {
     "scope": "markdown",
     "prefix": "lb",
-    "body": ["[${1:name}](/blog/${2:link}) $0"],
+    "body": ["[${1:name}](/blog/${2:link})$0"],
     "description": "Add markdown link to a blog post"
   },
   "Link": {
     "scope": "markdown",
     "prefix": "ls",
-    "body": ["[${1:name}](${2:link}) $0"],
+    "body": ["[${1:name}](${2:link})$0"],
     "description": "Add markdown link"
   },
   "Inform Block": {
     "scope": "markdown",
     "prefix": "binform",
-    "body": ["<Inform>", "", "${1:body}", "", "</Inform>", "", "$0"],
+    "body": ["<Inform>", "", "${1:body}", "", "</Inform>$0"],
     "description": "Add inform component"
   },
   "Note Block": {
     "scope": "markdown",
     "prefix": "bnote",
-    "body": ["<Note>", "", "${1:body}", "", "</Note>", "", "$0"],
+    "body": ["<Note>", "", "${1:body}", "", "</Note>$0"],
     "description": "Add note component"
   },
   "Success JavaScript Block": {
@@ -83,9 +83,7 @@
       "${2:result}",
       "```",
       "",
-      "</Successful>",
-      "",
-      "$0"
+      "</Successful>$0"
     ],
     "description": "Add Successful JavaScript block"
   },
@@ -103,48 +101,54 @@
       "${2:result}",
       "```",
       "",
-      "</Errorful>",
-      "",
-      "$0"
+      "</Errorful>$0"
     ],
     "description": "Add Errorful JavaScript block"
   },
   "Link to variables post": {
     "scope": "markdown",
     "prefix": "variable",
-    "body": ["[${1:variable}](/blog/basics-variables) $0"],
+    "body": ["[${1:variable}](/blog/basics-variables)$0"],
     "description": "Add markdown link to variables post"
   },
   "Link to data type post": {
     "scope": "markdown",
     "prefix": "data type",
-    "body": ["[${1:data type}](/blog/basics-intro-to-data-types) $0"],
+    "body": ["[${1:data type}](/blog/basics-intro-to-data-types)$0"],
     "description": "Add markdown link to data types post"
   },
   "Link to function post": {
     "scope": "markdown",
     "prefix": "function",
-    "body": ["[${1:function}](/blog/basics-functions) $0"],
+    "body": ["[${1:function}](/blog/basics-functions)$0"],
     "description": "Add markdown link to functions post"
   },
   "Link to referencing layers post": {
     "scope": "markdown",
     "prefix": "referencing layers",
     "body": [
-      "[${1:referencing layers and compositions}](/blog/basics-referance-layers) $0"
+      "[${1:referencing layers and compositions}](/blog/basics-referance-layers)$0"
     ],
     "description": "Add markdown link to referencing layers post"
   },
   "Link to conditions post": {
     "scope": "markdown",
     "prefix": "condition",
-    "body": ["[${1:condition}](/blog/basics-conditions) $0"],
+    "body": ["[${1:condition}](/blog/basics-conditions)$0"],
     "description": "Add markdown link to conditions post"
   },
   "Link to objects post": {
     "scope": "markdown",
     "prefix": "object",
-    "body": ["[${1:object}](/blog/basics-objects) $0"],
+    "body": ["[${1:object}](/blog/basics-objects)$0"],
     "description": "Add markdown link to objects post"
+  },
+  "Link to completion values": {
+    "scope": "markdown",
+    "prefix": "completion",
+    "body": [
+      "[${1:statement completion value}](/blog/basics-statement-completion-values)$0"
+    ],
+    "description": "Add markdown link to completion values post"
   }
 }
