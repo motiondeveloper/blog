@@ -1,0 +1,368 @@
+---
+title: 'Expression Basics: Functions'
+date: 2020-07-16
+difficulty: Beginner
+tags: ['basics', 'javascript']
+pinned: false
+author: timhaywood
+description: >-
+  Level up your After Effects expressions by learning how to encapsulate sections of code in JavaScript functions.
+---
+
+[mdn referance]: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Functions
+
+import LocalVideo from 'components/localVideo';
+import { Note, Inform, Warn, ContentList } from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput';
+
+While you may not have seen functions used often in expressions, they are a fundamental component of the JavaScript language.
+
+Understanding how to create and use functions will enable you to write more readable and reusable code throughout your projects.
+
+<ContentList>
+
+- [Overview](#functions-overview)
+- [Parts of a function](#parts-of-a-function)
+- [Function parameters](#function-parameters)
+- [Return statements](#return-statements)
+- [Running functions](#running-functions)
+
+</ContentList>
+
+
+## Functions overview
+
+Functions allow you to encapsulate sections of code, which you can then run at anytime throughout your expressions. The code within the function can be anything you can run in an expression, from calculating values to [referencing layers and compositions](/blog/basics-referance-layers).
+
+<Inform>
+
+Functions are like **sub-expressions**: a section of code that produces a value, which you can run at any time.
+
+</Inform>
+
+Below is an example function to multiply two numbers together:
+
+```js
+function multiply(numberA, numberB) {
+  return numberA * numberB;
+}
+
+multiply(2, 12);
+```
+
+<Successful>
+
+```js
+24
+```
+
+</Successful>
+
+### Reasons for using functions
+
+Using functions in your expressions allows you to **encapsulate** sections of your code in separate units, breaking down long expressions into simpler and easier to read chunks.
+
+<Inform>
+
+Using functions to **break up complex expressions into smaller units** makes your code easier to understand and reuse.
+
+</Inform>
+
+### Built in functions
+
+If you have some experience with expressions, you've probably been using functions in already. This is because there are functions built into After Effects, such as:
+
+- `js›framesToTime()`
+- `js›random()`
+- `js›linear()`
+
+Understanding the fundamentals of how to create and run your own functions will deepen your understanding of how to best use these built in functions.
+
+## Parts of a function
+
+<Note>
+
+For the sake of simplicity, this article will focus on one of the ways to create functions, **function declarations**.
+
+</Note>
+
+**Function declarations** contain :
+
+- The `js›function` keyword at the start
+
+  ```js
+  function
+  ```
+  
+
+- The name of the function
+
+  ```js
+  function functionName
+  ```  
+
+  You use this name when running (also known as calling) the function. It's best to give a descriptive name that reflects what the function does.
+
+- Optionally the function **parameters**, enclosed in parenthesis (`js›()`) and separated by commas (`js›,`).
+
+  ```js
+  // A function with parameters
+  function functionName(parameterOne, parameterTwo);
+
+  // A function without parameters
+  function anotherFunction();
+  ```
+- The body of the function, enclosed in brackets (`js›{}`). The function body is the code that is run when calling the function.
+
+  ```js
+  function functionName(parameters) {
+    functionBody;
+  }
+  ```
+
+  The function body can optionally include a **return statement**. This is the keyword `js›return` followed by a value you wish to "send back" to where the function was called.
+
+## Function parameters
+
+Function parameters (also known as the **function arguments**) create [variables](/blog/basics-variables) with that name, which are available to the **function body**. You then perform actions on these variables and **return** the desired output.
+
+```js
+function multiply(numberA, numberB) {
+  // numberA = 2
+  // numberB = 12
+  return numberA * numberB;
+}
+
+multiply(2, 12);
+```
+
+When calling the function, you pass in the values for these variables to take. The value of each variable depends on the order of the parameters, for example parameter one will be value one, and parameter two value two, and so on.
+
+### Scope
+
+These [variables](/blog/basics-variables) are not accessible outside of the function, as they are **scoped** to the function. These means you don't need to worry about using conflicting variable names.
+
+Any variables created *inside* the function are also not available *outside* the function.
+
+<Inform>
+
+Variables created inside a function are not available to code outside of that function.
+
+</Inform>
+
+For example:
+
+```js
+function multiply(number) {
+  const amount = 5;
+  return number * amount;
+}
+
+amount * 2;
+```
+
+<Errorful>
+
+```js
+'amount' is missing or does not exist
+```
+
+</Errorful>
+
+Results in an error, as there is no `js›amount` variable available outside the function body.
+
+### Not using parameters
+
+Since a function has access to [variables](/blog/basics-variables) defined outside of it's function body, it's possible to avoid using function parameters and always reference external variables.
+
+```js
+const number = 2;
+const amount = 5;
+
+function multiply() {
+  return number * amount;
+}
+
+multiply();
+```
+
+In this case, the function output **becomes dependant on the code outside of the function**.
+
+This makes the function harder to understand and reuse, so it's recommended to always use function parameters rather than outside variables.
+
+<Inform>
+
+It's best to use **function parameters** wherever possible, rather than relying on outside variables.
+
+</Inform>
+
+## Return statements
+
+You use the keyword `js›return` in a function to stop executing it's function body, and return a value to where the function was called.
+
+```js
+function sayHi(name) {
+  return "Hi " + name + "!";
+}
+
+sayHi("AE user")
+```
+
+<Successful>
+
+```js
+"Hi AE user!"
+```
+
+</Successful>
+
+You can place any code next to a `js›return` statement that produces a value, such as a variable, multiplication, string. For example:
+
+```js
+return someValue;
+return 12 * 3;
+return aString + "a value";
+return true;
+```
+
+Are all valid `js›return` statements.
+
+<Inform>
+
+You can place any code that you can use on the right hand side of a [variable](/blog/basics-variables) assignment in a `js›return` statement.
+
+</Inform>
+
+You may break up a `js›return` statement into multiple lines, as long as you wrap the value in parenthesis (`js›()`). For example:
+
+```js
+return (
+  aString + "a value"
+);
+```
+
+You can place a `js›return` statement anywhere within the function body, such as nesting it within [conditions](/blog/basics-conditions).
+
+```js
+function isUsingAfterEffects(user) {
+  if (user.currentProgram === "After Effects") {
+    return true;
+  } else {
+    return false;
+  }
+}
+```
+
+<Note>
+
+Since a `js›return` statement exits the function, any code placed afterwards won't run.
+
+</Note>
+
+### Functions without a return statement
+
+If you omit the `js›return` statement from a function, it will return the JavaScript value `js›undefined`.
+
+An empty `js›return` statement (a return keyword by itself) will also return `js›undefined`.
+
+```js
+function emptyReturn(valueA, valueB) {
+  // No return statement
+  valueA * valueB;
+}
+emptyReturn(12, 8)
+```
+
+<Errorful>
+
+```js
+undefined
+```
+
+</Errorful>
+
+<Note>
+
+You can learn more about the `js›undefined` value in the article on [variables](/blog/basics-variables).
+
+</Note>
+
+## Running functions
+
+As you've seen throughout this article, you can run (or execute) functions by writing the function name, followed by parenthesis (`js›()`) and then it's parameters.
+
+```js
+functionName(parameters);
+```
+
+This runs the code inside the **function body** and then "produces" the return value. This is known as **calling** the function.
+
+Since calling a function produces a value, you can call a function in your expression wherever you could place a value. For example:
+
+```js
+// In a variable assignment
+const someValue = functionName(parameters);
+
+// In conditions
+if (functionName(parameters)) {
+  // Some code
+}
+
+// In an expression statement
+functionName(parameters) + 12;
+```
+
+<Inform>
+
+You can use a **function call** anywhere in your expression you can place a value.
+
+</Inform>
+
+Since function calls produce a [statement completion value](/blog/basics-statement-completion-values) that's either `js›undefined` or the `js›return` value, you can use them to set the value of an expression. For example:
+
+```js
+function sayHi() {
+  return "Hello!";
+}
+
+sayHi();
+```
+
+<Successful>
+
+```js
+"Hello!"
+```
+
+</Successful>
+
+Set's the value of the property to `js›"Hello!"`, the return value of the function.
+
+### Call/definition order
+
+In this article you've seen the **function definition** *above* the **function call**.
+
+You can also place the function definition *below* the function call, which in some cases can improve readability.
+
+```js
+// Function call above the function definition
+sayHi();
+
+function sayHi() {
+  // function body
+}
+```
+
+<Note>
+
+This is due to a process done to your code before it's run called **hoisting**, which we won't go into in this article.
+
+</Note>
+
+## Wrapping up
+
+Now that you have learnt the different parts of a function, as well as how to create and call your own, you can be confident using the functions built into After Effects.
+
+Using your own functions in your expressions will also enable you to break up complex expressions into smaller, simpler parts, making them easier to read and reuse.
+
+In the next article, you'll take a closer look at the functions built into After Effects objects such as compositions and layers, known as **native methods**.
