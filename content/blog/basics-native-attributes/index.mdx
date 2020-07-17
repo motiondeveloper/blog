@@ -79,12 +79,6 @@ thisComp.duration;
 
 </Successful>
 
-<Inform>
-
-You must always reference the parent object when using native attributes.
-
-</Inform>
-
 You can known which object to reference by it's location in the expression language menu, whether it's an attribute of a composition, layer or property. For example, `js›speed` is an attribute of Properties as it's found under the "Property" menu.
 
 <Note>
@@ -93,30 +87,6 @@ To learn more about how to reference layers and compositions, see [Referencing L
 
 </Note>
 
-### Listing an objects properties
-
-Another way to find what native attributes are available is by using JavaScript to list the properties on an object. Doing this on one of the built in objects, such as a layer, will show the native attributes available.
-
-```js
-let obj = thisLayer;
-let props = [];
-  
-do {
-    Object.getOwnPropertyNames(obj).forEach(prop => {
-        if (props.indexOf(prop) === -1) {
-            props.push(prop);
-        }
-    });
-} while (obj = Object.getPrototypeOf(obj));
-  
-props.join(", ");      
-```
-
-<Note>
-
-This expression comes from the Adobe article: [Syntax differences between the JavaScript and Legacy ExtendScript expression engines](https://helpx.adobe.com/au/after-effects/using/legacy-and-extend-script-engine.html)
-
-</Note>
 
 ### The expression language reference
 
@@ -125,6 +95,56 @@ You can also find a list of most of the native attributes available on Adobe's w
 [Expression language reference (Adobe)](https://helpx.adobe.com/au/after-effects/using/expression-language-reference.html)
 
 This page is a vital resource for writing expressions, and is worth reading and keeping bookmarked.
+
+## Layer and property object references
+
+You may have noticed that for attributes of layer and property objects, such as `js›thisLayer.inPoint` and `js›thisProperty.numKeys`, you can omit the object reference without causing an error.
+
+```js
+// With object reference
+thisLayer.inPoint;
+
+// Without object reference
+inPoint;
+```
+
+<Successful>
+
+```js
+2
+```
+
+</Successful>
+
+This seems to contradict what you learnt about [objects](/blog/basics-objects): that you must always reference the parent object before the attribute (`js›parentObject.attribute`).
+
+### Expression pre processing
+
+The reason layer and property attributes work without the object reference is that After Effects **pre processes** your expression to add references to the current layer or property object on native attributes.
+
+```js
+// Un processed (invalid) expression
+inPoint;
+numKeys;
+
+// Processed (valid) expression
+thisLayer.inPoint;
+thisProperty.numKeys;
+```
+
+<Inform>
+
+After Effects pre processes expressions, adding the appropriate object references to property and layer attributes.
+
+</Inform>
+
+This pre processing is not done to code in external files, so you must ensure to add the object references yourself in that case.
+
+<Note>
+
+Whether you add the property references yourself, or let After Effects add them during pre processing, is a matter or preference. For the sake of being explicit about what objects the attributes belong to, I prefer to add object references in my own expressions.
+
+</Note>
 
 ## Commonly used attributes
 
@@ -160,14 +180,6 @@ Attributes on property [objects](/blog/basics-objects), such as `js›thisProper
 - `js›velocity`: The current velocity of the property
 - `js›speed`: The current speed of the property
 - `js›name`: The name of the property (e.g. "Opacity")
-
-<Inform>
-
-After Effects will insert the `js›thisProperty` object reference automatically when using native attributes of the current property. This means you can write `js›name` or `js›speed` without `js›thisProperty`.
-
-</Inform>
-
-
 
 ## Wrapping up
 
