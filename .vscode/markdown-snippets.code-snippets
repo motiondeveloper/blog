@@ -150,5 +150,17 @@
       "[${1:statement completion value}](/blog/basics-statement-completion-values)$0"
     ],
     "description": "Add markdown link to completion values post"
+  },
+  "Link to native attributes": {
+    "scope": "markdown",
+    "prefix": "native attribute",
+    "body": ["[${1:native attribute}](/blog/basics-native-attributes)$0"],
+    "description": "Add markdown link to native attributes post"
+  },
+  "Link to native methods": {
+    "scope": "markdown",
+    "prefix": "native methods",
+    "body": ["[${1:native methods}](/blog/basics-native-methods)$0"],
+    "description": "Add markdown link to native methods post"
   }
 }
