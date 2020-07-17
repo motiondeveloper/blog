@@ -56,7 +56,7 @@ const PostItem = ({ post }) => {
   return (
     <PostCard key={post.fields.slug}>
       <PostTitle>
-        <Link to={`/blog/${post.fields.slug}`}>{title}</Link>
+        <Link to={`/blog${post.fields.slug}`}>{title}</Link>
       </PostTitle>
 
       <PostInfo>
