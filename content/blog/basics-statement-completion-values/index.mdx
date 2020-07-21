@@ -12,7 +12,7 @@ description: >-
 import { Note, Inform, Warn } from 'components/callout';
 import { Successful, Errorful } from 'components/codeOutput'
 
-When there's multiple lines in your expression, it's important to know which value After Effects will use for the property once the code is evaluated.
+When there's multiple statements in your expression, it's important to know what value After Effects will use for the property once the code is evaluated.
 
 For example in the expression:
 
@@ -31,25 +31,83 @@ const otherPosition = [500, 500];
 
 </Successful>
 
-The value `js›[0, 0]` will be used, but why?
+The property will be set to `js›[0, 0]`, but why?
+
+## What is a statement?
+
+An expression is made up of a sequence of instructions to the JavaScript Engine which executes the code.
+
+These instructions include tasks such as "assign this value to this variable", "return this value from the [function](/blog/basics-functions)", or "throw this error".
+
+In JavaScript, these instructions are called **statements**.
+
+<Inform>
+
+A **statement** is an instruction to the JavaScript engine
+
+</Inform>
+
+Any piece of code is made up of a sequence of statements, and in JavaScript each statement is separated by a semi-colon (`js›;`).
+
+### JavaScript expressions
+
+A unit of code that produces (or results in) a value, such as:
+
+- A value itself: `js›"A string"`
+- A mathematical operation: `js›12 * 5`
+- A [function](/blog/basics-functions) call: `js›wiggle(5, 12)`
+
+Is called an ***expression***. To avoid confusion with After Effects expressions, JavaScript *expressions* will be italicized.
+
+<Inform>
+
+In the same way that an After Effects expression is code that produces the value for a property, a **JavaScript *expression* is a piece of code that produces a value**.
+
+</Inform>
+
+*Expressions* can be **part of a statement**, such as:
+
+```js
+const aValue = 12 * 5;
+```
+
+Or as **a statement itself**:
+
+```js
+12 * 5;
+```
+
+If a statement only contains a JavaScript *expression*, it is known as an ***expression* statement**.
+
+<Inform>
+
+**Expression statements** are statements that contain only an *expression*.
+
+</Inform>
 
 ## Completion values
 
-In an expression you perform actions such as assigning values to variables, calling functions or performing math. These actions are called 'statements'.
-
 In JavaScript, every statement has whats called a **completion value**.
 
-Statements such as variable declarations (`js›const myVariable = 2;`) and function declarations have a completion value of `empty`. 
+Statements such as variable declarations (`js›const myVariable = 2;`) have a completion value of `empty`.
 
-Expression statements (statements that produce a value), such as:
+```js
+// Completion value: empty
+const myVariable = 2;
+// Completion value: empty
+let someString = "hello" 
+```
+
+While expression statements have a completion value that is the result of the expression.
 
 ```js
 [960, 540];
+// Completion value: [960, 540]
 Math.random();
+// Completion value: 0.3
 "Hello";
+// Completion value: "Hello"
 ```
-
-Have a completion value that is the result of the expression.
 
 <Inform>
 
@@ -57,11 +115,23 @@ The result of an expression will be the last completion value that isn't `empty`
 
 </Inform>
 
+This means that the value of a property will almost always be the **result of the last expression statement**.
+
+<Note>
+
+Some other statements, such as [if statements](/blog/basics-conditions) with falsy conditions, have a completion value of `js›undefined`
+
+</Note>
+
+## Wrapping up
+
 So if we consider the completion values of each statement in our earlier expression:
 
 ```js
 const myPosition = [960, 540]; // empty
+// Expression statement
 myPosition * 2; // [1920, 1080]
+// Expression statement
 [0, 0]; // [0, 0]
 const otherPosition = [500, 500]; // empty
 ```
@@ -74,6 +144,6 @@ const otherPosition = [500, 500]; // empty
 
 </Successful>
 
-You can see that `js›[0, 0]` will be used as it's the last statement with a non-empty completion value.
+You can see that `js›[0, 0]` will be used as it's **the last statement with a non-empty completion value**.
 
-This will be important as you write more complex expressions.
+Knowing which statement will set the value for your expression becomes important as you write longer, more complex expressions.
