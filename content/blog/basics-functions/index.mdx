@@ -138,6 +138,33 @@ multiply(2, 12);
 
 When calling the function, you pass in the values for these variables to take. The value of each variable depends on the order of the parameters, for example parameter one will be value one, and parameter two value two, and so on.
 
+### Default parameter values
+
+You can also specify a **default value** for a function parameter.
+
+You create a default value for a parameter by writing the equals sign (`js›=`) followed by the default value you wish to set.
+
+For example:
+
+```js
+function multiply(numberA, numberB = 12) {
+  // numberA is 2
+  // numberB is 12
+  return numberA * numberB;
+}
+
+multiply(2);
+```
+
+<Successful>
+
+```js
+24;
+```
+</Successful>
+
+If you don't provide a value for that parameter in the function call, the default value will be used instead.
+
 ### Scope
 
 These [variables](/blog/basics-variables) are not accessible outside of the function, as they are **scoped** to the function. These means you don't need to worry about using conflicting variable names.
