@@ -373,18 +373,25 @@ You can also place the function definition *below* the function call, which in s
 
 ```js
 // Function call above the function definition
-sayHi();
+const message = sayHi();
 
 function sayHi() {
   // function body
 }
+
+message;
 ```
 
-<Note>
+Since the [completion value](/blog/basics-statement-completion-values) for a function declaration is **the function itself**, ending your expression with a function declaration will result in either:
 
-This is due to a process done to your code before it's run called **hoisting**, which we won't go into in this article.
+- Setting the property to the function code as a string, if it's on a text property
+- An error
 
-</Note>
+<Inform>
+
+If the last [statement](/blog/basics-statement-completion-values) in your expression is a function declaration, value of the property will be the function itself.
+
+</Inform>
 
 ## Wrapping up
 
