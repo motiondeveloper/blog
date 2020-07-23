@@ -14,11 +14,13 @@ import { Note, Inform, Warn, ContentList } from 'components/callout';
 
 [GithubPage]: https://github.com/motiondeveloper/eKeys
 
-When making [Motion Graphics Templates](https://helpx.adobe.com/au/after-effects/using/creating-motion-graphics-templates.html) in After Effects, or any other type of automated work, there comes a time when you wish you were able to add and modify keyframes with expressions.
+When making [Motion Graphics Templates](https://helpx.adobe.com/au/after-effects/using/creating-motion-graphics-templates.html) in After Effects, or any other  automated work, there comes a time when you wish you were able to add and modify keyframes with expressions.
 
-While you're able to get some functionality using the `js›linear` or `js›ease` expressions, this quickly gets messy, and you're still not able to modify the easing like you are with keyframes.
+While you're able to get some functionality using the `js›linear()` or `js›ease()` [functions](/blog/basics-functions), this quickly gets messy, and you're still not able to modify the easing like you are with keyframes.
 
-**eKeys** solves this problem by giving you an easy way to create keyframes in expressions. In this blog post, you'll learn how to get starting using eKeys in your projects.
+**eKeys solves this problem by giving you an easy way to create keyframes in expressions**.
+
+In this blog post, you'll learn how to get starting using eKeys in your projects.
 
 <ContentList>
 
@@ -34,7 +36,7 @@ While you're able to get some functionality using the `js›linear` or `js›eas
 
 eKeys is an importable animation engine for After Effects that allows you to animate within expressions, with the same level of control as traditional keyframes.
 
-It comes in the form of a `.jsx` file that's imported into your project, with the properties for each keyframe added/modified within the expression.
+It comes in the form of a `js›.jsx` file that's imported into your project, with the properties for each keyframe added/modified within the expression.
 
 ![eKeys code on the left and the generated keyframes on the right](how-it-works.svg "How eKeys works")
 
@@ -46,8 +48,7 @@ Once downloaded, all you need to do is import the file into your After Effects p
 
 <Warn>
 
-Since After Effects doesn't count footage items that are only referenced within expressions as used, it's recommended that you also place the eKeys.jsx file in any compositions where it is referenced.
-This will ensure After Effects includes the file when collecting assets or packaging into a Motion Graphics Template.
+**It's recommended that you also place the eKeys.jsx file in any compositions where it is referenced.** This will ensure After Effects includes the file when collecting assets or packaging into a Motion Graphics Template.
 
 </Warn>
 
@@ -69,7 +70,7 @@ To start using eKeys in an expression, you first need to create a reference to t
 const eKeys = footage('eKeys.jsx').sourceData;
 ```
 
-Then we can create our keyframe objects.
+Then we can create our keyframe [objects](/blog/basics-objects).
 
 ### The Keyframe Array
 
@@ -108,29 +109,29 @@ eKeys expects each keyframe to have a `js›keyTime` and `js›keyValue` propert
 
 - **`js›keyValue`**
 
-    The value of the keyframe, which can be a number or array
+    The value of the keyframe, which can be a `js›number` or `js›array`
 
 - **`js›easeIn`** and **`js›easeOut`**
 
-    The amount of easing to be applied as a number between 0 and 100 (both defaulting to 33).
+    The amount of easing to be applied as a number between `js›0` and `js›100` (both defaulting to `js›33`).
 
-    This works the same way as the influence percentage you might be used to seeing on traditional keyframes.
+    This works the same way as the influence percentage on traditional keyframes.
 
 - **`js›velocityIn`** and **`js›velocityOut`**
 
-    The incoming and outgoing velocity of the keyframe (both defaulting to 0).
+    The incoming and outgoing velocity of the keyframe (both defaulting to `js›0`).
 
 You can find more information on these properties on the [Github Page][GithubPage].
 
-<Note>
+<Inform>
 
-eKeys sorts the keyframes by their time before animating, so you don't have to put them in the right order - but your expressions will be a lot clearer if you do!
+eKeys sorts the keyframes by their time before animating, so you don't have to put them in the right order in your expression. However, your expressions will be easier to read if you do.
 
-</Note>
+</Inform>
 
 ### Returning the final animation
 
-You can now get the final animated value by calling the `js›animate()` function, and passing it your keyframe array and a time value.
+You can now get the final animated value by calling the `js›animate()` [function](/blog/basics-functions), and passing it your keyframe array and a time value.
 
 ```js{14}
 const eKeys = footage('eKeys.jsx').sourceData;
@@ -149,13 +150,13 @@ const keys = [
 eKeys.animate(keys, time);
 ```
 
-You can call `js›eKeys.animate()` with with any number to return the animated value at that time. This allows you to get the value at a specific time, reverse the animation, or play the animation at different speeds.
+You can call `js›eKeys.animate()` with any number to return the animated value at that time. This allows you to get the value at a specific time, reverse the animation, or play the animation at different speeds.
 
 Passing the composition time, as `js›time`, will give you the animation as normal.
 
 ## Why use eKeys
 
-While the example in this post would have been much easier to create with traditional keyframes, the real benefit of eKeys comes when using JavaScript to set the keyframe properties dynamically.
+While the example in this post would have been easier to create with traditional keyframes, the real benefit of eKeys comes when using JavaScript to set the keyframe properties dynamically.
 
 eKeys simplifies tasks such as:
 
