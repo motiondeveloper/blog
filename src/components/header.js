@@ -130,7 +130,7 @@ const PageHeader = () => {
         <DesktopLink to={`/contact`}>Contact</DesktopLink>
         <DesktopLink to={`/blog`}>Blog</DesktopLink>
         <DesktopLink to={`/blog/basics-introduction`}>
-          Expressions Course
+          Expression Basics
         </DesktopLink>
         <DesktopLink to={`/blog/how-to-animate-with-expressions`}>
           eKeys
@@ -154,7 +154,7 @@ const PageHeader = () => {
         <MobileLink to={`/contact`}>Contact</MobileLink>
         <MobileLink to={`/blog`}>Blog</MobileLink>
         <MobileLink to={`/blog/basics-introduction`}>
-          Expressions Course
+          Expression Basics
         </MobileLink>
         <MobileLink to={`/blog/how-to-animate-with-expressions`}>
           eKeys
