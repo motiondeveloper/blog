@@ -1,0 +1,258 @@
+---
+title: "How to use our expression library: aeFunctions"
+date: 2020-07-23
+difficulty: Intermediate
+tags: ["aefunctions", "tools"]
+pinned: false
+author: timhaywood
+description: >-
+  How to use our library of common After Effects expression functions, aeFunctions.
+---
+
+import { Note, Inform, Warn, ContentList } from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput'
+import { ToggleSection } from 'components/toggleSection'
+
+[GithubPage]: https://github.com/motiondeveloper/aefunctions
+[Releases]: https://github.com/motiondeveloper/aefunctions/releases
+
+If you write a lot of After Effects expressions, you will find yourself writing the same code over and over again. Extracting these commonly used pieces of code into [functions](/blog/basics-functions) helps you be more efficient, so you're not starting from scratch with each new project.
+
+We've placed the functions we use on a daily basis into one file, called [**aeFunctions**][GithubPage], that you can important into your After Effects project.
+
+## What is aeFunctions
+
+aeFunctions is a collection of [functions](/blog/basics-functions) you can important into your project, in the form of a `js›jsx` file. These functions are a collection of our most commonly used expressions.
+
+## Installation
+
+You can download the latest version of aeFunctions by going to the [GitHub Releases page][Releases] and downloading `js›aefunctions.jsx`. 
+
+Once downloaded, all you need to do is import the file into your After Effects project like you would any other footage item.
+
+<Warn>
+
+**It's recommended that you also place the `js›aefunctions.jsx` file into any compositions where it is referenced**. This will ensure After Effects includes the file when collecting assets or packaging into a Motion Graphics Template.
+
+</Warn>
+
+## Writing the expression
+
+To start using `js›aeFunctions` in an expression, you first need to create a reference to the file you imported earlier.
+
+```js
+const aef = footage('aefunctions.jsx').sourceData;
+```
+
+You can name the [variable](/blog/basics-variables) anything you'd like, we've used the abbreviated `js›aef` here, short for `js›aeFunctions`.
+
+This variable is an [object](/blog/basics-objects), with each of the [functions](/blog/basics-functions) available as properties of the `js›aef` object.
+
+To use a function in the library, you can call it like any other [method](/blog/basics-native-methods), starting with the object name and then the functions name. For example:
+
+```js{2}
+const aef = footage('aefunctions.jsx').sourceData;
+aef.attachKeys(2, 2);
+```
+
+## Functions in the library
+
+Below is a list of the functions available in the library, separated by category.
+
+<ToggleSection title="✍️ Strings">
+
+- **breakWithoutOrphans**
+
+  ```javascript
+  breakWithoutOrphans(string, maxCharacters, minWords);
+  ```
+
+  Inserts line breaks in a given `string` as per the `maxCharacters` per line, while avoiding the last line having less than the `minWords`.
+
+- **textCount**
+
+  ```javascript
+  textCount(sourceText, type);
+  ```
+
+  Returns the number of words, lines or characters in a string. Takes a string and the type of count, either `"word"`,`"line"` or `"char"`. If no count type is specified, a default of `"word"` is used.
+
+- **cleanLines**
+
+  ```javascript
+  cleanLines(string, maxLines, maxCharacters);
+  ```
+
+  Limits the maximum number of lines, as well as performing the following actions on each line:
+
+  - Limiting the number of characters
+  - Removing leading and trailing whitespace
+
+- **hideDescenders**
+
+  ```javascript
+  hideDescenders(string, hideTime);
+  ```
+
+  Hides a modified version of the source string in negative time (defaulting to `-500`) where each line is replaced with an `'X'`. Useful for maintaining positions or anchor points regardless of whether a layer has any descenders (when used with `sourceRectAtTime(hideTime)`).
+
+</ToggleSection>
+
+<ToggleSection title="📊 Numbers">
+
+- **padNumber**
+
+  ```javascript
+  padNumber(number, length);
+  ```
+
+  Adds leading zeros to a number, up to a specified total length.
+
+- **commaNum**
+
+  ```javascript
+  commaNum(number);
+  ```
+
+  Rounds and adds commas to a number (e.g. "100,000,000). Original function courtesy of Dan Ebberts.
+
+- **countdown**
+
+  ```javascript
+  countdown(length, speed);
+  ```
+
+  Returns an string in the format `minutes:seconds`, counting down to zero from a specified number of seconds. An optional `speed` value can be given to mofify the countdown rate (defaults to `1`).
+
+</ToggleSection>
+
+<ToggleSection title="🔹 Keyframes">
+
+- **attachKeys**
+
+  ```javascript
+  attachKeys(inKeys, outKeys);
+  ```
+
+  Attaches a specified number of keyframes to the in and out point of a layer, so you can trim the layer and your keyframed animation will follow. Takes the number of in and out keyframes to attach as input.
+
+- **bounceKeys**
+
+  ```javascript
+  bounceKeys(amp, freq, decay, keyMin, keyMax);
+  ```
+
+  Adds a bounce effect to the keyframes within a specified range. Somewhat untested.
+  Adapted from [Danny Jenkins' bounce script](http://dannyjenkins.com.au/After-Effects-Expressions).
+
+- **keyframesToArray**
+
+  ```javascript
+  getKeyframesAsArray();
+  ```
+
+  Returns an array of keyframes, where each element is an object with `.time` and `.value` properties. Takes no inputs.
+
+</ToggleSection>
+
+<ToggleSection title="📌 Transform">
+
+- **isometricPosition**
+
+  ```javascript
+  getIsometricPosition(pointControl, offset);
+  ```
+
+  Takes a set of 2D coordinates from a point control effect and returns isometric positions. Takes the name of the point control and an offset array as input.
+
+- **circularMotion**
+
+  ```javascript
+  circularMotion(radius, revolutionTime, startAngle);
+  ```
+
+  Returns an animated, 2 dimensional value that moves in a circle according to a given `radius`, `revolutionTime` (time to complete one revolution), and `startAngle`.
+
+- **circularPosition**
+
+  ```javascript
+  circularPosition(radius, angle);
+  ```
+
+  Returns a position along a circle according to a given `radius` and `angle`.
+
+- **scaleToFit**
+
+  ```javascript
+  scaleToFit(inputSize, maxSize, toggles);
+  ```
+
+  Returns a scale (`[###, ###]`) that will fit a given size. `inputSize` and `maxSize` are 2D arrays, and `toggles` is an optional object with the properties `{onlyScaleUp: bool, onlyScaleDown: bool, uniform: true}`.
+
+</ToggleSection>
+
+<ToggleSection title="🥞 Layer">
+
+- **layerBoundsPath**
+
+  ```javascript
+  getLayerBoundsPath(buffer, sourceLayer, extend, sampleTime);
+  ```
+
+  Returns a path that is a rectangle the size of the specified layer, plus a given buffer. Takes the buffer amount, source layer, whether to include extents, and a sample time as optional inputs. If no inputs a given, it defaults to `0`, `thisLayer`, `false` and `time`.
+
+- **layerSize**
+
+  ```javascript
+  layerSize(layerIndex, sampleTime);
+  ```
+
+  Returns the width and height of a layer as an array. Takes the layer (index or name) and sample time as input. If no sampleTime parameter is given, a default of the current time is used.
+
+</ToggleSection>
+
+<ToggleSection title="📐 Points">
+
+- **pointsToPath**
+
+  ```javascript
+  getPathFromPoints(points, closed);
+  ```
+
+  Returns a path containing the given array of points. `closed` defaults to true. Points are assumed to be in composition space.
+
+- **gridPoints**
+
+  ```javascript
+  gridPoints({ rows, columns, rowNum, columnNum, gridSize });
+  ```
+
+  Returns a rectangular path that is a cell of a grid.
+
+  - `rows`: The number of rows in the grid
+  - `columns`: The number of columns in the grid
+  - `rowNum`: The row number of the cell
+  - `columnNum`: The column number of the cell
+  - `gridSize`: The total size of the grid as a 2D array. Defaults to the composition size.
+
+</ToggleSection>
+
+<ToggleSection title="✨ Other">
+
+- **effectSearch**
+
+  ```javascript
+  effectSearch(effectName);
+  ```
+
+  Returns the number of effects with a certain name, or the total number of effects if no name is given. Takes the effect name to search for as input.
+
+- **hideLayerWhenBelow**
+
+  ```javascript
+  hideLayerWhenBelow(layerIndex);
+  ```
+
+  Returns an opacity of 0 if the specified layer has started, otherwise returns 100. Useful for quickly working with lots of stacked layers in After Effects. Takes the layer index (integer) or layer name (string) as input.
+
+</ToggleSection>
