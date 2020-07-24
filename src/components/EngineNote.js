@@ -8,7 +8,9 @@ export const EngineNote = () => {
   const [isBannerActive, setIsBannerActive] = React.useState(true);
   React.useEffect(() => {
     function loadBanner() {
-      const displayBanner = localStorage.getItem('hide-engine-banner');
+      const displayBanner = JSON.parse(
+        localStorage.getItem('hide-engine-banner'),
+      );
       return displayBanner || true;
     }
     setIsBannerActive(loadBanner());
