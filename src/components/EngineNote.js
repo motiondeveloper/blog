@@ -4,25 +4,18 @@ import { css } from 'styled-components';
 import { XCircle } from 'react-feather';
 import { colors, padding } from '../theme';
 
+const isBrowser = () => typeof window !== 'undefined';
+
+const getShowBanner = () =>
+  isBrowser() && window.localStorage.getItem('showBanner')
+    ? JSON.parse(window.localStorage.getItem('showBanner'))
+    : {};
+const setShowBanner = show =>
+  window.localStorage.setItem('showBanner', JSON.stringify(show));
+
 export const EngineNote = () => {
-  const [isBannerActive, setIsBannerActive] = React.useState(true);
-  React.useEffect(() => {
-    function loadBanner() {
-      const displayBanner = JSON.parse(
-        localStorage.getItem('hide-engine-banner'),
-      );
-      return displayBanner || true;
-    }
-    setIsBannerActive(loadBanner());
-  }, []);
-  React.useEffect(() => {
-    localStorage.setItem('hide-engine-banner', isBannerActive);
-  }, [isBannerActive]);
-  const hideAlert = () => {
-    setIsBannerActive(false);
-  };
   return (
-    isBannerActive === true && (
+    getShowBanner() === true && (
       <div
         css={css`
           display: flex;
@@ -51,7 +44,7 @@ export const EngineNote = () => {
             padding: 0;
             height: 20px;
           `}
-          onClick={hideAlert}
+          onClick={setShowBanner(false)}
         >
           <XCircle
             css={css`
