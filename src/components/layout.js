@@ -12,15 +12,6 @@ const GlobalStyles = createGlobalStyle`
     color: ${colors.white};
     margin: 0;
   }
-`;
-
-const Page = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 640px;
-
-  padding-left: ${padding.large};
-  padding-right: ${padding.large};
 
   a {
     text-decoration: underline;
@@ -30,6 +21,15 @@ const Page = styled.div`
   a:hover {
     background-color: ${colors.blue + 22};
   }
+`;
+
+const Page = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 640px;
+
+  padding-left: ${padding.large};
+  padding-right: ${padding.large};
 
   p {
     line-height: 150%;

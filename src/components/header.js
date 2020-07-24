@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { GitHub, Twitter } from 'react-feather';
 
 import { colors, padding, text } from '../theme';
+import { EngineNote } from './EngineNote';
 
 const breakpoint = '740px';
 
@@ -124,43 +125,46 @@ const PageHeader = () => {
   const { social } = data.site.siteMetadata;
 
   return (
-    <Header>
-      <HeaderContent>
-        <Logo imageSource={data.avatar.childImageSharp.fixed} />
-        <DesktopLink to={`/contact`}>Contact</DesktopLink>
-        <DesktopLink to={`/blog`}>Blog</DesktopLink>
-        <DesktopLink to={`/blog/basics-introduction`}>
-          Expression Basics
-        </DesktopLink>
-        <DesktopLink to={`/blog/how-to-animate-with-expressions`}>
-          eKeys
-        </DesktopLink>
-        <ItemGroup>
-          <HeaderIcon
-            href={`https://twitter.com/${social.twitter}`}
-            aria-label="Twitter profile"
-          >
-            <Twitter size={iconSize} />
-          </HeaderIcon>
-          <HeaderIcon
-            href={`https://github.com/${social.github}`}
-            aria-label="Github profile"
-          >
-            <GitHub size={iconSize} />
-          </HeaderIcon>
-        </ItemGroup>
-      </HeaderContent>
-      <MobileLinks>
-        <MobileLink to={`/contact`}>Contact</MobileLink>
-        <MobileLink to={`/blog`}>Blog</MobileLink>
-        <MobileLink to={`/blog/basics-introduction`}>
-          Expression Basics
-        </MobileLink>
-        <MobileLink to={`/blog/how-to-animate-with-expressions`}>
-          eKeys
-        </MobileLink>
-      </MobileLinks>
-    </Header>
+    <>
+      <Header>
+        <HeaderContent>
+          <Logo imageSource={data.avatar.childImageSharp.fixed} />
+          <DesktopLink to={`/contact`}>Contact</DesktopLink>
+          <DesktopLink to={`/blog`}>Blog</DesktopLink>
+          <DesktopLink to={`/blog/basics-introduction`}>
+            Expression Basics
+          </DesktopLink>
+          <DesktopLink to={`/blog/how-to-animate-with-expressions`}>
+            eKeys
+          </DesktopLink>
+          <ItemGroup>
+            <HeaderIcon
+              href={`https://twitter.com/${social.twitter}`}
+              aria-label="Twitter profile"
+            >
+              <Twitter size={iconSize} />
+            </HeaderIcon>
+            <HeaderIcon
+              href={`https://github.com/${social.github}`}
+              aria-label="Github profile"
+            >
+              <GitHub size={iconSize} />
+            </HeaderIcon>
+          </ItemGroup>
+        </HeaderContent>
+        <MobileLinks>
+          <MobileLink to={`/contact`}>Contact</MobileLink>
+          <MobileLink to={`/blog`}>Blog</MobileLink>
+          <MobileLink to={`/blog/basics-introduction`}>
+            Expression Basics
+          </MobileLink>
+          <MobileLink to={`/blog/how-to-animate-with-expressions`}>
+            eKeys
+          </MobileLink>
+        </MobileLinks>
+      </Header>
+      <EngineNote />
+    </>
   );
 };
 
