@@ -41,6 +41,7 @@ export const EngineNote = () => {
           height: 20px;
         `}
         onClick={dismissBanner}
+        aria-label="Dismiss"
       >
         <XCircle
           css={css`
