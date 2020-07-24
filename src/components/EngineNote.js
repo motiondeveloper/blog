@@ -3,19 +3,12 @@ import { Link } from 'gatsby';
 import { css } from 'styled-components';
 import { XCircle } from 'react-feather';
 import { colors, padding } from '../theme';
-
-const isBrowser = () => typeof window !== 'undefined';
-
-const getShowBanner = () =>
-  isBrowser() && window.localStorage.getItem('showBanner')
-    ? JSON.parse(window.localStorage.getItem('showBanner'))
-    : {};
-const setShowBanner = show =>
-  window.localStorage.setItem('showBanner', JSON.stringify(show));
+import useStorage from '../hooks/useLocalStorage';
 
 export const EngineNote = () => {
+  const [showBanner, setShowBanner] = useStorage('show-banner', { bool: true });
   return (
-    getShowBanner() === true && (
+    showBanner && (
       <div
         css={css`
           display: flex;
