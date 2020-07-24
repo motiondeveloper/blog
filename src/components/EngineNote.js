@@ -3,17 +3,24 @@ import { Link } from 'gatsby';
 import { css } from 'styled-components';
 import { XCircle } from 'react-feather';
 import { colors, padding } from '../theme';
-import useStickyState from '../hooks/useStickyState';
 
 export const EngineNote = () => {
-  const [isActive, setActive] = useStickyState(
-    true,
-    'expression-engine-dialog',
-  );
-  const hideAlert = () => setActive(false);
-  console.log(isActive);
+  const [isBannerActive, setIsBannerActive] = React.useState(true);
+  React.useEffect(() => {
+    function loadBanner() {
+      const displayBanner = localStorage.getItem('hide-engine-banner');
+      return displayBanner || true;
+    }
+    setIsBannerActive(loadBanner());
+  }, []);
+  React.useEffect(() => {
+    localStorage.setItem('hide-engine-banner', isBannerActive);
+  }, [isBannerActive]);
+  const hideAlert = () => {
+    setIsBannerActive(false);
+  };
   return (
-    isActive && (
+    isBannerActive === true && (
       <div
         css={css`
           display: flex;
