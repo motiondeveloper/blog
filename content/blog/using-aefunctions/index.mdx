@@ -38,20 +38,25 @@ Once downloaded, all you need to do is import the file into your After Effects p
 
 ## Writing the expression
 
-To start using `js›aeFunctions` in an expression, you first need to create a reference to the file you imported earlier.
+To start using `js›aeFunctions` in an expression, you first need to create a reference to the file you imported earlier, and call `js›getFunctions()`.
 
 ```js
-const aef = footage('aefunctions.jsx').sourceData;
+const aef = footage('aefunctions.jsx')
+  .sourceData
+  .getFunctions();
 ```
 
 You can name the [variable](/blog/basics-variables) anything you'd like, we've used the abbreviated `js›aef` here, short for `js›aeFunctions`.
 
-This variable is an [object](/blog/basics-objects), with each of the [functions](/blog/basics-functions) available as properties of the `js›aef` object.
+`js›getFunctions()` returns an [object](/blog/basics-objects), with each of the [functions](/blog/basics-functions) available as properties of the `js›aef` object.
 
 To use a function in the library, you can call it like any other [method](/blog/basics-native-methods), starting with the object name and then the functions name. For example:
 
-```js{2}
-const aef = footage('aefunctions.jsx').sourceData;
+```js{5}
+const aef = footage('aefunctions.jsx')
+  .sourceData
+  .getFunctions();
+
 aef.attachKeys(2, 2);
 ```
 
