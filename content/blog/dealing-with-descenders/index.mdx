@@ -1,0 +1,171 @@
+---
+title: 'Dealing with text descenders in After Effects templates'
+date: 2020-07-31
+difficulty: Intermediate
+tags: ['tutorial', 'templates']
+pinned: false
+author: timhaywood
+description: >-
+  How get the height of a text layer without descenders in your After Effects templates, using expressions.
+---
+
+import { Note, Inform, Warn, ContentList } from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput';
+import { ToggleSection } from 'components/toggleSection';
+import LocalVideo from 'components/localVideo';
+
+It's common when creating After Effects templates (such as lower thirds) to set the size of a rectangle based on a text layer. This is so the box will grow to match the size of the layer, no matter the text content.
+
+![Setting a box size based off the text height plus padding](text-template-padding.png)
+
+<Inform>
+
+You do this by basing the width and height of the rectangle on the size of the text layer, plus a padding value, with the either the `js›sourceRectAtTime()` [method](/blog/basics-native-methods) or `js›width` and `js›height` layer [attributes](/blog/basics-native-attributes).
+
+</Inform>
+
+## The problem
+
+Setting the rectangle height from the text height causes issues, as letters with **descenders** (`js›"y, g, j"`) or **ascenders** (`js›"h, f, l"`) will cause the height to fluctuate as the copy changes.
+
+<LocalVideo videoName="box-size-from-text-height" title="Box height fluctuations when using the text height"/>
+
+Sometimes this is what the design requires, but in most cases it's preferable to set the rectangle height from the **cap height** rather than the height of the text layer.
+
+<Inform>
+
+**Cap height** is the height of flat topped capital letters, such as `js›"H"`, `js›"I"` and `js›"X"`.
+
+</Inform>
+
+### Cap height
+
+Since the cap height is a consistent value across all letters, setting the height of the rectangle **based on the cap height** means the size won't change when the text contains descenders or ascenders.
+
+Rather than writing the cap height value into the expression (which means updating the value on any design changes), you can instead **measure the cap height of the text layer**.
+
+<Note>
+
+One method of getting a fixed height of a text layer is by **accessing the text style properties** `js›fontSize` and `js›leading`.
+
+Since descenders and ascenders also change the bounding box of a text layer (and thus any positional expressions) we've found the method below more robust.
+
+</Note>
+
+## Replacing lines with "X"
+
+Measuring the height of this descender less version gives us a consistent value, regardless of descenders, and changes with text style.
+
+To replace the lines with X, you need to get the number of lines.
+
+Won't explain this in depth.
+
+```js
+// Count the number of lines
+const numLines = Math.max(
+    value.split(/[^\r\n\3]*/gm).length - 1,
+    0
+  );
+```
+
+<Inform>
+
+Also available in our function library, [aeFunctions](/blog/using-aefunctions), `js›aef.textCount(value, "lines")`.
+
+
+</Inform>
+
+You then need to repeat the "X" for each line.
+
+```js{6}
+const numLines = Math.max(
+    value.split(/[^\r\n\3]*/gm).length - 1,
+    0
+  );
+// Repeat X for each line
+'X\r'.repeat(numLines - 1) + 'X'
+```
+
+## Hiding in time
+
+The text needs to be the text. So we use a technique of hiding the "X" version in negative time, and then sampling the height at that time.
+
+```js
+const numLines = Math.max(
+    value.split(/[^\r\n\3]*/gm).length - 1,
+    0
+  );
+
+if (time < 500) {
+  // Use Xs if negative time
+  'X\r'.repeat(numLines - 1) + 'X';
+} else {
+  // Otherwise the original text
+  value;
+}
+```
+
+Now during the span of the compositions, it's the value, but if we use `js›sourceRectAtTime(-550)` we'll get the sourceRect of the X layers.
+
+<Note>
+
+It's best to measure a bit before, not exactly 500.
+
+</Note>
+
+So get the height at negative time, and width at current time.
+
+<Inform>
+
+Also available in our function library, [aeFunctions](/blog/using-aefunctions), `js›aef.hideDescenders(value)`.
+
+</Inform>
+
+## How we use it
+
+General technique, not exact expressions. Can be used however you want to make your rectangle.
+
+This can be a lot of repetitive code, so we've implemented the idea in [aeFunctions](/blog/using-aefunctions).
+
+### Text Layer
+
+Just need to hide descenders.
+
+```js
+const aef = footage('aefunctions.jsx')
+  .sourceData
+  .getFunctions();
+
+aef.hideDescenders();
+```
+
+### Box Path
+
+Get position and size of text layer, and create rectangles. `js›layerRect()` handles getting the height from negative time with the `js›descenderText` attribute.
+
+`js›eBox` is a library to easily create and scale rectangles for templates.
+
+```js
+const eBox = footage("eBox.jsx").sourceData;
+const aef = footage('aefunctions.jsx')
+  .sourceData
+  .getFunctions();
+
+const textLayer = thisComp.layer('TXT_Copy');
+const textRect = aef.layerRect({
+  layer: textLayer,
+  anchor: 'center',
+  descendersText: true,
+});
+
+const padding = 36;
+
+const myBox = eBox.createBox({
+  size: add(textRect.size, [padding, padding]),
+  position: textRect.position,
+  anchor: 'center',
+});
+
+myBox.getPath();
+```
+
