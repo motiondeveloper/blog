@@ -5,6 +5,7 @@ export const CalloutWrapper = styled.div`
   position: relative;
   p {
     color: ${colors.white};
+    margin-top: 0;
   }
   margin-top: ${padding.large};
   margin-bottom: ${padding.large};
