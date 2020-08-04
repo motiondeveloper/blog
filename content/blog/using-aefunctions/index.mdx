@@ -217,10 +217,18 @@ Below is a list of the functions available in the library, separated by category
 - **layerRect**
 
   ```javascript
-  layerRect(layer, sampleTime, anchor);
+  layerRect(
+    ({
+      layer = thisLayer,
+      sampleTime = time,
+      anchor = "center",
+      capHeight = false,
+      capHeightTime = -550,
+    } = {})
+  );
   ```
 
-  An abstraction over the `sourceRectAtTime` method that takes a `layer` object (defaulting to `thisLayer`), sampleTime (defaulting to `time`) and an `anchor` as input. The anchor can be either `center`, `topLeft`, `topRight`, `bottomLeft`, or `bottomRight` (defaulting to `center`).
+  An abstraction over the `sourceRectAtTime` method that takes an object based input. If `capHeight` is true, the height of the layer will be measured at the `capHeightTime`, useful when used in with the `hideDescenders()` function. The anchor can be either `center`, `topLeft`, `topRight`, `bottomLeft`, or `bottomRight` (defaulting to `center`).
 
   Returns an object of the format:
 
@@ -233,6 +241,7 @@ Below is a list of the functions available in the library, separated by category
   ```
 
   Where `size` is the layer width and height as an array, and `position` is the position of the given `anchor` in composition space. `sourceRect` is the full `sourceRectAtTime()` object.
+
 
 </ToggleSection>
 
