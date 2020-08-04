@@ -162,5 +162,11 @@
     "prefix": "native methods",
     "body": ["[${1:native methods}](/blog/basics-native-methods)$0"],
     "description": "Add markdown link to native methods post"
+  },
+  "Link to aeFunctions": {
+    "scope": "markdown",
+    "prefix": "aeFunctions",
+    "body": ["[${1:aeFunctions}](/blog/using-aefunctions)$0"],
+    "description": "Add markdown link to aeFunctions post"
   }
 }
