@@ -61,10 +61,11 @@ const PostItem = ({ post }) => {
 
       <PostInfo>
         <li>
-          <Calendar size="14" color={colors.grey} /> {post.frontmatter.date}
+          <Calendar size="14" color={colors.grey} alt="Calendar Icon" />{' '}
+          {post.frontmatter.date}
         </li>
         <li>
-          <Thermometer size="14" color={colors.grey} />{' '}
+          <Thermometer size="14" color={colors.grey} alt="Thermometer Icon" />{' '}
           {post.frontmatter.difficulty}
         </li>
         <li>
