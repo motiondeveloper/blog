@@ -38,15 +38,17 @@ Sometimes this is what the design requires, but in most cases it's preferable to
 
 </Inform>
 
-### Cap height
+### Using cap height
 
 Since the cap height is a consistent value across all letters, setting the height of the rectangle **based on the cap height** means the size won't change when the text contains descenders or ascenders.
+
+<LocalVideo videoName="box-size-from-cap-height" title="Consistent box height when using the cap height, not layer height"/>
 
 Rather than writing the cap height value into the expression (which means updating the value on any design changes), you can instead **measure the cap height of the text layer**.
 
 <Note>
 
-One method of getting a fixed height of a text layer is by **accessing the text style properties** `js›fontSize` and `js›leading`.
+Another method of getting a fixed height of a text layer is by **accessing the text style properties** `js›fontSize` and `js›leading`.
 
 Since descenders and ascenders also change the bounding box of a text layer (and thus any positional expressions) we've found the method below more robust.
 
@@ -54,30 +56,20 @@ Since descenders and ascenders also change the bounding box of a text layer (and
 
 ## Replacing lines with "X"
 
-Measuring the height of this descender less version gives us a consistent value, regardless of descenders, and changes with text style.
+To measure the cap height of the text layer, you need to **measure the height of a letter such as (`js›"X"`)**.
 
-To replace the lines with X, you need to get the number of lines.
-
-Won't explain this in depth.
-
-```js
-// Count the number of lines
-const numLines = Math.max(
-    value.split(/[^\r\n\3]*/gm).length - 1,
-    0
-  );
-```
+You can do this by replacing the content of your text layer with `js›"X"` in an expression on the `js›sourceText` property.
 
 <Inform>
 
-Also available in our function library, [aeFunctions](/blog/using-aefunctions), `js›aef.textCount(value, "lines")`.
-
+Doing this on the original text layer insures the `js›"X"` will **match the original text's font properties**, and avoids unnecessary layer duplication.
 
 </Inform>
 
-You then need to repeat the "X" for each line.
+Since the text may contain multiple lines, you will need to count the number of lines, replacing each one with an `js›"X"`.
 
-```js{6}
+```js{7}
+// Count the number of line breaks
 const numLines = Math.max(
     value.split(/[^\r\n\3]*/gm).length - 1,
     0
@@ -86,50 +78,76 @@ const numLines = Math.max(
 'X\r'.repeat(numLines - 1) + 'X'
 ```
 
+Now that the text layer contains letters with a consistent height, measuring that height for the height of the text box will give us a consistent value.
+
+**There are two issues which you now need to address:**
+
+- The inaccurate width of the text layer
+- You text layer says `js›"X"`, not your text content
+
+You can solve both of these issues using the technique of **hiding values in negative time**.
+
 ## Hiding in time
 
-The text needs to be the text. So we use a technique of hiding the "X" version in negative time, and then sampling the height at that time.
+Replacing the lines with `js›"X"` has solved the height issue, but you still need the original text for an accurate width measurement, and to display the correct value.
+
+A technique to access two values on one property (the `js›"X"` version and the original text) is to **store one value in negative time**.
+
+<Inform>
+
+You can reference **two values on the same property** by "storing" one before the start of the composition.
+
+</Inform>
+
+To do this, you change your expression on the text layer so the `js›"X"` version appears before the composition start.
 
 ```js
-const numLines = Math.max(
-    value.split(/[^\r\n\3]*/gm).length - 1,
-    0
-  );
-
-if (time < 500) {
-  // Use Xs if negative time
-  'X\r'.repeat(numLines - 1) + 'X';
+if (time < -500) {
+  const numLines = Math.max(
+      value.split(/[^\r\n\3]*/gm).length - 1,
+      0
+    );
+  const xText = 'X\r'.repeat(numLines - 1) + 'X'
+  xText;
 } else {
-  // Otherwise the original text
   value;
 }
 ```
 
-Now during the span of the compositions, it's the value, but if we use `js›sourceRectAtTime(-550)` we'll get the sourceRect of the X layers.
-
 <Note>
 
-It's best to measure a bit before, not exactly 500.
+You can choose any negative number in place of `js›-500`.
 
 </Note>
 
-So get the height at negative time, and width at current time.
+Now if you need to access the `js›"X"` text in another expression, you can look at the value **before -500**. For example:
 
-<Inform>
+```js
+// The width from the current text
+const textWidth = textLayer.sourceRectAtTime(time).width;
+// The height from the X text
+const textHeight = textLayer.sourceRectAtTime(-550).height;
+```
 
-Also available in our function library, [aeFunctions](/blog/using-aefunctions), `js›aef.hideDescenders(value)`.
+Getting the width and height values separately solves any descender or ascender issues, while also maintaining an accurate width measurement.
 
-</Inform>
+<LocalVideo videoName="multiple-lines" title="Correct padding with multiple lines"/>
 
 ## How we use it
 
-General technique, not exact expressions. Can be used however you want to make your rectangle.
+This post covers the general technique of dealing with descenders in templates, rather than the specific expressions needed to set the box size.
 
-This can be a lot of repetitive code, so we've implemented the idea in [aeFunctions](/blog/using-aefunctions).
+To save writing out this large amount of code on each text (and box) layer, we've implemented these ideas in external expression libraries [aeFunctions](/blog/using-aefunctions) and [eBox](https://github.com/motiondeveloper/ebox).
 
-### Text Layer
+<Inform>
 
-Just need to hide descenders.
+Implementing these ideas in external libraries avoids duplicating code.
+
+</Inform>
+
+### On the text layer
+
+To hide the `js›"X"` version in negative time, we use the [aeFunction](/blog/using-aefunctions) `js›hideDescenders()`.
 
 ```js
 const aef = footage('aefunctions.jsx')
@@ -141,12 +159,14 @@ aef.hideDescenders();
 
 ### Box Path
 
-Get position and size of text layer, and create rectangles. `js›layerRect()` handles getting the height from negative time with the `js›descenderText` attribute.
+There are two parts to setting the box size (which we do as an expression on a `js›Path` property):
 
-`js›eBox` is a library to easily create and scale rectangles for templates.
+1. Getting the correct `js›width` and `js›height` of the text layer
+2. Setting the value for the `js›Path` property
+
+To get the size and position of the text layer without descenders, we use another [aeFunction](/blog/using-aefunctions) `js›layerRect()`. This gives us an object with `js›size` and `js›position` properties which we can use to create the rectangle.
 
 ```js
-const eBox = footage("eBox.jsx").sourceData;
 const aef = footage('aefunctions.jsx')
   .sourceData
   .getFunctions();
@@ -157,9 +177,28 @@ const textRect = aef.layerRect({
   anchor: 'center',
   descendersText: true,
 });
+```
+
+We then use the library [eBox](https://github.com/motiondeveloper/ebox) to create a rectangular path based on the `js›textRect` object.
+
+```js
+// Create references to libraries
+const eBox = footage("eBox.jsx").sourceData;
+const aef = footage('aefunctions.jsx')
+  .sourceData
+  .getFunctions();
 
 const padding = 36;
 
+// Get the text layer size and position
+const textLayer = thisComp.layer('TXT_Copy');
+const textRect = aef.layerRect({
+  layer: textLayer,
+  anchor: 'center',
+  descendersText: true,
+});
+
+// Create the box path
 const myBox = eBox.createBox({
   size: add(textRect.size, [padding, padding]),
   position: textRect.position,
@@ -169,3 +208,4 @@ const myBox = eBox.createBox({
 myBox.getPath();
 ```
 
+Using [eBox](https://github.com/motiondeveloper/ebox) allows you to scale this rectangle from any anchor point.
