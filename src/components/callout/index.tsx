@@ -30,7 +30,7 @@ const Inform = ({ children }) => {
   return (
     <CalloutWrapper color={colors.blue}>
       <CalloutIcon>
-        <Info size={padding.large} color={colors.blue} alt="Info Icon" />
+        <Info size={padding.large} color={colors.blue} name="Info Icon" />
       </CalloutIcon>
       <CalloutContent>{children}</CalloutContent>
     </CalloutWrapper>
@@ -44,7 +44,7 @@ const Warn = ({ children }) => {
         <AlertTriangle
           size={padding.large}
           color={colors.tan}
-          alt="Warning Icon"
+          name="Warning Icon"
         />
       </CalloutIcon>
       <CalloutContent>{children}</CalloutContent>
@@ -56,7 +56,7 @@ const RelatedContent = ({ children, title = 'Continue reading' }) => {
   return (
     <CalloutWrapper color={colors.black}>
       <CalloutTitle color={colors.green}>
-        <BookOpen size={padding.large} color={colors.green} alt="Book Icon" />
+        <BookOpen size={padding.large} color={colors.green} name="Book Icon" />
         <h2>{title}</h2>
       </CalloutTitle>
       <CalloutContent>{children}</CalloutContent>
@@ -73,7 +73,7 @@ const ContentList = ({ children, title = 'Contents' }) => {
       `}
     >
       <CalloutTitle color={colors.yellow}>
-        <List size={padding.large} color={colors.yellow} alt="List Icon" />
+        <List size={padding.large} color={colors.yellow} name="List Icon" />
         <h2>{title}</h2>
       </CalloutTitle>
       <CalloutContent>{children}</CalloutContent>
@@ -103,7 +103,7 @@ const FileDownload = ({ children, fileName, projectName, strong }) => {
   return (
     <CalloutWrapper color={strong ? colors.purple : colors.black}>
       <CalloutIcon>
-        <File size={padding.large} color={colors.purple} alt="File Icon" />
+        <File size={padding.large} color={colors.purple} />
       </CalloutIcon>
       <CalloutContent>
         {children}
