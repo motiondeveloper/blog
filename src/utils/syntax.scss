@@ -2,17 +2,17 @@
     Colors
 */
 
-$navy: #282C35;
-$black: #21242B;
-$grey: #BDBDBD;
-$light-grey: #F2F2F2;
-$white: #FFFFFF;
-$green: #B4DC96;
-$tan: #D39763;
-$yellow: #FFDA6E;
-$blue: #5DAEE6;
-$red: #E36A79;
-$purple: #C774E8;
+$navy: #282c35;
+$black: #21242b;
+$grey: #bdbdbd;
+$light-grey: #f2f2f2;
+$white: #ffffff;
+$green: #b4dc96;
+$tan: #d39763;
+$yellow: #ffda6e;
+$blue: #5daee6;
+$red: #e36a79;
+$purple: #c774e8;
 
 /**
     Main CSS
@@ -30,7 +30,8 @@ code[class*='language-'],
 pre[class*='language-'] {
   color: $white;
   background: none;
-  font-family: 'SFMono-Medium', 'SF Mono', 'Segoe UI Mono', 'Roboto Mono', 'Ubuntu Mono', Menlo, Consolas, Courier, monospace;
+  font-family: 'SFMono-Medium', 'SF Mono', 'Segoe UI Mono', 'Roboto Mono',
+    'Ubuntu Mono', Menlo, Consolas, Courier, monospace;
   font-feature-settings: normal;
   text-align: left;
   white-space: pre;
@@ -61,13 +62,13 @@ pre[class*='language-'] {
 pre[class*='language-']::-moz-selection,
 pre[class*='language-'] ::-moz-selection {
   text-shadow: none;
-  background: rgba($blue, .1);
+  background: rgba($blue, 0.1);
 }
 
 pre[class*='language-']::selection,
 pre[class*='language-'] ::selection {
   text-shadow: none;
-  background: rgba($blue, .1);
+  background: rgba($blue, 0.1);
 }
 
 /* Inline code */
@@ -85,7 +86,7 @@ pre[class*='language-'] ::selection {
 }
 
 .token.comment {
-  color: rgba($grey, .5);
+  color: $grey;
 }
 
 .token.string,
@@ -148,7 +149,7 @@ pre[data-line] {
 }
 
 .gatsby-highlight-code-line {
-  background-color: rgba($blue, .1);
+  background-color: rgba($blue, 0.1);
   display: block;
   margin-right: -1em;
   margin-left: -1em;
