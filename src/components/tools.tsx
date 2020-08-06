@@ -4,39 +4,28 @@ import Card from './card';
 import { Copy, HeadingSmall, HeadingLarge } from './type';
 import { HorizontalStack, StackItem } from './stack';
 import LinkButton from './linkButton';
-import { CodeJS } from './codeJS';
+import { useStaticQuery, graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { colors, padding } from '../theme';
+import styled from 'styled-components';
 
-const eKeysCode = `const inKeys = [
-  {
-    keyTime: 1,
-    keyValue: 0,
-    easeOut: 66,
-  },{
-    keyTime: 2,
-    keyValue: 250,
-    easeIn: 90,
-  }
-];
-
-eKeys.animate(inKeys, time);
-`;
-
-const eBoxCode = `const myBox =
-  eBox.createBox({
-    size: [200, 200],
-    position: [0, 0],
-    anchor: 'center',
-  });
-
-myBox.setScale(
-  [scaleIn, 100], 
-  'topLeft’
-);
-
-myBox.getPath();
+const CodeOutline = styled.div`
+  box-shadow: 0 0 0 4px ${colors.navy};
+  border-radius: ${padding.small};
 `;
 
 const Tools = () => {
+  const code = useStaticQuery(graphql`
+    query code {
+      eKeys: mdx(frontmatter: { title: { eq: "eKeys Code Example" } }) {
+        body
+      }
+      eBox: mdx(frontmatter: { title: { eq: "eBox Code Example" } }) {
+        body
+      }
+    }
+  `);
+  console.log(code);
   return (
     <section>
       <h2>
@@ -65,7 +54,9 @@ const Tools = () => {
             </LinkButton>
           </StackItem>
           <StackItem>
-            <CodeJS>{eKeysCode}</CodeJS>
+            <CodeOutline>
+              <MDXRenderer>{code.eKeys.body}</MDXRenderer>
+            </CodeOutline>
           </StackItem>
         </HorizontalStack>
       </Card>
@@ -87,7 +78,7 @@ const Tools = () => {
             </LinkButton>
           </StackItem>
           <StackItem>
-            <CodeJS>{eBoxCode}</CodeJS>
+            <MDXRenderer>{code.eBox.body}</MDXRenderer>
           </StackItem>
         </HorizontalStack>
       </Card>
