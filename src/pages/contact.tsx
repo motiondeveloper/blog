@@ -74,11 +74,9 @@ const Area = styled.textarea`
   }
 `;
 
-const ContactPage = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title;
-
+const ContactPage = () => {
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout>
       <SEO title="Contact" />
       <PageHeading>Get in touch</PageHeading>
       <Copy>

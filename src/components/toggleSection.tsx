@@ -4,7 +4,13 @@ import styled, { css } from 'styled-components';
 
 const Title = styled.h3``;
 
-const ToggleSection = ({ title, children, as = 'h3' }) => {
+const ToggleSection = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) => {
   return (
     <details
       css={css`
@@ -25,7 +31,6 @@ const ToggleSection = ({ title, children, as = 'h3' }) => {
           css={css`
             display: inline;
           `}
-          as={as}
         >
           {title}
         </Title>

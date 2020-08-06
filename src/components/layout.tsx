@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
-import PageHeader from 'components/header';
+import PageHeader from './header';
 import { colors, padding, text } from '../theme';
 import Footer from './footer';
 
@@ -47,11 +47,11 @@ const Page = styled.div`
   }
 `;
 
-const Layout = ({ title, children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <GlobalStyles />
-      <PageHeader title={title} />
+      <PageHeader />
       <Page>
         <main>{children}</main>
       </Page>

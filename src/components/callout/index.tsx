@@ -1,4 +1,6 @@
 import React from 'react';
+import * as types from 'styled-components/cssprop';
+import styled from 'styled-components/macro';
 import { css } from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 import {
@@ -18,7 +20,7 @@ import {
   CalloutTitle,
 } from './styles';
 
-const Note = ({ children }) => {
+const Note = ({ children }: { children: React.ReactNode }) => {
   return (
     <CalloutWrapper color={colors.black}>
       <CalloutContent>{children}</CalloutContent>
@@ -26,7 +28,7 @@ const Note = ({ children }) => {
   );
 };
 
-const Inform = ({ children }) => {
+const Inform = ({ children }: { children: React.ReactNode }) => {
   return (
     <CalloutWrapper color={colors.blue}>
       <CalloutIcon>
@@ -37,7 +39,7 @@ const Inform = ({ children }) => {
   );
 };
 
-const Warn = ({ children }) => {
+const Warn = ({ children }: { children: React.ReactNode }) => {
   return (
     <CalloutWrapper color={colors.tan}>
       <CalloutIcon>
@@ -52,7 +54,13 @@ const Warn = ({ children }) => {
   );
 };
 
-const RelatedContent = ({ children, title = 'Continue reading' }) => {
+const RelatedContent = ({
+  children,
+  title = 'Continue reading',
+}: {
+  children: React.ReactNode;
+  title?: string;
+}) => {
   return (
     <CalloutWrapper color={colors.black}>
       <CalloutTitle color={colors.green}>
@@ -64,7 +72,13 @@ const RelatedContent = ({ children, title = 'Continue reading' }) => {
   );
 };
 
-const ContentList = ({ children, title = 'Contents' }) => {
+const ContentList = ({
+  children,
+  title = 'Contents',
+}: {
+  children: React.ReactNode;
+  title?: string;
+}) => {
   return (
     <CalloutWrapper
       color={colors.black}
@@ -81,7 +95,17 @@ const ContentList = ({ children, title = 'Contents' }) => {
   );
 };
 
-const FileDownload = ({ children, fileName, projectName, strong }) => {
+const FileDownload = ({
+  children,
+  fileName,
+  projectName,
+  strong,
+}: {
+  children: React.ReactNode;
+  fileName: string;
+  projectName: string;
+  strong?: boolean;
+}) => {
   // Query for all zip files with graphQL
   const data = useStaticQuery(graphql`
     query zipFiles {

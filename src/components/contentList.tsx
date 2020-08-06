@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { colors, padding } from '../theme';
-import HorizontalList from 'components/horizontalList';
+import HorizontalList from './horizontalList';
 import { List } from 'react-feather';
 
 const ContentListWrapper = styled.div`
@@ -47,7 +47,13 @@ const ListTitle = styled.div`
   }
 `;
 
-const ContentList = ({ children, title }) => {
+const ContentList = ({
+  children,
+  title,
+}: {
+  children: React.ReactNode;
+  title?: string;
+}) => {
   return (
     <ContentListWrapper color={colors.black}>
       <ListTitle>

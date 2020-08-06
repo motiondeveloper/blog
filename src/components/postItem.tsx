@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { colors, padding, text } from '../theme';
 import { Calendar, Thermometer } from 'react-feather';
-import TagsList from '../components/tagsList';
-import HorizontalList from '../components/horizontalList';
+import TagsList from './tagsList';
+import HorizontalList from './horizontalList';
 import styled from 'styled-components';
 import PostCard from './card';
 

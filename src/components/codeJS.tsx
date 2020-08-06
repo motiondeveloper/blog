@@ -8,7 +8,7 @@ const StyledCode = styled.div`
   box-shadow: 0 0 0 2pt ${colors.navy};
 `;
 
-export const CodeJS = ({ children }) => {
+export const CodeJS = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     // call the highlightAll() function to style our code blocks
     Prism.highlightAll();

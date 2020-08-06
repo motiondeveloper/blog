@@ -52,7 +52,13 @@ const Bio = () => {
     }
   `);
 
-  const { author, social } = data.site.siteMetadata;
+  const {
+    author,
+    social,
+  }: {
+    author: string;
+    social: { [propName: string]: string };
+  } = data.site.siteMetadata;
   return (
     <StyledBio>
       <BioImage

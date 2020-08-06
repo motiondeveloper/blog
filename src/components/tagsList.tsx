@@ -16,7 +16,7 @@ const Tag = styled.li`
   }
 `;
 
-const TagsList = ({ tags }) => {
+const TagsList = ({ tags }: { tags: string[] }) => {
   const tagLinks = tags.map(tag => (
     <Tag key={tag}>
       <Link key={tag} to={`/tags/${tag}`}>
