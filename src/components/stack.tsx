@@ -13,6 +13,6 @@ export const StackItem = styled.li`
 `;
 
 export const HorizontalStack = styled(HorizontalList)`
-  margin-top: ${props => props.mt};
+  margin-top: 0;
   justify-content: space-between;
 `;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 
-import PostItem from '../components/postItem';
-import { Copy, HeadingSmall } from '../components/type';
+import PostItem from './postItem';
+import { Copy, HeadingSmall } from './type';
 
 const FeaturedPosts = () => {
   const { allMdx } = useStaticQuery(graphql`

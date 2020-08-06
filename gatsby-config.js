@@ -93,5 +93,6 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-netlify`,
+    'gatsby-plugin-typescript',
   ],
 };

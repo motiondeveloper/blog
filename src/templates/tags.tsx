@@ -14,28 +14,24 @@ const TagHeading = styled(PageHeading)`
   }
 `;
 
-class TagPosts extends React.Component {
-  render() {
-    const { pageContext, data } = this.props;
-    const { tag } = pageContext;
-    const { edges, totalCount } = data.allMdx;
-    const siteTitle = data.site.siteMetadata.title;
-    const tagHeader = `${totalCount} post${
-      totalCount === 1 ? '' : 's'
-    } tagged with "${tag}"`;
+const TagPosts = ({ data, pageContext }) => {
+  const { tag } = pageContext;
+  const { edges, totalCount } = data.allMdx;
+  const tagHeader = `${totalCount} post${
+    totalCount === 1 ? '' : 's'
+  } tagged with "${tag}"`;
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={`Posts tagged with ${tag}`} />
-        <TagHeading>{tagHeader}</TagHeading>
-        {edges.map(({ node }) => {
-          const { slug } = node.fields;
-          return <PostItem post={node} isPinned={false} key={slug} />;
-        })}
-      </Layout>
-    );
-  }
-}
+  return (
+    <Layout>
+      <SEO title={`Posts tagged with ${tag}`} />
+      <TagHeading>{tagHeader}</TagHeading>
+      {edges.map(({ node }) => {
+        const { slug } = node.fields;
+        return <PostItem post={node} key={slug} />;
+      })}
+    </Layout>
+  );
+};
 
 export default TagPosts;
 

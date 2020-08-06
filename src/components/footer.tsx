@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Newsletter from './newsletterSignup';
 import Bio from './bio';
@@ -51,11 +51,14 @@ const Footer = () => {
   return (
     <FooterWrapper>
       <FooterContent>
-        <Newsletter
-          mb={padding.large}
-          mt={padding.large}
-          bgColor={colors.navy}
-        />
+        <div
+          css={css`
+            margin-top: ${padding.large};
+            margin-bottom: ${padding.large};
+          `}
+        >
+          <Newsletter />
+        </div>
         <Bio />
         <FooterLinks>
           <li>

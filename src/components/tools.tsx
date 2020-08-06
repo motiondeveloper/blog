@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Card from '../components/card';
-import { Copy, HeadingSmall, HeadingLarge } from '../components/type';
+import Card from './card';
+import { Copy, HeadingSmall, HeadingLarge } from './type';
 import { HorizontalStack, StackItem } from './stack';
-import LinkButton from '../components/linkButton';
+import LinkButton from './linkButton';
 import { CodeJS } from './codeJS';
 
 const eKeysCode = `const inKeys = [
@@ -43,7 +43,7 @@ const Tools = () => {
         <HeadingSmall>After Effects Tools</HeadingSmall>
       </h2>
       <Card>
-        <HorizontalStack mt="0">
+        <HorizontalStack>
           <StackItem>
             <h3>
               <HeadingLarge>eKeys</HeadingLarge>
@@ -59,7 +59,6 @@ const Tools = () => {
             </Copy>
             <LinkButton
               isLocal={true}
-              type="secondary"
               to="/blog/how-to-animate-with-expressions"
             >
               Read intro to eKeys
@@ -71,7 +70,7 @@ const Tools = () => {
         </HorizontalStack>
       </Card>
       <Card>
-        <HorizontalStack mt="0">
+        <HorizontalStack>
           <StackItem>
             <h3>
               <HeadingLarge>eBox</HeadingLarge>
@@ -82,8 +81,7 @@ const Tools = () => {
             </Copy>
             <LinkButton
               isLocal={false}
-              type="secondary"
-              href="https://github.com/motiondeveloper/ebox"
+              to="https://github.com/motiondeveloper/ebox"
             >
               Get eBox
             </LinkButton>

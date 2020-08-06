@@ -37,7 +37,17 @@ const secondaryStyles = css`
   }
 `;
 
-const LinkButton = ({ isLocal, type, children, ...rest }) => {
+const LinkButton = ({
+  isLocal,
+  type,
+  children,
+  to,
+}: {
+  isLocal?: boolean;
+  type?: 'primary';
+  to: string;
+  children: React.ReactNode;
+}) => {
   const styles = type === 'primary' ? primaryStyles : secondaryStyles;
   const LocalButton = styled(Link)`
     ${styles}
@@ -46,9 +56,9 @@ const LinkButton = ({ isLocal, type, children, ...rest }) => {
     ${styles}
   `;
   return isLocal ? (
-    <LocalButton {...rest}>{children}</LocalButton>
+    <LocalButton to={to}>{children}</LocalButton>
   ) : (
-    <ExternalButton {...rest}>{children}</ExternalButton>
+    <ExternalButton href={to}>{children}</ExternalButton>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { css } from 'styled-components';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import PageHeading from '../components/pageHeading';
@@ -13,16 +14,24 @@ import LinkButton from '../components/linkButton';
 import FeaturedPosts from '../components/featuredPosts';
 
 const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title;
-
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout>
       <SEO title="Homepage" />
       <PageHeading>
         We're bridging the gap between animator and developer.
       </PageHeading>
-      <Newsletter mt={padding.large} />
-      <HorizontalStack mt={padding.xxlarge}>
+      <div
+        css={css`
+          margin-top: ${padding.large};
+        `}
+      >
+        <Newsletter dark />
+      </div>
+      <HorizontalStack
+        css={css`
+          margin-top: ${padding.xxlarge};
+        `}
+      >
         <StackItem>
           <h2>
             <HeadingLarge>For Artists</HeadingLarge>

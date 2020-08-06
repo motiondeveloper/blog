@@ -18,31 +18,26 @@ const SectionHeading = styled.h2`
   }
 `;
 
-class BlogIndex extends React.Component {
-  render() {
-    const { data } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
-    const posts = data.allMdx.edges;
-    const pinnedPosts = posts.filter(({ node }) => node.frontmatter.pinned);
-
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="Blog" />
-        <PageHeading>
-          Articles on After Effects, JavaScript, and everything in between.
-        </PageHeading>
-        <SectionHeading>Featured posts</SectionHeading>
-        {pinnedPosts.map(({ node }) => {
-          return <PostItem post={node} key={node.fields.slug} />;
-        })}
-        <SectionHeading>All posts</SectionHeading>
-        {posts.map(({ node }) => {
-          return <PostItem post={node} key={node.fields.slug} />;
-        })}
-      </Layout>
-    );
-  }
-}
+const BlogIndex = ({ data }) => {
+  const posts = data.allMdx.edges;
+  const pinnedPosts = posts.filter(({ node }) => node.frontmatter.pinned);
+  return (
+    <Layout>
+      <SEO title="Blog" />
+      <PageHeading>
+        Articles on After Effects, JavaScript, and everything in between.
+      </PageHeading>
+      <SectionHeading>Featured posts</SectionHeading>
+      {pinnedPosts.map(({ node }) => {
+        return <PostItem post={node} key={node.fields.slug} />;
+      })}
+      <SectionHeading>All posts</SectionHeading>
+      {posts.map(({ node }) => {
+        return <PostItem post={node} key={node.fields.slug} />;
+      })}
+    </Layout>
+  );
+};
 
 export default BlogIndex;
 

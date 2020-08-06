@@ -7,7 +7,13 @@ const StyledVideo = styled.video`
   height: auto;
 `;
 
-const LocalVideo = ({ videoName, title }) => {
+const LocalVideo = ({
+  videoName,
+  title,
+}: {
+  videoName: string;
+  title: string;
+}) => {
   // Query for all Mp4 and WebM files with graphQL
   const data = useStaticQuery(graphql`
     query VideoFiles {

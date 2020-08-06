@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { padding, colors, text } from '../theme';
 
@@ -8,8 +8,6 @@ const Hidden = styled.p`
 `;
 
 const Form = styled.form`
-  margin-top: ${props => props.mt};
-  margin-bottom: ${props => props.mb};
   width: 100%;
 `;
 
@@ -26,7 +24,6 @@ const Button = styled.button`
   border-radius: 0 ${padding.xsmall} ${padding.xsmall} 0;
   border: 2px solid ${colors.blue};
   color: ${colors.blue};
-  background: ${props => props.bgColor};
 
   :hover {
     color: ${colors.navy} !important;
@@ -46,20 +43,24 @@ const Input = styled.input`
   font-size: ${text.sizes.body};
   padding: ${padding.small};
   border-radius: ${padding.xsmall} 0 0 ${padding.xsmall};
-  background: ${props => props.bgColor};
   color: ${colors.white};
   border: none;
 `;
 
-const Newsletter = ({ mb, mt, bgColor }) => {
-  bgColor = bgColor || colors.black;
+const Newsletter = ({ dark }: { dark?: boolean }) => {
   return (
     <Form
       name="newsletter"
       method="POST"
       data-netlify="true"
-      mt={mt || '0px'}
-      mb={mb || '0px'}
+      css={css`
+        input {
+          background-color: ${dark ? colors.black : colors.navy};
+        }
+        button {
+          background-color: ${!dark ? colors.black : colors.navy};
+        }
+      `}
     >
       <Hidden>
         <input type="hidden" name="form-name" value="newsletter" />
@@ -76,11 +77,8 @@ const Newsletter = ({ mb, mt, bgColor }) => {
           placeholder="Email Address"
           id="email"
           required
-          bgColor={bgColor}
         />
-        <Button type="submit" bgColor={bgColor}>
-          Subscribe
-        </Button>
+        <Button type="submit">Subscribe</Button>
       </FlexInput>
     </Form>
   );

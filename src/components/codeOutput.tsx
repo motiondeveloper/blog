@@ -38,7 +38,7 @@ const CalloutIcon = styled.div`
   left: -${padding.medium};
 `;
 
-const Successful = ({ children }) => {
+const Successful = ({ children }: { children: React.ReactNode }) => {
   return (
     <CalloutWrapper color={colors.green}>
       <CalloutIcon>
@@ -49,7 +49,7 @@ const Successful = ({ children }) => {
   );
 };
 
-const Errorful = ({ children }) => {
+const Errorful = ({ children }: { children: React.ReactNode }) => {
   return (
     <CalloutWrapper color={colors.red}>
       <CalloutIcon>

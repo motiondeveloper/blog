@@ -7,7 +7,7 @@ import { GitHub, Twitter } from 'react-feather';
 import { colors, padding, text } from '../theme';
 import { EngineNote } from './EngineNote';
 
-const breakpoint = '740px';
+const breakpoint: string = '740px';
 
 const HeaderLink = styled(Link)`
   border-radius: ${padding.xsmall};
@@ -65,7 +65,7 @@ const MobileLinks = styled(HeaderContent)`
   }
 `;
 
-const iconSize = 20;
+const iconSize: number = 20;
 const HeaderIcon = styled.a`
   height: ${`${iconSize}px`};
   color: ${colors.blue};

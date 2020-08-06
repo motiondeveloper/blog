@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { colors, padding, text } from '../theme';
 import { Calendar, Thermometer } from 'react-feather';
-import TagsList from '../components/tagsList';
-import HorizontalList from '../components/horizontalList';
+import TagsList from './tagsList';
+import HorizontalList from './horizontalList';
 import styled from 'styled-components';
 import PostCard from './card';
 
@@ -61,11 +61,11 @@ const PostItem = ({ post }) => {
 
       <PostInfo>
         <li>
-          <Calendar size="14" color={colors.grey} alt="Calendar Icon" />{' '}
+          <Calendar size="14" color={colors.grey} name="Calendar Icon" />{' '}
           {post.frontmatter.date}
         </li>
         <li>
-          <Thermometer size="14" color={colors.grey} alt="Thermometer Icon" />{' '}
+          <Thermometer size="14" color={colors.grey} name="Thermometer Icon" />{' '}
           {post.frontmatter.difficulty}
         </li>
         <li>
