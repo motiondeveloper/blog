@@ -84,6 +84,9 @@ module.exports = {
         theme_color: `#B4DC96`,
         display: `minimal-ui`,
         icon: `content/assets/md-logo.png`,
+        icon_options: {
+          purpose: `maskable`,
+        },
       },
     },
     `gatsby-plugin-offline`,
