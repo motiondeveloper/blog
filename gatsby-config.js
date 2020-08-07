@@ -71,6 +71,66 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-local-search',
+      options: {
+        name: 'blog',
+        engine: 'flexsearch',
+        engineOptions: {
+          encode: 'icase',
+          tokenize: 'forward',
+          async: false,
+        },
+        query: `
+          {
+            allMdx (filter: { fileAbsolutePath: { regex: "/content/blog/" } }) {
+              nodes {
+                id
+                fields { slug }
+                excerpt
+                rawBody
+                frontmatter {
+                  title
+                  description
+                  tags
+                  date(formatString: "MMMM DD, YYYY")
+                  difficulty
+                }
+              }
+            }
+          }
+        `,
+        ref: 'id',
+        index: ['title', 'rawBody', 'description', 'tags', 'difficulty'],
+        store: [
+          'id',
+          'slug',
+          'date',
+          'title',
+          'excerpt',
+          'description',
+          'date',
+          'difficulty',
+          'tags',
+          'frontmatter',
+          'fields',
+        ],
+        normalizer: ({ data }) =>
+          data.allMdx.nodes.map(node => ({
+            title: node.frontmatter.title,
+            rawBody: node.rawBody,
+            description: node.frontmatter.description,
+            difficulty: node.frontmatter.difficulty,
+            tags: node.frontmatter.tags,
+            id: node.id,
+            slug: node.fields.slug,
+            excerpt: node.excerpt,
+            date: node.frontmatter.date,
+            frontmatter: node.frontmatter,
+            fields: node.fields,
+          })),
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-transformer-yaml`,
     `gatsby-plugin-sharp`,

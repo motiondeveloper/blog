@@ -81,7 +81,13 @@ const SEO = ({ description = ``, lang = `en`, meta = [], title }: SeoProps) => {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <link
+        type="application/opensearchdescription+xml"
+        rel="search"
+        href="opensearch.xml"
+      />
+    </Helmet>
   );
 };
 
