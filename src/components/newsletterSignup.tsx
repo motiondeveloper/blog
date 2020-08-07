@@ -47,7 +47,7 @@ const Input = styled.input`
   border: none;
 `;
 
-const Newsletter = ({ dark }: { dark?: boolean }) => {
+const Newsletter = ({ dark, id }: { dark?: boolean; id: string }) => {
   return (
     <Form
       name="newsletter"
@@ -69,13 +69,13 @@ const Newsletter = ({ dark }: { dark?: boolean }) => {
           <input name="bot-field" type="hidden" />
         </label>
       </Hidden>
-      <StyledLabel htmlFor="email">Join the newsletter:</StyledLabel>
+      <StyledLabel htmlFor={`email ${id}`}>Join the newsletter:</StyledLabel>
       <FlexInput>
         <Input
           type="email"
-          name="name"
+          name="email address"
           placeholder="Email Address"
-          id="email"
+          id={`email ${id}`}
           required
         />
         <Button type="submit">Subscribe</Button>

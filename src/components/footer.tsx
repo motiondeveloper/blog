@@ -57,7 +57,7 @@ const Footer = () => {
             margin-bottom: ${padding.large};
           `}
         >
-          <Newsletter />
+          <Newsletter id="footer" />
         </div>
         <Bio />
         <FooterLinks>

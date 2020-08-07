@@ -25,7 +25,7 @@ const BlogIndex = () => {
           margin-top: ${padding.large};
         `}
       >
-        <Newsletter dark />
+        <Newsletter dark id="hero" />
       </div>
       <HorizontalStack
         css={css`
