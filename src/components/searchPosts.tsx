@@ -20,7 +20,7 @@ const SearchBar = styled.div`
 
 const SectionHeading = styled.h2`
   color: ${colors.white};
-  font-size: ${text.sizes.base};
+  font-size: ${text.sizes.bodyLarge};
   font-weight: ${text.weights.bold};
   &&& {
     margin-bottom: ${padding.large};
