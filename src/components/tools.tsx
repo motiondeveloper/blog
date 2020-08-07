@@ -78,7 +78,9 @@ const Tools = () => {
             </LinkButton>
           </StackItem>
           <StackItem>
-            <MDXRenderer>{code.eBox.body}</MDXRenderer>
+            <CodeOutline>
+              <MDXRenderer>{code.eBox.body}</MDXRenderer>
+            </CodeOutline>
           </StackItem>
         </HorizontalStack>
       </Card>
