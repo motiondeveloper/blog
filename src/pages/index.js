@@ -13,7 +13,7 @@ import { HorizontalStack, StackItem } from '../components/stack';
 import LinkButton from '../components/linkButton';
 import FeaturedPosts from '../components/featuredPosts';
 
-const BlogIndex = ({ data, location }) => {
+const BlogIndex = () => {
   return (
     <Layout>
       <SEO title="Homepage" />

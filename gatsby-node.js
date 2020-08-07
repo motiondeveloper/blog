@@ -4,12 +4,13 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const blogPost = path.resolve(`./src/templates/blog-post.tsx`);
-  const tagTemplate = path.resolve(`src/templates/tags.tsx`);
+  const blogPost = path.resolve(`./src/templates/blog-post.js`);
+  const tagTemplate = path.resolve(`src/templates/tags.js`);
   const result = await graphql(
     `
       {
         postsGroup: allMdx(
+          filter: { fileAbsolutePath: { regex: "/content/blog/" } }
           sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
         ) {
@@ -24,7 +25,10 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
-        tagsGroup: allMdx(limit: 2000) {
+        tagsGroup: allMdx(
+          filter: { fileAbsolutePath: { regex: "/content/blog/" } }
+          limit: 2000
+        ) {
           group(field: frontmatter___tags) {
             fieldValue
           }
