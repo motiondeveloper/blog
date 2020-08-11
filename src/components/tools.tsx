@@ -70,10 +70,7 @@ const Tools = () => {
               Easily create, position and scale rectangles from any anchor
               point.
             </Copy>
-            <LinkButton
-              isLocal={false}
-              to="https://github.com/motiondeveloper/ebox"
-            >
+            <LinkButton isLocal={true} to="/blog/creating-scaling-rectangles">
               Get eBox
             </LinkButton>
           </StackItem>
