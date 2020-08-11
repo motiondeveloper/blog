@@ -168,5 +168,17 @@
     "prefix": "aeFunctions",
     "body": ["[${1:aeFunctions}](/blog/using-aefunctions)$0"],
     "description": "Add markdown link to aeFunctions post"
+  },
+  "Link to eBox": {
+    "scope": "markdown",
+    "prefix": "eBox",
+    "body": ["[${1:eBox}](/blog/creating-scaling-rectangles)$0"],
+    "description": "Add markdown link to eBox post"
+  },
+  "Link to eKeys": {
+    "scope": "markdown",
+    "prefix": "eKeys",
+    "body": ["[${1:eBox}](/blog/how-to-animate-with-expressions)$0"],
+    "description": "Add markdown link to eKeys post"
   }
 }
