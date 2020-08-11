@@ -143,7 +143,7 @@ Getting the width and height values separately solves any descender or ascender 
 
 This post covers the general technique of dealing with descenders in templates, rather than the specific expressions needed to set the box size.
 
-To save writing out this large amount of code on each text (and box) layer, we've implemented these ideas in external expression libraries [aeFunctions](/blog/using-aefunctions) and [eBox](https://github.com/motiondeveloper/ebox).
+To save writing out this large amount of code on each text (and box) layer, we've implemented these ideas in external expression libraries [aeFunctions](/blog/using-aefunctions) and [eBox](/blog/creating-scaling-rectangles).
 
 <Inform>
 
@@ -185,7 +185,7 @@ const textRect = aef.layerRect({
 });
 ```
 
-We then use the library [eBox](https://github.com/motiondeveloper/ebox) to create a rectangular path based on the `js›textRect` object.
+We then use the library [eBox](/blog/creating-scaling-rectangles) to create a rectangular path based on the `js›textRect` object.
 
 ```js
 // Create references to libraries
@@ -214,4 +214,4 @@ const myBox = eBox.createBox({
 myBox.getPath();
 ```
 
-Using [eBox](https://github.com/motiondeveloper/ebox) allows you to scale this rectangle from any anchor point.
+Using [eBox](/blog/creating-scaling-rectangles) allows you to scale this rectangle from any anchor point.
