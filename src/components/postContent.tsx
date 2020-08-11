@@ -22,6 +22,10 @@ const PostContent = styled.section`
     ${imageStyles};
   }
 
+  video + div {
+    margin-top: 0;
+  }
+
   p img {
     ${imageStyles};
   }
@@ -72,6 +76,10 @@ const PostContent = styled.section`
 
   li {
     margin-bottom: ${padding.small};
+  }
+
+  li::marker {
+    color: ${colors.tan};
   }
 
   kbd {
