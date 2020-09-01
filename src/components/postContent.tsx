@@ -7,7 +7,9 @@ import { colors, padding, text } from '../theme';
 const imageStyles = `
   margin-bottom: ${padding.large};
   margin-top: ${padding.large};
+  border-radius: ${padding.small};
   max-width: 100% !important;
+  box-shadow: none !important;
 `;
 
 const PostContent = styled.section`
@@ -15,7 +17,7 @@ const PostContent = styled.section`
   margin-bottom: ${padding.xxlarge};
   p {
     color: ${colors.white};
-    font-size: ${text.sizes.base};
+    font-size: ${text.sizes.body};
   }
 
   video {
