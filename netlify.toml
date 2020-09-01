@@ -1,0 +1,15 @@
+[[redirects]]
+    from = "/basics"
+    to = "/blog/basics-introduction"
+
+[[redirects]]
+    from = "/ekeys"
+    to = "/blog/how-to-animate-with-expressions"
+
+[[redirects]]
+    from = "/ebox"
+    to = "/blog/creating-scaling-rectangles/"
+
+[[redirects]]
+    from = "/typescript"
+    to = "/blog/writing-expressions-typescript/"
