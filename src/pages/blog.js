@@ -13,7 +13,10 @@ const BlogIndex = ({ data, navigate, location }) => {
   const localSearchBlog = data.localSearchBlog;
   return (
     <Layout>
-      <SEO title="Blog" />
+      <SEO
+        title="Blog"
+        description="Articles on Adobe After Effects Expressions, JavaScript, Motion Graphics Templates, and everything in between."
+      />
       <PageHeading>
         Articles on After Effects, JavaScript, and everything in between.
       </PageHeading>
