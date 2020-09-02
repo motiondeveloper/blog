@@ -20,10 +20,6 @@ const PostContent = styled.section`
     font-size: ${text.sizes.body};
   }
 
-  video {
-    ${imageStyles};
-  }
-
   video + div {
     margin-top: 0;
   }
