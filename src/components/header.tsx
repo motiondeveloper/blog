@@ -117,6 +117,7 @@ const PageHeader = () => {
           social {
             github
             twitter
+            instagram
           }
         }
       }
@@ -145,7 +146,7 @@ const PageHeader = () => {
               <Twitter size={iconSize} />
             </HeaderIcon>
             <HeaderIcon
-              href={`https://github.com/${social.instagram}`}
+              href={`https://instagram.com/${social.instagram}`}
               aria-label="Instagram profile"
             >
               <Instagram size={iconSize} />
