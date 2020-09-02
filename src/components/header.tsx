@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import Image from 'gatsby-image';
 import styled from 'styled-components';
-import { GitHub, Twitter } from 'react-feather';
+import { GitHub, Twitter, Instagram } from 'react-feather';
 
 import { colors, padding, text } from '../theme';
 import { EngineNote } from './EngineNote';
@@ -143,6 +143,12 @@ const PageHeader = () => {
               aria-label="Twitter profile"
             >
               <Twitter size={iconSize} />
+            </HeaderIcon>
+            <HeaderIcon
+              href={`https://github.com/${social.instagram}`}
+              aria-label="Instagram profile"
+            >
+              <Instagram size={iconSize} />
             </HeaderIcon>
             <HeaderIcon
               href={`https://github.com/${social.github}`}

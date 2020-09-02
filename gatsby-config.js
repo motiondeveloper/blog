@@ -7,6 +7,7 @@ module.exports = {
     social: {
       twitter: `modeveloper`,
       github: `motiondeveloper`,
+      instagram: `motiondevelop`,
     },
     repoUrl: `https://github.com/motiondeveloper/blog`,
   },
