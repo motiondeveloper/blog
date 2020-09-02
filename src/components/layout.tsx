@@ -21,6 +21,10 @@ const GlobalStyles = createGlobalStyle`
   a:hover {
     background-color: ${colors.blue + 22};
   }
+  :focus {
+    box-shadow: 0 0 0 2px ${colors.tan};
+    outline: none;
+  }
 `;
 
 const Page = styled.div`
