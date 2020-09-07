@@ -13,3 +13,7 @@
 [[redirects]]
     from = "/typescript"
     to = "/blog/writing-expressions-typescript/"
+    
+[[redirects]]
+    from = "/aef"
+    to = "/blog/using-aefunctions/"
