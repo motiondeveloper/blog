@@ -2,6 +2,7 @@
     "cSpell.words": [
         "Bezier",
         "Callout",
+        "Errorful",
         "ekeys",
         "frontmatter",
         "iframe",
@@ -9,12 +10,15 @@
         "modeveloper",
         "motiondevelop",
         "motiondeveloper",
+        "opensearch",
+        "opensearchdescription",
         "prismjs",
         "roboto",
         "webm",
         "wordpress",
         "xlarge",
         "xsmall",
+        "xxlarge",
         "xxsmall"
     ],
     "markdown.extension.toc.levels": "2..2",

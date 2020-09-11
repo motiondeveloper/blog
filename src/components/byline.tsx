@@ -39,7 +39,15 @@ const BylineImage = styled(Image)`
   max-height: 36px;
 `;
 
-const Byline = ({ author }: { author: { [propName: string]: string } }) => {
+interface Author {
+  id: string;
+  name: string;
+  bio: string;
+  website: string;
+  photo: string;
+}
+
+const Byline = ({ author }: { author: Author }) => {
   const data = useStaticQuery(graphql`
     query BylineQuery {
       allFile(filter: { dir: { regex: "/authorPhotos/" } }) {

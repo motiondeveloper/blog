@@ -72,8 +72,11 @@ const LocalVideo = ({
 
   // State for video controls
   const videoRef = useRef<HTMLVideoElement>(null);
-  const wrapperRef = useRef<HTMLVideoElement>(null);
-  const [paused, setPaused] = useState(true);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [paused, setPaused] = useState<boolean>(true);
+
+  // Play/pause the video element when the
+  // state changes
   useEffect(() => {
     paused ? videoRef.current?.pause() : videoRef.current?.play();
   }, [paused]);

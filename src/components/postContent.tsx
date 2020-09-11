@@ -58,7 +58,7 @@ const PostContent = styled.section`
     margin-bottom: ${padding.large};
     margin-left: 0;
     margin-right: 0;
-    width: ${`calc(100% - ${padding.large * 2})`};
+    width: calc(100% - ${padding.large} - ${padding.large});
     border: 2px solid ${colors.green};
     border-radius: ${padding.small};
     padding-top: ${padding.small};

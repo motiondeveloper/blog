@@ -45,8 +45,6 @@ const Label = styled.label`
 `;
 
 const SearchedPosts = ({ results }) => {
-  console.log('RESULTS');
-  console.log(results);
   return results.length > 0 ? (
     <div>
       {results.map(post => (

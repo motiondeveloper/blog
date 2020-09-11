@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors, padding, text } from '../theme';
 
 const Copy = styled.p`
-  font-size: ${text.sizes.base};
+  font-size: ${text.sizes.body};
   :last-of-type {
     margin-bottom: ${padding.large};
   }
@@ -10,7 +10,7 @@ const Copy = styled.p`
 
 const HeadingSmall = styled.p`
   color: ${colors.white};
-  font-size: ${text.sizes.base};
+  font-size: ${text.sizes.body};
   font-weight: ${text.weights.bold};
   &&& {
     margin-top: ${padding.xxlarge};
