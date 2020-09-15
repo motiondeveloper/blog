@@ -171,3 +171,36 @@ This will create a new release on GitHub using [Hub](https://github.com/github/h
 
 - The release version comes from the `sh›"version"`
 - You can set which file to attach to the release in the `sh›release` script, which is `sh›dist/index.jsx` by default
+
+## Testing
+
+[Expressions Library Template](https://github.com/motiondeveloper/expressions-library-template) comes configured with [Jest](https://jestjs.io/) and [ts-jest](https://github.com/kulshekhar/ts-jest). This enables you to write tests for your expressions that will run on each save, giving you confidence that any code changes haven't broken your expression library.
+
+<Inform>
+
+For more details on writing tests with Jest, see the [Jest docs](https://jestjs.io/docs/en/getting-started).
+
+</Inform>
+
+You can write tests in the `sh›src/index.test.ts` file, importing the code you want to test from `sh›index.ts`. For example:
+
+```js
+// src/index.test.ts
+import { welcome } from './index';
+
+test('returns correct welcome string', () => {
+  expect(welcome('test')).toEqual('Welcome test!');
+});
+```
+
+And then run the test suite in watch mode via the command:
+
+```sh
+npm run test
+```
+
+<Inform>
+
+For a more detailed example of writing tests for expressions, you can view the [tests for our eKeys library](https://github.com/motiondeveloper/eKeys/blob/master/src/index.test.ts).
+
+</Inform>
