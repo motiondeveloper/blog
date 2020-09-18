@@ -52,14 +52,6 @@ Since the cap height is a consistent value across all letters, setting the heigh
 
 Rather than writing the cap height value into the expression (which means updating the value on any design changes), you can instead **measure the cap height of the text layer**.
 
-<Note>
-
-Another method of getting a fixed height of a text layer is by **accessing the text style properties** `js›fontSize` and `js›leading`.
-
-Since descenders and ascenders also change the bounding box of a text layer (and thus any positional expressions) we've found the method below more robust.
-
-</Note>
-
 ## Replacing lines with "X"
 
 To measure the cap height of the text layer, you need to **measure the height of a letter such as (`js›"X"`)**.
@@ -215,3 +207,68 @@ myBox.getPath();
 ```
 
 Using [eBox](/blog/creating-scaling-rectangles) allows you to scale this rectangle from any anchor point.
+
+## Getting height from the font size
+
+One alternative method of getting a fixed height of a text layer is by **accessing the text style properties** `js›fontSize` and `js›leading`.
+
+You can do this by getting the style properties of the text, and using them with the number of lines to get the height of the text layer.
+
+```js
+// import aefunctions
+const { textCount } = footage('aefunctions.jsx')
+  .sourceData
+  .getFunctions();
+
+const textLayer = thisComp.layer("TXT_Copy");
+
+// get the number of lines
+const numLines = textCount(textLayer.text.sourceText, "line");
+// get the required text styles
+const { fontSize, leading } = textLayer.text.sourceText.style;
+
+// get the text height from the
+// text style and number of lines
+const textHeight = (leading * numLines - 1) + fontSize;
+```
+
+### Advantages
+
+This advantages of this method over the one outlined earlier is:
+
+- **It's faster**
+
+  Hiding values in negative `time` in the `sourceText` expression does slow down your composition more than other expressions.
+
+- **You don't need to add any expressions to the text layer**
+- **It's simpler**
+
+  This method is simpler to write and reason about, which is means updating or reading the code will be easier.
+
+If you *only* need to get the height of a text layer, then this method will work well.
+
+### Disadvantages
+
+When using text in After Effects templates, in addition to getting the height of the text layer without descenders, it's often also important to get it's **position** unaffected by descenders or ascenders.
+
+<Note>
+
+This is so you can position other layers, or the text itself, relative to a descenderless version on the text.
+
+</Note>
+
+While you can use the anchor point (either set manually or left at it's default position on the baseline) and font size to get an accurate position, for example:
+
+```js
+const textTop = textLayer.transform.anchorPoint[1] - fontSize;
+```
+
+We prefer to make certain the position is accurate regardless of the anchor point of the layer, and also avoiding setting the anchor point manually for each layer.
+
+<Inform>
+
+For these reasons we prefer to use the "replacing lines with X" method most of the time. If you don't need to use the position of the layer, using the text style properties is a good alternative.
+
+**It's important to consider which technique best suits your project.**
+
+</Inform>
