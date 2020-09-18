@@ -154,6 +154,12 @@ You can call `js›eKeys.animate()` with any number to return the animated value
 
 Passing the composition time, as `js›time`, will give you the animation as normal.
 
+You can also destructure the `animate` function from the "eKeys" file:
+
+```js
+const { animate } = footage('eKeys.jsx').sourceData;
+```
+
 ## Why use eKeys
 
 While the example in this post would have been easier to create with traditional keyframes, the real benefit of eKeys comes when using JavaScript to set the keyframe properties dynamically.

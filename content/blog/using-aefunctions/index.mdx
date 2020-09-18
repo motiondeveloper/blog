@@ -43,21 +43,29 @@ To start using `js›aeFunctions` in an expression, you first need to create a r
 ```js
 const aef = footage('aefunctions.jsx')
   .sourceData
-  .getFunctions();
+  .getFunctions(time);
 ```
 
 You can name the [variable](/blog/basics-variables) anything you'd like, we've used the abbreviated `js›aef` here, short for `js›aeFunctions`.
 
-`js›getFunctions()` returns an [object](/blog/basics-objects), with each of the [functions](/blog/basics-functions) available as properties of the `js›aef` object.
+`js›getFunctions()` takes the composition time as input, and returns an [object](/blog/basics-objects), with each of the [functions](/blog/basics-functions) available as properties of the `js›aef` object.
 
 To use a function in the library, you can call it like any other [method](/blog/basics-native-methods), starting with the object name and then the functions name. For example:
 
 ```js{5}
 const aef = footage('aefunctions.jsx')
   .sourceData
-  .getFunctions();
+  .getFunctions(time);
 
 aef.attachKeys(2, 2);
+```
+
+You can also destructure any required functions from the `js›getFunctions` object:
+
+```js
+const { attachKeys }  = footage('aefunctions.jsx')
+  .sourceData
+  .getFunctions(time);
 ```
 
 ## Functions in the library
