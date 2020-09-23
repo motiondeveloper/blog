@@ -34,6 +34,17 @@ This means you can write expressions with the full benefits of:
 
   ![auto completion of expressions](auto-completion.png)
 
+- Testing
+
+  ```js
+  // src/index.test.ts
+  import { welcome } from './index';
+
+  test('returns correct welcome string', () => {
+    expect(welcome('test')).toEqual('Welcome test!');
+  });
+  ```
+
 All while working in working in [VS Code](http://code.visualstudio.com), that will re-compile and update in After Effects on save.
 
 <Note>
@@ -100,7 +111,7 @@ The easiest way to get started is by using out **template repository** on GitHub
 
 ## Using the After Effects API
 
-Since you're writing expressions outside of After Effects, [native attributes](/blog/basics-native-attributes) and [native methods](/blog/basics-native-methods) such as `js›thisComp`, `js›linear` and `js›wiggle` aren't defined when you're writing the code.
+Since you're writing expressions outside of After Effects, [native attributes](/blog/basics-native-attributes) and [native methods](/blog/basics-native-methods) such as `js›thisComp`, `js›linear()` and `js›wiggle()` aren't defined when you're writing the code.
 
 <Inform>
 
@@ -144,6 +155,12 @@ linear(time, 0, 1, 5, 200);
 
 You can import After Effect's specific types such as `Color` and `Vector` from the package to properly type your expressions.
 
+```typescript
+import { Color, Vector } from 'expression-globals-typescript';
+const textColor: Color = [1, 1, 1, 1];
+const textPosition: Vector = [950, 540];
+```
+
 <Inform>
 
 To see all the Types and Base Objects available, see the [expression-globals-typescript](https://github.com/motiondeveloper/expression-globals-typescript) source code.
@@ -165,12 +182,24 @@ To distribute the output (`js›.jsx`) file via GitHub releases, you can run the
 npm run release
 ```
 
-This will create a new release on GitHub using [Hub](https://github.com/github/hub), opening an editor in your terminal to add the release title and body.
+This will create a new release on GitHub using the [GitHub CLI](https://github.com/cli/cli), attaching the output `js›dist` file to the release.
+
+<Inform>
+
+You will need to have the [GitHub CLI](https://github.com/cli/cli) installed on your machine for this to work.
+
+</Inform>
 
 **There's two settings in your `sh›package.json` that affect the release:**
 
 - The release version comes from the `sh›"version"`
 - You can set which file to attach to the release in the `sh›release` script, which is `sh›dist/index.jsx` by default
+
+<Note>
+
+The `sh›"version"` is also added to the output `js›.jsx` file at build time.
+
+</Note>
 
 ## Testing
 
