@@ -20,11 +20,13 @@ import { Successful, Errorful } from 'components/codeOutput';
 import { ToggleSection } from 'components/toggleSection';
 import LocalVideo from 'components/localVideo';
 
-In this article we'll go over how to write expressions libraries (`js›.jsx`) files in [TypeScript](https://www.typescriptlang.org/), with automatic refresh, using [Rollup.js](https://rollupjs.org/guide/en/).
+In this article we'll go over how to write [expressions libraries](/blog/write-expressions-external-files/), (`js›.jsx`) files, in [TypeScript](https://www.typescriptlang.org/), with automatic refresh, using [Rollup.js](https://rollupjs.org/guide/en/).
 
 ![typescript to after effects diagram](typescript-to-ae-diagram.png)
 
 This means you can write expressions with the full benefits of:
+
+- Bundling from [multiple files at build time](#splitting-expressions-across-files)
 
 - Type checking
 
@@ -34,7 +36,7 @@ This means you can write expressions with the full benefits of:
 
   ![auto completion of expressions](auto-completion.png)
 
-- Testing
+- [Testing](#testing)
 
   ```js
   // src/index.test.ts
@@ -87,7 +89,7 @@ The easiest way to get started is by using out **template repository** on GitHub
 
 3. **Edit the `sh›/src` files**
 
-  Any code in the `sh›src/index.ts` file will be output to `sh›dist/index.jsx` as After Effects compatible `js›.jsx` files.
+  Any code exported from `sh›src/index.ts` file will be output to `sh›dist/index.jsx` as a After Effects compatible `js›.jsx` file.
 
 4. **Run rollup in watch mode**
 
@@ -170,7 +172,7 @@ To see all the Types and Base Objects available, see the [expression-globals-typ
 ## How it works
 
 1. [expression-globals-typescript](https://github.com/motiondeveloper/expression-globals-typescript) allows you to use the Expressions API outside of After Effects
-2. [Rollup.js](https://rollupjs.org/guide/en/) watches the source files, and runs the [TypeScript](https://www.typescriptlang.org/) compiler as well as:
+2. [Rollup.js](https://rollupjs.org/guide/en/) watches the source files, bundles them into one, and runs the [TypeScript](https://www.typescriptlang.org/) compiler as well as:
 3. [rollup-plugin-ae-jsx](https://github.com/motiondeveloper/rollup-plugin-ae-jsx) Transforms the output code into After Effects compatible JSON (`js›.jsx`) files
 
 
@@ -233,3 +235,25 @@ npm run test
 For a more detailed example of writing tests for expressions, you can view the [tests for our eKeys library](https://github.com/motiondeveloper/eKeys/blob/master/src/index.test.ts).
 
 </Inform>
+
+## Splitting expressions across files
+
+To split your expression into multiple files, all you need to do is:
+
+1. Export from one file
+
+```typescript
+// anotherFile.ts
+const someVariable: string = "this is in another file";
+export { someVariable };
+```
+2. Import and export from the `js›index` file
+
+```typescript
+// index.ts
+import { someVariable } from './anotherFile';
+const localVariable: number = 2;
+export { someVariable, localVariable };
+```
+
+They will then be bundled into the output file at build time.
