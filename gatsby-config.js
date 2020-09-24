@@ -53,7 +53,7 @@ module.exports = {
             options: {
               offsetY: `32`,
               icon: false,
-              elements: [`h2`],
+              elements: [`h2`, `h3`],
             },
           },
           {
