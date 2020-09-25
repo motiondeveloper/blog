@@ -180,5 +180,19 @@
     "prefix": "eKeys",
     "body": ["[${1:eBox}](/blog/how-to-animate-with-expressions)$0"],
     "description": "Add markdown link to eKeys post"
+  },
+  "Link to jsx": {
+    "scope": "markdown",
+    "prefix": "jsx",
+    "body": [
+      "[${1:external} `js›.jsx` files](/blog/write-expressions-external-files/)$0"
+    ],
+    "description": "Add markdown link to jsx post"
+  },
+  "Link to engine": {
+    "scope": "markdown",
+    "prefix": "js engine",
+    "body": ["[JavaScript engine](/blog/javascript-engine)$0"],
+    "description": "Add markdown link to engine post"
   }
 }
