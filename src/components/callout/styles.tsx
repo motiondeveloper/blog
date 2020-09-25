@@ -22,8 +22,14 @@ export const CalloutWrapper = styled.div`
 export const CalloutContent = styled.div`
   margin: 0;
   &&& ul,
-  p:last-child {
-    margin: 0;
+  *:last-child {
+    margin-bottom: 0;
+  }
+  summary {
+    margin-bottom: 0;
+  }
+  details[open] summary {
+    margin-bottom: ${padding.small};
   }
 `;
 export const CalloutIcon = styled.div`
