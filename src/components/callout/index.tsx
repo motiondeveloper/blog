@@ -10,6 +10,7 @@ import {
   List,
   File,
   ArrowDownCircle,
+  ChevronsRight,
 } from 'react-feather';
 
 import { FaQuoteLeft } from 'react-icons/fa';
@@ -25,6 +26,13 @@ import {
 const Note = ({ children }: { children: React.ReactNode }) => {
   return (
     <CalloutWrapper color={colors.black}>
+      <CalloutIcon>
+        <ChevronsRight
+          size={padding.large}
+          color={colors.blue}
+          name="Note Icon"
+        />
+      </CalloutIcon>
       <CalloutContent>{children}</CalloutContent>
     </CalloutWrapper>
   );
