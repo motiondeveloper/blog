@@ -1,0 +1,104 @@
+---
+title: 'What happens during expression pre-processing'
+date: 2020-09-25
+difficulty: Advanced
+tags: ['deep-dive']
+pinned: false
+author: timhaywood
+description: >-
+  After Effects pre-processes any expressions before running them. In this article you'll learn what it does during this process, why it does it, and how it might effect the way you write expressions.
+---
+
+import {
+  Note,
+  Inform,
+  Quote,
+  Warn,
+  ContentList,
+  FileDownload,
+} from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput';
+import { ToggleSection } from 'components/toggleSection';
+import LocalVideo from 'components/localVideo';
+
+If you've read our articles on [objects](/blog/basics-objects) or writing expressions in [external `js›.jsx` files](/blog/write-expressions-external-files/), you'll know that After Effects **pre-processes** all expressions before running them.
+
+You can learn the reason for this from the Adobe documentation:
+
+<Quote>
+
+"When using the JavaScript engine, **expressions are pre-processed before evaluation** in order to make some of the Legacy ExtendScript expression syntax readable by the new engine."
+
+---
+
+From this article: [Syntax differences between the JavaScript and Legacy ExtendScript expression engines](https://helpx.adobe.com/after-effects/using/legacy-and-extend-script-engine.html#syntax-requirements-expression-libraries)
+
+</Quote>
+
+In other words, the ExtendScript engine allowed syntax that isn't compatible with the newer [JavaScript engine](/blog/javascript-engine), and rather than have users make further adjustments to their code, After Effects will do this conversion for you.
+
+## The pre-processing steps
+
+There are two main tasks After Effects performs during the pre-processing stage:
+
+1. Replacing math operations on array values with vector [functions](/blog/basics-functions)
+2. Prefixing [native attributes](/blog/basics-native-attributes) and [methods](/blog/basics-native-methods)
+
+<Note>
+
+Doing these tasks manually would add a steeper learning curve to the new [JavaScript engine](/blog/javascript-engine), as well as slow down the expressions writing process, so the pre-processing is a helpful part of the new engine.
+
+</Note>
+
+## Replacing math functions
+
+Doing maths on arrays has always been a part of expressions, so it's easy to assume that they're standard JavaScript. For example:
+
+```js
+// Adding and Subtracting
+[200, 200] + 50;
+wiggle(2, 2) - value;
+value + [960, 540];
+value + otherLayer.transform.position;
+
+// Multiplying and Dividing
+value * 2;
+[thisComp.width, thisComp.height] / 2;
+```
+
+All work as expected within After Effects. This is known as **overloading math operators**.
+
+The math operators (`js›+ - * /`) in JavaScript work on numbers, not arrays. Using them on arrays (overloading) will result in unexpected results, for example:
+
+```js
+[200, 200] + 50;
+```
+
+<Successful>
+
+```js
+"200, 20050";
+```
+
+</Successful>
+
+Were the array is coerced to a string, and:
+
+```js
+[200, 200] * 2;
+```
+
+<Errorful>
+
+```js
+NaN
+```
+
+</Errorful>
+
+After Effects replaces *all* math operations with their vector math [function](/blog/basics-functions) counterparts:
+
+- `js›add()`
+- `js›sub()`
+- `js›mul()`
+- `js›div()`
