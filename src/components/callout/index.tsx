@@ -12,6 +12,8 @@ import {
   ArrowDownCircle,
 } from 'react-feather';
 
+import { FaQuoteLeft } from 'react-icons/fa';
+
 import { colors, padding } from '../../theme';
 import {
   CalloutWrapper,
@@ -33,6 +35,21 @@ const Inform = ({ children }: { children: React.ReactNode }) => {
     <CalloutWrapper color={colors.blue}>
       <CalloutIcon>
         <Info size={padding.large} color={colors.blue} name="Info Icon" />
+      </CalloutIcon>
+      <CalloutContent>{children}</CalloutContent>
+    </CalloutWrapper>
+  );
+};
+
+const Quote = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <CalloutWrapper color={colors.black}>
+      <CalloutIcon>
+        <FaQuoteLeft
+          size={padding.large}
+          color={colors.tan}
+          name="Quote Icon"
+        />
       </CalloutIcon>
       <CalloutContent>{children}</CalloutContent>
     </CalloutWrapper>
@@ -157,4 +174,4 @@ const FileDownload = ({
   );
 };
 
-export { Note, Inform, Warn, ContentList, RelatedContent, FileDownload };
+export { Note, Inform, Quote, Warn, ContentList, RelatedContent, FileDownload };

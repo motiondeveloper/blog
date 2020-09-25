@@ -7,6 +7,10 @@ export const CalloutWrapper = styled.div`
     color: ${colors.white};
     margin-top: 0;
   }
+  hr {
+    color: ${colors.black};
+    margin: ${padding.medium} 0;
+  }
   margin-top: ${padding.large};
   margin-bottom: ${padding.large};
   margin-left: 0;
