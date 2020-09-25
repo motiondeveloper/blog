@@ -2,7 +2,7 @@
 title: 'What happens during expression pre-processing'
 date: 2020-09-25
 difficulty: Advanced
-tags: ['deep-dive']
+tags: ['internals']
 pinned: false
 author: timhaywood
 description: >-
@@ -35,7 +35,7 @@ From this article: [Syntax differences between the JavaScript and Legacy ExtendS
 
 </Quote>
 
-In other words, the ExtendScript engine allowed syntax that isn't compatible with the newer [JavaScript engine](/blog/javascript-engine), and rather than have users make further adjustments to their code, After Effects will do this conversion for you.
+In other words, the ExtendScript engine allowed syntax that isn't compatible with the newer [JavaScript engine](/blog/javascript-engine), and rather than have users make further adjustments to their code, After Effects will do parts of the conversion for you.
 
 ## The pre-processing steps
 
@@ -44,17 +44,11 @@ There are two main tasks After Effects performs during the pre-processing stage:
 1. Replacing math operations on array values with vector [functions](/blog/basics-functions)
 2. Prefixing [native attributes](/blog/basics-native-attributes) and [methods](/blog/basics-native-methods)
 
-<Note>
-
-Doing these tasks manually would add a steeper learning curve to the new [JavaScript engine](/blog/javascript-engine), as well as slow down the expressions writing process, so the pre-processing is a helpful part of the new engine.
-
-</Note>
-
 This pre-processing isn't done on code in [external `js›.jsx` files](/blog/write-expressions-external-files/), so you will need to do both of these manually. This lack of pre-processing results in a performance increase for long expressions.
 
 ## Replacing math functions
 
-Doing maths on arrays has always been a part of expressions, so it's easy to assume that they're standard JavaScript. For example:
+Doing maths on arrays has always been a part of expressions, so it's easy to assume that it's part of the JavaScript standard. For example:
 
 ```js
 // Adding and Subtracting
@@ -98,7 +92,7 @@ NaN
 
 </Errorful>
 
-To avoid this, After Effects replaces *all* math operations with their vector math [function](/blog/basics-functions) counterparts:
+To avoid this, After Effects replaces *all* instances of math operations with their vector math [function](/blog/basics-functions) counterparts:
 
 - `js›add()`
 - `js›sub()`
@@ -179,7 +173,7 @@ Within an expression, you can use these attributes and methods **as if they were
 
 <Note>
 
-For the sake of clarity, After Effects Properties (such as position) will use the capital "P" Property, while properties of a JavaScript object will use the lowercase "p" property.
+For the sake of clarity, After Effects Properties (such as position) will be written with the capital "P" Property, while properties of a JavaScript object will be written with the lowercase "p" property.
 
 </Note>
 
@@ -190,7 +184,7 @@ wiggle(2, 2) === thisProperty.wiggle(2, 2);
 toComp([960, 540]) === thisLayer.toComp([960, 540]);
 ```
 
-This makes sense when writing expressions, as you write the expression on a specific Property, which is on a Layer. Without pre-processing, you would get an error as these values (such as `js›numKeys`) **aren't available in the global scope**.
+Without pre-processing, you would get an error as these values (such as `js›numKeys`) **aren't available in the global scope**.
 
 ```js
 // Without pre-processing
@@ -207,7 +201,7 @@ ReferenceError: numKeys is not defined
 
 To get around this need for prefixing (and make the [JavaScript engine](/blog/javascript-engine) more compatible with legacy ExtendScript code), After Effects creates a [proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) to intercept the property calls.
 
-Part of this proxy checks if a value is `js›undefined`, and if so looks up that value on `js›thisLayer`, and if that fails, on `js›thisProperty`.
+Part of this proxy checks if a value is `js›undefined`, and if so, looks for that value as a property on `js›thisLayer`, and if that fails, on `js›thisProperty`.
 
 The code for this is:
 
@@ -297,7 +291,7 @@ This process allows you to use the properties of Layers and Properties without p
 
 ## The pre-processing function
 
-You can run the pre-processing [function](/blog/basics-functions) `js›__preprocess` on code within an expression to see the processed result:
+You can run the [function](/blog/basics-functions) `js›__preprocess` on a string of code to see the processed result:
 
 ```js
 // The pre-processing function
@@ -375,7 +369,7 @@ function expr_rewrite(string) {
 
 ### Other behind the scenes functions
 
-You can view the code for some of the other available functions below.
+You can view the code for some of the other relevant functions below.
 
 <ToggleSection as="p" title="__ProxyBase" >
 
@@ -417,3 +411,7 @@ function(inThisLayer, inThisProperty, inExpressionState) {
 ```
 
 </ToggleSection>
+
+## Wrapping up 
+
+Understanding what happens during the pre-processing of expressions gives you a deeper understanding of how expressions work, as well as the differences between writing code in [external files](/blog/write-expressions-external-files/) and within After Effects.
