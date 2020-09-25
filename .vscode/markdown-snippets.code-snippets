@@ -194,5 +194,11 @@
     "prefix": "js engine",
     "body": ["[JavaScript engine](/blog/javascript-engine)$0"],
     "description": "Add markdown link to engine post"
+  },
+  "Link to pre-processing": {
+    "scope": "markdown",
+    "prefix": "pre-processing",
+    "body": ["[${1:pre-processing}](/blog/expression-pre-processing/)$0"],
+    "description": "Add markdown link to pre-processing post"
   }
 }
