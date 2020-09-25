@@ -7,6 +7,10 @@ export const CalloutWrapper = styled.div`
     color: ${colors.white};
     margin-top: 0;
   }
+  hr {
+    color: ${colors.black};
+    margin: ${padding.medium} 0;
+  }
   margin-top: ${padding.large};
   margin-bottom: ${padding.large};
   margin-left: 0;
@@ -18,8 +22,14 @@ export const CalloutWrapper = styled.div`
 export const CalloutContent = styled.div`
   margin: 0;
   &&& ul,
-  p:last-child {
-    margin: 0;
+  *:last-child {
+    margin-bottom: 0;
+  }
+  summary {
+    margin-bottom: 0;
+  }
+  details[open] summary {
+    margin-bottom: ${padding.small};
   }
 `;
 export const CalloutIcon = styled.div`

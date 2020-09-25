@@ -46,7 +46,7 @@ Writing parts of your expressions in external `js›.jsx` files, rather than dir
 
 - **Improve performance.**
 
-  After effects pre-processes expressions to allow for ExtendScript backwards compatibility. This pre-processing isn't done on code in external files, so there's a performance improvement for long expressions when written in `js›.jsx` files.
+  After effects [pre-processes expressions](/blog/expression-pre-processing/) to allow for ExtendScript backwards compatibility. This pre-processing isn't done on code in external files, so there's a performance improvement for long expressions when written in `js›.jsx` files.
 
 ## Standard JSON files
 
@@ -221,7 +221,7 @@ Works as expected.
 
 ## Syntax Differences
 
-Writing JavaScript in external files has some stricter requirements than writing within After Effects, as the pre-processing done on expressions isn't done the code in `js›.jsx` files.
+Writing JavaScript in external files has some stricter requirements than writing within After Effects, as the [pre-processing](/blog/expression-pre-processing/) done on expressions isn't done the code in `js›.jsx` files.
 
 <Inform>
 
@@ -294,6 +294,12 @@ thisLayer.add([960, 540], 200);
 ```
 
 </Successful>
+
+<Inform>
+
+For a deeper look at how this processing works, see the article: [What happens during expression pre-processing](/blog/expression-pre-processing/)
+
+</Inform>
 
 
 ## expressions-library-template

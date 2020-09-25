@@ -1,0 +1,417 @@
+---
+title: 'What happens during expression pre-processing'
+date: 2020-09-25
+difficulty: Advanced
+tags: ['internals']
+pinned: false
+author: timhaywood
+description: >-
+  After Effects pre-processes any expressions before running them. In this article you'll learn what it does during this process, why it does it, and how it might effect the way you write expressions.
+---
+
+import {
+  Note,
+  Inform,
+  Quote,
+  Warn,
+  ContentList,
+  FileDownload,
+} from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput';
+import { ToggleSection } from 'components/toggleSection';
+import LocalVideo from 'components/localVideo';
+
+If you've read our articles on [objects](/blog/basics-objects) or writing expressions in [external `js›.jsx` files](/blog/write-expressions-external-files/), you'll know that After Effects **pre-processes** all expressions before running them.
+
+You can learn the reason for this from the Adobe documentation:
+
+<Quote>
+
+"When using the JavaScript engine, **expressions are pre-processed before evaluation** in order to make some of the Legacy ExtendScript expression syntax readable by the new engine."
+
+---
+
+From this article: [Syntax differences between the JavaScript and Legacy ExtendScript expression engines](https://helpx.adobe.com/after-effects/using/legacy-and-extend-script-engine.html#syntax-requirements-expression-libraries)
+
+</Quote>
+
+In other words, the ExtendScript engine allowed syntax that isn't compatible with the newer [JavaScript engine](/blog/javascript-engine), and rather than have users make further adjustments to their code, After Effects will do parts of the conversion for you.
+
+## The pre-processing steps
+
+There are two main tasks After Effects performs during the pre-processing stage:
+
+1. Replacing math operations on array values with vector [functions](/blog/basics-functions)
+2. Prefixing [native attributes](/blog/basics-native-attributes) and [methods](/blog/basics-native-methods)
+
+This pre-processing isn't done on code in [external `js›.jsx` files](/blog/write-expressions-external-files/), so you will need to do both of these manually. This lack of pre-processing results in a performance increase for long expressions.
+
+## Replacing math functions
+
+Doing maths on arrays has always been a part of expressions, so it's easy to assume that it's part of the JavaScript standard. For example:
+
+```js
+// Adding and Subtracting
+[200, 200] + 50;
+wiggle(2, 2) - value;
+value + [960, 540];
+value + otherLayer.transform.position;
+
+// Multiplying and Dividing
+value * 2;
+[thisComp.width, thisComp.height] / 2;
+```
+
+All work as expected within After Effects. This is known as **overloading math operators**.
+
+The math operators (`js›+ - * /`) in JavaScript work on numbers, not arrays. Using them on arrays (overloading) will result in unexpected results, for example:
+
+```js
+[200, 200] + 50;
+```
+
+<Successful>
+
+```js
+// Array is coerced to a string
+"200, 20050";
+```
+
+</Successful>
+
+```js
+[200, 200] * 2;
+```
+
+<Errorful>
+
+```js
+// Not a Number
+NaN
+```
+
+</Errorful>
+
+To avoid this, After Effects replaces *all* instances of math operations with their vector math [function](/blog/basics-functions) counterparts:
+
+- `js›add()`
+- `js›sub()`
+- `js›mul()`
+- `js›div()` 
+
+For example:
+
+```js
+// Before
+[thisComp.width, thisComp.height] / 2;
+4 * 8;
+wiggle(2, 2) - value;
+
+// After processing
+div([thisComp.width, thisComp.height], 2);
+mul(4, 8);
+sub(wiggle(2, 2), value);
+```
+
+<Note>
+
+Technically speaking, it replaces them with a wrapper of these functions that uses the standard math operators when possible.
+
+<ToggleSection title="View wrapper functions" as="p">
+
+```js
+// add() wrapper function
+
+function (a, b) {
+  if (
+    a !== undefined &&
+    typeof a !== "string" &&
+    typeof b !== "string" &&
+    a.className !== "TextProperty" &&
+    a.className !== "TextStyleProperty" &&
+    b.className !== "TextProperty" &&
+    b.className !== "TextStyleProperty" &&
+    (typeof a === "object" ||
+      typeof a === "function" ||
+      typeof b === "object" ||
+      typeof b === "function")
+  ) {
+    return globalObj.thisLayer.add(a, b);
+  } else {
+    return a + b;
+  }
+};
+
+// div() wrapper function
+
+function(a, b) {			
+    if (typeof a === 'object' || typeof a === 'function'	
+     || typeof b === 'object' || typeof b === 'function')	
+    {													
+        return globalObj.thisLayer.div(a, b);							
+    } else {											
+        return a/b;										
+    }													
+}
+```
+
+</ToggleSection>
+
+</Note>
+
+## Prefixing native attributes
+
+The other major step of pre-processing is the prefixing of [native attributes](/blog/basics-native-attributes) and methods such as `js›toComp()`, `js›opacity`, `js›wiggle()` and `js›numKeys`.
+
+<Inform>
+
+In order to understand the need to prefix native attributes, it's helpful to have an understanding of variable [scope](https://developer.mozilla.org/en-US/docs/Glossary/Scope) and the [global object](https://developer.mozilla.org/en-US/docs/Glossary/Global_object) in JavaScript.
+
+</Inform>
+
+Within an expression, you can use these attributes and methods **as if they were defined in the global scope**, without prefixing them with a specific Layer or Property.
+
+<Note>
+
+For the sake of clarity, After Effects Properties (such as position) will be written with the capital "P" Property, while properties of a JavaScript object will be written with the lowercase "p" property.
+
+</Note>
+
+If they aren't prefixed with a specific Layer or Property, either `js›thisLayer` or `js›thisProperty` is used. For example, the following examples are equivalent:
+
+```js
+wiggle(2, 2) === thisProperty.wiggle(2, 2);
+toComp([960, 540]) === thisLayer.toComp([960, 540]);
+```
+
+Without pre-processing, you would get an error as these values (such as `js›numKeys`) **aren't available in the global scope**.
+
+```js
+// Without pre-processing
+numKeys;
+```
+
+<Errorful>
+
+```js
+ReferenceError: numKeys is not defined
+```
+
+</Errorful>
+
+To get around this need for prefixing (and make the [JavaScript engine](/blog/javascript-engine) more compatible with legacy ExtendScript code), After Effects creates a [proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) to intercept the property calls.
+
+Part of this proxy checks if a value is `js›undefined`, and if so, looks for that value as a property on `js›thisLayer`, and if that fails, on `js›thisProperty`.
+
+The code for this is:
+
+```js
+if (v === undefined) {
+  target = oTarget.__thisLayer;
+  v = target[sKey];
+  if (v === undefined) {
+    target = oTarget.__thisProperty;
+    v = target[sKey];
+  }
+  if (v instanceof Function) {
+    v = v.bind(target);
+  }
+}
+```
+
+<ToggleSection title="View full proxy function" as="p">
+
+```js
+__makeProxy = function (glob, usingWith) {
+  let proxy = new Proxy(__currentProxyBase, {
+    get: function (oTarget, sKey) {
+      var target = oTarget.__pseudoGlobal;
+      var v = target[sKey];
+
+      if (usingWith) {
+        if (v === undefined) {
+          target = oTarget.__global;
+          v = target[sKey];
+        }
+      }
+
+      if (v === undefined) {
+        target = oTarget.__thisLayer;
+        v = target[sKey];
+        if (v === undefined) {
+          target = oTarget.__thisProperty;
+          v = target[sKey];
+        }
+        if (v instanceof Function) {
+          v = v.bind(target);
+        }
+      }
+
+      return v;
+    },
+    set: function (oTarget, sKey, vValue) {
+      oTarget.__pseudoGlobal[sKey] = vValue;
+    },
+    deleteProperty: function (oTarget, sKey) {
+      return oTarget.__pseudoGlobal.removeItem(sKey);
+    },
+    enumerate: function (oTarget, sKey) {
+      return Object.keys(oTarget.__pseudoGlobal);
+    },
+    ownKeys: function (oTarget, sKey) {
+      return Object.keys(oTarget.__pseudoGlobal);
+    },
+    has: function (oTarget, sKey) {
+      return (
+        sKey in oTarget.__pseudoGlobal ||
+        sKey in oTarget.__thisLayer ||
+        sKey in oTarget.__thisProperty
+      );
+    },
+    defineProperty: function (oTarget, sKey, oDesc) {
+      if (oDesc && "value" in oDesc) {
+        Object.defineProperty(oTarget.__pseudoGlobal, sKey, oDesc);
+      }
+      return this;
+    },
+  });
+  return proxy;
+};
+```
+
+</ToggleSection>
+
+<Note>
+
+It does this through the use of [objects](/blog/basics-objects) such as `js›__currentProxyBase` and `js›__pseudoGlobal`. What these objects are and how they work is out of the scope of this article.
+
+</Note>
+
+This process allows you to use the properties of Layers and Properties without prefixing them with `js›thisLayer` or `js›thisProperty`.
+
+## The pre-processing function
+
+You can run the [function](/blog/basics-functions) `js›__preprocess` on a string of code to see the processed result:
+
+```js
+// The pre-processing function
+globalThis.__preprocess(codeString);
+```
+
+Using this function, you can compare an expression before and after pre-processing. For example:
+
+**Before processing:**
+
+```js
+// before
+if (time < -1) {
+  [0, 0];
+} else {
+  value + circularMotion(2, 2);
+}
+```
+
+**The processed result:**
+
+```js
+// after
+with (__makeProxy(this, true)) {
+  if (time < __mul(-1, 1)) {
+    [0, 0];
+  } else {
+    __add(value, wiggle(2, 2));
+  }
+};
+```
+
+You can see in the example above that the pre-processing has replaced the math operators with their vector function equivalents, as well as used `js›__makeProxy` to prefix [native attributes](/blog/basics-native-attributes) and methods.
+
+<Note>
+
+The math operators are replaced with their function equivalents using the `js›__expr_rewrite` function. This function uses [recast](https://github.com/benjamn/recast) to generate and transform an AST (Abstract Syntax Tree) of your expression.
+
+<ToggleSection as="p" title="View __expr_rewrite code" >
+
+```js
+function expr_rewrite(string) {
+  var transformer = function(ast, callback) {
+    recast.visit(ast, {
+      visitBinaryExpression: function(path) {
+        var stmt = path.node;
+
+        this.traverse(path);
+        return fix(stmt, false)
+      },
+      visitUnaryExpression: function(path) {
+        var stmt = path.node;
+
+        this.traverse(path);
+        return fixUnary(stmt, false)
+      },
+      visitAssignmentExpression: function(path) {
+        var stmt = path.node;
+
+        this.traverse(path);
+        return fix(stmt, true)
+      },
+    });
+    return ast;
+  };
+
+  var result = transformer(recast.parse(string, {}));
+  return recast.print(result, {}).code;
+}
+```
+
+</ToggleSection>
+
+</Note>
+
+### Other behind the scenes functions
+
+You can view the code for some of the other relevant functions below.
+
+<ToggleSection as="p" title="__ProxyBase" >
+
+```js
+function(glob, layer, property, usingWith) {
+  this.__thisProperty = property;
+  this.__thisLayer = layer;
+  this.__pseudoGlobal = {};
+  if (usingWith) {
+    this.__global = glob;
+  }
+}
+```
+
+</ToggleSection>
+
+<ToggleSection as="p" title="__unprepareContext" >
+
+```js
+function() {
+  Object.keys(globalObj).forEach(function(key) {
+    globalObj[key] = undefined;
+  });
+  Math.random = null;
+}
+```
+
+</ToggleSection>
+
+<ToggleSection as="p" title="__prepareContext" >
+
+```js
+function(inThisLayer, inThisProperty, inExpressionState) {
+  // thisLayer = inThisLayer;
+  // thisProperty = inThisProperty;
+  // expressionState = inExpressionState;
+  Math.random = thisLayer.random.bind(thisLayer);
+}
+```
+
+</ToggleSection>
+
+## Wrapping up 
+
+Understanding what happens during the pre-processing of expressions gives you a deeper understanding of how expressions work, as well as the differences between writing code in [external files](/blog/write-expressions-external-files/) and within After Effects.

@@ -120,7 +120,7 @@ This seems to contradict what you learnt about [objects](/blog/basics-objects): 
 
 ### Expression pre processing
 
-The reason layer and property attributes work without the object reference is that After Effects **pre processes** your expression to add references to the current layer or property object on native attributes.
+The reason layer and property attributes work without the object reference is that After Effects [pre-processes](/blog/expression-pre-processing/) expressions to add references to the current layer or property object on native attributes.
 
 ```js
 // Un processed (invalid) expression
@@ -134,15 +134,17 @@ thisProperty.numKeys;
 
 <Inform>
 
-After Effects pre processes expressions, adding the appropriate object references to property and layer attributes.
+For a more in depth look at expressions pre-processing, see the article: [What happens during expression pre-processing](/blog/expression-pre-processing/)
 
 </Inform>
 
-This pre processing is not done to code in external files, so you must ensure to add the object references yourself in that case.
+This pre processing is not done to code in [external `js›.jsx` files](/blog/write-expressions-external-files/), so you must ensure to add the object references yourself in that case.
+
+Whether you add the property references yourself, or let After Effects add them during pre processing, is a matter or preference.
 
 <Note>
 
-Whether you add the property references yourself, or let After Effects add them during pre processing, is a matter or preference. For the sake of being explicit about what objects the attributes belong to, I prefer to add object references in my own expressions.
+For the sake of being explicit about what objects the attributes belong to, we prefer to add object references in my own expressions.
 
 </Note>
 

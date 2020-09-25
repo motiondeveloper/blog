@@ -7,9 +7,11 @@ const Title = styled.h3``;
 const ToggleSection = ({
   title,
   children,
+  as = 'h3',
 }: {
   title: string;
   children: React.ReactNode;
+  as: 'h2' | 'h3' | 'p';
 }) => {
   return (
     <details
@@ -31,6 +33,7 @@ const ToggleSection = ({
           css={css`
             display: inline;
           `}
+          as={as}
         >
           {title}
         </Title>
