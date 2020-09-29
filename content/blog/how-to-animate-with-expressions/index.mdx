@@ -83,15 +83,15 @@ Below is two example keyframes that will animate a position property over two se
 ```js
 const eKeys = footage('eKeys.jsx').sourceData;
 const keys = [
-    {
-        keyTime: 1,
-        keyValue: [100, 540],
-        easeOut: 90,
-    },{
-        keyTime: 2,
-        keyValue: [800, 540],
-        easeIn: 100,
-    }
+  {
+    keyTime: 1,
+    keyValue: [100, 540],
+    easeOut: 90,
+  },{
+    keyTime: 2,
+    keyValue: [800, 540],
+    easeIn: 100,
+  }
 ];
 ```
 
@@ -136,15 +136,15 @@ You can now get the final animated value by calling the `js›animate()` [functi
 ```js{14}
 const eKeys = footage('eKeys.jsx').sourceData;
 const keys = [
-    {
-        keyTime: 1,
-        keyValue: [100, 540],
-        easeOut: 90,
-    },{
-        keyTime: 2,
-        keyValue: [800, 540],
-        easeIn: 100,
-    }
+  {
+    keyTime: 1,
+    keyValue: [100, 540],
+    easeOut: 90,
+  },{
+    keyTime: 2,
+    keyValue: [800, 540],
+    easeIn: 100,
+  }
 ];
 
 eKeys.animate(keys, time = thisLayer.time);
@@ -180,17 +180,17 @@ One example of this is setting default parameters with the spread syntax.
 
 ```js{11}
 const keyDefaults = {
-    easeOut: 80,
-    easeIn: 100,
-    velocityOut: 40,
+  easeOut: 80,
+  easeIn: 100,
+  velocityOut: 40,
 }
 
 const keys = [
-    {
-        keyTime: 1,
-        keyValue: someValue,
-        ...keyDefaults,
-    },
+  {
+    keyTime: 1,
+    keyValue: someValue,
+    ...keyDefaults,
+  },
 ];
 ```
 
