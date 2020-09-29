@@ -147,12 +147,16 @@ const keys = [
     }
 ];
 
-eKeys.animate(keys, time);
+eKeys.animate(keys, time = thisLayer.time);
 ```
 
 You can call `js›eKeys.animate()` with any number to return the animated value at that time. This allows you to get the value at a specific time, reverse the animation, or play the animation at different speeds.
 
-Passing the composition time, as `js›time`, will give you the animation as normal.
+<Note>
+
+If you omit the `js›time` parameter, the composition time is used as a default.
+
+</Note>
 
 You can also destructure the `animate` function from the "eKeys" file:
 
