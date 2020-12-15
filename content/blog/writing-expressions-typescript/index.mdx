@@ -59,39 +59,35 @@ If you're not sure what these are, feel free to read on but you may encounter is
 
 ## Quick setup
 
-The easiest way to get started is by using out **template repository** on GitHub: [Expressions Library Template (GitHub)](https://github.com/motiondeveloper/expressions-library-template)
-
-1. **Create a new repository from the template *(optional)***
-
-  You can click the "Use this template" button on the GitHub repo to create a new repository on your GitHub profile with this template.
-
-2. **Clone the repo locally**
+1. **Create a new project using `sh›create-expression-lib`**
 
   ```sh
-  git clone https://github.com/motiondeveloper/expressions-library-template.git
+  npx create-expression-lib project-name --install
   ```
 
-  *If you created a new repo from the template, the URL would be the new repo you created.*
+  <ToggleSection title="Command arguments" as="strong">
 
-2. **Install the dependencies**
+    - `project-name` (the first argument): The name of the project, also used for the folder name
+    - `sh›--install`: install npm packages (`sh›-i`)
+    - `sh›--git`: initialize with git repo (`sh›-g`)
+    - `sh›--yes`: skip prompts (`sh›-y`)
+  
+    The CLI will prompt you for the project name, as well as other parameters if the relevant arguments aren't given.
 
-  Navigate into the directory:
+  </ToggleSection>
+
+  And then navigate into the project folder via:
 
   ```sh
-  cd expressions-library-template
+  cd project-name
   ```
+  
 
-  And install the NPM dependencies:
-
-  ```sh
-  npm install
-  ```
-
-3. **Edit the `sh›/src` files**
+2. **Edit the `sh›/src` files**
 
   Any code exported from `sh›src/index.ts` file will be output to `sh›dist/index.jsx` as a After Effects compatible `js›.jsx` file.
 
-4. **Run rollup in watch mode**
+3. **Run rollup in watch mode**
 
   ```sh
   npm run watch
@@ -99,7 +95,7 @@ The easiest way to get started is by using out **template repository** on GitHub
 
   This will re-compile your files into After Effects compatible `js›.jsx` files every time you save.
 
-5. **Import the file into After Effects**
+4. **Import the file into After Effects**
 
   You can then import the output `js›.jsx` file into After Effects, and use it in your expressions, for example.
 
@@ -141,17 +137,6 @@ const thisProperty = new Property<Vector>([0, 100]);
 ```
 
 The `js›Property` constructor takes a value to set as the property value, and a type (`js›<>`) to set as the type for the property.
-
-### Global Functions and Variables
-
-You can import any global functions available in expressions, fully typed, from the same package:
-
-```ts
-import { time, linear } from 'expression-globals-typescript';
-linear(time, 0, 1, 5, 200);
-```
-
-*VS Code should prompt you to auto import these when you reference them.*
 
 ### After Effects Types
 
