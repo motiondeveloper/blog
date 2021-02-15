@@ -1,0 +1,217 @@
+---
+title: 'Why we wrap our expressions in IIFEs'
+date: 2021-02-15
+difficulty: Intermediate
+tags: ['javascript', 'tip']
+pinned: false
+author: timhaywood
+description: >-
+  How and why we use Immediately Invoked Function Expressions (IIFEs) to make it clear what value is returned from our expressions.
+---
+
+import {
+  Note,
+  Inform,
+  Quote,
+  Warn,
+  ContentList,
+  FileDownload,
+} from 'components/callout';
+import { Successful, Errorful } from 'components/codeOutput';
+import { ToggleSection } from 'components/toggleSection';
+import LocalVideo from 'components/localVideo';
+
+It can be difficult to determine what the final value for an expression is, especially when:
+
+- It's more than a few lines long
+- You didn't write it (or you wrote it a while ago)
+- It doesn't have comments
+
+For example, can you tell what value is set in the below example?
+
+```js
+const myPosition = [960, 540];
+myPosition * 2;
+[0, 0];
+const otherPosition = [500, 500];
+```
+
+<Successful>
+
+```js
+[0, 0];
+```
+
+</Successful>
+
+Knowing which value is set requires reading through and understanding **the whole expression**.
+
+<Inform>
+
+To learn more about what determines the final value for an expression, see our article on [statement completion values](/blog/basics-statement-completion-values).
+
+</Inform>
+
+## Using a return statement
+
+Ideally you would be able to use a `js›return` statement, as if the expression was the body of a [function](/blog/basics-functions):
+
+```js{3}
+const myPosition = [960, 540];
+myPosition * 2;
+return [0, 0];
+const otherPosition = [500, 500];
+```
+
+<Successful>
+
+```js
+[0, 0];
+```
+
+</Successful>
+
+Which has the benefit of **explicitly** setting what value is used, allowing you to scan an expression for the `js›return` keyword and work backwards from the final value.
+
+<Note>
+
+You can learn more about `js›return` statements in our article on [functions](/blog/basics-functions).
+
+</Note>
+
+### Other benefits
+
+Using `js›return` statements has more benefits than just being explicit, for example:
+
+- Skipping code with early returns, without needing an `js›else` clause
+
+  ```js
+  if (test) {
+    return someValue;
+  }
+
+  // more complicated code
+  return somethingElse;
+  ```
+
+- Ending an expression with a [function](/blog/basics-functions) declaration
+
+  ```js
+  return bounce(3, 2);
+  function bounce(...) {}
+  ```
+
+- Avoiding polluting the global scope when using `js›var` declarations
+
+## Wrapping expressions in a function
+
+Using a `js›return` statement in an expression will result in an error, as they aren't allowed outside of a function body:
+
+```js
+return 'Use this for the final value';
+```
+
+<Errorful>
+
+```js
+Error: Syntax Error: Illegal return statement
+```
+
+</Errorful>
+
+To get around this you need to wrap your expression in a [function](/blog/basics-functions) and then call it, for example:
+
+```js
+function main() {
+  return 'Hello from return';
+}
+
+main();
+```
+
+<Successful>
+
+```js
+'Hello from return';
+
+```
+
+</Successful>
+
+### IIFEs
+
+While this works well, you can reduce the amount of syntax needed by using an **IIFE**.
+
+<Inform>
+
+IIFE stands for **Immediately Invoked Function Expression**.
+
+</Inform>
+
+This is a method for invoking the [function](/blog/basics-functions) as soon as it's created, by:
+
+1. Wrapping an anonymous function in parenthesis (`js›()`)
+
+2. Followed by another pair of parenthesis to call it
+
+For example:
+
+```js
+(function () {
+  return someValue;
+})();
+```
+
+<Note>
+
+You make a function anonymous by omitting it's name, which normally comes after the `js›function` keyword.
+
+</Note>
+
+You can then further reduce the amount of code by changing the function to an ES6 arrow function:
+
+```js
+(() => {
+  return 'Returned!';
+})();
+```
+
+<Successful>
+
+```js
+'Returned!';
+
+```
+
+</Successful>
+
+This allows you to gain the benefits of using `js›return` statements in your expressions, with minimal syntactical overhead.
+
+For example, the expression from the top of this post becomes:
+
+```js
+(() => {
+  const myPosition = [960, 540];
+  myPosition * 2;
+  return [0, 0];
+  const otherPosition = [500, 500];
+})();
+```
+
+<Successful>
+
+```js
+[0, 0];
+```
+
+</Successful>
+
+Where it's now clear what value is being used as the result of the expression.
+
+<Note>
+
+This isn't something you _need_ to do on every expression, but rather another technique to keep your expressions easy to read and understand.
+
+</Note>
+
+While the examples in this post have been simple, the benefits are especially true when it comes to longer and more complicated expressions.
