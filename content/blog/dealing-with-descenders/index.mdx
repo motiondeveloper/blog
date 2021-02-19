@@ -9,7 +9,13 @@ description: >-
   How get the height of a text layer without descenders in your After Effects templates, using expressions.
 ---
 
-import { Note, Inform, Warn, ContentList, FileDownload } from 'components/callout';
+import {
+  Note,
+  Inform,
+  Warn,
+  ContentList,
+  FileDownload,
+} from 'components/callout';
 import { Successful, Errorful } from 'components/codeOutput';
 import { ToggleSection } from 'components/toggleSection';
 import LocalVideo from 'components/localVideo';
@@ -22,138 +28,139 @@ You can download the **After Effects project** for the examples in this post:
 
 It's common when creating After Effects templates (such as lower thirds) to set the size of a rectangle based on a text layer. This is so the box will grow to match the size of the layer, no matter the text content.
 
-![Setting a box size based off the text height plus padding](text-template-padding.png)
-
 <Inform>
 
-You do this by basing the width and height of the rectangle on the size of the text layer, plus a padding value, with the either the `js›sourceRectAtTime()` [method](/blog/basics-native-methods) or `js›width` and `js›height` layer [attributes](/blog/basics-native-attributes).
+You do this by linking the size of the box to the width and height of the text layer, with the `js›sourceRectAtTime()` [method](/blog/basics-native-methods) .
 
 </Inform>
 
 ## The problem
 
-Setting the rectangle height from the text height causes issues, as letters with **descenders** (`js›"y, g, j"`) or **ascenders** (`js›"h, f, l"`) will cause the height to fluctuate as the copy changes.
+Linking the box height to the text causes issues as letters with **descenders** (`js›"y, g, j"`) or **ascenders** (`js›"h, f, l"`) will cause the height to fluctuate as the copy changes.
 
-<LocalVideo videoName="box-size-from-text-height" title="Box height fluctuations when using the text height"/>
+<LocalVideo
+  videoName="box-size-from-text-height"
+  title="Box height fluctuations when using the text height"
+/>
 
-Sometimes this is what the design requires, but in most cases it's preferable to set the rectangle height from the **cap height** rather than the height of the text layer.
-
-<Inform>
-
-**Cap height** is the height of flat topped capital letters, such as `js›"H"`, `js›"I"` and `js›"X"`.
-
-</Inform>
-
-### Using cap height
-
-Since the cap height is a consistent value across all letters, setting the height of the rectangle **based on the cap height** means the size won't change when the text contains descenders or ascenders.
-
-<LocalVideo videoName="box-size-from-cap-height" title="Consistent box height when using the cap height, not layer height"/>
-
-Rather than writing the cap height value into the expression (which means updating the value on any design changes), you can instead **measure the cap height of the text layer**.
-
-## Replacing lines with "X"
-
-To measure the cap height of the text layer, you need to **measure the height of a letter such as (`js›"X"`)**.
-
-You can do this by replacing the content of your text layer with `js›"X"` in an expression on the `js›sourceText` property.
+Sometimes this is what the design requires, but in most cases it's preferable to set the rectangle height from the **x-height** rather than the height of the text layer.
 
 <Inform>
 
-Doing this on the original text layer insures the `js›"X"` will **match the original text's font properties**, and avoids unnecessary layer duplication.
+**X-height** is the height of flat topped lowercase letters, such as `js›"x"`, `js›"u"` and `js›"z"`.
 
 </Inform>
 
-Since the text may contain multiple lines, you will need to count the number of lines, replacing each one with an `js›"X"`.
+### Using x-height
 
-```js{7}
-// Count the number of line breaks
-const numLines = Math.max(
-    value.split(/[^\r\n\3]*/gm).length - 1,
-    0
-  );
-// Repeat X for each line
-'X\r'.repeat(numLines - 1) + 'X'
-```
+Since the x-height is a consistent value across all letters, setting the height of the rectangle **based on the x-height** means the size won't change when the text contains descenders or ascenders.
 
-Now that the text layer contains letters with a consistent height, measuring that height for the height of the text box will give us a consistent value.
+<LocalVideo
+  videoName="box-size-from-cap-height"
+  title="Consistent box height when using the cap height, not layer height"
+/>
 
-**There are two issues which you now need to address:**
+Rather than hard-coding the x-height into the expression you can instead **get the x-height from the text `style` properties**.
 
-- The inaccurate width of the text layer
-- You text layer says `js›"X"`, not your text content
+## Getting the size
 
-You can solve both of these issues using the technique of **hiding values in negative time**.
+As of After Effects v17, you can now use expressions to access **text style** properties, such as the font, tracking and size.
 
-## Hiding in time
+**The two style properties needed to calculate the height are:**
 
-Replacing the lines with `js›"X"` has solved the height issue, but you still need the original text for an accurate width measurement, and to display the correct value.
+- `js›fontSize`: used to calculate the x-height, which is the `js›fontSize / 2`
+- `js›leading`: the space between baselines
 
-A technique to access two values on one property (the `js›"X"` version and the original text) is to **store one value in negative time**.
+![3 lines of text, with annotations showing the x-height and leading](text-styles-example.png)
 
-<Inform>
-
-You can reference **two values on the same property** by "storing" one before the start of the composition.
-
-</Inform>
-
-To do this, you change your expression on the text layer so the `js›"X"` version appears before the composition start.
+You can destructure these two properties from the `js›style` object:
 
 ```js
-if (time < -500) {
-  const numLines = Math.max(
-      value.split(/[^\r\n\3]*/gm).length - 1,
-      0
-    );
-  const xText = 'X\r'.repeat(numLines - 1) + 'X'
-  xText;
-} else {
-  value;
-}
+const { fontSize, leading } = thisLayer.text.sourceText.style;
 ```
+
+And then use them to get the total height:
+
+```js{2}
+const { fontSize, leading } = thisLayer.text.sourceText.style;
+const totalHeight = xHeight + leading * (numLines - 1);
+```
+
+Here we're using the `js›xHeight` to get the height of the first line, and then the `js›leading` to get the height of the remaining lines with `js›leading * (numLines - 1)`.
 
 <Note>
 
-You can choose any negative number in place of `js›-500`.
+You can use the `js›textCount()` function from our library [aeFunctions](/blog/using-aefunctions) to get the number of lines.
 
 </Note>
 
-Now if you need to access the `js›"X"` text in another expression, you can look at the value **before -500**. For example:
+Then you can get the layer's width with `js›sourceRectAtTime()`. The complete expression for getting the descender-less size of the text layer is below.
 
 ```js
-// The width from the current text
-const textWidth = textLayer.sourceRectAtTime(time).width;
-// The height from the X text
-const textHeight = textLayer.sourceRectAtTime(-550).height;
+const layer = thisLayer;
+
+const { fontSize, leading } = layer.text.sourceText.style;
+const { width } = layer.sourceRectAtTime();
+
+const xHeight = fontSize / 2;
+// Getting numLines is omitted for brevity
+const height = xHeight + leading * (numLines - 1);
+
+// The descender-less text size
+const textSize = [width, height];
 ```
 
-Getting the width and height values separately solves any descender or ascender issues, while also maintaining an accurate width measurement.
+You then can use this `js›textSize` value to set the size of the box shape layer, while ignoring descenders and ascenders.
 
-<LocalVideo videoName="multiple-lines" title="Correct padding with multiple lines"/>
+## Getting the anchor point
 
-## How we use it
-
-This post covers the general technique of dealing with descenders in templates, rather than the specific expressions needed to set the box size.
-
-To save writing out this large amount of code on each text (and box) layer, we've implemented these ideas in external expression libraries [aeFunctions](/blog/using-aefunctions) and [eBox](/blog/creating-scaling-rectangles).
+You often need to set the anchor point dynamically as well, so the layer stays in a consistent position as you change the content.
 
 <Inform>
 
-Implementing these ideas in external libraries avoids duplicating code.
+This involves setting the anchor point to the corner of the text, offset by it's size, making sure to set the `js›y` value from the text `js›style` rather than `js›sourceRectAtTime()`.
+
+</Inform>
+
+The anchor point origin for a text layer is at the **baseline of the first line**, so to set the anchor point to the top left you ste each dimension to:
+
+- `js›x`: the left value of `js›sourceRectAtTime`
+- `js›y`: `js›-xHeight`, offsetting the default value by the x-height
+
+![](anchor-point-from-origin.png)
+
+For example, to center the anchor point to the text layer, ignoring descenders:
+
+```js
+const { left } = layer.sourceRectAtTime();
+const topLeft = [left, -xHeight];
+topLeft + size / 2;
+```
+
+## How we use it
+
+To save writing out this code on each text (and box) layer, we've implemented these ideas in expression libraries [aeFunctions](/blog/using-aefunctions) and [eBox](/blog/creating-scaling-rectangles).
+
+<Inform>
+
+Implementing these ideas in libraries avoids duplicating code.
 
 </Inform>
 
 ### On the text layer
 
-To hide the `js›"X"` version in negative time, we use the [aeFunction](/blog/using-aefunctions) `js›hideDescenders()`.
+The [function](/blog/basics-functions) `js›layerRect()` handles getting the descender-less position value, for any corner (or center) of the layer.
 
 ```js
-const aef = footage('aefunctions.jsx')
-  .sourceData
-  .getFunctions();
-
-aef.hideDescenders();
+// textLayer.transform.anchorPoint
+layerRect({ anchor: 'center' }).position;
 ```
+
+<Note>
+
+`js›layerRect()` automatically gets the descender-less size and position when used on a Text layer.
+
+</Note>
 
 ### Box Path
 
@@ -162,30 +169,21 @@ There are two parts to setting the box size (which we do as an expression on a `
 1. Getting the correct `js›width` and `js›height` of the text layer
 2. Setting the value for the `js›Path` property
 
-To get the size and position of the text layer without descenders, we use another [aeFunction](/blog/using-aefunctions) `js›layerRect()`. This gives us an object with `js›size` and `js›position` properties which we can use to create the rectangle.
+To get the size and position of the text layer without descenders, we use again use`js›layerRect()`. This gives us an object with `js›size` and `js›position` properties which we can use to create the rectangle.
 
 ```js
-const aef = footage('aefunctions.jsx')
-  .sourceData
-  .getFunctions();
-
-const textLayer = thisComp.layer('TXT_Copy');
-const textRect = aef.layerRect({
-  layer: textLayer,
-  anchor: 'center',
-  capHeight: true,
-});
+const layer = thisComp.layer('TXT_Copy');
+const textRect = layerRect({ layer, anchor: 'center' });
 ```
 
 We then use the library [eBox](/blog/creating-scaling-rectangles) to create a rectangular path based on the `js›textRect` object.
 
 ```js
 // Create references to libraries
-const eBox = footage("eBox.jsx").sourceData;
-const aef = footage('aefunctions.jsx')
-  .sourceData
-  .getFunctions();
+const { createBox } = footage('eBox.jsx').sourceData;
+const { layerRect } = footage('aefunctions.jsx').sourceData.getFunctions();
 
+// Padding around the text
 const padding = 36;
 
 // Get the text layer size and position
@@ -193,11 +191,10 @@ const textLayer = thisComp.layer('TXT_Copy');
 const textRect = aef.layerRect({
   layer: textLayer,
   anchor: 'center',
-  capHeight: true,
 });
 
 // Create the box path
-const myBox = eBox.createBox({
+const myBox = createBox({
   size: add(textRect.size, [padding, padding]),
   position: textRect.position,
   anchor: 'center',
@@ -206,69 +203,4 @@ const myBox = eBox.createBox({
 myBox.getPath();
 ```
 
-Using [eBox](/blog/creating-scaling-rectangles) allows you to scale this rectangle from any anchor point.
-
-## Getting height from the font size
-
-One alternative method of getting a fixed height of a text layer is by **accessing the text style properties** `js›fontSize` and `js›leading`.
-
-You can do this by getting the style properties of the text, and using them with the number of lines to get the height of the text layer.
-
-```js
-// import aefunctions
-const { textCount } = footage('aefunctions.jsx')
-  .sourceData
-  .getFunctions();
-
-const textLayer = thisComp.layer("TXT_Copy");
-
-// get the number of lines
-const numLines = textCount(textLayer.text.sourceText, "line");
-// get the required text styles
-const { fontSize, leading } = textLayer.text.sourceText.style;
-
-// get the text height from the
-// text style and number of lines
-const textHeight = (leading * numLines - 1) + fontSize;
-```
-
-### Advantages
-
-This advantages of this method over the one outlined earlier is:
-
-- **It's faster**
-
-  Hiding values in negative `time` in the `sourceText` expression does slow down your composition more than other expressions.
-
-- **You don't need to add any expressions to the text layer**
-- **It's simpler**
-
-  This method is simpler to write and reason about, which is means updating or reading the code will be easier.
-
-If you *only* need to get the height of a text layer, then this method will work well.
-
-### Disadvantages
-
-When using text in After Effects templates, in addition to getting the height of the text layer without descenders, it's often also important to get it's **position** unaffected by descenders or ascenders.
-
-<Note>
-
-This is so you can position other layers, or the text itself, relative to a descenderless version on the text.
-
-</Note>
-
-While you can use the anchor point (either set manually or left at it's default position on the baseline) and font size to get an accurate position, for example:
-
-```js
-const textTop = textLayer.transform.anchorPoint[1] - fontSize;
-```
-
-We prefer to make certain the position is accurate regardless of the anchor point of the layer, and also avoiding setting the anchor point manually for each layer.
-
-<Inform>
-
-For these reasons we prefer to use the "replacing lines with X" method most of the time. If you don't need to use the position of the layer, using the text style properties is a good alternative.
-
-**It's important to consider which technique best suits your project.**
-
-</Inform>
+This expression creates a path that stays centered to the text layer, and matches it size, while ignoring descenders and ascenders automatically.
