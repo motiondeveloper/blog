@@ -19,6 +19,7 @@ import {
 import { Successful, Errorful } from 'components/codeOutput';
 import { ToggleSection } from 'components/toggleSection';
 import LocalVideo from 'components/localVideo';
+import YoutubeEmbed from 'components/youtubeEmbed';
 
 In this article we'll go over how to write [expressions libraries](/blog/write-expressions-external-files/), (`js›.jsx`) files, in [TypeScript](https://www.typescriptlang.org/), with automatic refresh, using [Rollup.js](https://rollupjs.org/guide/en/).
 
@@ -51,19 +52,23 @@ All while working in working in [VS Code](http://code.visualstudio.com), that wi
 
 <Note>
 
-**This article assumes you're familiar with tools such  as Git, GitHub, NPM.**
+**This article assumes you're familiar with tools such as Git, GitHub, NPM.**
 
 If you're not sure what these are, feel free to read on but you may encounter issues.
 
 </Note>
 
+You can also watch our tutorial on the topic below:
+
+<YoutubeEmbed id="7iUrvzofB1c" />
+
 ## Quick setup
 
 1. **Create a new project using `sh›create-expression-lib`**
 
-  ```sh
-  npx create-expression-lib project-name --install
-  ```
+```sh
+npx create-expression-lib project-name --install
+```
 
   <ToggleSection title="Command arguments" as="strong">
 
@@ -71,41 +76,39 @@ If you're not sure what these are, feel free to read on but you may encounter is
     - `sh›--install`: install npm packages (`sh›-i`)
     - `sh›--git`: initialize with git repo (`sh›-g`)
     - `sh›--yes`: skip prompts (`sh›-y`)
-  
+
     The CLI will prompt you for the project name, as well as other parameters if the relevant arguments aren't given.
 
   </ToggleSection>
 
-  And then navigate into the project folder via:
+And then navigate into the project folder via:
 
-  ```sh
-  cd project-name
-  ```
-  
+```sh
+cd project-name
+```
 
 2. **Edit the `sh›/src` files**
 
-  Any code exported from `sh›src/index.ts` file will be output to `sh›dist/index.jsx` as a After Effects compatible `js›.jsx` file.
+Any code exported from `sh›src/index.ts` file will be output to `sh›dist/index.jsx` as a After Effects compatible `js›.jsx` file.
 
 3. **Run rollup in watch mode**
 
-  ```sh
-  npm run watch
-  ```
+```sh
+npm run watch
+```
 
-  This will re-compile your files into After Effects compatible `js›.jsx` files every time you save.
+This will re-compile your files into After Effects compatible `js›.jsx` files every time you save.
 
 4. **Import the file into After Effects**
 
-  You can then import the output `js›.jsx` file into After Effects, and use it in your expressions, for example.
+You can then import the output `js›.jsx` file into After Effects, and use it in your expressions, for example.
 
-  ```js
-  const libraryCode = footage('index.jsx').sourceData;
-  libraryCode.someFunction();
-  ```
+```js
+const libraryCode = footage('index.jsx').sourceData;
+libraryCode.someFunction();
+```
 
-  After Effects will reload the `js›.jsx` file when it's recompiled, so you'll see the result of your code every time you save your source file.
-
+After Effects will reload the `js›.jsx` file when it's recompiled, so you'll see the result of your code every time you save your source file.
 
 ## Using the After Effects API
 
@@ -159,7 +162,6 @@ To see all the Types and Base Objects available, see the [expression-globals-typ
 1. [expression-globals-typescript](https://github.com/motiondeveloper/expression-globals-typescript) allows you to use the Expressions API outside of After Effects
 2. [Rollup.js](https://rollupjs.org/guide/en/) watches the source files, bundles them into one, and runs the [TypeScript](https://www.typescriptlang.org/) compiler as well as:
 3. [rollup-plugin-ae-jsx](https://github.com/motiondeveloper/rollup-plugin-ae-jsx) Transforms the output code into After Effects compatible JSON (`js›.jsx`) files
-
 
 ## Creating releases
 
@@ -229,9 +231,10 @@ To split your expression into multiple files, all you need to do is:
 
 ```typescript
 // anotherFile.ts
-const someVariable: string = "this is in another file";
+const someVariable: string = 'this is in another file';
 export { someVariable };
 ```
+
 2. Import and export from the `js›index` file
 
 ```typescript

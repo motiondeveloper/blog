@@ -19,18 +19,21 @@ import {
 import { Successful, Errorful } from 'components/codeOutput';
 import { ToggleSection } from 'components/toggleSection';
 import LocalVideo from 'components/localVideo';
+import YoutubeEmbed from 'components/youtubeEmbed';
 
 After Effects can import data in JSON (`js›.json`), CSV (`js›.csv`) and text (`js›.txt`) files, which you can then use in your expressions to create [data driven animations](https://helpx.adobe.com/au/after-effects/using/data-driven-animations.html).
 
 <Inform>
 
-
 In the same way, you can place **JavaScript code in an external file**, which you reference in your expression.
 
 </Inform>
 
-
 You do this by writing code in a **modified** JSON format and saving it as a file with the extension `js›.jsx`.
+
+Check out our tutorial on writing `js›.jsx` files below:
+
+<YoutubeEmbed id="hlaQUFFjSwg" />
 
 ## Benefits
 
@@ -54,11 +57,9 @@ Writing parts of your expressions in external `js›.jsx` files, rather than dir
 
 <Inform>
 
-
 Since `js›.jsx` is a modification of the JSON standard, it helps to first understand how to write JSON files.
 
 </Inform>
-
 
 JSON can store values in the following [data types](/blog/basics-intro-to-data-types):
 
@@ -84,11 +85,9 @@ For example:
 
 <Inform>
 
-
 JSON stands for "JavaScript Object Notation", and has a syntax resembling JavaScript [objects](/blog/basics-objects).
 
 </Inform>
-
 
 In After Effects, you can then import this JSON file like you would any other footage item, and reference it in an expression with the following code:
 
@@ -99,14 +98,12 @@ jsonCode.someString;
 
 <Successful>
 
-
 ```js
 'Hello!';
 
 ```
 
 </Successful>
-
 
 ### Collecting files
 
@@ -122,11 +119,9 @@ To get around this limitation, After Effects uses a **modified JSON syntax** tha
 
 <Inform>
 
-
 Since this isn't valid JSON syntax, you need to change the extension to `js›.jsx`. This tells After Effects not to parse the file as JSON, which would result in an error.
 
 </Inform>
-
 
 You can then add functions to your JSON file with the following syntax:
 
@@ -149,14 +144,12 @@ jsxCode.someFunction();
 
 <Successful>
 
-
 ```js
 'function in an external file!';
 
 ```
 
 </Successful>
-
 
 This [function](/blog/basics-functions) can contain any standard JavaScript, which you call from within your expressions.
 
@@ -173,11 +166,9 @@ Since the parser for `js›.jsx` files is looser than the JSON parser, you can s
 
 <Inform>
 
-
 While it's further from the original JSON, making your `js›.jsx` files closer to standard JavaScript will make them easier to read, as well as improve syntax highlighting and error checking in your editor.
 
 </Inform>
-
 
 The allowed syntax is the same as a standard JavaScript [object](/blog/basics-objects), except without the [variable](/blog/basics-variables) declaration.
 
@@ -196,13 +187,11 @@ const jsxCode = {
 
 <Errorful>
 
-
 ```js
 Unexpected token "const"
 ```
 
 </Errorful>
-
 
 Will result in an error, while:
 
@@ -225,13 +214,11 @@ Writing JavaScript in external files has some stricter requirements than writing
 
 <Inform>
 
-
 **For a full list of the differences between writing expression in After Effects and in `js›.jsx` files, see [this article by Adobe](https://helpx.adobe.com/au/after-effects/using/legacy-and-extend-script-engine.html#syntax-requirements-expression-libraries).**
 
 An overview of these differences is below, but it's recommended to read the article above for a comprehensive explanation.
 
 </Inform>
-
 
 ### Prefixing native attributes and methods
 
@@ -271,14 +258,12 @@ This because you can't perform math functions on Arrays in JavaScript, for examp
 
 <Errorful>
 
-
 ```js
 '960,540200';
 
 ```
 
 </Errorful>
-
 
 Will coerce the array to a string. In an external file, you need to wrap it in one of the vector math functions:
 
@@ -287,7 +272,6 @@ thisLayer.add([960, 540], 200);
 ```
 
 <Successful>
-
 
 ```js
 [1160, 540];
@@ -300,7 +284,6 @@ thisLayer.add([960, 540], 200);
 For a deeper look at how this processing works, see the article: [What happens during expression pre-processing](/blog/expression-pre-processing/)
 
 </Inform>
-
 
 ## expressions-library-template
 
@@ -315,8 +298,6 @@ It's allows you to write expressions with the benefits of:
 
 <Inform>
 
-
 For more information, see the article on [writing expressions in TypeScript](/blog/writing-expressions-typescript).
 
 </Inform>
-
