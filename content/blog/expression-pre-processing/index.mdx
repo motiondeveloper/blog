@@ -42,7 +42,7 @@ In other words, the ExtendScript engine allowed syntax that isn't compatible wit
 There are two main tasks After Effects performs during the pre-processing stage:
 
 1. Replacing math operations on array values with vector [functions](/blog/basics-functions)
-2. Prefixing [native attributes](/blog/basics-native-attributes) and [methods](/blog/basics-native-methods)
+2. Extending the scope chain for [native attributes](/blog/basics-native-attributes) and [methods](/blog/basics-native-methods)
 
 This pre-processing isn't done on code in [external `js›.jsx` files](/blog/write-expressions-external-files/), so you will need to do both of these manually. This lack of pre-processing results in a performance increase for long expressions.
 
@@ -74,7 +74,8 @@ The math operators (`js›+ - * /`) in JavaScript work on numbers, not arrays. U
 
 ```js
 // Array is coerced to a string
-"200, 20050";
+'200, 20050';
+
 ```
 
 </Successful>
@@ -87,17 +88,17 @@ The math operators (`js›+ - * /`) in JavaScript work on numbers, not arrays. U
 
 ```js
 // Not a Number
-NaN
+NaN;
 ```
 
 </Errorful>
 
-To avoid this, After Effects replaces *all* instances of math operations with their vector math [function](/blog/basics-functions) counterparts:
+To avoid this, After Effects replaces _all_ instances of math operations with their vector math [function](/blog/basics-functions) counterparts:
 
 - `js›add()`
 - `js›sub()`
 - `js›mul()`
-- `js›div()` 
+- `js›div()`
 
 For example:
 
@@ -144,14 +145,14 @@ function (a, b) {
 
 // div() wrapper function
 
-function(a, b) {			
-    if (typeof a === 'object' || typeof a === 'function'	
-     || typeof b === 'object' || typeof b === 'function')	
-    {													
-        return globalObj.thisLayer.div(a, b);							
-    } else {											
-        return a/b;										
-    }													
+function(a, b) {
+    if (typeof a === 'object' || typeof a === 'function'
+     || typeof b === 'object' || typeof b === 'function')
+    {
+        return globalObj.thisLayer.div(a, b);
+    } else {
+        return a/b;
+    }
 }
 ```
 
@@ -159,13 +160,15 @@ function(a, b) {
 
 </Note>
 
-## Prefixing native attributes
+## Native attributes and methods
 
-The other major step of pre-processing is the prefixing of [native attributes](/blog/basics-native-attributes) and methods such as `js›toComp()`, `js›opacity`, `js›wiggle()` and `js›numKeys`.
+The other major step of pre-processing is extending the scope your expression, looking up [native attributes](/blog/basics-native-attributes) and methods such as `js›toComp()`, `js›opacity` and `js›wiggle()` on the `js›thisLayer` and `js›thisProperty` objects.
+
+It does this by **extending the scope chain**.
 
 <Inform>
 
-In order to understand the need to prefix native attributes, it's helpful to have an understanding of variable [scope](https://developer.mozilla.org/en-US/docs/Glossary/Scope) and the [global object](https://developer.mozilla.org/en-US/docs/Glossary/Global_object) in JavaScript.
+In order to understand the need to extend the scope chain, it's helpful to have an understanding of variable [scope](https://developer.mozilla.org/en-US/docs/Glossary/Scope) and the [prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) in JavaScript.
 
 </Inform>
 
@@ -269,7 +272,7 @@ __makeProxy = function (glob, usingWith) {
       );
     },
     defineProperty: function (oTarget, sKey, oDesc) {
-      if (oDesc && "value" in oDesc) {
+      if (oDesc && 'value' in oDesc) {
         Object.defineProperty(oTarget.__pseudoGlobal, sKey, oDesc);
       }
       return this;
@@ -281,13 +284,27 @@ __makeProxy = function (glob, usingWith) {
 
 </ToggleSection>
 
-<Note>
+It then extends the scope of your expression using a [with statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with) and the `js›Proxy` object shown earlier.
 
-It does this through the use of [objects](/blog/basics-objects) such as `js›__currentProxyBase` and `js›__pseudoGlobal`. What these objects are and how they work is out of the scope of this article.
+```js
+with (__makeProxy(this, true)) {
+  // expression code
+}
+```
 
-</Note>
+<Quote>
 
-This process allows you to use the properties of Layers and Properties without prefixing them with `js›thisLayer` or `js›thisProperty`.
+The `js›with` statement **adds the given object to the head of the scope chain** during the evaluation of its statement body.
+
+If an unqualified name used in the body matches a property in the scope chain, then the name is bound to the property and the object containing the property.
+
+---
+
+[MDN Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with)
+
+</Quote>
+
+This `js›with` statement adds the `js›Proxy` to the _scope chain_ of your expression. This process allows you to use the properties of Layers and Properties without prefixing them with `js›thisLayer` or `js›thisProperty`.
 
 ## The pre-processing function
 
@@ -321,10 +338,10 @@ with (__makeProxy(this, true)) {
   } else {
     __add(value, wiggle(2, 2));
   }
-};
+}
 ```
 
-You can see in the example above that the pre-processing has replaced the math operators with their vector function equivalents, as well as used `js›__makeProxy` to prefix [native attributes](/blog/basics-native-attributes) and methods.
+You can see in the example above that the pre-processing has replaced the math operators with their vector function equivalents, as well as used `js›__makeProxy` to and `js›with` to extend the scope chain, so you don't need to prefix [native attributes](/blog/basics-native-attributes) and methods.
 
 <Note>
 
@@ -334,25 +351,25 @@ The math operators are replaced with their function equivalents using the `js›
 
 ```js
 function expr_rewrite(string) {
-  var transformer = function(ast, callback) {
+  var transformer = function (ast, callback) {
     recast.visit(ast, {
-      visitBinaryExpression: function(path) {
+      visitBinaryExpression: function (path) {
         var stmt = path.node;
 
         this.traverse(path);
-        return fix(stmt, false)
+        return fix(stmt, false);
       },
-      visitUnaryExpression: function(path) {
+      visitUnaryExpression: function (path) {
         var stmt = path.node;
 
         this.traverse(path);
-        return fixUnary(stmt, false)
+        return fixUnary(stmt, false);
       },
-      visitAssignmentExpression: function(path) {
+      visitAssignmentExpression: function (path) {
         var stmt = path.node;
 
         this.traverse(path);
-        return fix(stmt, true)
+        return fix(stmt, true);
       },
     });
     return ast;
@@ -412,6 +429,6 @@ function(inThisLayer, inThisProperty, inExpressionState) {
 
 </ToggleSection>
 
-## Wrapping up 
+## Wrapping up
 
 Understanding what happens during the pre-processing of expressions gives you a deeper understanding of how expressions work, as well as the differences between writing code in [external files](/blog/write-expressions-external-files/) and within After Effects.
