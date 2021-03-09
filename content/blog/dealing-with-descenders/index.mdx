@@ -83,10 +83,11 @@ And then use them to get the total height:
 
 ```js{2}
 const { fontSize, leading } = thisLayer.text.sourceText.style;
+const xHeight = fontSize / 2;
 const totalHeight = xHeight + leading * (numLines - 1);
 ```
 
-Here we're using the `js›xHeight` to get the height of the first line, and then the `js›leading` to get the height of the remaining lines with `js›leading * (numLines - 1)`.
+Here we're using `js›fontSize / 2` to get the height of the first line, and then the `js›leading` to get the height of the remaining lines with `js›leading * (numLines - 1)`.
 
 <Note>
 
