@@ -77,7 +77,7 @@ const PostItem = ({ post }) => {
           __html: post.frontmatter.description || post.excerpt,
         }}
       />
-      <ReadLink to={`/blog/${post.fields.slug}`}>Read More →</ReadLink>
+      <ReadLink to={`/blog${post.fields.slug}`}>Read More →</ReadLink>
     </PostCard>
   );
 };
